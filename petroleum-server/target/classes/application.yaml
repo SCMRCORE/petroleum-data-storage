@@ -1,0 +1,50 @@
+spring:
+  profiles:
+    active: local
+  datasource:
+    druid:
+      driver-class-name: ${petroleum.datasource.driver-class-name}
+      url: jdbc:mysql://${petroleum.datasource.host}:${petroleum.datasource.port}/${petroleum.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+      username: ${petroleum.datasource.username}
+      password: ${petroleum.datasource.password}
+
+mybatis:
+  #mapper????
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.petroleumpojo.entity
+  configuration:
+    #??????
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    com:
+      lec:
+        mapper: debug
+        service: info
+        controller: info
+
+petroleum:
+  jwt:
+    # ??jwt??????????
+    user-secret-key: lec
+    # ??jwt????
+    user-ttl: 72000000
+    # ?????????????
+    user-token-name: token
+
+knife4j:
+  enable: true
+  openapi:
+    title: ????????
+    description: "????????"
+    email: 3551147139@qq.com
+    concat: ??
+    url: https://www.itcast.cn
+    version: v1.0.0
+    group:
+      default:
+        group-name: default
+        api-rule: package
+        api-rule-resources:
+          - com.petroleumserver.controller
