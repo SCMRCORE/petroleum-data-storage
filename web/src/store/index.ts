@@ -1,10 +1,17 @@
 import { create } from 'zustand'
 
-// TODO: 草，zustan 会在 swc + react 19 + ts 下报错，先留着这个 demo，后面给官方提 issue
-const useStore = create((set) => ({
+interface StoreState {
+  count: number;
+}
+
+interface StoreActions {
+  inc: () => void;
+}
+
+const useStore = create<StoreState & StoreActions>((set) => ({
   count: 1,
-  inc: () => set((state: any) => ({ count: state.count + 1 })),
-}))
+  inc: () => set((state) => ({ count: state.count + 1 })),
+}));
 
 
 export default useStore
