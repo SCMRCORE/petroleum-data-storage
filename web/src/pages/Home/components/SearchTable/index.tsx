@@ -11,6 +11,8 @@ import {
   Select,
   InputNumber,
   Space,
+  Upload,
+  Modal,
 } from '@arco-design/web-react';
 
 const defaultData = [...new Array(5)].map((_, index) => {
@@ -77,6 +79,43 @@ const SearchTable = () => {
                 <Input placeholder='enter name' />
               </Form.Item>
             </Grid.Col>
+
+            <Grid.Col span={8}>
+              <Form.Item
+                label='Upload'
+                field='upload'
+                triggerPropName='fileList'
+                initialValue={[
+                  {
+                    uid: '-1',
+                    url: '//p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/e278888093bef8910e829486fb45dd69.png~tplv-uwbnlip3yd-webp.webp',
+                    name: '20200717',
+                  },
+                ]}
+              >
+                <Upload multiple defaultFileList={[]}></Upload>
+                {/* <Upload
+                  listType='picture-card'
+                  multiple
+                  name='files'
+                  action='/'
+                  // onPreview={(file) => {
+                  //   Modal.info({
+                  //     title: 'Preview',
+                  //     content: (
+                  //       <img
+                  //         src={file.url || URL.createObjectURL(file.originFile as File)}
+                  //         style={{
+                  //           maxWidth: '100%',
+                  //         }}
+                  //       ></img>
+                  //     ),
+                  //   });
+                  // }}
+                /> */}
+              </Form.Item>
+            </Grid.Col>
+
             <Grid.Col span={8}>
               <Form.Item label='Gender' field='gender'>
                 <Select
@@ -85,6 +124,7 @@ const SearchTable = () => {
                 />
               </Form.Item>
             </Grid.Col>
+
             <Grid.Col span={8}>
               <Form.Item label='Age' field='age'>
                 <InputNumber placeholder='enter age' />
