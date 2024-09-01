@@ -50,7 +50,7 @@ jobs:
           CI: false # 避免在生产模式下执行额外的检查
 
   deploy:
-    if: github.ref == 'refs/heads/master'
+    # if: github.ref == 'refs/heads/master'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
