@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Form,
   Grid,
@@ -12,7 +11,6 @@ import {
   InputNumber,
   Space,
   Upload,
-  Modal,
 } from '@arco-design/web-react';
 
 const defaultData = [...new Array(5)].map((_, index) => {

@@ -1,7 +1,6 @@
-// @ts-ignore
-import axios from 'axios';
+import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
-const isDevEnv = ['localhost', '127.0.0.1'].includes(location.hostname) ;
+const isDevEnv = ['localhost', '127.0.0.1'].includes(location.hostname);
 
 const instance = axios.create({
   baseURL: isDevEnv ? 'http://localhost:3000/api' : '',
@@ -12,7 +11,7 @@ const instance = axios.create({
 
 // 请求拦截器
 instance.interceptors.request.use(
-  (config: any) => {
+  (config: InternalAxiosRequestConfig) => {
     // 在这里可以添加请求前的逻辑，例如添加token等
     return config;
   },
@@ -24,7 +23,7 @@ instance.interceptors.request.use(
 
 // 响应拦截器
 instance.interceptors.response.use(
-  (response: Response) => {
+  (response: AxiosResponse) => {
     // 对响应数据做点什么
     return response;
   },
@@ -35,7 +34,7 @@ instance.interceptors.response.use(
 );
 
 const request = {
-  get: (url:string, data = {}) => {
+  get: (url: string, data = {}) => {
     return instance({
       method: 'get',
       url,
@@ -43,7 +42,7 @@ const request = {
     });
   },
 
-  post: (url:string, data = {}) => {
+  post: (url: string, data = {}) => {
     return instance({
       method: 'post',
       url,
@@ -51,8 +50,8 @@ const request = {
     });
   },
 
-  put: (url:string, data:Record<string, any> = {}) => {
-    let formData = new FormData();
+  put: (url: string, data: Record<string, string> = {}) => {
+    const formData = new FormData();
     Object.keys(data).forEach((key) => {
       formData.append(key, data[key]);
     });
