@@ -1,0 +1,38 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: Navigate to web directory
+        run: cd web
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: Build the application
+        run: npm run build
+        env:
+          CI: false # 避免在生产模式下执行额外的检查
+
+      - name: Navigate back to root
+        run: cd ..
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./web/dist
