@@ -50,7 +50,6 @@ const SearchTable = () => {
             info.forms.searchForm.setFieldsValue({
               email: values.email,
             });
-            // setVisible(false);
           }
           Message.info({
             icon: <span></span>,
@@ -94,25 +93,6 @@ const SearchTable = () => {
                 ]}
               >
                 <Upload multiple defaultFileList={[]}></Upload>
-                {/* <Upload
-                  listType='picture-card'
-                  multiple
-                  name='files'
-                  action='/'
-                  // onPreview={(file) => {
-                  //   Modal.info({
-                  //     title: 'Preview',
-                  //     content: (
-                  //       <img
-                  //         src={file.url || URL.createObjectURL(file.originFile as File)}
-                  //         style={{
-                  //           maxWidth: '100%',
-                  //         }}
-                  //       ></img>
-                  //     ),
-                  //   });
-                  // }}
-                /> */}
               </Form.Item>
             </Grid.Col>
 
