@@ -49,8 +49,12 @@ jobs:
         env:
           CI: false # 避免在生产模式下执行额外的检查
 
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist
+
   deploy:
-    # if: github.ref == 'refs/heads/master'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
