@@ -2,7 +2,7 @@ package com.petroleumserver.interceptor;
 
 import com.petroleumcommom.constant.JwtClaimsConstant;
 import com.petroleumcommom.context.BaseContext;
-import com.petroleumcommom.properties.JwtProperties;
+import com.petroleumserver.properties.JwtProperties;
 import com.petroleumcommom.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;

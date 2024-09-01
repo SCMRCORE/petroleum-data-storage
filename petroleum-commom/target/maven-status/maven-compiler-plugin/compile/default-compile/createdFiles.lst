@@ -1,1 +1,5 @@
+com\petroleumcommom\constant\JwtClaimsConstant.class
+com\petroleumcommom\utils\JwtUtil.class
 com\petroleumcommom\result\Result.class
+com\petroleumcommom\context\BaseContext.class
+com\petroleumcommom\properties\JwtProperties.class
