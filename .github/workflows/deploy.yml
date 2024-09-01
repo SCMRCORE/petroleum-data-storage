@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+  pull_request:
 
 jobs:
   build-and-deploy:
@@ -12,13 +13,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+          run_install: false
+          package_json_file: web/package.json
+
       - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '20'
-
-      - name: Install pnpm
-        run: npm install -g pnpm
+          node-version: "20"
+          cache: "pnpm"
+          cache-dependency-path: 'web/pnpm-lock.yaml'
 
       - name: Install dependencies
         run: cd web && pnpm i
@@ -29,7 +36,8 @@ jobs:
           CI: false # 避免在生产模式下执行额外的检查
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
+        if: ${{ github.ref == 'refs/heads/master' }}
         with:
           personal_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./web/dist
