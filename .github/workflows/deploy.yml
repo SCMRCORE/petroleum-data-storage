@@ -17,11 +17,14 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Install pnpm
+        run: npm install -g pnpm
+
       - name: Install dependencies
-        run: cd web && npm i
+        run: cd web && pnpm i
 
       - name: Build the application
-        run: cd web && npm run build
+        run: cd web && pnpm run build
         env:
           CI: false # 避免在生产模式下执行额外的检查
 
