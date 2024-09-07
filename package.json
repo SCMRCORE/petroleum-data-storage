@@ -1,0 +1,13 @@
+{
+  "name": "petroleum-data-storage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "rm_deps": "rm -rf node_modules **/*/node_modules",
+    "start": "pnpm -C ./petroleum-server mvn spring-boot:run & pnpm -C ./web dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

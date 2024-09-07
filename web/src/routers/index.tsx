@@ -1,15 +1,20 @@
-import { createBrowserRouter } from "react-router-dom"
-import Home from "../pages/Home/index.js"
+import { createHashRouter } from "react-router-dom";
+import DataManagement from "../pages/DataManagement/index.js";
+import DataTrend from "../pages/DataTrend/index.tsx";
 
-const routerList = createBrowserRouter([
+export const routeList = [
   {
-    path: '/',
-    element: <Home></Home>
+    name: "数据管理",
+    path: "/",
+    element: <DataManagement></DataManagement>,
   },
   {
-    path: '/test',
-    element: <div>test</div>
+    name: "数据趋势",
+    path: "/trend",
+    element: <DataTrend></DataTrend>,
   },
-])
+];
 
-export default routerList
+const routerList = createHashRouter(routeList);
+
+export default routerList;
