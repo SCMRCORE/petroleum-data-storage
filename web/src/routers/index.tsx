@@ -1,14 +1,17 @@
 import { createHashRouter } from "react-router-dom";
-import Home from "../pages/Home/index.js";
+import DataManagement from "../pages/DataManagement/index.js";
+import DataTrend from "../pages/DataTrend/index.tsx";
 
-const routeList = [
+export const routeList = [
   {
+    name: "数据管理",
     path: "/",
-    element: <Home></Home>,
+    element: <DataManagement></DataManagement>,
   },
   {
-    path: "/test",
-    element: <div>test</div>,
+    name: "数据趋势",
+    path: "/trend",
+    element: <DataTrend></DataTrend>,
   },
 ];
 

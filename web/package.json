@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@arco-design/web-react": "^2.64.0",
+    "@trickle/use-web-worker": "^0.0.1",
     "axios": "^1.7.6",
     "react": "19.0.0-rc-e56f4ae3-20240830",
     "react-dom": "19.0.0-rc-e56f4ae3-20240830",
