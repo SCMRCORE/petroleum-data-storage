@@ -1,6 +1,6 @@
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { isDevEnv } from './env.js';
 
-const isDevEnv = ['localhost', '127.0.0.1'].includes(location.hostname);
 
 const instance = axios.create({
   baseURL: isDevEnv ? 'http://localhost:3000/api' : '',

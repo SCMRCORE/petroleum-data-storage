@@ -1,15 +1,17 @@
-import { createBrowserRouter } from "react-router-dom"
-import Home from "../pages/Home/index.js"
+import { createHashRouter } from "react-router-dom";
+import Home from "../pages/Home/index.js";
 
-const routerList = createBrowserRouter([
+const routeList = [
   {
-    path: '/',
-    element: <Home></Home>
+    path: "/",
+    element: <Home></Home>,
   },
   {
-    path: '/test',
-    element: <div>test</div>
+    path: "/test",
+    element: <div>test</div>,
   },
-])
+];
 
-export default routerList
+const routerList = createHashRouter(routeList);
+
+export default routerList;
