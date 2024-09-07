@@ -31,7 +31,7 @@
         <aspectj>1.9.4</aspectj>
         <jjwt>0.9.1</jjwt>
         <jaxb-api>2.3.1</jaxb-api>
-        <poi>3.16</poi>
+<!--        <poi>5.2.3</poi>-->
         <mysql.version>8.0.23</mysql.version>
     </properties>
 
@@ -114,13 +114,8 @@
         <!-- poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>${poi}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>${poi}</version>
+            <version>5.2.3</version>
         </dependency>
         <dependency>
             <groupId>com.aliyun.oss</groupId>
@@ -138,6 +133,13 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.version}</version>
+        </dependency>
+
+<!--        hutool-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.11</version>
         </dependency>
     </dependencies>
 

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.petroleumserver.mapper.petroleumMapper">
+
+    <insert id="addJinShenByList" parameterType="java.util.List">
+        insert into jingshen (WellName, company, PrimaryWellType, WellType, WellSection, HoleDiameter, StartTime, EndTime, StartDepth, StartVerticalDepth, EndDepth, EndVerticalDepth, CasingDiameter, SteelGrade, CasingSetDepth, CasingLength, CementReturnHeight, UpperCasingDiameter, UpperCasingSetDepth, DrillingFluidSystem, DrillingFluidDensity, PlasticViscosity, YieldValue, FormationPressure, status)
+        values
+        <foreach collection="jingshenss" item="item" separator="),(" open="(" close=")">
+            #{item.WellName},
+            #{item.company},
+            #{item.PrimaryWellType},
+            #{item.WellType},
+            #{item.WellSection},
+            #{item.HoleDiameter},
+            #{item.StartTime},
+            #{item.EndTime},
+            #{item.StartDepth},
+            #{item.StartVerticalDepth},
+            #{item.EndDepth},
+            #{item.EndVerticalDepth},
+            #{item.CasingDiameter},
+            #{item.SteelGrade},
+            #{item.CasingSetDepth},
+            #{item.CasingLength},
+            #{item.CementReturnHeight},
+            #{item.UpperCasingDiameter},
+            #{item.UpperCasingSetDepth},
+            #{item.DrillingFluidSystem},
+            #{item.DrillingFluidDensity},
+            #{item.PlasticViscosity},
+            #{item.YieldValue},
+            #{item.FormationPressure},
+            #{item.status}
+        </foreach>
+    </insert>
+
+    <insert id="addJiBenByList" parameterType="com.petroleumpojo.entity.JiBen">
+        insert into jibenxinxi
+        (wellName, company, oilFieldName, oilFieldCode, isCooperative, contractor, primaryWellType, secondaryWellType, tertiaryWellType, wellType, waterDepth1, designDepth, designVerticalDepth, designDate, structureName, uniqueWellId, chineseWellName, operator, hydrocarbonType, riskLevel, riskType, riskGrade, sulfurGrade, containsCO2, zeroDepth, initialKellyElevation, groundElevation, currentKellyElevation, casingHeadElevation, waterDepth2, mudLineElevation, artificialBottomDepth, drillingDays, positioningMethod, location, geodeticSystem, longitude, latitude, xCoordinate, yCoordinate, slotNumber, country, region, province, county, scrapedWell, officePhone, remark, status)
+        values
+        <foreach collection="jiBen" item="item" separator="),(" open="(" close=")">
+            #{item.wellName},
+            #{item.company},
+            #{item.oilFieldName},
+            #{item.oilFieldCode},
+            #{item.isCooperative},
+            #{item.contractor},
+            #{item.primaryWellType},
+            #{item.secondaryWellType},
+            #{item.tertiaryWellType},
+            #{item.wellType},
+            #{item.waterDepth1},
+            #{item.designDepth},
+            #{item.designVerticalDepth},
+            #{item.designDate},
+            #{item.structureName},
+            #{item.uniqueWellId},
+            #{item.chineseWellName},
+            #{item.operator},
+            #{item.hydrocarbonType},
+            #{item.riskLevel},
+            #{item.riskType},
+            #{item.riskGrade},
+            #{item.sulfurGrade},
+            #{item.containsCO2},
+            #{item.zeroDepth},
+            #{item.initialKellyElevation},
+            #{item.groundElevation},
+            #{item.currentKellyElevation},
+            #{item.casingHeadElevation},
+            #{item.waterDepth2},
+            #{item.mudLineElevation},
+            #{item.artificialBottomDepth},
+            #{item.drillingDays},
+            #{item.positioningMethod},
+            #{item.location},
+            #{item.geodeticSystem},
+            #{item.longitude},
+            #{item.latitude},
+            #{item.xCoordinate},
+            #{item.yCoordinate},
+            #{item.slotNumber},
+            #{item.country},
+            #{item.region},
+            #{item.province},
+            #{item.county},
+            #{item.scrapedWell},
+            #{item.officePhone},
+            #{item.remark},
+            #{item.status}
+        </foreach>
+    </insert>
+
+    <insert id="addFuZaByList" parameterType="com.petroleumpojo.entity.FuZa">
+        insert into fuza
+        (wellName, company, primaryWellType, wellType, startTime, endTime, durationHours, firstLevelCode, secondLevelCode, thirdLevelCode, fourthLevelCode, complexityType, wellSection, startDepth, endDepth, operationDescription, status)
+        values
+        <foreach collection="fuza" item="item" separator="),(" open="(" close=")">
+            #{item.wellName},
+            #{item.company},
+            #{item.primaryWellType},
+            #{item.wellType},
+            #{item.startTime},
+            #{item.endTime},
+            #{item.durationHours},
+            #{item.firstLevelCode},
+            #{item.secondLevelCode},
+            #{item.thirdLevelCode},
+            #{item.fourthLevelCode},
+            #{item.complexityType},
+            #{item.wellSection},
+            #{item.startDepth},
+            #{item.endDepth},
+            #{item.operationDescription},
+            #{item.status}
+        </foreach>
+    </insert>
+
+    <insert id="addZuanTouByList" parameterType="com.petroleumpojo.entity.ZuanTou">
+        insert into zuantou
+        (wellName, company, primaryWellType, wellType, drillBitNumber, drillBitType, sizeIn, manufacturer, model, serialNumber, nozzleSize, drillBitTFAn2, entryDepth, exitDepth, entryTime, exitTime, advanceDistance, pureDrillingTime, rop, maxDrillingPressure, minDrillingPressure, maxRotationSpeed, minRotationSpeed, iadcWearEvaluation, encounteredFormation, status)
+        values
+        <foreach collection="zuantou" item="item" separator="),(" open="(" close=")">
+            #{item.wellName},
+            #{item.company},
+            #{item.primaryWellType},
+            #{item.wellType},
+            #{item.drillBitNumber},
+            #{item.drillBitType},
+            #{item.sizeIn},
+            #{item.manufacturer},
+            #{item.model},
+            #{item.serialNumber},
+            #{item.nozzleSize},
+            #{item.drillBitTFAn2},
+            #{item.entryDepth},
+            #{item.exitDepth},
+            #{item.entryTime},
+            #{item.exitTime},
+            #{item.advanceDistance},
+            #{item.pureDrillingTime},
+            #{item.rop},
+            #{item.maxDrillingPressure},
+            #{item.minDrillingPressure},
+            #{item.maxRotationSpeed},
+            #{item.minRotationSpeed},
+            #{item.iadcWearEvaluation},
+            #{item.encounteredFormation},
+            #{item.status}
+        </foreach>
+    </insert>
+
+    <select id="search" resultType="com.petroleumpojo.entity.JingShen">
+        select * from jingshen where WellName like '%${WellName}%'
+                                 and PrimaryWellType like '%${PrimaryWellType}%'
+                                 and WellType like '%${WellType}%'
+        order by StartTime desc
+    </select>
+
+</mapper>
