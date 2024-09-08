@@ -1,0 +1,11 @@
+com\petroleumserver\config\CorsConfig.class
+com\petroleumserver\mapper\petroleumMapper.class
+com\petroleumserver\controller\userController.class
+com\petroleumserver\controller\petroleumController.class
+com\petroleumserver\filter\CorsFilter.class
+com\petroleumserver\interceptor\JwtInterceptor.class
+com\petroleumserver\PetroleumServerApplication.class
+com\petroleumserver\service\lmp\petroleumServicelmp.class
+com\petroleumserver\properties\JwtProperties.class
+com\petroleumserver\config\WebMvcConfiguration.class
+com\petroleumserver\service\petroleumService.class
