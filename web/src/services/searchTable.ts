@@ -2,10 +2,16 @@
 
 import { AxiosResponse } from "axios";
 import request from "../utils/request.ts";
-import { SearchParams, SearchResult, AddParams, StatusResponse, UploadParams, DeleteParams, ModifyParams } from "./types.ts";
+import { SearchParams, AddParams, StatusResponse, UploadParams, DeleteParams, ModifyParams } from "./types.ts";
 
-export const search = async <T>(params: SearchParams): Promise<AxiosResponse<SearchResult<T>>> => {
-  return request.post('/search', params);
+export const search = async (params: SearchParams) => {
+  const promiseList = [
+    request.post('/petroleum/searchJS', params),
+    request.post('/petroleum/searchJB', params),
+    request.post('/petroleum/searchFZ', params),
+  ]
+
+  return Promise.all(promiseList)
 };
 
 export const add = async (params: AddParams): Promise<AxiosResponse<StatusResponse>> => {
