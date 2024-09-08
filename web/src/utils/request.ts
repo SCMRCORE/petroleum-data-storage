@@ -1,11 +1,11 @@
-import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { isDevEnv } from './env.js';
-
+import axios, { AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import { isDevEnv } from "./env.js";
 
 const instance = axios.create({
-  baseURL: isDevEnv ? 'http://localhost:3000/api' : '',
+  baseURL: isDevEnv ? "http://localhost:2233" : "",
+  // baseURL: 'http://localhost:8080'
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
@@ -36,7 +36,7 @@ instance.interceptors.response.use(
 const request = {
   get: (url: string, data = {}) => {
     return instance({
-      method: 'get',
+      method: "get",
       url,
       params: data,
     });
@@ -44,7 +44,7 @@ const request = {
 
   post: (url: string, data = {}) => {
     return instance({
-      method: 'post',
+      method: "post",
       url,
       data,
     });
@@ -57,11 +57,11 @@ const request = {
     });
 
     return instance({
-      method: 'put',
+      method: "put",
       url,
       data: formData,
       headers: {
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
     });
   },
