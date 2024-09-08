@@ -32,13 +32,14 @@ public class petroleumController {
     }
 
     /**
-     * 新增
+     * 新增JS
      * @return
      */
     @PostMapping("/add")//待实现
     public Result add(){
         return Result.success();
     }
+
 
     /**
      * 批量新增

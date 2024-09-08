@@ -155,6 +155,7 @@
         select * from jingshen where WellName like '%${WellName}%'
                                  and PrimaryWellType like '%${PrimaryWellType}%'
                                  and WellType like '%${WellType}%'
+                                 and status = 1
         order by StartTime desc
     </select>
 
@@ -162,18 +163,21 @@
         select * from jibenxinxi where wellName like '%${wellName}%'
                                  and oilFieldName like '%${oilFieldName}%'
                                  and contractor like '%${contractor}%'
+                                 and status = 1
         order by wellName desc
     </select>
     <select id="searchfz" resultType="com.petroleumpojo.entity.FuZa">
         select * from fuza where wellName like '%${wellName}%'
                                  and primaryWellType like '%${primaryWellType}%'
                                  and wellType like '%${wellType}%'
+                                 and status = 1
         order by StartTime desc
     </select>
     <select id="searchzt" resultType="com.petroleumpojo.entity.ZuanTou">
         select * from zuantou where wellName like '%${wellName}%'
                              and primaryWellType like '%${primaryWellType}%'
                              and wellType like '%${wellType}%'
+                             and status = 1
         order by entryTime desc
     </select>
 
