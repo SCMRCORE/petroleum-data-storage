@@ -413,7 +413,81 @@
 
     <update id="updateJS">
         update jingshen
-
+        <set>
+            <if test="WellName != null and WellName.trim() != ''">
+                WellName = #{WellName}
+            </if>
+            <if test="company != null and company.trim() != ''">
+                company = #{company}
+            </if>
+            <if test="PrimaryWellType != null and PrimaryWellType.trim() != ''">
+                PrimaryWellType = #{PrimaryWellType}
+            </if>
+            <if test="WellType != null and WellType.trim() != ''">
+                WellType = #{WellType}
+            </if>
+            <if test="WellSection != null and WellSection.trim() != ''">
+                WellSection = #{WellSection}
+            </if>
+            <if test="HoleDiameter != null and HoleDiameter.trim() != ''">
+                HoleDiameter = #{HoleDiameter}
+            </if>
+            <if test="StartTime != null">
+                StartTime = #{StartTime}
+            </if>
+            <if test="EndTime != null">
+                EndTime = #{EndTime}
+            </if>
+            <if test="StartDepth != null and StartDepth.trim() != ''">
+                StartDepth = #{StartDepth}
+            </if>
+            <if test="StartVerticalDepth != null and StartVerticalDepth.trim() != ''">
+                StartVerticalDepth = #{StartVerticalDepth}
+            </if>
+            <if test="EndDepth != null and EndDepth.trim() != ''">
+                EndDepth = #{EndDepth}
+            </if>
+            <if test="EndVerticalDepth != null and EndVerticalDepth.trim() != ''">
+                EndVerticalDepth = #{EndVerticalDepth}
+            </if>
+            <if test="CasingDiameter != null and CasingDiameter.trim() != ''">
+                CasingDiameter = #{CasingDiameter}
+            </if>
+            <if test="SteelGrade != null and SteelGrade.trim() != ''">
+                SteelGrade = #{SteelGrade}
+            </if>
+            <if test="CasingSetDepth != null and CasingSetDepth.trim() != ''">
+                CasingSetDepth = #{CasingSetDepth}
+            </if>
+            <if test="CasingLength != null and CasingLength.trim() != ''">
+                CasingLength = #{CasingLength}
+            </if>
+            <if test="CementReturnHeight != null and CementReturnHeight.trim() != ''">
+                CementReturnHeight = #{CementReturnHeight}
+            </if>
+            <if test="UpperCasingDiameter != null and UpperCasingDiameter.trim() != ''">
+                UpperCasingDiameter = #{UpperCasingDiameter}
+            </if>
+            <if test="UpperCasingSetDepth != null and UpperCasingSetDepth.trim() != ''">
+                UpperCasingSetDepth = #{UpperCasingSetDepth}
+            </if>
+            <if test="DrillingFluidSystem != null and DrillingFluidSystem.trim() != ''">
+                DrillingFluidSystem = #{DrillingFluidSystem}
+            </if>
+            <if test="DrillingFluidDensity != null and DrillingFluidDensity.trim() != ''">
+                DrillingFluidDensity = #{DrillingFluidDensity}
+            </if>
+            <if test="PlasticViscosity != null and PlasticViscosity.trim() != ''">
+                PlasticViscosity = #{PlasticViscosity}
+            </if>
+            <if test="YieldValue != null and YieldValue.trim() != ''">
+                YieldValue = #{YieldValue}
+            </if>
+            <if test="FormationPressure != null and FormationPressure.trim() != ''">
+                FormationPressure = #{FormationPressure}
+            </if>
+        </set>
+        where OnlyKey = #{Onlykey}
     </update>
 
 </mapper>

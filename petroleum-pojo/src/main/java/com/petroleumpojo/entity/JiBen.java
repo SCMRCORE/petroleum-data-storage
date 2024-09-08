@@ -61,4 +61,5 @@ public class JiBen {
     private String officePhone; // 现场办公室电话
     private String remark; // 备注
     private Integer status;
+    private Integer OnlyKey;
 }

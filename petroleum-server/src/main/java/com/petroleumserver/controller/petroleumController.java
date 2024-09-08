@@ -165,9 +165,27 @@ public class petroleumController {
     }
 
 
+    /**
+     * 软删除最新
+     * @param num
+     * @param OnlyKey
+     * @return
+     */
+    @PutMapping("/delete")
+    public Result deleteZT(Integer num, Integer OnlyKey){
+//        petroleumService.updateStatus(num, OnlyKey);
+        return Result.success();
+    }
 
+    /**
+     * 更新JS
+     * @param OnlyKey
+     * @param jsDto
+     * @return
+     */
     @PutMapping("/setJS")
     public Result set(Integer OnlyKey, @RequestBody JingShenDTO jsDto){
+//        System.out.println(jsDto);
 //        petroleumService.updateJS(OnlyKey, jsDto);
         return Result.success();
     }

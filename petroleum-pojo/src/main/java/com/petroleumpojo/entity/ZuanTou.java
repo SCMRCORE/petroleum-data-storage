@@ -38,4 +38,5 @@ public class ZuanTou {
     private String iadcWearEvaluation; // 钻头IADC磨损评价
     private String encounteredFormation; // 钻遇地层
     private Integer status; // 状态
+    private Integer OnlyKey;
 }

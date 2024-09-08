@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.PrintStream;
 import java.time.LocalDateTime;
 
 @Data
@@ -39,4 +40,5 @@ public class JingShen {
     private String YieldValue;
     private String FormationPressure;
     private Integer status;
+    private Integer OnlyKey;
 }
