@@ -36,7 +36,7 @@ instance.interceptors.response.use(
 const request = {
   get: (url: string, data = {}) => {
     return instance({
-      method: "get",
+      method: "GET",
       url,
       params: data,
     });
@@ -44,7 +44,7 @@ const request = {
 
   post: (url: string, data = {}) => {
     return instance({
-      method: "post",
+      method: "POST",
       url,
       data,
     });
@@ -57,7 +57,7 @@ const request = {
     });
 
     return instance({
-      method: "put",
+      method: "PUT",
       url,
       data: formData,
       headers: {

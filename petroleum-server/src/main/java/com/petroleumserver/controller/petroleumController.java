@@ -93,7 +93,9 @@ public class petroleumController {
      */
     @GetMapping("/searchJS")
     public Result<PageResult> searchJS(JingShenSearchPageDTO jsSPDto) {
+        System.out.println("todo: 这没传参数要兜底的，返回全部数据（或者返回第一页的数据）");
         PageResult res = petroleumService.searchjs(jsSPDto);
+        System.out.println(res);
         return Result.success(res);
     }
 
