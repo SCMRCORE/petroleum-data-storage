@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 @Data
 public class JingShenDTO {
     private String WellName;
+    private String company;
     private String PrimaryWellType;
     private String WellType;
     private String WellSection;

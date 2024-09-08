@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class FuZaDTO {
     private String wellName; // 井名
+    private String company;
     private String primaryWellType; // 一级井别
     private String wellType; // 井型
     private LocalDateTime startTime; // 开始时间

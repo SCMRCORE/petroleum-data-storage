@@ -8,11 +8,9 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class JiBenDTO {
     private String wellName; // 井名
+    private String company;
     private String oilFieldName; // 油田名
     private String oilFieldCode; // 油田代码
     private String isCooperative; // 是否合作
@@ -49,8 +47,8 @@ public class JiBenDTO {
     private String geodeticSystem; // 大地测量系统
     private String longitude; // 经度
     private String latitude; // 纬度
-    private String xCoordinate; // X坐标
-    private String yCoordinate; // Y坐标
+    private String xcoordinate; // X坐标
+    private String ycoordinate; // Y坐标
     private String slotNumber; // 槽口号
     private String country; // 国家
     private String region; // 区域

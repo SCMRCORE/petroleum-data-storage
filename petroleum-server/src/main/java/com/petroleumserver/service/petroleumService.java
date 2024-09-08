@@ -5,6 +5,7 @@ import com.petroleumpojo.dto.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface petroleumService {
     PageResult searchjs(JingShenSearchPageDTO jsSPDto);
@@ -17,5 +18,11 @@ public interface petroleumService {
 
     void addByList(MultipartFile file, String company, Integer num) throws IOException;
 
-    void addJS(JingShenDTO jsDto, String company);
+    void addJS(List<JingShenDTO> jsDto);
+
+    void addJB(List<JiBenDTO> jbDto);
+
+    void addFZ(List<FuZaDTO> fzDto);
+
+    void addZT(List<ZuanTouDTO> ztDto);
 }

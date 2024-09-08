@@ -125,15 +125,53 @@ public class petroleumServicelmp implements petroleumService {
     /**
      * 新增js
      * @param jsDto
-     * @param company
      */
     @Override
-    public void addJS(JingShenDTO jsDto, String company) {
-        JingShen jingShen = new JingShen();
-        BeanUtils.copyProperties(jsDto, jingShen);
-        jingShen.setCompany(company);
-        jingShen.setStatus(1);
+    public void addJS(List<JingShenDTO> jsDto) {
+        List<JingShen> jingShen = new ArrayList<>();
+        for(JingShenDTO js1 : jsDto) {
+            JingShen jingShen1 = new JingShen();
+            BeanUtils.copyProperties(js1, jingShen1);
+            jingShen1.setStatus(1);
+            jingShen.add(jingShen1);
+        }
         petroleumMapper.addJS(jingShen);
+    }
+
+    @Override
+    public void addJB(List<JiBenDTO> jbDto) {
+        List<JiBen> jiben = new ArrayList<>();
+        for (JiBenDTO jb1 : jbDto) {
+            JiBen jiBen1 = new JiBen();
+            BeanUtils.copyProperties(jb1, jiBen1);
+            jiBen1.setStatus(1);
+            jiben.add(jiBen1);
+        }
+        petroleumMapper.addJB(jiben);
+    }
+
+    @Override
+    public void addFZ(List<FuZaDTO> fzDto) {
+        List<FuZa> fuZa = new ArrayList<>();
+        for(FuZaDTO fz1 : fzDto) {
+            FuZa fuza = new FuZa();
+            BeanUtils.copyProperties(fz1, fuza);
+            fuza.setStatus(1);
+            fuZa.add(fuza);
+        }
+        petroleumMapper.addFZ(fuZa);
+    }
+
+    @Override
+    public void addZT(List<ZuanTouDTO> ztDto) {
+        List<ZuanTou> zuanTou = new ArrayList<>();
+        for(ZuanTouDTO zt1 : ztDto) {
+            ZuanTou zuantou = new ZuanTou();
+            BeanUtils.copyProperties(zt1, zuantou);
+            zuantou.setStatus(1);
+            zuanTou.add(zuantou);
+        }
+        petroleumMapper.addZT(zuanTou);
     }
 
 

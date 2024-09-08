@@ -42,8 +42,8 @@ public class JiBenTool {
         reader.addHeaderAlias("大地测量系统", "geodeticSystem");
         reader.addHeaderAlias("经度", "longitude");
         reader.addHeaderAlias("纬度", "latitude");
-        reader.addHeaderAlias("X坐标", "xCoordinate");
-        reader.addHeaderAlias("Y坐标", "yCoordinate");
+        reader.addHeaderAlias("X坐标", "xcoordinate");
+        reader.addHeaderAlias("Y坐标", "ycoordinate");
         reader.addHeaderAlias("槽口号", "slotNumber");
         reader.addHeaderAlias("国家", "country");
         reader.addHeaderAlias("区域", "region");
