@@ -47,3 +47,20 @@ We use a backend for frontend server to resolve the cors issue, and you can run 
 ```shell
 pnpm run dev:bff
 ```
+
+### Q&A
+
+1. BFF Failed to Start
+
+- Check if the port `8080` is occupied.
+- Verify that you have installed node.js, pnpm and ts-node **globally**.  
+- Ensure that you have installed the other dependencies required by the BFF.
+
+2. Project Can't Work Correctly in Online Environment
+
+Since the request base URL and port have not been configured for the online environment, you need to set them manually.
+
+3. Java Server Failed to Start
+
+- Verify that the installed JDK version is correct.
+- Ensure that your IDE has correctly configured the JDK, module build target version, and other settings.
