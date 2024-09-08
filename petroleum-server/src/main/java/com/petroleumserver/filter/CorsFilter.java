@@ -24,13 +24,13 @@ import java.io.IOException;
 @Order(Const.ORDER_CORS)
 public class CorsFilter extends HttpFilter {
 
-    @Value("${spring.web.cors.origin}")
+    @Value("*")
     String origin;
 
-    @Value("${spring.web.cors.credentials}")
+    @Value("false")
     boolean credentials;
 
-    @Value("${spring.web.cors.methods}")
+    @Value("*")
     String methods;
 
     @Override
