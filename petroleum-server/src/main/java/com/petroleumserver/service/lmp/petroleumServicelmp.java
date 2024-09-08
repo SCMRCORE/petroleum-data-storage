@@ -123,6 +123,21 @@ public class petroleumServicelmp implements petroleumService {
 
 
     /**
+     * 新增js
+     * @param jsDto
+     * @param company
+     */
+    @Override
+    public void addJS(JingShenDTO jsDto, String company) {
+        JingShen jingShen = new JingShen();
+        BeanUtils.copyProperties(jsDto, jingShen);
+        jingShen.setCompany(company);
+        jingShen.setStatus(1);
+        petroleumMapper.addJS(jingShen);
+    }
+
+
+    /**
      * 搜索js
      * @param jsSPDto
      * @return

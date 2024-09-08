@@ -10,10 +10,10 @@
         <module name="petroleum-pojo" />
         <module name="petroleum-server" />
         <module name="petroleum-commom" />
-        <module name="easy-excel" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="easy-excel" target="1.8" />
       <module name="easy-excel-master" target="1.8" />
       <module name="excel-util" target="1.7" />
     </bytecodeTargetLevel>

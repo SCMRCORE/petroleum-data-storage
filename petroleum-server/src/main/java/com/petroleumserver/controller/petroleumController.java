@@ -5,10 +5,7 @@ package com.petroleumserver.controller;
 
 import com.petroleumcommom.result.PageResult;
 import com.petroleumcommom.result.Result;
-import com.petroleumpojo.dto.FuZaSearchPageDTO;
-import com.petroleumpojo.dto.JiBenSearchPageDTO;
-import com.petroleumpojo.dto.JingShenSearchPageDTO;
-import com.petroleumpojo.dto.ZuanTouSearchPageDTO;
+import com.petroleumpojo.dto.*;
 import com.petroleumserver.service.petroleumService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +32,33 @@ public class petroleumController {
      * 新增JS
      * @return
      */
-    @PostMapping("/add")//待实现
-    public Result add(){
+    @PostMapping("/addjs")//待实现
+    public Result addjs(JingShenDTO jsDto, String company){
+        petroleumService.addJS(jsDto, company);
+        return Result.success();
+    }
+    /**
+     * 新增JB
+     * @return
+     */
+    @PostMapping("/addjb")//待实现
+    public Result addjb(){
+        return Result.success();
+    }
+    /**
+     * 新增FZ
+     * @return
+     */
+    @PostMapping("/addfz")//待实现
+    public Result addfz(){
+        return Result.success();
+    }
+    /**
+     * 新增ZT
+     * @return
+     */
+    @PostMapping("/addzt")//待实现
+    public Result addzt(){
         return Result.success();
     }
 
@@ -50,8 +72,6 @@ public class petroleumController {
          petroleumService.addByList(file, company, num);
          return Result.success();
     }
-
-
     /**
      * 搜索JingShen
      * @return

@@ -110,12 +110,7 @@
             <artifactId>jaxb-api</artifactId>
             <version>${jaxb-api}</version>
         </dependency>
-        <dependency>
-            <groupId>com.orkva.utils</groupId>
-            <artifactId>easy-excel</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
+
 
         <dependency>
             <groupId>com.alibaba</groupId>
