@@ -151,11 +151,30 @@
         </foreach>
     </insert>
 
-    <select id="search" resultType="com.petroleumpojo.entity.JingShen">
+    <select id="searchjs" resultType="com.petroleumpojo.entity.JingShen">
         select * from jingshen where WellName like '%${WellName}%'
                                  and PrimaryWellType like '%${PrimaryWellType}%'
                                  and WellType like '%${WellType}%'
         order by StartTime desc
+    </select>
+
+    <select id="searchjb" resultType="com.petroleumpojo.entity.JiBen">
+        select * from jibenxinxi where wellName like '%${wellName}%'
+                                 and oilFieldName like '%${oilFieldName}%'
+                                 and contractor like '%${contractor}%'
+        order by wellName desc
+    </select>
+    <select id="searchfz" resultType="com.petroleumpojo.entity.FuZa">
+        select * from fuza where wellName like '%${wellName}%'
+                                 and primaryWellType like '%${primaryWellType}%'
+                                 and wellType like '%${wellType}%'
+        order by StartTime desc
+    </select>
+    <select id="searchzt" resultType="com.petroleumpojo.entity.ZuanTou">
+        select * from zuantou where wellName like '%${wellName}%'
+                             and primaryWellType like '%${primaryWellType}%'
+                             and wellType like '%${wellType}%'
+        order by entryTime desc
     </select>
 
 </mapper>

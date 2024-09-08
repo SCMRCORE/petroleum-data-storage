@@ -35,7 +35,7 @@ public class petroleumServicelmp implements petroleumService {
     private petroleumMapper petroleumMapper;
 
     /**
-     * 添加JS
+     * 批量添加
      * @param file
      * @param company
      * @param num
@@ -122,11 +122,51 @@ public class petroleumServicelmp implements petroleumService {
     }
 
 
+    /**
+     * 搜索js
+     * @param jsSPDto
+     * @return
+     */
     @Override
-    public PageResult search(JingShenSearchPageDTO jsSPDto) {
+    public PageResult searchjs(JingShenSearchPageDTO jsSPDto) {
         PageHelper.startPage(jsSPDto.getPageIndex(), jsSPDto.getPageSize());
-        Page<JingShen> page = petroleumMapper.search(jsSPDto.getWellName(), jsSPDto.getPrimaryWellType(), jsSPDto.getWellType());
-        List<JingShen> res = page.getResult();
+        Page<JingShen> page = petroleumMapper.searchjs(jsSPDto.getWellName(), jsSPDto.getPrimaryWellType(), jsSPDto.getWellType());
+        return new PageResult(page.getTotal(), page.getResult());
+    }
+
+    /**
+     * 搜索jb
+     * @param jbSPDto
+     * @return
+     */
+    @Override
+    public PageResult searchjb(JiBenSearchPageDTO jbSPDto) {
+        PageHelper.startPage(jbSPDto.getPageIndex(), jbSPDto.getPageSize());
+        Page<JiBen> page = petroleumMapper.searchjb(jbSPDto.getWellName(), jbSPDto.getOilFieldName(), jbSPDto.getContractor());
+        return new PageResult(page.getTotal(), page.getResult());
+    }
+
+    /**
+     * 搜索fz
+     * @param fzSPDto
+     * @return
+     */
+    @Override
+    public PageResult searchfz(FuZaSearchPageDTO fzSPDto) {
+        PageHelper.startPage(fzSPDto.getPageIndex(), fzSPDto.getPageSize());
+        Page<FuZa> page = petroleumMapper.searchfz(fzSPDto.getWellName(), fzSPDto.getPrimaryWellType(), fzSPDto.getWellType());
+        return new PageResult(page.getTotal(), page.getResult());
+    }
+
+    /**
+     * 搜索zt
+     * @param ztSPDto
+     * @return
+     */
+    @Override
+    public PageResult searchzt(ZuanTouSearchPageDTO ztSPDto) {
+        PageHelper.startPage(ztSPDto.getPageIndex(), ztSPDto.getPageSize());
+        Page<FuZa> page = petroleumMapper.searchzt(ztSPDto.getWellName(), ztSPDto.getPrimaryWellType(), ztSPDto.getWellType());
         return new PageResult(page.getTotal(), page.getResult());
     }
 }

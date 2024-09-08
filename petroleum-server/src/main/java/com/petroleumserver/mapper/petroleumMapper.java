@@ -13,11 +13,17 @@ import java.util.List;
 public interface petroleumMapper {
     void addJinShenByList(List<JingShen> jingshenss);
 
-    Page<JingShen> search(String WellName, String PrimaryWellType, String WellType);
 
     void addJiBenByList(List<JiBen> jiBen);
 
     void addFuZaByList(List<FuZa> fuza);
 
     void addZuanTouByList(List<ZuanTou> zuantou);
+
+    Page<JiBen> searchjb(String wellName, String oilFieldName, String contractor);
+    Page<JingShen> searchjs(String WellName, String PrimaryWellType, String WellType);
+
+    Page<FuZa> searchfz(String wellName, String primaryWellType, String wellType);
+
+    Page<FuZa> searchzt(String wellName, String primaryWellType, String wellType);
 }

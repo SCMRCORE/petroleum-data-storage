@@ -5,7 +5,10 @@ package com.petroleumserver.controller;
 
 import com.petroleumcommom.result.PageResult;
 import com.petroleumcommom.result.Result;
+import com.petroleumpojo.dto.FuZaSearchPageDTO;
+import com.petroleumpojo.dto.JiBenSearchPageDTO;
 import com.petroleumpojo.dto.JingShenSearchPageDTO;
+import com.petroleumpojo.dto.ZuanTouSearchPageDTO;
 import com.petroleumserver.service.petroleumService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -52,11 +55,41 @@ public class petroleumController {
      * 搜索JingShen
      * @return
      */
-    @GetMapping("/searchJS")//剩余三张表搜索待实现
-    public Result<PageResult> search(JingShenSearchPageDTO jsSPDto){
-        PageResult res = petroleumService.search(jsSPDto);
+    @GetMapping("/searchJS")
+    public Result<PageResult> searchJS(JingShenSearchPageDTO jsSPDto){
+        PageResult res = petroleumService.searchjs(jsSPDto);
         return Result.success(res);
     }
+    /**
+     * 搜索JiBen
+     * @return
+     */
+    @GetMapping("/searchJB")
+    public Result<PageResult> searchJB(JiBenSearchPageDTO jbSPDto){
+        PageResult res = petroleumService.searchjb(jbSPDto);
+        return Result.success(res);
+    }
+    /**
+     * 搜索FuZa
+     * @return
+     */
+    @GetMapping("/searchFZ")
+    public Result<PageResult> searchFZ(FuZaSearchPageDTO fzSPDto){
+        PageResult res = petroleumService.searchfz(fzSPDto);
+        return Result.success(res);
+    }
+    /**
+     * 搜索ZuanTou
+     * @return
+     */
+    @GetMapping("/searchZT")
+    public Result<PageResult> searchZT(ZuanTouSearchPageDTO ztSPDto){
+        PageResult res = petroleumService.searchzt(ztSPDto);
+        return Result.success(res);
+    }
+
+
+
 
     @DeleteMapping("/delete")
     public Result delete(String wellName, Integer num){
