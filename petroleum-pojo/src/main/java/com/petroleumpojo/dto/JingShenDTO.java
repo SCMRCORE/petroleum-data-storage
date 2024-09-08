@@ -1,6 +1,5 @@
 package com.petroleumpojo.dto;
 
-import com.orkva.utils.easy.excel.annotation.ExcelColumn;
 import lombok.Data;
 
 import java.lang.annotation.Target;

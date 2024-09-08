@@ -151,6 +151,11 @@
         </foreach>
     </insert>
 
+    <insert id="addJS" parameterType="com.petroleumpojo.entity.JingShen">
+        insert into jingshen (WellName, company, PrimaryWellType, WellType, WellSection, HoleDiameter, StartTime, EndTime, StartDepth, StartVerticalDepth, EndDepth, EndVerticalDepth, CasingDiameter, SteelGrade, CasingSetDepth, CasingLength, CementReturnHeight, UpperCasingDiameter, UpperCasingSetDepth, DrillingFluidSystem, DrillingFluidDensity, PlasticViscosity, YieldValue, FormationPressure, status)
+        values (WellName, company, PrimaryWellType, WellType, WellSection, HoleDiameter, StartTime, EndTime, StartDepth, StartVerticalDepth, EndDepth, EndVerticalDepth, CasingDiameter, SteelGrade, CasingSetDepth, CasingLength, CementReturnHeight, UpperCasingDiameter, UpperCasingSetDepth, DrillingFluidSystem, DrillingFluidDensity, PlasticViscosity, YieldValue, FormationPressure, status)
+    </insert>
+
     <select id="searchjs" resultType="com.petroleumpojo.entity.JingShen">
         select * from jingshen where WellName like '%${WellName}%'
                                  and PrimaryWellType like '%${PrimaryWellType}%'
@@ -158,7 +163,6 @@
                                  and status = 1
         order by StartTime desc
     </select>
-
     <select id="searchjb" resultType="com.petroleumpojo.entity.JiBen">
         select * from jibenxinxi where wellName like '%${wellName}%'
                                  and oilFieldName like '%${oilFieldName}%'

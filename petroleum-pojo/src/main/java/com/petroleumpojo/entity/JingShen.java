@@ -2,7 +2,6 @@ package com.petroleumpojo.entity;
 
 import cn.hutool.core.annotation.Alias;
 import com.alibaba.excel.annotation.ExcelProperty;
-import com.orkva.utils.easy.excel.annotation.ExcelColumn;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

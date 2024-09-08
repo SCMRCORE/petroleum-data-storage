@@ -25,7 +25,7 @@ public interface petroleumMapper {
 
     Page<FuZa> searchfz(String wellName, String primaryWellType, String wellType);
 
-    Page<FuZa> searchzt(String wellName, String primaryWellType, String wellType);
+    Page<ZuanTou> searchzt(String wellName, String primaryWellType, String wellType);
 
     void addJS(JingShen jingShen);
 }

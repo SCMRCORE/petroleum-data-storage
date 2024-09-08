@@ -181,7 +181,7 @@ public class petroleumServicelmp implements petroleumService {
     @Override
     public PageResult searchzt(ZuanTouSearchPageDTO ztSPDto) {
         PageHelper.startPage(ztSPDto.getPageIndex(), ztSPDto.getPageSize());
-        Page<FuZa> page = petroleumMapper.searchzt(ztSPDto.getWellName(), ztSPDto.getPrimaryWellType(), ztSPDto.getWellType());
+        Page<ZuanTou> page = petroleumMapper.searchzt(ztSPDto.getWellName(), ztSPDto.getPrimaryWellType(), ztSPDto.getWellType());
         return new PageResult(page.getTotal(), page.getResult());
     }
 }
