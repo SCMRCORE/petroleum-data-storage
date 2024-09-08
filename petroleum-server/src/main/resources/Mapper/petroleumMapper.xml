@@ -3,6 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.petroleumserver.mapper.petroleumMapper">
 
+<!--excel-->
     <insert id="addJinShenByList" parameterType="java.util.List">
         insert into jingshen (WellName, company, PrimaryWellType, WellType, WellSection, HoleDiameter, StartTime, EndTime, StartDepth, StartVerticalDepth, EndDepth, EndVerticalDepth, CasingDiameter, SteelGrade, CasingSetDepth, CasingLength, CementReturnHeight, UpperCasingDiameter, UpperCasingSetDepth, DrillingFluidSystem, DrillingFluidDensity, PlasticViscosity, YieldValue, FormationPressure, status)
         values
@@ -34,7 +35,6 @@
             #{item.status}
         </foreach>
     </insert>
-
     <insert id="addJiBenByList" parameterType="com.petroleumpojo.entity.JiBen">
         insert into jibenxinxi
         (wellName, company, oilFieldName, oilFieldCode, isCooperative, contractor, primaryWellType, secondaryWellType, tertiaryWellType, wellType, waterDepth1, designDepth, designVerticalDepth, designDate, structureName, uniqueWellId, chineseWellName, operator, hydrocarbonType, riskLevel, riskType, riskGrade, sulfurGrade, containsCO2, zeroDepth, initialKellyElevation, groundElevation, currentKellyElevation, casingHeadElevation, waterDepth2, mudLineElevation, artificialBottomDepth, drillingDays, positioningMethod, location, geodeticSystem, longitude, latitude, xcoordinate, ycoordinate, slotNumber, country, region, province, county, scrapedWell, officePhone, remark, status)
@@ -91,7 +91,6 @@
             #{item.status}
         </foreach>
     </insert>
-
     <insert id="addFuZaByList" parameterType="com.petroleumpojo.entity.FuZa">
         insert into fuza
         (wellName, company, primaryWellType, wellType, startTime, endTime, durationHours, firstLevelCode, secondLevelCode, thirdLevelCode, fourthLevelCode, complexityType, wellSection, startDepth, endDepth, operationDescription, status)
@@ -116,7 +115,6 @@
             #{item.status}
         </foreach>
     </insert>
-
     <insert id="addZuanTouByList" parameterType="com.petroleumpojo.entity.ZuanTou">
         insert into zuantou
         (wellName, company, primaryWellType, wellType, drillBitNumber, drillBitType, sizeIn, manufacturer, model, serialNumber, nozzleSize, drillBitTFAn2, entryDepth, exitDepth, entryTime, exitTime, advanceDistance, pureDrillingTime, rop, maxDrillingPressure, minDrillingPressure, maxRotationSpeed, minRotationSpeed, iadcWearEvaluation, encounteredFormation, status)
@@ -150,7 +148,7 @@
             #{item.status}
         </foreach>
     </insert>
-
+<!--单独新增-->
     <insert id="addJS" parameterType="com.petroleumpojo.entity.JingShen">
         insert into jingshen (WellName, company, PrimaryWellType, WellType, WellSection, HoleDiameter, StartTime, EndTime, StartDepth, StartVerticalDepth, EndDepth, EndVerticalDepth, CasingDiameter, SteelGrade, CasingSetDepth, CasingLength, CementReturnHeight, UpperCasingDiameter, UpperCasingSetDepth, DrillingFluidSystem, DrillingFluidDensity, PlasticViscosity, YieldValue, FormationPressure, status)
         values
@@ -182,7 +180,6 @@
             #{item.status}
         </foreach>
     </insert>
-
     <insert id="addJB">
         insert into jibenxinxi (wellName, company, oilFieldName, oilFieldCode, isCooperative, contractor, primaryWellType, secondaryWellType, tertiaryWellType, wellType, waterDepth1, designDepth, designVerticalDepth, designDate, structureName, uniqueWellId, chineseWellName, operator, hydrocarbonType, riskLevel, riskType, riskGrade, sulfurGrade, containsCO2, zeroDepth, initialKellyElevation, groundElevation, currentKellyElevation, casingHeadElevation, waterDepth2, mudLineElevation, artificialBottomDepth, drillingDays, positioningMethod, location, geodeticSystem, longitude, latitude, xcoordinate, ycoordinate, slotNumber, country, region, province, county, scrapedWell, officePhone, remark,  status)
         values
@@ -238,7 +235,6 @@
                 #{item.status}
         </foreach>
     </insert>
-
     <insert id="addFZ">
         insert into fuza (wellName, company, primaryWellType, wellType, startTime, endTime, durationHours, firstLevelCode, secondLevelCode, thirdLevelCode, fourthLevelCode, complexityType, wellSection, startDepth, endDepth, operationDescription, status)
         values
@@ -246,7 +242,6 @@
             #{item.wellName}, #{item.company}, #{item.primaryWellType}, #{item.wellType}, #{item.startTime}, #{item.endTime}, #{item.durationHours}, #{item.firstLevelCode}, #{item.secondLevelCode}, #{item.thirdLevelCode}, #{item.fourthLevelCode}, #{item.complexityType}, #{item.wellSection}, #{item.startDepth}, #{item.endDepth}, #{item.operationDescription}, #{item.status}
         </foreach>
     </insert>
-
     <insert id="addZT">
         insert into zuantou (wellName, company, primaryWellType, wellType, drillBitNumber, drillBitType, sizeIn, manufacturer, model, serialNumber, nozzleSize, drillBitTFAn2, entryDepth, exitDepth, entryTime, exitTime, advanceDistance, pureDrillingTime, rop, maxDrillingPressure, minDrillingPressure, maxRotationSpeed, minRotationSpeed, iadcWearEvaluation, encounteredFormation, status)
         values
@@ -254,7 +249,7 @@
             #{item.wellName}, #{item.company}, #{item.primaryWellType}, #{item.wellType}, #{item.drillBitNumber}, #{item.drillBitType}, #{item.sizeIn}, #{item.manufacturer}, #{item.model}, #{item.serialNumber}, #{item.nozzleSize}, #{item.drillBitTFAn2}, #{item.entryDepth}, #{item.exitDepth}, #{item.entryTime}, #{item.exitTime}, #{item.advanceDistance}, #{item.pureDrillingTime}, #{item.rop}, #{item.maxDrillingPressure}, #{item.minDrillingPressure}, #{item.maxRotationSpeed}, #{item.minRotationSpeed}, #{item.iadcWearEvaluation}, #{item.encounteredFormation}, #{item.status}
         </foreach>
     </insert>
-
+<!--搜索-->
     <select id="searchjs" resultType="com.petroleumpojo.entity.JingShen">
         select * from jingshen where WellName like '%${WellName}%'
                                  and PrimaryWellType like '%${PrimaryWellType}%'
@@ -283,7 +278,7 @@
                              and status = 1
         order by entryTime desc
     </select>
-
+<!--软删除-->
     <update id="updateStatusJS">
         update jingshen set status = 0
         WHERE WellName = #{WellName}
@@ -311,7 +306,6 @@
           AND FormationPressure = #{FormationPressure}
 #           AND status = 1
     </update>
-
     <update id="updateStatusJB">
         update jibenxinxi set status = 0
         WHERE
@@ -365,7 +359,6 @@
             remark = #{remark}
 #             status = 1
     </update>
-
     <update id="updateStatusFZ">
         update fuza set status = 0
         where
@@ -416,4 +409,11 @@
             iadcWearEvaluation = #{iadcWearEvaluation} AND
             encounteredFormation = #{encounteredFormation}
     </update>
+
+
+    <update id="updateJS">
+        update jingshen
+
+    </update>
+
 </mapper>

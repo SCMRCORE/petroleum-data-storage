@@ -5,6 +5,7 @@ import com.petroleumpojo.dto.*;
 import com.petroleumpojo.entity.JiBen;
 import com.petroleumpojo.entity.ZuanTou;
 import com.petroleumserver.service.petroleumService;
+import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -151,20 +152,41 @@ public class petroleumController {
         return Result.success();
     }
 
-
+    /**
+     * 软删除ZT
+     * @param ztDto
+     * @return
+     */
     @PutMapping("/deleteZT")
     public Result deleteZT(@RequestBody ZuanTouDTO ztDto){
-        System.out.println(ztDto);
+//        System.out.println(ztDto);
         petroleumService.updateStatusZT(ztDto);
         return Result.success();
     }
 
 
-    //修改估计得做个接口，对应四个表
-    @PutMapping("/set")
-    public Result set(String wellName, Integer num){
-        //num是表格种类,1是JinShen,2是JiBen,3是FuZa,4是钻头
-        //至于wellName是依照字段删除的其中一个举例
+
+    @PutMapping("/setJS")
+    public Result set(Integer OnlyKey, @RequestBody JingShenDTO jsDto){
+//        petroleumService.updateJS(OnlyKey, jsDto);
+        return Result.success();
+    }
+
+    @PutMapping("/setJB")
+    public Result set(Integer OnlyKey, @RequestBody JiBenDTO jbDto){
+//        petroleumService.updateJB(OnlyKey, jbDto);
+        return Result.success();
+    }
+
+    @PutMapping("/setFZ")
+    public Result set(Integer OnlyKey, @RequestBody FuZaDTO fzDto){
+//        petroleumService.updateFZ(OnlyKey, fzDto);
+        return Result.success();
+    }
+
+    @PutMapping("/setZT")
+    public Result set(Integer OnlyKey, @RequestBody ZuanTouDTO ztDto){
+//        petroleumService.updateZT(OnlyKey, ztDto);
         return Result.success();
     }
 

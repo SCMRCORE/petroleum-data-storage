@@ -46,4 +46,6 @@ public interface petroleumMapper {
     void updateStatusFZ(FuZaDTO fzDto);
 
     void updateStatusZT(ZuanTouDTO ztDto);
+
+    void updateJS(Integer onlyKey, JingShenDTO jsDto);
 }
