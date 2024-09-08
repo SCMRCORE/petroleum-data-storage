@@ -2,6 +2,8 @@ package com.petroleumserver.controller;
 import com.petroleumcommom.result.PageResult;
 import com.petroleumcommom.result.Result;
 import com.petroleumpojo.dto.*;
+import com.petroleumpojo.entity.JiBen;
+import com.petroleumpojo.entity.ZuanTou;
 import com.petroleumserver.service.petroleumService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,7 @@ public class petroleumController {
         System.out.println("业务测试连接成功");
         return Result.success("业务测试连接成功");
     }
+
 
     /**
      * 新增JS
@@ -72,6 +75,8 @@ public class petroleumController {
          petroleumService.addByList(file, company, num);
          return Result.success();
     }
+
+
     /**
      * 搜索JingShen
      * @return
@@ -110,13 +115,47 @@ public class petroleumController {
     }
 
 
+    /**
+     * 软删除JS
+     * @param jsDto
+     * @return
+     */
+    @PutMapping("/deleteJS")
+    public Result deleteJS(@RequestBody JingShenDTO jsDto){
+//        System.out.println(jsDto);
+        petroleumService.updateStatusJS(jsDto);
+        return Result.success();
+    }
+
+    /**
+     * 软删除JB
+     * @param jbDto
+     * @return
+     */
+    @PutMapping("/deleteJB")
+    public Result deleteJB(@RequestBody JiBenDTO jbDto){
+//        System.out.println(jbDto);
+        petroleumService.updateStatusJB(jbDto);
+        return Result.success();
+    }
+
+    /**
+     * 软删除FZ
+     * @param fzDto
+     * @return
+     */
+    @PutMapping("/deleteFZ")
+    public Result deleteFZ(@RequestBody FuZaDTO fzDto){
+//        System.out.println(fzDto);
+        petroleumService.updateStatusFZ(fzDto);
+        return Result.success();
+    }
 
 
-    @DeleteMapping("/delete")
-    public Result delete(String wellName, Integer num){
-        //num是表格种类,1是JinShen,2是JiBen,3是FuZa,4是钻头
-        //status的状态，1是存在，2是删除
-        //至于wellName是依照字段删除的其中一个举例
+    @PutMapping("/deleteZT")
+    public Result deleteZT(@RequestBody ZuanTouDTO ztDto){
+        System.out.println(ztDto);
+        petroleumService.updateStatusZT(ztDto);
         return Result.success();
     }
 

@@ -25,4 +25,12 @@ public interface petroleumService {
     void addFZ(List<FuZaDTO> fzDto);
 
     void addZT(List<ZuanTouDTO> ztDto);
+
+    void updateStatusJS(JingShenDTO jsDto);
+
+    void updateStatusJB(JiBenDTO jbDto);
+
+    void updateStatusFZ(FuZaDTO fzDto);
+
+    void updateStatusZT(ZuanTouDTO ztDto);
 }

@@ -174,7 +174,6 @@ public class petroleumServicelmp implements petroleumService {
         petroleumMapper.addZT(zuanTou);
     }
 
-
     /**
      * 搜索js
      * @param jsSPDto
@@ -222,4 +221,31 @@ public class petroleumServicelmp implements petroleumService {
         Page<ZuanTou> page = petroleumMapper.searchzt(ztSPDto.getWellName(), ztSPDto.getPrimaryWellType(), ztSPDto.getWellType());
         return new PageResult(page.getTotal(), page.getResult());
     }
+
+
+    /**
+     * 软删除js
+     * @param jsDto
+     */
+    @Override
+    public void updateStatusJS(JingShenDTO jsDto) {
+        petroleumMapper.updateStatusJS(jsDto);
+    }
+
+    @Override
+    public void updateStatusJB(JiBenDTO jbDto) {
+        petroleumMapper.updateStatusJB(jbDto);
+    }
+
+    @Override
+    public void updateStatusFZ(FuZaDTO fzDto) {
+        petroleumMapper.updateStatusFZ(fzDto);
+    }
+
+    @Override
+    public void updateStatusZT(ZuanTouDTO ztDto) {
+        petroleumMapper.updateStatusZT(ztDto);
+    }
+
+
 }

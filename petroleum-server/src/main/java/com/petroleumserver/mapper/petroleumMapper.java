@@ -1,6 +1,10 @@
 package com.petroleumserver.mapper;
 
 import com.github.pagehelper.Page;
+import com.petroleumpojo.dto.FuZaDTO;
+import com.petroleumpojo.dto.JiBenDTO;
+import com.petroleumpojo.dto.JingShenDTO;
+import com.petroleumpojo.dto.ZuanTouDTO;
 import com.petroleumpojo.entity.FuZa;
 import com.petroleumpojo.entity.JiBen;
 import com.petroleumpojo.entity.JingShen;
@@ -34,4 +38,12 @@ public interface petroleumMapper {
     void addFZ(List<FuZa> fuza);
 
     void addZT(List<ZuanTou> zuantou);
+
+    void updateStatusJS(JingShenDTO jsDto);
+
+    void updateStatusJB(JiBenDTO jbDto);
+
+    void updateStatusFZ(FuZaDTO fzDto);
+
+    void updateStatusZT(ZuanTouDTO ztDto);
 }
