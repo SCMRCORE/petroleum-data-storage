@@ -17,16 +17,20 @@ public interface petroleumService {
     void addByList(MultipartFile file, String company, Integer num) throws IOException;
 
 
+    void updateStatus(Integer num, Integer onlyKey);
+
+
     void addJS(List<JingShenDTO> jsDto);
     void addJB(List<JiBenDTO> jbDto);
     void addFZ(List<FuZaDTO> fzDto);
     void addZT(List<ZuanTouDTO> ztDto);
 
-    void updateStatusJS(JingShenDTO jsDto);
-    void updateStatusJB(JiBenDTO jbDto);
-    void updateStatusFZ(FuZaDTO fzDto);
-    void updateStatusZT(ZuanTouDTO ztDto);
+//    void updateStatusJS(JingShenDTO jsDto);
+//    void updateStatusJB(JiBenDTO jbDto);
+//    void updateStatusFZ(FuZaDTO fzDto);
+//    void updateStatusZT(ZuanTouDTO ztDto);
 
 
     void updateJS(Integer onlyKey, JingShenDTO jsDto);
+
 }

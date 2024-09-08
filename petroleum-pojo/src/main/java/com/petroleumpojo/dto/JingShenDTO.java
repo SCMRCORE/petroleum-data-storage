@@ -31,4 +31,5 @@ public class JingShenDTO {
     private String PlasticViscosity;
     private String YieldValue;
     private String FormationPressure;
+    private Integer OnlyKey;
 }

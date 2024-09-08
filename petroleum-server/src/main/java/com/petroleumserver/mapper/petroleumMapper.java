@@ -39,13 +39,14 @@ public interface petroleumMapper {
 
     void addZT(List<ZuanTou> zuantou);
 
-    void updateStatusJS(JingShenDTO jsDto);
+    void updateStatusJS(Integer OnlyKey);
 
-    void updateStatusJB(JiBenDTO jbDto);
+    void updateStatusJB(Integer OnlyKey);
 
-    void updateStatusFZ(FuZaDTO fzDto);
+    void updateStatusFZ(Integer OnlyKey);
 
-    void updateStatusZT(ZuanTouDTO ztDto);
+    void updateStatusZT(Integer OnlyKey);
 
-    void updateJS(Integer onlyKey, JingShenDTO jsDto);
+
+    void updateJS(JingShenDTO jsDto);
 }

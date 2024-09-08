@@ -280,214 +280,190 @@
     </select>
 <!--软删除-->
     <update id="updateStatusJS">
-        update jingshen set status = 0
-        WHERE WellName = #{WellName}
-          AND PrimaryWellType = #{PrimaryWellType}
-          AND WellType = #{WellType}
-          AND WellSection = #{WellSection}
-          AND HoleDiameter = #{HoleDiameter}
-          AND StartTime = #{StartTime}
-          AND EndTime = #{EndTime}
-          AND StartDepth = #{StartDepth}
-          AND StartVerticalDepth = #{StartVerticalDepth}
-          AND EndDepth = #{EndDepth}
-          AND EndVerticalDepth = #{EndVerticalDepth}
-          AND CasingDiameter = #{CasingDiameter}
-          AND SteelGrade = #{SteelGrade}
-          AND CasingSetDepth = #{CasingSetDepth}
-          AND CasingLength = #{CasingLength}
-          AND CementReturnHeight = #{CementReturnHeight}
-          AND UpperCasingDiameter = #{UpperCasingDiameter}
-          AND UpperCasingSetDepth = #{UpperCasingSetDepth}
-          AND DrillingFluidSystem = #{DrillingFluidSystem}
-          AND DrillingFluidDensity = #{DrillingFluidDensity}
-          AND PlasticViscosity = #{PlasticViscosity}
-          AND YieldValue = #{YieldValue}
-          AND FormationPressure = #{FormationPressure}
-#           AND status = 1
+        update jingshen set status = 0 where OnlyKey = #{OnlyKey}
     </update>
     <update id="updateStatusJB">
         update jibenxinxi set status = 0
-        WHERE
-            wellName = #{wellName} AND
-            company = #{company} AND
-            oilFieldName = #{oilFieldName} AND
-            oilFieldCode = #{oilFieldCode} AND
-            isCooperative = #{isCooperative} AND
-            contractor = #{contractor} AND
-            primaryWellType = #{primaryWellType} AND
-            secondaryWellType = #{secondaryWellType} AND
-            tertiaryWellType = #{tertiaryWellType} AND
-            wellType = #{wellType} AND
-            waterDepth1 = #{waterDepth1} AND
-            designDepth = #{designDepth} AND
-            designVerticalDepth = #{designVerticalDepth} AND
-            designDate = #{designDate} AND
-            structureName = #{structureName} AND
-            uniqueWellId = #{uniqueWellId} AND
-            chineseWellName = #{chineseWellName} AND
-            operator = #{operator} AND
-            hydrocarbonType = #{hydrocarbonType} AND
-            riskLevel = #{riskLevel} AND
-            riskType = #{riskType} AND
-            riskGrade = #{riskGrade} AND
-            sulfurGrade = #{sulfurGrade} AND
-            containsCO2 = #{containsCO2} AND
-            zeroDepth = #{zeroDepth} AND
-            initialKellyElevation = #{initialKellyElevation} AND
-            groundElevation = #{groundElevation} AND
-            currentKellyElevation = #{currentKellyElevation} AND
-            casingHeadElevation = #{casingHeadElevation} AND
-            waterDepth2 = #{waterDepth2} AND
-            mudLineElevation = #{mudLineElevation} AND
-            artificialBottomDepth = #{artificialBottomDepth} AND
-            drillingDays = #{drillingDays} AND
-            positioningMethod = #{positioningMethod} AND
-            location = #{location} AND
-            geodeticSystem = #{geodeticSystem} AND
-            longitude = #{longitude} AND
-            latitude = #{latitude} AND
-            xcoordinate = #{xcoordinate} AND
-            ycoordinate = #{ycoordinate} AND
-            slotNumber = #{slotNumber} AND
-            country = #{country} AND
-            region = #{region} AND
-            province = #{province} AND
-            county = #{county} AND
-            scrapedWell = #{scrapedWell} AND
-            officePhone = #{officePhone} AND
-            remark = #{remark}
+        WHERE OnlyKey = #{OnlyKey} AND status = 1
+#             wellName = #{wellName} AND
+#             company = #{company} AND
+#             oilFieldName = #{oilFieldName} AND
+#             oilFieldCode = #{oilFieldCode} AND
+#             isCooperative = #{isCooperative} AND
+#             contractor = #{contractor} AND
+#             primaryWellType = #{primaryWellType} AND
+#             secondaryWellType = #{secondaryWellType} AND
+#             tertiaryWellType = #{tertiaryWellType} AND
+#             wellType = #{wellType} AND
+#             waterDepth1 = #{waterDepth1} AND
+#             designDepth = #{designDepth} AND
+#             designVerticalDepth = #{designVerticalDepth} AND
+#             designDate = #{designDate} AND
+#             structureName = #{structureName} AND
+#             uniqueWellId = #{uniqueWellId} AND
+#             chineseWellName = #{chineseWellName} AND
+#             operator = #{operator} AND
+#             hydrocarbonType = #{hydrocarbonType} AND
+#             riskLevel = #{riskLevel} AND
+#             riskType = #{riskType} AND
+#             riskGrade = #{riskGrade} AND
+#             sulfurGrade = #{sulfurGrade} AND
+#             containsCO2 = #{containsCO2} AND
+#             zeroDepth = #{zeroDepth} AND
+#             initialKellyElevation = #{initialKellyElevation} AND
+#             groundElevation = #{groundElevation} AND
+#             currentKellyElevation = #{currentKellyElevation} AND
+#             casingHeadElevation = #{casingHeadElevation} AND
+#             waterDepth2 = #{waterDepth2} AND
+#             mudLineElevation = #{mudLineElevation} AND
+#             artificialBottomDepth = #{artificialBottomDepth} AND
+#             drillingDays = #{drillingDays} AND
+#             positioningMethod = #{positioningMethod} AND
+#             location = #{location} AND
+#             geodeticSystem = #{geodeticSystem} AND
+#             longitude = #{longitude} AND
+#             latitude = #{latitude} AND
+#             xcoordinate = #{xcoordinate} AND
+#             ycoordinate = #{ycoordinate} AND
+#             slotNumber = #{slotNumber} AND
+#             country = #{country} AND
+#             region = #{region} AND
+#             province = #{province} AND
+#             county = #{county} AND
+#             scrapedWell = #{scrapedWell} AND
+#             officePhone = #{officePhone} AND
+#             remark = #{remark}
 #             status = 1
     </update>
     <update id="updateStatusFZ">
         update fuza set status = 0
-        where
-            wellName = #{wellName} AND
-            company = #{company} AND
-            primaryWellType = #{primaryWellType} AND
-            wellType = #{wellType} AND
-            startTime = IFNULL(#{startTime}, NULL) AND
-            endTime = IFNULL(#{endTime}, NULL) AND
-            durationHours = #{durationHours} AND
-            firstLevelCode = #{firstLevelCode} AND
-            secondLevelCode = #{secondLevelCode} AND
-            thirdLevelCode = #{thirdLevelCode} AND
-            fourthLevelCode = #{fourthLevelCode} AND
-            complexityType = #{complexityType} AND
-            wellSection = #{wellSection} AND
-            startDepth = #{startDepth} AND
-            endDepth = #{endDepth} AND
-            operationDescription = #{operationDescription}
+        where OnlyKey = #{OnlyKey} AND status = 1
+#             wellName = #{wellName} AND
+#             company = #{company} AND
+#             primaryWellType = #{primaryWellType} AND
+#             wellType = #{wellType} AND
+#             startTime = IFNULL(#{startTime}, NULL) AND
+#             endTime = IFNULL(#{endTime}, NULL) AND
+#             durationHours = #{durationHours} AND
+#             firstLevelCode = #{firstLevelCode} AND
+#             secondLevelCode = #{secondLevelCode} AND
+#             thirdLevelCode = #{thirdLevelCode} AND
+#             fourthLevelCode = #{fourthLevelCode} AND
+#             complexityType = #{complexityType} AND
+#             wellSection = #{wellSection} AND
+#             startDepth = #{startDepth} AND
+#             endDepth = #{endDepth} AND
+#             operationDescription = #{operationDescription}
 #             status = 1
     </update>
     <update id="updateStatusZT">
         update zuantou set status = 0
-        where
-            wellName = #{wellName} AND
-            company = #{company} AND
-            primaryWellType = #{primaryWellType} AND
-            wellType = #{wellType} AND
-            drillBitNumber = #{drillBitNumber} AND
-            drillBitType = #{drillBitType} AND
-            sizeIn = #{sizeIn} AND
-            manufacturer = #{manufacturer} AND
-            model = #{model} AND
-            serialNumber = #{serialNumber} AND
-            nozzleSize = #{nozzleSize} AND
-            drillBitTFAn2 = #{drillBitTFAn2} AND
-            entryDepth = #{entryDepth} AND
-            exitDepth = #{exitDepth} AND
-            entryTime = #{entryTime} AND
-            exitTime = #{exitTime} AND
-            advanceDistance = #{advanceDistance} AND
-            pureDrillingTime = #{pureDrillingTime} AND
-            rop = #{rop} AND
-            maxDrillingPressure = #{maxDrillingPressure} AND
-            minDrillingPressure = #{minDrillingPressure} AND
-            maxRotationSpeed = #{maxRotationSpeed} AND
-            minRotationSpeed = #{minRotationSpeed} AND
-            iadcWearEvaluation = #{iadcWearEvaluation} AND
-            encounteredFormation = #{encounteredFormation}
+        where OnlyKey = #{OnlyKey} AND status = 1
+#             wellName = #{wellName} AND
+#             company = #{company} AND
+#             primaryWellType = #{primaryWellType} AND
+#             wellType = #{wellType} AND
+#             drillBitNumber = #{drillBitNumber} AND
+#             drillBitType = #{drillBitType} AND
+#             sizeIn = #{sizeIn} AND
+#             manufacturer = #{manufacturer} AND
+#             model = #{model} AND
+#             serialNumber = #{serialNumber} AND
+#             nozzleSize = #{nozzleSize} AND
+#             drillBitTFAn2 = #{drillBitTFAn2} AND
+#             entryDepth = #{entryDepth} AND
+#             exitDepth = #{exitDepth} AND
+#             entryTime = #{entryTime} AND
+#             exitTime = #{exitTime} AND
+#             advanceDistance = #{advanceDistance} AND
+#             pureDrillingTime = #{pureDrillingTime} AND
+#             rop = #{rop} AND
+#             maxDrillingPressure = #{maxDrillingPressure} AND
+#             minDrillingPressure = #{minDrillingPressure} AND
+#             maxRotationSpeed = #{maxRotationSpeed} AND
+#             minRotationSpeed = #{minRotationSpeed} AND
+#             iadcWearEvaluation = #{iadcWearEvaluation} AND
+#             encounteredFormation = #{encounteredFormation}
     </update>
 
-
-    <update id="updateJS">
+<!--更新-->
+    <update id="updateJS" parameterType="com.petroleumpojo.dto.JingShenDTO">
         update jingshen
         <set>
-            <if test="WellName != null and WellName.trim() != ''">
-                WellName = #{WellName}
+            <if test="WellName != null">
+                WellName = #{WellName},
             </if>
-            <if test="company != null and company.trim() != ''">
-                company = #{company}
+            <if test="company != null">
+                company = #{company},
             </if>
-            <if test="PrimaryWellType != null and PrimaryWellType.trim() != ''">
-                PrimaryWellType = #{PrimaryWellType}
+            <if test="PrimaryWellType != null">
+                PrimaryWellType = #{PrimaryWellType},
             </if>
-            <if test="WellType != null and WellType.trim() != ''">
-                WellType = #{WellType}
+            <if test="WellType != null">
+                WellType = #{WellType},
             </if>
-            <if test="WellSection != null and WellSection.trim() != ''">
-                WellSection = #{WellSection}
+            <if test="WellSection != null">
+                WellSection = #{WellSection},
             </if>
-            <if test="HoleDiameter != null and HoleDiameter.trim() != ''">
-                HoleDiameter = #{HoleDiameter}
+            <if test="HoleDiameter != null">
+                HoleDiameter = #{HoleDiameter},
             </if>
             <if test="StartTime != null">
-                StartTime = #{StartTime}
+                StartTime = #{StartTime},
             </if>
             <if test="EndTime != null">
-                EndTime = #{EndTime}
+                EndTime = #{EndTime},
             </if>
-            <if test="StartDepth != null and StartDepth.trim() != ''">
-                StartDepth = #{StartDepth}
+            <if test="StartDepth != null">
+                StartDepth = #{StartDepth},
             </if>
-            <if test="StartVerticalDepth != null and StartVerticalDepth.trim() != ''">
-                StartVerticalDepth = #{StartVerticalDepth}
+            <if test="StartVerticalDepth != null">
+                StartVerticalDepth = #{StartVerticalDepth},
             </if>
-            <if test="EndDepth != null and EndDepth.trim() != ''">
-                EndDepth = #{EndDepth}
+            <if test="EndDepth != null">
+                EndDepth = #{EndDepth},
             </if>
-            <if test="EndVerticalDepth != null and EndVerticalDepth.trim() != ''">
-                EndVerticalDepth = #{EndVerticalDepth}
+            <if test="EndVerticalDepth != null">
+                EndVerticalDepth = #{EndVerticalDepth},
             </if>
-            <if test="CasingDiameter != null and CasingDiameter.trim() != ''">
-                CasingDiameter = #{CasingDiameter}
+            <if test="CasingDiameter != null">
+                CasingDiameter = #{CasingDiameter},
             </if>
-            <if test="SteelGrade != null and SteelGrade.trim() != ''">
-                SteelGrade = #{SteelGrade}
+            <if test="SteelGrade != null">
+                SteelGrade = #{SteelGrade},
             </if>
-            <if test="CasingSetDepth != null and CasingSetDepth.trim() != ''">
-                CasingSetDepth = #{CasingSetDepth}
+            <if test="CasingSetDepth != null">
+                CasingSetDepth = #{CasingSetDepth},
             </if>
-            <if test="CasingLength != null and CasingLength.trim() != ''">
-                CasingLength = #{CasingLength}
+            <if test="CasingLength != null">
+                CasingLength = #{CasingLength},
             </if>
-            <if test="CementReturnHeight != null and CementReturnHeight.trim() != ''">
-                CementReturnHeight = #{CementReturnHeight}
+            <if test="CementReturnHeight != null">
+                CementReturnHeight = #{CementReturnHeight},
             </if>
-            <if test="UpperCasingDiameter != null and UpperCasingDiameter.trim() != ''">
-                UpperCasingDiameter = #{UpperCasingDiameter}
+            <if test="UpperCasingDiameter != null">
+                UpperCasingDiameter = #{UpperCasingDiameter},
             </if>
-            <if test="UpperCasingSetDepth != null and UpperCasingSetDepth.trim() != ''">
-                UpperCasingSetDepth = #{UpperCasingSetDepth}
+            <if test="UpperCasingSetDepth != null">
+                UpperCasingSetDepth = #{UpperCasingSetDepth},
             </if>
-            <if test="DrillingFluidSystem != null and DrillingFluidSystem.trim() != ''">
-                DrillingFluidSystem = #{DrillingFluidSystem}
+            <if test="DrillingFluidSystem != null">
+                DrillingFluidSystem = #{DrillingFluidSystem},
             </if>
-            <if test="DrillingFluidDensity != null and DrillingFluidDensity.trim() != ''">
-                DrillingFluidDensity = #{DrillingFluidDensity}
+            <if test="DrillingFluidDensity != null">
+                DrillingFluidDensity = #{DrillingFluidDensity},
             </if>
-            <if test="PlasticViscosity != null and PlasticViscosity.trim() != ''">
-                PlasticViscosity = #{PlasticViscosity}
+            <if test="PlasticViscosity != null">
+                PlasticViscosity = #{PlasticViscosity},
             </if>
-            <if test="YieldValue != null and YieldValue.trim() != ''">
-                YieldValue = #{YieldValue}
+            <if test="YieldValue != null">
+                YieldValue = #{YieldValue},
             </if>
-            <if test="FormationPressure != null and FormationPressure.trim() != ''">
+            <if test="FormationPressure != null">
                 FormationPressure = #{FormationPressure}
             </if>
         </set>
-        where OnlyKey = #{Onlykey}
+        where OnlyKey = #{OnlyKey}
     </update>
 
 </mapper>

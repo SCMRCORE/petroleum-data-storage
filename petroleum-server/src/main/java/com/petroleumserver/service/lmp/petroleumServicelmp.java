@@ -223,34 +223,60 @@ public class petroleumServicelmp implements petroleumService {
     }
 
 
+//    /**
+//     * 软删除js
+//     * @param jsDto
+//     */
+//    @Override
+//    public void updateStatusJS(JingShenDTO jsDto) {
+//        petroleumMapper.updateStatusJS(jsDto);
+//    }
+//
+//    @Override
+//    public void updateStatusJB(JiBenDTO jbDto) {
+//        petroleumMapper.updateStatusJB(jbDto);
+//    }
+//
+//    @Override
+//    public void updateStatusFZ(FuZaDTO fzDto) {
+//        petroleumMapper.updateStatusFZ(fzDto);
+//    }
+//
+//    @Override
+//    public void updateStatusZT(ZuanTouDTO ztDto) {
+//        petroleumMapper.updateStatusZT(ztDto);
+//    }
+
     /**
-     * 软删除js
-     * @param jsDto
+     * 软删除
+     * @param num
+     * @param onlyKey
      */
     @Override
-    public void updateStatusJS(JingShenDTO jsDto) {
-        petroleumMapper.updateStatusJS(jsDto);
+    public void updateStatus(Integer num, Integer onlyKey) {
+        if(num==1){
+            petroleumMapper.updateStatusJS(onlyKey);
+        }
+        if(num==2){
+            petroleumMapper.updateStatusJB(onlyKey);
+        }
+        if(num==3){
+            petroleumMapper.updateStatusFZ(onlyKey);
+        }
+        if(num==4){
+            petroleumMapper.updateStatusZT(onlyKey);
+        }
     }
 
-    @Override
-    public void updateStatusJB(JiBenDTO jbDto) {
-        petroleumMapper.updateStatusJB(jbDto);
-    }
+
 
     @Override
-    public void updateStatusFZ(FuZaDTO fzDto) {
-        petroleumMapper.updateStatusFZ(fzDto);
+    public void updateJS(Integer OnlyKey, JingShenDTO jsDto) {
+        jsDto.setOnlyKey(OnlyKey);
+        petroleumMapper.updateJS(jsDto);
     }
 
-    @Override
-    public void updateStatusZT(ZuanTouDTO ztDto) {
-        petroleumMapper.updateStatusZT(ztDto);
-    }
 
-    @Override
-    public void updateJS(Integer onlyKey, JingShenDTO jsDto) {
-        petroleumMapper.updateJS(onlyKey, jsDto);
-    }
 
 
 }
