@@ -2,30 +2,45 @@
 
 import { AxiosResponse } from "axios";
 import request from "../utils/request.ts";
-import { SearchParams, AddParams, StatusResponse, UploadParams, DeleteParams, ModifyParams } from "./types.ts";
+import {
+  SearchParams,
+  AddParams,
+  StatusResponse,
+  UploadParams,
+  DeleteParams,
+  ModifyParams,
+} from "./types.ts";
 
 export const search = async (params: SearchParams) => {
   const promiseList = [
-    request.post('/petroleum/searchJS', params),
-    request.post('/petroleum/searchJB', params),
-    request.post('/petroleum/searchFZ', params),
-  ]
+    request.get("/petroleum/searchJS", params),
+    request.get("/petroleum/searchJB", params),
+    request.get("/petroleum/searchFZ", params),
+  ];
 
-  return Promise.all(promiseList)
+  return Promise.all(promiseList);
 };
 
-export const add = async (params: AddParams): Promise<AxiosResponse<StatusResponse>> => {
-  return request.post('/add', params);
+export const add = async (
+  params: AddParams
+): Promise<AxiosResponse<StatusResponse>> => {
+  return request.post("/add", params);
 };
 
-export const upload = async (params: UploadParams): Promise<AxiosResponse<StatusResponse>> => {
-  return request.put('/upload', params.data);
+export const upload = async (
+  params: UploadParams
+): Promise<AxiosResponse<StatusResponse>> => {
+  return request.put("/upload", params.data);
 };
 
-export const deleteItem = async (params: DeleteParams): Promise<AxiosResponse<StatusResponse>> => {
-  return request.post('/delete', params);
+export const deleteItem = async (
+  params: DeleteParams
+): Promise<AxiosResponse<StatusResponse>> => {
+  return request.post("/delete", params);
 };
 
-export const modify = async (params: ModifyParams): Promise<AxiosResponse<StatusResponse>> => {
-  return request.post('/set', params);
+export const modify = async (
+  params: ModifyParams
+): Promise<AxiosResponse<StatusResponse>> => {
+  return request.post("/set", params);
 };

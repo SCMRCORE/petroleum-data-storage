@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "rm_deps": "rm -rf node_modules **/*/node_modules",
-    "start": "pnpm -C ./petroleum-server mvn spring-boot:run & pnpm -C ./web dev"
+    "dev": "pnpm -C ./web dev",
+    "dev:bff": "pnpm -C ./bff dev",
+    "dev:server": "cd ./petroleum-server && mvn spring-boot:run"
   },
   "keywords": [],
   "author": "",
