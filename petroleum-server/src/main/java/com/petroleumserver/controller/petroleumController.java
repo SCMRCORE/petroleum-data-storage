@@ -194,19 +194,19 @@ public class petroleumController {
 
     @PutMapping("/setJB")
     public Result set(Integer OnlyKey, @RequestBody JiBenDTO jbDto){
-//        petroleumService.updateJB(OnlyKey, jbDto);
+        petroleumService.updateJB(OnlyKey, jbDto);
         return Result.success();
     }
 
     @PutMapping("/setFZ")
     public Result set(Integer OnlyKey, @RequestBody FuZaDTO fzDto){
-//        petroleumService.updateFZ(OnlyKey, fzDto);
+        petroleumService.updateFZ(OnlyKey, fzDto);
         return Result.success();
     }
 
     @PutMapping("/setZT")
     public Result set(Integer OnlyKey, @RequestBody ZuanTouDTO ztDto){
-//        petroleumService.updateZT(OnlyKey, ztDto);
+        petroleumService.updateZT(OnlyKey, ztDto);
         return Result.success();
     }
 

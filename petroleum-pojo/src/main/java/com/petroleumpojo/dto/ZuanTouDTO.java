@@ -37,4 +37,5 @@ public class ZuanTouDTO {
     private String minRotationSpeed; // 最小转速（RPM）
     private String iadcWearEvaluation; // 钻头IADC磨损评价
     private String encounteredFormation; // 钻遇地层
+    private Integer OnlyKey;
 }

@@ -49,4 +49,10 @@ public interface petroleumMapper {
 
 
     void updateJS(JingShenDTO jsDto);
+
+    void updateJB(JiBenDTO jbDto);
+
+    void updateFZ(FuZaDTO fzDto);
+
+    void updateZT(ZuanTouDTO ztDto);
 }

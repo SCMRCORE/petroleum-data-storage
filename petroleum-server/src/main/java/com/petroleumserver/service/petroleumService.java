@@ -32,5 +32,8 @@ public interface petroleumService {
 
 
     void updateJS(Integer onlyKey, JingShenDTO jsDto);
+    void updateJB(Integer onlyKey, JiBenDTO jbDto);
+    void updateFZ(Integer onlyKey, FuZaDTO fzDto);
 
+    void updateZT(Integer onlyKey, ZuanTouDTO ztDto);
 }

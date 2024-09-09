@@ -466,4 +466,112 @@
         where OnlyKey = #{OnlyKey}
     </update>
 
+    <update id="updateJB">
+        update jibenxinxi
+        <set>
+            <if test="wellName != null">wellName = #{wellName}, </if>
+            <if test="company != null">company = #{company}, </if>
+            <if test="oilFieldName != null">oilFieldName = #{oilFieldName}, </if>
+            <if test="oilFieldCode != null">oilFieldCode = #{oilFieldCode}, </if>
+            <if test="isCooperative != null">isCooperative = #{isCooperative}, </if>
+            <if test="contractor != null">contractor = #{contractor}, </if>
+            <if test="primaryWellType != null">primaryWellType = #{primaryWellType}, </if>
+            <if test="secondaryWellType != null">secondaryWellType = #{secondaryWellType}, </if>
+            <if test="tertiaryWellType != null">tertiaryWellType = #{tertiaryWellType}, </if>
+            <if test="wellType != null">wellType = #{wellType}, </if>
+            <if test="waterDepth1 != null">waterDepth1 = #{waterDepth1}, </if>
+            <if test="designDepth != null">designDepth = #{designDepth}, </if>
+            <if test="designVerticalDepth != null">designVerticalDepth = #{designVerticalDepth}, </if>
+            <if test="designDate != null">designDate = #{designDate}, </if>
+            <if test="structureName != null">structureName = #{structureName}, </if>
+            <if test="uniqueWellId != null">uniqueWellId = #{uniqueWellId}, </if>
+            <if test="chineseWellName != null">chineseWellName = #{chineseWellName}, </if>
+            <if test="operator != null">operator = #{operator}, </if>
+            <if test="hydrocarbonType != null">hydrocarbonType = #{hydrocarbonType}, </if>
+            <if test="riskLevel != null">riskLevel = #{riskLevel}, </if>
+            <if test="riskType != null">riskType = #{riskType}, </if>
+            <if test="riskGrade != null">riskGrade = #{riskGrade}, </if>
+            <if test="sulfurGrade != null">sulfurGrade = #{sulfurGrade}, </if>
+            <if test="containsCO2 != null">containsCO2 = #{containsCO2}, </if>
+            <if test="zeroDepth != null">zeroDepth = #{zeroDepth}, </if>
+            <if test="initialKellyElevation != null">initialKellyElevation = #{initialKellyElevation}, </if>
+            <if test="groundElevation != null">groundElevation = #{groundElevation}, </if>
+            <if test="currentKellyElevation != null">currentKellyElevation = #{currentKellyElevation}, </if>
+            <if test="casingHeadElevation != null">casingHeadElevation = #{casingHeadElevation}, </if>
+            <if test="waterDepth2 != null">waterDepth2 = #{waterDepth2}, </if>
+            <if test="mudLineElevation != null">mudLineElevation = #{mudLineElevation}, </if>
+            <if test="artificialBottomDepth != null">artificialBottomDepth = #{artificialBottomDepth}, </if>
+            <if test="drillingDays != null">drillingDays = #{drillingDays}, </if>
+            <if test="positioningMethod != null">positioningMethod = #{positioningMethod}, </if>
+            <if test="location != null">location = #{location}, </if>
+            <if test="geodeticSystem != null">geodeticSystem = #{geodeticSystem}, </if>
+            <if test="longitude != null">longitude = #{longitude}, </if>
+            <if test="latitude != null">latitude = #{latitude}, </if>
+            <if test="xcoordinate != null">xcoordinate = #{xcoordinate}, </if>
+            <if test="ycoordinate != null">ycoordinate = #{ycoordinate}, </if>
+            <if test="slotNumber != null">slotNumber = #{slotNumber}, </if>
+            <if test="country != null">country = #{country}, </if>
+            <if test="region != null">region = #{region}, </if>
+            <if test="province != null">province = #{province}, </if>
+            <if test="county != null">county = #{county}, </if>
+            <if test="scrapedWell != null">scrapedWell = #{scrapedWell}, </if>
+            <if test="officePhone != null">officePhone = #{officePhone}, </if>
+            <if test="remark != null">remark = #{remark}, </if>
+        </set>
+        where OnlyKey = #{OnlyKey}
+    </update>
+    <update id="updateFZ">
+        update fuza
+        <set>
+            <if test="wellName != null">wellName = #{wellName}, </if>
+            <if test="company != null">company = #{company}, </if>
+            <if test="primaryWellType != null">primaryWellType = #{primaryWellType}, </if>
+            <if test="wellType != null">wellType = #{wellType}, </if>
+            <if test="startTime != null">startTime = #{startTime}, </if>
+            <if test="endTime != null">endTime = #{endTime}, </if>
+            <if test="durationHours != null">durationHours = #{durationHours}, </if>
+            <if test="firstLevelCode != null">firstLevelCode = #{firstLevelCode}, </if>
+            <if test="secondLevelCode != null">secondLevelCode = #{secondLevelCode}, </if>
+            <if test="thirdLevelCode != null">thirdLevelCode = #{thirdLevelCode}, </if>
+            <if test="fourthLevelCode != null">fourthLevelCode = #{fourthLevelCode}, </if>
+            <if test="complexityType != null">complexityType = #{complexityType}, </if>
+            <if test="wellSection != null">wellSection = #{wellSection}, </if>
+            <if test="startDepth != null">startDepth = #{startDepth}, </if>
+            <if test="endDepth != null">endDepth = #{endDepth}, </if>
+            <if test="operationDescription != null">operationDescription = #{operationDescription} </if>
+        </set>
+        where OnlyKey = #{OnlyKey}
+    </update>
+    <update id="updateZT">
+        update zuantou
+        <set>
+            <if test="wellName != null">wellName = #{wellName}, </if>
+            <if test="company != null">company = #{company}, </if>
+            <if test="primaryWellType != null">primaryWellType = #{primaryWellType}, </if>
+            <if test="wellType != null">wellType = #{wellType}, </if>
+            <if test="drillBitNumber != null">drillBitNumber = #{drillBitNumber}, </if>
+            <if test="drillBitType != null">drillBitType = #{drillBitType}, </if>
+            <if test="sizeIn != null">sizeIn = #{sizeIn}, </if>
+            <if test="manufacturer != null">manufacturer = #{manufacturer}, </if>
+            <if test="model != null">model = #{model}, </if>
+            <if test="serialNumber != null">serialNumber = #{serialNumber}, </if>
+            <if test="nozzleSize != null">nozzleSize = #{nozzleSize}, </if>
+            <if test="drillBitTFAn2 != null">drillBitTFAn2 = #{drillBitTFAn2}, </if>
+            <if test="entryDepth != null">entryDepth = #{entryDepth}, </if>
+            <if test="exitDepth != null">exitDepth = #{exitDepth}, </if>
+            <if test="entryTime != null">entryTime = #{entryTime}, </if>
+            <if test="exitTime != null">exitTime = #{exitTime}, </if>
+            <if test="advanceDistance != null">advanceDistance = #{advanceDistance}, </if>
+            <if test="pureDrillingTime != null">pureDrillingTime = #{pureDrillingTime}, </if>
+            <if test="rop != null">rop = #{rop}, </if>
+            <if test="maxDrillingPressure != null">maxDrillingPressure = #{maxDrillingPressure}, </if>
+            <if test="minDrillingPressure != null">minDrillingPressure = #{minDrillingPressure}, </if>
+            <if test="maxRotationSpeed != null">maxRotationSpeed = #{maxRotationSpeed}, </if>
+            <if test="minRotationSpeed != null">minRotationSpeed = #{minRotationSpeed}, </if>
+            <if test="iadcWearEvaluation != null">iadcWearEvaluation = #{iadcWearEvaluation}, </if>
+            <if test="encounteredFormation != null">encounteredFormation = #{encounteredFormation}</if>
+        </set>
+        where OnlyKey = #{OnlyKey}
+    </update>
+
 </mapper>

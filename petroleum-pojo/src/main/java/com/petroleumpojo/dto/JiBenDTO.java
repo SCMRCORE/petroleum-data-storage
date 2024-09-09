@@ -57,4 +57,5 @@ public class JiBenDTO {
     private String scrapedWell; // 工程报废井
     private String officePhone; // 现场办公室电话
     private String remark; // 备注
+    private Integer OnlyKey;
 }

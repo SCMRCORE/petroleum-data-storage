@@ -28,4 +28,5 @@ public class FuZaDTO {
     private String startDepth; // 开始深度（m）
     private String endDepth; // 结束深度（m）
     private String operationDescription; // 作业描述
+    private Integer OnlyKey;
 }

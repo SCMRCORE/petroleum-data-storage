@@ -276,7 +276,23 @@ public class petroleumServicelmp implements petroleumService {
         petroleumMapper.updateJS(jsDto);
     }
 
+    @Override
+    public void updateJB(Integer onlyKey, JiBenDTO jbDto) {
+        jbDto.setOnlyKey(onlyKey);
+        petroleumMapper.updateJB(jbDto);
+    }
 
+    @Override
+    public void updateFZ(Integer onlyKey, FuZaDTO fzDto) {
+        fzDto.setOnlyKey(onlyKey);
+        petroleumMapper.updateFZ(fzDto);
+    }
+
+    @Override
+    public void updateZT(Integer onlyKey, ZuanTouDTO ztDto) {
+        ztDto.setOnlyKey(onlyKey);
+        petroleumMapper.updateZT(ztDto);
+    }
 
 
 }
