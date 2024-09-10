@@ -4,20 +4,18 @@ import {
   Input,
   Button,
   Message,
-  Tag,
   Table,
-  InputNumber,
   Space,
 } from "@arco-design/web-react";
 import { search } from "../../../../services/searchTable.ts";
 import { useEffect } from "react";
+import { formConfigList } from "./configs.tsx";
 
 const defaultData = [...new Array(5)].map((_, index) => {
   return {
     key: index,
     name: "Jane Doe " + index,
     salary: 23000,
-    email: "jane.doe@example.com",
     gender: index % 2 > 0 ? "male" : "female",
     age: 20 + index,
   };
@@ -34,10 +32,14 @@ const defaultData = [...new Array(5)].map((_, index) => {
 // }
 
 const SearchTable = () => {
-  const handleSubmit = (e) => {
-    // e.preventDefault();
-    // const form = document.getElementById("searchForm");
-    // form.submit();
+  const handleSearch = async (params) => {
+    try {
+      const res = await search({ ...params });
+      console.log(res);
+    } catch (err) {
+      console.log("数据获取异常:", err);
+      // alert("数据获取异常，详情请参考控制台");
+    }
   };
 
   useEffect(() => {
@@ -49,59 +51,37 @@ const SearchTable = () => {
       {/* 搜索项 */}
       <Form.Provider
         onFormValuesChange={(name, changedValues, info) => {
-          console.log("onFormValuesChange: ", name, changedValues, info);
+          // console.log("onFormValuesChange: ", name, changedValues, info);
         }}
         onFormSubmit={(name, values, info) => {
-          console.log("onFormSubmit: ", name, values, info);
-          if (name === "modalForm") {
-            info.forms.searchForm.setFieldsValue({
-              email: values.email,
-            });
-          }
-          Message.info({
-            icon: <span></span>,
-            content: (
-              <div style={{ textAlign: "left" }}>
-                <span>form values:</span>
-                <pre>
-                  {JSON.stringify(
-                    {
-                      ...info.forms.searchForm.getFieldsValue(),
-                      ...info.forms.refreshForm.getFieldsValue(),
-                    },
-                    null,
-                    2
-                  )}
-                </pre>
-              </div>
-            ),
-          });
+          // console.log("onFormSubmit: ", name, values, info);
+          handleSearch({ ...values });
         }}
       >
         <Form id="searchForm" layout="vertical">
-          <Grid.Row gutter={24}>
-            <Grid.Col span={8}>
-              <Form.Item label="Name" field="name">
-                <Input placeholder="enter name" />
-              </Form.Item>
-            </Grid.Col>
+          {formConfigList.map((rowItemList, index) => {
+            return (
+              <Grid.Row gutter={24} key={index}>
+                {rowItemList.map((item) => {
+                  return (
+                    <Grid.Col span={8} key={item.field}>
+                      <Form.Item
+                        label={item.label}
+                        field={item.field}
+                        initialValue={item.defaultValue}
+                      >
+                        <Input />
+                      </Form.Item>
+                    </Grid.Col>
+                  );
+                })}
+              </Grid.Row>
+            );
+          })}
 
-            <Grid.Col span={8}>
-              <Form.Item label="Age" field="age">
-                <InputNumber placeholder="enter age" />
-              </Form.Item>
-            </Grid.Col>
-          </Grid.Row>
           <Space>
-            <Form.Item field="email" shouldUpdate noStyle>
-              {(values) => {
-                return (
-                  <Tag color="arcoblue">email: {values.email || "null"}</Tag>
-                );
-              }}
-            </Form.Item>
-            <Button onClick={handleSubmit} htmlType="submit" type="primary">
-              Search
+            <Button htmlType="submit" type="primary">
+              搜索
             </Button>
           </Space>
         </Form>

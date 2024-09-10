@@ -31,7 +31,7 @@ const service = async (
   const { path } = ctx.params;
   const isBffCute = isTrue(ctx.request.headers["is-bff-cute"]);
   const url = isBffCute ? `http://localhost:8080/${path}` : "";
-  console.log("url?\n", url, ctx.request.headers, ctx.request.method);
+  // console.log("url?\n", url, ctx.request);
   try {
     const response = await axios({
       method: ctx.request.method,
@@ -40,11 +40,14 @@ const service = async (
       data: ctx.request.body,
       params: ctx.request.query,
     });
-    console.log("response! ✨\n", response);
+    // console.log("response", url, response);
     ctx.status = response.status;
     ctx.body = response.data;
   } catch (error) {
-    console.log("[error]:\n", error);
+    // const { url, method, data, params } = error;
+    console.log(`==== response error ====\n`);
+    console.log(error);
+    console.log(`~~~~ response error ~~~~`);
     ctx.throw(error.response ? error.response.status : 500);
   }
 };
