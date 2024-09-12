@@ -36,6 +36,7 @@ public class petroleumController {
      */
     @PostMapping("/addjs") // 待实现
     public Result addjs(@RequestBody List<JingShenDTO> jsDto) {
+        log.info("执行addJS方法:{}", jsDto);
         petroleumService.addJS(jsDto);
         return Result.success();
     }
@@ -47,6 +48,7 @@ public class petroleumController {
      */
     @PostMapping("/addjb") // 待实现
     public Result addjb(@RequestBody List<JiBenDTO> jbDto) {
+        log.info("执行addJB方法:{}", jbDto);
         petroleumService.addJB(jbDto);
         return Result.success();
     }
@@ -58,6 +60,7 @@ public class petroleumController {
      */
     @PostMapping("/addfz") // 待实现
     public Result addfz(@RequestBody List<FuZaDTO> fzDto) {
+        log.info("执行addFZ方法:{}", fzDto);
         petroleumService.addFZ(fzDto);
         return Result.success();
     }
@@ -69,6 +72,7 @@ public class petroleumController {
      */
     @PostMapping("/addzt") // 待实现
     public Result addzt(@RequestBody List<ZuanTouDTO> ztDto) {
+        log.info("执行addZT方法:{}", ztDto);
         petroleumService.addZT(ztDto);
         return Result.success();
     }
@@ -80,6 +84,7 @@ public class petroleumController {
      */
     @PostMapping("/upload") // 表格需要处理成特定格式，我写在文档里了
     public Result addByExcel(MultipartFile file, String company, Integer num) throws IOException {
+        log.info("执行upload方法");
         petroleumService.addByList(file, company, num);
         return Result.success();
     }
@@ -91,9 +96,7 @@ public class petroleumController {
      */
     @GetMapping("/searchJS")
     public Result<PageResult> searchJS(JingShenSearchPageDTO jsSPDto) {
-        System.out.println("======================");
-        System.out.println(jsSPDto);
-        System.out.println("======================");
+        log.info("执行searchJS方法:{}", jsSPDto);
         PageResult res = petroleumService.searchjs(jsSPDto);
         return Result.success(res);
     }
@@ -105,9 +108,7 @@ public class petroleumController {
      */
     @GetMapping("/searchJB")
     public Result<PageResult> searchJB(JiBenSearchPageDTO jbSPDto) {
-        System.out.println("======================");
-        System.out.println(jbSPDto);
-        System.out.println("======================");
+        log.info("执行searchJB方法:{}", jbSPDto);
         PageResult res = petroleumService.searchjb(jbSPDto);
         return Result.success(res);
     }
@@ -119,9 +120,7 @@ public class petroleumController {
      */
     @GetMapping("/searchFZ")
     public Result<PageResult> searchFZ(FuZaSearchPageDTO fzSPDto) {
-        System.out.println("======================");
-        System.out.println(fzSPDto);
-        System.out.println("======================");
+        log.info("执行searchFZ方法:{}", fzSPDto);
         PageResult res = petroleumService.searchfz(fzSPDto);
         return Result.success(res);
     }
@@ -133,60 +132,11 @@ public class petroleumController {
      */
     @GetMapping("/searchZT")
     public Result<PageResult> searchZT(ZuanTouSearchPageDTO ztSPDto) {
-        System.out.println("======================");
-        System.out.println(ztSPDto);
-        System.out.println("======================");
+        log.info("执行searchZT方法:{}", ztSPDto);
         PageResult res = petroleumService.searchzt(ztSPDto);
         return Result.success(res);
     }
 
-    // /**
-    // * 软删除JS
-    // * @param jsDto
-    // * @return
-    // */
-    // @PutMapping("/deleteJS")
-    // public Result deleteJS(@RequestBody JingShenDTO jsDto){
-    //// System.out.println(jsDto);
-    // petroleumService.updateStatusJS(jsDto);
-    // return Result.success();
-    // }
-    //
-    // /**
-    // * 软删除JB
-    // * @param jbDto
-    // * @return
-    // */
-    // @PutMapping("/deleteJB")
-    // public Result deleteJB(@RequestBody JiBenDTO jbDto){
-    //// System.out.println(jbDto);
-    // petroleumService.updateStatusJB(jbDto);
-    // return Result.success();
-    // }
-    //
-    // /**
-    // * 软删除FZ
-    // * @param fzDto
-    // * @return
-    // */
-    // @PutMapping("/deleteFZ")
-    // public Result deleteFZ(@RequestBody FuZaDTO fzDto){
-    //// System.out.println(fzDto);
-    // petroleumService.updateStatusFZ(fzDto);
-    // return Result.success();
-    // }
-    //
-    // /**
-    // * 软删除ZT
-    // * @param ztDto
-    // * @return
-    // */
-    // @PutMapping("/deleteZT")
-    // public Result deleteZT(@RequestBody ZuanTouDTO ztDto){
-    //// System.out.println(ztDto);
-    // petroleumService.updateStatusZT(ztDto);
-    // return Result.success();
-    // }
 
     /**
      * 软删除最新
@@ -198,6 +148,7 @@ public class petroleumController {
     @PutMapping("/delete")
     public Result delete(Integer OnlyKey, Integer num) {
         // System.out.println(OnlyKey);
+        log.info("执行delete方法删除:{}", OnlyKey);
         petroleumService.updateStatus(num, OnlyKey);
         return Result.success();
     }
@@ -211,26 +162,79 @@ public class petroleumController {
      */
     @PutMapping("/setJS")
     public Result set(Integer OnlyKey, @RequestBody JingShenDTO jsDto) {
+        log.info("执行setJS方法更新:{}", OnlyKey);
         petroleumService.updateJS(OnlyKey, jsDto);
         return Result.success();
     }
 
     @PutMapping("/setJB")
     public Result set(Integer OnlyKey, @RequestBody JiBenDTO jbDto) {
+        log.info("执行setJB方法更新:{}", OnlyKey);
         petroleumService.updateJB(OnlyKey, jbDto);
         return Result.success();
     }
 
     @PutMapping("/setFZ")
     public Result set(Integer OnlyKey, @RequestBody FuZaDTO fzDto) {
+        log.info("执行setFZ方法更新:{}", OnlyKey);
         petroleumService.updateFZ(OnlyKey, fzDto);
         return Result.success();
     }
 
     @PutMapping("/setZT")
     public Result set(Integer OnlyKey, @RequestBody ZuanTouDTO ztDto) {
+        log.info("执行setZT方法更新:{}", OnlyKey);
         petroleumService.updateZT(OnlyKey, ztDto);
         return Result.success();
     }
 
 }
+
+
+// /**
+// * 软删除JS
+// * @param jsDto
+// * @return
+// */
+// @PutMapping("/deleteJS")
+// public Result deleteJS(@RequestBody JingShenDTO jsDto){
+//// System.out.println(jsDto);
+// petroleumService.updateStatusJS(jsDto);
+// return Result.success();
+// }
+//
+// /**
+// * 软删除JB
+// * @param jbDto
+// * @return
+// */
+// @PutMapping("/deleteJB")
+// public Result deleteJB(@RequestBody JiBenDTO jbDto){
+//// System.out.println(jbDto);
+// petroleumService.updateStatusJB(jbDto);
+// return Result.success();
+// }
+//
+// /**
+// * 软删除FZ
+// * @param fzDto
+// * @return
+// */
+// @PutMapping("/deleteFZ")
+// public Result deleteFZ(@RequestBody FuZaDTO fzDto){
+//// System.out.println(fzDto);
+// petroleumService.updateStatusFZ(fzDto);
+// return Result.success();
+// }
+//
+// /**
+// * 软删除ZT
+// * @param ztDto
+// * @return
+// */
+// @PutMapping("/deleteZT")
+// public Result deleteZT(@RequestBody ZuanTouDTO ztDto){
+//// System.out.println(ztDto);
+// petroleumService.updateStatusZT(ztDto);
+// return Result.success();
+// }

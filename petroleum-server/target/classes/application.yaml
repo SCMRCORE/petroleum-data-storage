@@ -48,3 +48,5 @@ knife4j:
         api-rule: package
         api-rule-resources:
           - com.petroleumserver.controller
+server:
+  port: 8080

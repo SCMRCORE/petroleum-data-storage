@@ -45,6 +45,7 @@ public class petroleumServicelmp implements petroleumService {
     public void addByList(MultipartFile file, String company, Integer num) throws IOException {
         //井口表
         if(num == 1) {
+            log.info("servicelmp:新增井口表");
             InputStream inputStream = file.getInputStream();
             ExcelReader reader = ExcelUtil.getReader(inputStream);
             ExcelReader NewReader = JinShenTool.transition(reader);
@@ -64,6 +65,7 @@ public class petroleumServicelmp implements petroleumService {
         }
         //基本信息表
         if(num == 2) {
+            log.info("servicelmp:新增基本信息表");
             InputStream inputStream = file.getInputStream();
             ExcelReader reader = ExcelUtil.getReader(inputStream);
             ExcelReader NewReader = JiBenTool.transition(reader);
@@ -83,6 +85,7 @@ public class petroleumServicelmp implements petroleumService {
         }
         //复杂情况表
         if(num == 3) {
+            log.info("servicelmp:新增复杂情况表");
             InputStream inputStream = file.getInputStream();
             ExcelReader reader = ExcelUtil.getReader(inputStream);
             ExcelReader NewReader = FuZaTool.transition(reader);
@@ -102,6 +105,7 @@ public class petroleumServicelmp implements petroleumService {
         }
         //钻头表
         if(num == 4) {
+            log.info("servicelmp:新增钻头表");
             InputStream inputStream = file.getInputStream();
             ExcelReader reader = ExcelUtil.getReader(inputStream);
             ExcelReader NewReader = ZuanTouTool.transition(reader);
@@ -122,12 +126,9 @@ public class petroleumServicelmp implements petroleumService {
     }
 
 
-    /**
-     * 新增js
-     * @param jsDto
-     */
     @Override
     public void addJS(List<JingShenDTO> jsDto) {
+        log.info("servicelmp:json数据新增井口表");
         List<JingShen> jingShen = new ArrayList<>();
         for(JingShenDTO js1 : jsDto) {
             JingShen jingShen1 = new JingShen();
@@ -137,9 +138,9 @@ public class petroleumServicelmp implements petroleumService {
         }
         petroleumMapper.addJS(jingShen);
     }
-
     @Override
     public void addJB(List<JiBenDTO> jbDto) {
+        log.info("servicelmp:json数据新增基本信息表");
         List<JiBen> jiben = new ArrayList<>();
         for (JiBenDTO jb1 : jbDto) {
             JiBen jiBen1 = new JiBen();
@@ -149,9 +150,9 @@ public class petroleumServicelmp implements petroleumService {
         }
         petroleumMapper.addJB(jiben);
     }
-
     @Override
     public void addFZ(List<FuZaDTO> fzDto) {
+        log.info("servicelmp:json数据新增复杂情况");
         List<FuZa> fuZa = new ArrayList<>();
         for(FuZaDTO fz1 : fzDto) {
             FuZa fuza = new FuZa();
@@ -161,9 +162,9 @@ public class petroleumServicelmp implements petroleumService {
         }
         petroleumMapper.addFZ(fuZa);
     }
-
     @Override
     public void addZT(List<ZuanTouDTO> ztDto) {
+        log.info("servicelmp:json数据新增钻头表");
         List<ZuanTou> zuanTou = new ArrayList<>();
         for(ZuanTouDTO zt1 : ztDto) {
             ZuanTou zuantou = new ZuanTou();
@@ -174,6 +175,7 @@ public class petroleumServicelmp implements petroleumService {
         petroleumMapper.addZT(zuanTou);
     }
 
+
     /**
      * 搜索js
      * @param jsSPDto
@@ -181,6 +183,7 @@ public class petroleumServicelmp implements petroleumService {
      */
     @Override
     public PageResult searchjs(JingShenSearchPageDTO jsSPDto) {
+        log.info("servicelmp:搜索井口表");
         PageHelper.startPage(jsSPDto.getPageIndex(), jsSPDto.getPageSize());
         Page<JingShen> page = petroleumMapper.searchjs(jsSPDto.getWellName(), jsSPDto.getPrimaryWellType(), jsSPDto.getWellType());
         return new PageResult(page.getTotal(), page.getResult());
@@ -193,6 +196,7 @@ public class petroleumServicelmp implements petroleumService {
      */
     @Override
     public PageResult searchjb(JiBenSearchPageDTO jbSPDto) {
+        log.info("servicelmp:搜索基本信息表");
         PageHelper.startPage(jbSPDto.getPageIndex(), jbSPDto.getPageSize());
         Page<JiBen> page = petroleumMapper.searchjb(jbSPDto.getWellName(), jbSPDto.getOilFieldName(), jbSPDto.getContractor());
         return new PageResult(page.getTotal(), page.getResult());
@@ -205,6 +209,7 @@ public class petroleumServicelmp implements petroleumService {
      */
     @Override
     public PageResult searchfz(FuZaSearchPageDTO fzSPDto) {
+        log.info("servicelmp:搜索复杂情况表");
         PageHelper.startPage(fzSPDto.getPageIndex(), fzSPDto.getPageSize());
         Page<FuZa> page = petroleumMapper.searchfz(fzSPDto.getWellName(), fzSPDto.getPrimaryWellType(), fzSPDto.getWellType());
         return new PageResult(page.getTotal(), page.getResult());
@@ -217,11 +222,68 @@ public class petroleumServicelmp implements petroleumService {
      */
     @Override
     public PageResult searchzt(ZuanTouSearchPageDTO ztSPDto) {
+        log.info("servicelmp:搜索钻头表");
         PageHelper.startPage(ztSPDto.getPageIndex(), ztSPDto.getPageSize());
         Page<ZuanTou> page = petroleumMapper.searchzt(ztSPDto.getWellName(), ztSPDto.getPrimaryWellType(), ztSPDto.getWellType());
         return new PageResult(page.getTotal(), page.getResult());
     }
 
+
+    /**
+     * 软删除
+     * @param num
+     * @param onlyKey
+     */
+    @Override
+    public void updateStatus(Integer num, Integer onlyKey) {
+        if(num==1){
+            log.info("servicelmp:软删除井口表:{}", onlyKey);
+            petroleumMapper.updateStatusJS(onlyKey);
+        }
+        if(num==2){
+            log.info("servicelmp:软删除基本信息表:{}", onlyKey);
+            petroleumMapper.updateStatusJB(onlyKey);
+        }
+        if(num==3){
+            log.info("servicelmp:软删除复杂情况表:{}", onlyKey);
+            petroleumMapper.updateStatusFZ(onlyKey);
+        }
+        if(num==4){
+            log.info("servicelmp:软删除钻头表:{}", onlyKey);
+            petroleumMapper.updateStatusZT(onlyKey);
+        }
+    }
+
+
+
+    @Override
+    public void updateJS(Integer OnlyKey, JingShenDTO jsDto) {
+        log.info("servicelmp:更新井口表:{}", OnlyKey);
+        jsDto.setOnlyKey(OnlyKey);
+        petroleumMapper.updateJS(jsDto);
+    }
+
+    @Override
+    public void updateJB(Integer onlyKey, JiBenDTO jbDto) {
+        log.info("servicelmp:更新基本信息表:{}", onlyKey);
+        jbDto.setOnlyKey(onlyKey);
+        petroleumMapper.updateJB(jbDto);
+    }
+
+    @Override
+    public void updateFZ(Integer onlyKey, FuZaDTO fzDto) {
+        log.info("servicelmp:更新复杂情况表:{}", onlyKey);
+        fzDto.setOnlyKey(onlyKey);
+        petroleumMapper.updateFZ(fzDto);
+    }
+
+    @Override
+    public void updateZT(Integer onlyKey, ZuanTouDTO ztDto) {
+        log.info("servicelmp:更新钻头表:{}", onlyKey);
+        ztDto.setOnlyKey(onlyKey);
+        petroleumMapper.updateZT(ztDto);
+    }
+}
 
 //    /**
 //     * 软删除js
@@ -246,53 +308,3 @@ public class petroleumServicelmp implements petroleumService {
 //    public void updateStatusZT(ZuanTouDTO ztDto) {
 //        petroleumMapper.updateStatusZT(ztDto);
 //    }
-
-    /**
-     * 软删除
-     * @param num
-     * @param onlyKey
-     */
-    @Override
-    public void updateStatus(Integer num, Integer onlyKey) {
-        if(num==1){
-            petroleumMapper.updateStatusJS(onlyKey);
-        }
-        if(num==2){
-            petroleumMapper.updateStatusJB(onlyKey);
-        }
-        if(num==3){
-            petroleumMapper.updateStatusFZ(onlyKey);
-        }
-        if(num==4){
-            petroleumMapper.updateStatusZT(onlyKey);
-        }
-    }
-
-
-
-    @Override
-    public void updateJS(Integer OnlyKey, JingShenDTO jsDto) {
-        jsDto.setOnlyKey(OnlyKey);
-        petroleumMapper.updateJS(jsDto);
-    }
-
-    @Override
-    public void updateJB(Integer onlyKey, JiBenDTO jbDto) {
-        jbDto.setOnlyKey(onlyKey);
-        petroleumMapper.updateJB(jbDto);
-    }
-
-    @Override
-    public void updateFZ(Integer onlyKey, FuZaDTO fzDto) {
-        fzDto.setOnlyKey(onlyKey);
-        petroleumMapper.updateFZ(fzDto);
-    }
-
-    @Override
-    public void updateZT(Integer onlyKey, ZuanTouDTO ztDto) {
-        ztDto.setOnlyKey(onlyKey);
-        petroleumMapper.updateZT(ztDto);
-    }
-
-
-}
