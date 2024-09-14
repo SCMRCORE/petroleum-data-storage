@@ -1,0 +1,134 @@
+export interface FZItem {
+  wellName;
+  company;
+  primaryWellType;
+  wellType;
+  startTime;
+  endTime;
+  durationHours;
+  firstLevelCode;
+  secondLevelCode;
+  thirdLevelCode;
+  fourthLevelCode;
+  complexityType;
+  wellSection;
+  startDepth;
+  endDepth;
+  operationDescription;
+  status;
+  onlyKey;
+}
+
+export interface ZTItem {
+  wellName;
+  company;
+  primaryWellType;
+  wellType;
+  drillBitNumber;
+  drillBitType;
+  sizeIn;
+  manufacturer;
+  model;
+  serialNumber;
+  nozzleSize;
+  drillBitTFAn2;
+  entryDepth;
+  exitDepth;
+  entryTime;
+  exitTime;
+  advanceDistance;
+  pureDrillingTime;
+  rop;
+  maxDrillingPressure;
+  minDrillingPressure;
+  maxRotationSpeed;
+  minRotationSpeed;
+  iadcWearEvaluation;
+  encounteredFormation;
+  status;
+  onlyKey;
+}
+
+export interface JSItem {
+  company;
+  status;
+  startTime;
+  endTime;
+  onlyKey;
+  primaryWellType;
+  wellType;
+  wellName;
+  holeDiameter;
+  endDepth;
+  steelGrade;
+  yieldValue;
+  startDepth;
+  wellSection;
+  casingLength;
+  casingDiameter;
+  casingSetDepth;
+  upperCasingDiameter;
+  startVerticalDepth;
+  cementReturnHeight;
+  plasticViscosity;
+  drillingFluidDensity;
+  upperCasingSetDepth;
+  drillingFluidSystem;
+  endVerticalDepth;
+  formationPressure;
+}
+
+export interface JBItem {
+  wellName;
+  company;
+  oilFieldName;
+  oilFieldCode;
+  isCooperative;
+  contractor;
+  primaryWellType;
+  secondaryWellType;
+  tertiaryWellType;
+  wellType;
+  waterDepth1;
+  designDepth;
+  designVerticalDepth;
+  designDate;
+  structureName;
+  uniqueWellId;
+  chineseWellName;
+  operator;
+  hydrocarbonType;
+  riskLevel;
+  riskType;
+  riskGrade;
+  sulfurGrade;
+  containsCO2;
+  zeroDepth;
+  initialKellyElevation;
+  groundElevation;
+  currentKellyElevation;
+  casingHeadElevation;
+  waterDepth2;
+  mudLineElevation;
+  artificialBottomDepth;
+  drillingDays;
+  positioningMethod;
+  location;
+  geodeticSystem;
+  longitude;
+  latitude;
+  xcoordinate;
+  ycoordinate;
+  slotNumber;
+  country;
+  region;
+  province;
+  county;
+  scrapedWell;
+  officePhone;
+  remark;
+  status;
+  onlyKey;
+}
+
+export interface MixedItem extends FZItem, ZTItem, JSItem, JBItem {}

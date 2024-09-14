@@ -5,3 +5,27 @@
 :root {
   background-color: #242424;
 }
+
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+  /* 整个滚动条 */
+  width: 12px; /* 滚动条宽度 */
+  height: 12px;
+  background: transparent; /* 去掉白色背景 */
+}
+
+::-webkit-scrollbar-track {
+  /* 滚动条轨道 */
+  border-radius: 8px; /* 圆角 */
+}
+
+::-webkit-scrollbar-thumb {
+  /* 滚动条的滑块 */
+  background-color: rgba(0, 0, 0, 0.3); /* 颜色 */
+  border-radius: 6px; /* 圆角 */
+}
+
+/* 当滑块悬停时改变颜色 */
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}

@@ -15,7 +15,8 @@ export type PaginatedResult<T> = StatusResponse & {
 export type SearchParams = {
   pageIndex: number;
   pageSize: number;
-  params: string; // 一段JSON字符串
+  [key: string]: string | number | undefined;
+  // params?: string; // 一段JSON字符串
 };
 
 export type SearchResult<T> = PaginatedResult<T>;
@@ -27,7 +28,7 @@ export type AddParams = {
 
 export type UploadParams = {
   type: number;
-  data: Record<string, string>
+  data: Record<string, string>;
 };
 
 export type DeleteParams = {
