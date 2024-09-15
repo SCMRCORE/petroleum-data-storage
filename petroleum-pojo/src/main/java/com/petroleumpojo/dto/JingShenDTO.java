@@ -7,10 +7,10 @@ import java.time.LocalDateTime;
 
 @Data
 public class JingShenDTO {
-    private String WellName;
+    private String wellName;
     private String company;
-    private String PrimaryWellType;
-    private String WellType;
+    private String primaryWellType;
+    private String wellType;
     private String WellSection;
     private String HoleDiameter;
     private LocalDateTime StartTime;

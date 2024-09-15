@@ -11,7 +11,7 @@ import java.util.List;
 public class JingShenSearchPageDTO {
     private Integer pageIndex;
     private Integer pageSize;
-    private String WellName;
-    private String PrimaryWellType;
-    private String WellType;
+    private String wellName;
+    private String primaryWellType;
+    private String wellType;
 }

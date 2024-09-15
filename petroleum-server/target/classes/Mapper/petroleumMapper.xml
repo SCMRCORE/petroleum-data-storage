@@ -251,16 +251,16 @@
     </insert>
 <!--搜索-->
     <select id="searchjs" resultType="com.petroleumpojo.entity.JingShen">
-        select * from jingshen where WellName like '%${WellName}%'
-                                 and PrimaryWellType like '%${PrimaryWellType}%'
-                                 and WellType like '%${WellType}%'
+        select * from jingshen where wellName like '%${wellName}%'
+                                 and primaryWellType like '%${primaryWellType}%'
+                                 and wellType like '%${wellType}%'
                                  and status = 1
         order by StartTime desc
     </select>
     <select id="searchjb" resultType="com.petroleumpojo.entity.JiBen">
         select * from jibenxinxi where wellName like '%${wellName}%'
-                                 and oilFieldName like '%${oilFieldName}%'
-                                 and contractor like '%${contractor}%'
+                                 and primaryWellType like '%${primaryWellType}%'
+                                 and wellType like '%${wellType}%'
                                  and status = 1
         order by wellName desc
     </select>

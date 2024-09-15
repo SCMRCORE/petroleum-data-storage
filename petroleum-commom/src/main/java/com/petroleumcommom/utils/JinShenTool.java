@@ -5,9 +5,9 @@ import cn.hutool.poi.excel.ExcelReader;
 public class JinShenTool {
 
     public static ExcelReader transition(ExcelReader reader){
-        reader.addHeaderAlias("井名", "WellName");
-        reader.addHeaderAlias("一级井别", "PrimaryWellType");
-        reader.addHeaderAlias("井型", "WellType");
+        reader.addHeaderAlias("井名", "wellName");
+        reader.addHeaderAlias("一级井别", "primaryWellType");
+        reader.addHeaderAlias("井型", "wellType");
         reader.addHeaderAlias("井段", "WellSection");
         reader.addHeaderAlias("井眼尺寸（in）", "HoleDiameter");
         reader.addHeaderAlias("开始时间", "StartTime");

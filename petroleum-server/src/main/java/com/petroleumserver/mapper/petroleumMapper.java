@@ -24,8 +24,8 @@ public interface petroleumMapper {
 
     void addZuanTouByList(List<ZuanTou> zuantou);
 
-    Page<JiBen> searchjb(String wellName, String oilFieldName, String contractor);
-    Page<JingShen> searchjs(String WellName, String PrimaryWellType, String WellType);
+    Page<JiBen> searchjb(String wellName, String primaryWellType, String wellType);
+    Page<JingShen> searchjs(String wellName, String primaryWellType, String wellType);
 
     Page<FuZa> searchfz(String wellName, String primaryWellType, String wellType);
 

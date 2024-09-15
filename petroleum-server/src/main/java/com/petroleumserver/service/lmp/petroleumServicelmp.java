@@ -198,7 +198,7 @@ public class petroleumServicelmp implements petroleumService {
     public PageResult searchjb(JiBenSearchPageDTO jbSPDto) {
         log.info("servicelmp:搜索基本信息表");
         PageHelper.startPage(jbSPDto.getPageIndex(), jbSPDto.getPageSize());
-        Page<JiBen> page = petroleumMapper.searchjb(jbSPDto.getWellName(), jbSPDto.getOilFieldName(), jbSPDto.getContractor());
+        Page<JiBen> page = petroleumMapper.searchjb(jbSPDto.getWellName(), jbSPDto.getPrimaryWellType(), jbSPDto.getWellType());
         return new PageResult(page.getTotal(), page.getResult());
     }
 

@@ -7,6 +7,6 @@ public class JiBenSearchPageDTO {
     private Integer pageIndex;
     private Integer pageSize;
     private String wellName;
-    private String oilFieldName;
-    private String contractor;
+    private String primaryWellType;
+    private String wellType;
 }
