@@ -50,19 +50,11 @@ const request = {
     });
   },
 
-  put: (url: string, data: Record<string, string> = {}) => {
-    const formData = new FormData();
-    Object.keys(data).forEach((key) => {
-      formData.append(key, data[key]);
-    });
-
+  put: (url: string, data = {}) => {
     return instance({
       method: "PUT",
       url,
-      data: formData,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+      data,
     });
   },
 };

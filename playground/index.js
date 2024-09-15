@@ -18,16 +18,18 @@ const FZ =
     3,
     45
   ],
+
   "durationHours": "3.00",
   "firstLevelCode": "D",
   "secondLevelCode": "N",
   "thirdLevelCode": "X",
   "fourthLevelCode": "01",
   "complexityType": "复杂情况",
+  "operationDescription": "下钻到底。\r\n*500m浅层测试工具，参数：3300L/min，600psi，正常；\r\n*每500m打通一次。",
+
   "wellSection": "一开",
   "startDepth": "1341.53",
   "endDepth": "1341.53",
-  "operationDescription": "下钻到底。\r\n*500m浅层测试工具，参数：3300L/min，600psi，正常；\r\n*每500m打通一次。",
   "status": 1,
   "onlyKey": 660
 };
@@ -39,6 +41,7 @@ const ZT =
   "company": "海南分公司",
   "primaryWellType": "调整井",
   "wellType": "大位移井",
+
   "drillBitNumber": "7",
   "drillBitType": "PDC钻头",
   "sizeIn": "8 3/8",
@@ -72,6 +75,7 @@ const ZT =
   "minRotationSpeed": "120.00",
   "iadcWearEvaluation": "1-1-WT-A-X-I-NO-TD",
   "encounteredFormation": "平湖组，龙井组，宝石组，花港组",
+
   "status": 1,
   "onlyKey": 335
 };
@@ -101,13 +105,12 @@ const JS =
   "wellName": "YC13-1-A16",
   "holeDiameter": "8 1/2",
   "endDepth": "6348.00",
-  "steelGrade": "1Cr-L80",
-  "yieldValue": "3-4.5",
   "startDepth": "6161.00",
   "wellSection": "四开",
+
+  "steelGrade": "1Cr-L80",
+  "yieldValue": "3-4.5",
   "casingLength": "",
-  "casingDiameter": "",
-  "casingSetDepth": "",
   "upperCasingDiameter": "9 5/8",
   "startVerticalDepth": "3735.03",
   "cementReturnHeight": "",
@@ -116,7 +119,11 @@ const JS =
   "upperCasingSetDepth": "6153.71",
   "drillingFluidSystem": "油基钻井液",
   "endVerticalDepth": "3823.78",
-  "formationPressure": "梅山组,三亚组"
+  "formationPressure": "梅山组,三亚组",
+
+
+  "casingDiameter": "",
+  "casingSetDepth": "",
 };
 
 
@@ -131,6 +138,7 @@ const JB = {
   "secondaryWellType": "采气井",
   "tertiaryWellType": "",
   "wellType": "大位移井",
+
   "waterDepth1": "69.9",
   "designDepth": "3884",
   "designVerticalDepth": "1261.37",
@@ -169,13 +177,14 @@ const JB = {
   "scrapedWell": "false",
   "officePhone": "",
   "remark": "",
+
   "status": 1,
   "onlyKey": 36
 };
 
 const getKeys = (obj) => {
   const keys = Object.keys(obj);
-  console.log('key set', keys);
+  // console.log('key set', keys);
   return keys;
 };
 
@@ -185,5 +194,26 @@ const keys3 = getKeys(JS);
 const keys4 = getKeys(JB);
 
 const allKeys = [...keys1, ...keys2, ...keys3, ...keys4];
-console.log('All Array', Array.from(new Set(allKeys)))
+const getAllKeys = (...keys) => {
+  const flattenKeys = keys.flat();
+  const allKeys = ('All Array', Array.from(new Set(flattenKeys)));
+  return allKeys;
+};
+const getSpecialKeys = (index) => {
+  const all = [keys1, keys2, keys3, keys4];
+  const target = [...all[index]];
+  const reset = all.splice(index, 1).flat();
+  const specialKeyList = [];
+  target.forEach((key) => {
+    if (!reset.includes(key)) {
+      specialKeyList.push(key);
+    }
+  });
+  console.log(specialKeyList);
+};
+
+getSpecialKeys(0);
+getSpecialKeys(1);
+getSpecialKeys(2);
+// getSpecialKeys(3);
 

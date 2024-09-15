@@ -13,9 +13,11 @@
     "@arco-design/web-react": "^2.64.0",
     "@trickle/use-web-worker": "^0.0.1",
     "axios": "^1.7.6",
+    "dayjs": "^1.11.13",
     "react": "19.0.0-rc-e56f4ae3-20240830",
     "react-dom": "19.0.0-rc-e56f4ae3-20240830",
     "react-router-dom": "^6.26.1",
+    "xlsx": "^0.18.5",
     "zustand": "^4.5.5"
   },
   "devDependencies": {
@@ -28,13 +30,13 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
+    "koa": "^2.15.3",
+    "koa-bodyparser": "^4.4.1",
+    "koa-router": "^12.0.1",
     "postcss": "^8.4.41",
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1",
-    "koa": "^2.15.3",
-    "koa-bodyparser": "^4.4.1",
-    "koa-router": "^12.0.1"
+    "vite": "^5.4.1"
   }
 }

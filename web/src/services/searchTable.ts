@@ -6,10 +6,12 @@ import {
   SearchParams,
   AddParams,
   StatusResponse,
-  UploadParams,
   DeleteParams,
-  ModifyParams,
 } from "./types.ts";
+import {
+  checkDataSourceTable,
+  DATA_SOURCE_TABLE,
+} from "../utils/checkDataSource.ts";
 
 export const search = async (params: SearchParams) => {
   const jsParams = { ...params };
@@ -36,29 +38,30 @@ export const search = async (params: SearchParams) => {
 };
 
 export const add = async (
-  params: AddParams
+  fileList: AddParams
 ): Promise<AxiosResponse<StatusResponse>> => {
-  // TODO: const mockParams = {...}
-  return request.post("/add", params);
-};
-
-export const upload = async (
-  params: UploadParams
-): Promise<AxiosResponse<StatusResponse>> => {
-  // TODO: const mockParams = {...}
-  return request.put("/upload", params.data);
+  const sampleFile = fileList?.[0] ?? [];
+  const sampleFileRow = sampleFile?.[0] ?? {};
+  const keys = Object.keys(sampleFileRow);
+  console.log("????????", sampleFileRow, keys);
+  const dataSourceTable = checkDataSourceTable(keys);
+  if (dataSourceTable) {
+    const pathMap = {
+      [DATA_SOURCE_TABLE.FZ]: "addfz",
+      [DATA_SOURCE_TABLE.JS]: "addjs",
+      [DATA_SOURCE_TABLE.JB]: "addjb",
+      [DATA_SOURCE_TABLE.ZT]: "addzt",
+    };
+    const path = pathMap[dataSourceTable];
+    return request.post(`/petroleum/${path}`, fileList);
+  } else {
+    throw "表头字段不匹配 或 数据为空";
+  }
 };
 
 export const deleteItem = async (
   params: DeleteParams
 ): Promise<AxiosResponse<StatusResponse>> => {
-  // TODO: const mockParams = {...}
-  return request.post("/delete", params);
-};
-
-export const modify = async (
-  params: ModifyParams
-): Promise<AxiosResponse<StatusResponse>> => {
-  // TODO: const mockParams = {...}
-  return request.post("/set", params);
+  const res = await request.put("/petroleum/delete", params);
+  return res;
 };

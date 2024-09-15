@@ -21,10 +21,7 @@ export type SearchParams = {
 
 export type SearchResult<T> = PaginatedResult<T>;
 
-export type AddParams = {
-  type: number;
-  params: string; // 一段JSON字符串
-};
+export type AddParams = Array<Record<string, string>>;
 
 export type UploadParams = {
   type: number;
@@ -32,8 +29,8 @@ export type UploadParams = {
 };
 
 export type DeleteParams = {
-  type: number;
-  id: number;
+  OnlyKey: number;
+  num: number;
 };
 
 export type ModifyParams = {

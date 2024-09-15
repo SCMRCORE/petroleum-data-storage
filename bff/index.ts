@@ -23,7 +23,6 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
   else await next();
 });
 
-// TODO: 这里可以抽离出 controller 和 service
 const service = async (
   ctx: Koa.ParameterizedContext
   // next: () => Promise<any>
@@ -53,6 +52,7 @@ const service = async (
 };
 router.post("/bff/:path*", service);
 router.get("/bff/:path*", service);
+router.put("/bff/:path*", service);
 
 app.use(router.routes());
 app.use(router.allowedMethods());
