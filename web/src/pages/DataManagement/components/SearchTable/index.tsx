@@ -11,10 +11,7 @@ import {
 } from "@arco-design/web-react";
 import { add, search } from "../../../../services/searchTable.ts";
 import { useEffect, useState } from "react";
-import {
-  getColumns,
-  formConfigList,
-} from "./configs.tsx";
+import { getColumns, formConfigList } from "./configs.tsx";
 import { MixedItem } from "../../../../types/index.ts";
 import * as XLSX from "xlsx";
 import {
@@ -87,7 +84,7 @@ const SearchTable = () => {
             const enFileRowList = fileRowList.map((fileRow) => {
               const newRow = {};
               Object.keys(fileRow).forEach((key) => {
-                const positiveEn = formatCnToEn(key)
+                const positiveEn = formatCnToEn(key);
                 newRow[positiveEn] = fileRow[key];
               });
               return newRow;
@@ -111,12 +108,14 @@ const SearchTable = () => {
     console.log("rowList", uploadFileInfoList);
     try {
       const res = await add(uploadFileInfoList);
+      setIsModalVisible(false);
+      handleSearch();
       console.log("rowList res", res);
     } catch (err) {
       Message.error(`上传失败: ${err}`);
     } finally {
-      setUploadFileInfoList([])
-      setUploadFileNameList([])
+      setUploadFileInfoList([]);
+      setUploadFileNameList([]);
     }
   };
 
@@ -128,8 +127,7 @@ const SearchTable = () => {
     handleSearch();
   }, [pageIndex]);
 
-
-  const columns = getColumns(handleSearch)
+  const columns = getColumns(handleSearch);
 
   return (
     <div>

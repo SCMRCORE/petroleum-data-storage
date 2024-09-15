@@ -1,6 +1,9 @@
 import { Button, Message, Popconfirm } from "@arco-design/web-react";
 import { MixedItem } from "../../../../types/index.ts";
-import { checkDataSourceTable, formatCnToEn } from "../../../../utils/checkDataSource.ts";
+import {
+  checkDataSourceTable,
+  formatCnToEn,
+} from "../../../../utils/checkDataSource.ts";
 import { DeleteParams } from "../../../../services/types.ts";
 import { deleteItem } from "../../../../services/searchTable.ts";
 
@@ -149,12 +152,18 @@ export const formConfigList = [
   [],
 ];
 
-export const getColumns = (handleSearch: ()=>void) => {
-
+export const getColumns = (handleSearch: () => void) => {
   const handleDeleteItem = async (params: DeleteParams) => {
-    const res = await deleteItem(params)
-    console.log('res', res)
-  }
+    const res = await deleteItem(params);
+    console.log("res", res);
+    if (res?.data?.code === 1) {
+      Message.info("删除成功");
+      console.log("删除成功");
+      handleSearch();
+    } else {
+      Message.info("删除失败");
+    }
+  };
 
   const columnMapper = {
     onlyKey: {
@@ -176,12 +185,11 @@ export const getColumns = (handleSearch: ()=>void) => {
           okText="确定"
           cancelText="取消"
           onOk={() => {
-            
             const keys = Object.keys(row);
             const num = checkDataSourceTable(keys);
-            console.log('删除',_, row,num);
+            console.log("删除", _, row, num);
             if (row.onlyKey && num) {
-              handleDeleteItem({OnlyKey: row.onlyKey, num})
+              handleDeleteItem({ OnlyKey: row.onlyKey, num });
             }
           }}
         >
@@ -192,7 +200,7 @@ export const getColumns = (handleSearch: ()=>void) => {
       ),
     },
   };
-  
+
   const columns = [
     "onlyKey",
     "wellName",
@@ -303,6 +311,5 @@ export const getColumns = (handleSearch: ()=>void) => {
     };
   });
 
-  return columns
-}
-
+  return columns;
+};

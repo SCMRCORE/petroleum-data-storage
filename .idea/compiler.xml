@@ -7,20 +7,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="petroleum-pojo" />
         <module name="petroleum-server" />
+        <module name="petroleum-pojo" />
         <module name="petroleum-commom" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="easy-excel" target="1.8" />
-      <module name="easy-excel-master" target="1.8" />
-      <module name="excel-util" target="1.7" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="easy-excel-master" options="-parameters" />
       <module name="petroleum-commom" options="-parameters" />
       <module name="petroleum-data-storage" options="" />
       <module name="petroleum-pojo" options="-parameters" />

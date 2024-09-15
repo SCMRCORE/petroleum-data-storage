@@ -1,6 +1,7 @@
 export type StatusResponse = {
   msg: string;
   success: boolean;
+  code: number;
   status: number;
 };
 

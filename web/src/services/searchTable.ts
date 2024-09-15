@@ -39,7 +39,7 @@ export const search = async (params: SearchParams) => {
 
 export const add = async (
   fileList: AddParams
-): Promise<AxiosResponse<StatusResponse>> => {
+): Promise<Array<AxiosResponse<StatusResponse>>> => {
   const sampleFile = fileList?.[0] ?? [];
   const sampleFileRow = sampleFile?.[0] ?? {};
   const keys = Object.keys(sampleFileRow);
@@ -53,7 +53,12 @@ export const add = async (
       [DATA_SOURCE_TABLE.ZT]: "addzt",
     };
     const path = pathMap[dataSourceTable];
-    return request.post(`/petroleum/${path}`, fileList);
+    const promiseList = fileList.map((file) => {
+      return request.post(`/petroleum/${path}`, file);
+    });
+    const res = await Promise.all(promiseList);
+    console.log(res);
+    return res;
   } else {
     throw "表头字段不匹配 或 数据为空";
   }

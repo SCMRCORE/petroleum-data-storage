@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/petroleum")
@@ -137,7 +138,6 @@ public class petroleumController {
         return Result.success(res);
     }
 
-
     /**
      * 软删除最新
      * 
@@ -146,10 +146,12 @@ public class petroleumController {
      * @return
      */
     @PutMapping("/delete")
-    public Result delete(Integer OnlyKey, Integer num) {
-        // System.out.println(OnlyKey);
-        log.info("执行delete方法删除:{}", OnlyKey);
-        petroleumService.updateStatus(num, OnlyKey);
+    public Result delete(@RequestBody Map<String, Integer> params) {
+        System.out.println("=====delete====");
+        System.out.println(params);
+        System.out.println("===============");
+        // log.info("执行delete方法删除:{}", OnlyKey);
+        // petroleumService.updateStatus(num, OnlyKey);
         return Result.success();
     }
 
@@ -189,7 +191,6 @@ public class petroleumController {
     }
 
 }
-
 
 // /**
 // * 软删除JS
