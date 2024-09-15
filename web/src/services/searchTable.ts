@@ -12,47 +12,27 @@ import {
 } from "./types.ts";
 
 export const search = async (params: SearchParams) => {
-  const mockParams1 = {
-    pageIndex: 1, // 默认第一页
-    pageSize: 10, // 默认每页显示10条记录
-    wellName: "YC13", // 对于JingShenSearchPageDTO
-    primaryWellType: "调整井", // 对于JingShenSearchPageDTO
-    wellType: "大位移井", // 对于JingShenSearchPageDTO 和 FuZaSearchPageDTO
-  };
-  const mockParams2 = {
-    pageIndex: 1, // 默认第一页
-    pageSize: 10, // 默认每页显示10条记录,
-    oilFieldName: "1",
-    contractor: "2",
-    wellName: "大位移井",
-    // primaryWellType: "调整井", // 对于JingShenSearchPageDTO
-  };
-  const mockParams3 = {
-    pageIndex: 1, // 默认第一页
-    pageSize: 10, // 默认每页显示10条记录,
-    wellName: "1",
-    // contractor: "2",
-    primaryWellType: "调整井", // 对于JingShenSearchPageDTO
-    wellType: "大位移井",
-  };
-  const mockParams4 = {
-    pageIndex: 1, // 默认第一页
-    pageSize: 10, // 默认每页显示10条记录,
-    wellName: "1",
-    // contractor: "2",
-    primaryWellType: "调整井", // 对于JingShenSearchPageDTO
-    wellType: "大位移井",
-  };
-  // 如果传入的params有值，则覆盖默认值
-  // Object.assign(mockParams, params);
+  const jsParams = { ...params };
+  const fzParams = { ...params };
+  const ztParams = { ...params };
+  const jbParams = { ...params };
+
   const promiseList = [
-    request.get("/petroleum/searchJS", mockParams1),
-    request.get("/petroleum/searchJB", mockParams2),
-    request.get("/petroleum/searchFZ", mockParams3),
-    request.get("/petroleum/searchZT", mockParams4),
+    request.get("/petroleum/searchJS", jsParams),
+    request.get("/petroleum/searchJB", jbParams),
+    request.get("/petroleum/searchFZ", fzParams),
+    request.get("/petroleum/searchZT", ztParams),
   ];
 
-  return Promise.all(promiseList);
+  const resList = await Promise.all(promiseList);
+  const list = [];
+  let total = 0;
+  resList?.forEach((resItem) => {
+    list.push(...(resItem?.data?.data?.records ?? []));
+    total = Math.max(resItem?.data?.data?.total, total);
+  });
+  // console.log("search res", dataList);
+  return { list, total };
 };
 
 export const add = async (
