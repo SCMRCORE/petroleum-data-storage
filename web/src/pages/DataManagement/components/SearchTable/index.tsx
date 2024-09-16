@@ -89,7 +89,7 @@ const SearchTable = () => {
               });
               return newRow;
             });
-
+            console.log("表", enFileRowList);
             newUploadFileInfoList.push(enFileRowList);
             newUploadFileNameList.push(wsName);
           });

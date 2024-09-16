@@ -1,9 +1,6 @@
 import { Button, Message, Popconfirm } from "@arco-design/web-react";
 import { MixedItem } from "../../../../types/index.ts";
-import {
-  checkDataSourceTable,
-  formatCnToEn,
-} from "../../../../utils/checkDataSource.ts";
+import { checkDataSourceTable } from "../../../../utils/checkDataSource.ts";
 import { DeleteParams } from "../../../../services/types.ts";
 import { deleteItem } from "../../../../services/searchTable.ts";
 
@@ -79,26 +76,26 @@ export const CN_2_EN_TABLES = {
     井名: "wellName",
     一级井别: "primaryWellType",
     井型: "wellType",
-    井段: "WellSection",
-    "井眼尺寸（in）": "HoleDiameter",
-    开始时间: "StartTime",
-    结束时间: "EndTime",
-    "开始深度（m）": "StartDepth",
-    "开始垂深（m）": "StartVerticalDepth",
-    "结束深度（m）": "EndDepth",
-    "结束垂深（m）": "EndVerticalDepth",
-    "套管尺寸（in）": "CasingDiameter",
-    钢级: "SteelGrade",
-    "套管下深（m）": "CasingSetDepth",
-    "套管长度（m）": "CasingLength",
-    "水泥返高（m）": "CementReturnHeight",
-    "上层套管尺寸（in）": "UpperCasingDiameter",
-    "上层套管下深（m）": "UpperCasingSetDepth",
-    钻井液体系: "DrillingFluidSystem",
-    "钻井液密度（g/cm3）": "DrillingFluidDensity",
-    "塑性黏度（mPa•s）": "PlasticViscosity",
-    "屈服值（Pa）": "YieldValue",
-    地层: "FormationPressure",
+    井段: "wellSection",
+    "井眼尺寸（in）": "holeDiameter",
+    开始时间: "startTime",
+    结束时间: "endTime",
+    "开始深度（m）": "startDepth",
+    "开始垂深（m）": "startVerticalDepth",
+    "结束深度（m）": "endDepth",
+    "结束垂深（m）": "endVerticalDepth",
+    "套管尺寸（in）": "casingDiameter",
+    钢级: "steelGrade",
+    "套管下深（m）": "casingSetDepth",
+    "套管长度（m）": "casingLength",
+    "水泥返高（m）": "cementReturnHeight",
+    "上层套管尺寸（in）": "upperCasingDiameter",
+    "上层套管下深（m）": "upperCasingSetDepth",
+    钻井液体系: "drillingFluidSystem",
+    "钻井液密度（g/cm3）": "drillingFluidDensity",
+    "塑性黏度（mPa•s）": "plasticViscosity",
+    "屈服值（Pa）": "yieldValue",
+    地层: "formationPressure",
   },
   ZT: {
     井名: "wellName",

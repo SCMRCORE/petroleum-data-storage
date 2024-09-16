@@ -4,17 +4,17 @@ import {
 } from "../pages/DataManagement/components/SearchTable/configs.tsx";
 
 export enum DATA_SOURCE_TABLE {
-    JS = 1,
-    JB,
-    FZ,
-    ZT,
+  JS = 1,
+  JB,
+  FZ,
+  ZT,
 }
 
 export const DATA_SOURCE_TABLE_TITLE_MAP = {
-    JS: "井身结构表",
-    JB: "基本情况表",
-    FZ: "复杂情况表",
-    ZT: "钻头总览表",
+  JS: "井身结构表",
+  JB: "基本情况表",
+  FZ: "复杂情况表",
+  ZT: "钻头总览表",
 };
 
 export const checkDataSourceTable = (keys) => {
@@ -57,7 +57,7 @@ export const checkDataSourceTable = (keys) => {
       ].includes(key)
     )
   )
-    return DATA_SOURCE_TABLE.JB;
+    return DATA_SOURCE_TABLE.ZT;
 
   if (
     keys.some((key) =>
@@ -122,7 +122,7 @@ export const checkDataSourceTable = (keys) => {
       ].includes(key)
     )
   )
-    return DATA_SOURCE_TABLE.ZT;
+    return DATA_SOURCE_TABLE.JB;
   return;
 };
 
