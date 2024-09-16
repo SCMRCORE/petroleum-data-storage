@@ -16,8 +16,10 @@ public class FuZa {
     private String company; // 公司
     private String primaryWellType; // 一级井别
     private String wellType; // 井型
-    private LocalDateTime startTime; // 开始时间
-    private LocalDateTime endTime; // 结束时间
+//    private LocalDateTime startTime; // 开始时间
+//    private LocalDateTime endTime; // 结束时间
+    private String startTime; // 开始时间
+    private String endTime; // 结束时间
     private String durationHours; // 持续时间（hr）
     private String firstLevelCode; // 一级代码
     private String secondLevelCode; // 二级代码

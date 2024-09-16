@@ -139,19 +139,14 @@ public class petroleumController {
     }
 
     /**
-     * 软删除最新
-     * 
-     * @param OnlyKey
-     * @param num
+     * 软删除
+     * @param params
      * @return
      */
     @PutMapping("/delete")
     public Result delete(@RequestBody Map<String, Integer> params) {
-        System.out.println("=====delete====");
-        System.out.println(params);
-        System.out.println("===============");
-        // log.info("执行delete方法删除:{}", OnlyKey);
-        // petroleumService.updateStatus(num, OnlyKey);
+         log.info("执行delete方法删除:{}", params);
+         petroleumService.updateStatus(params.get("num"), params.get("OnlyKey"));
         return Result.success();
     }
 

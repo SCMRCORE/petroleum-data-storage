@@ -21,8 +21,10 @@ public class JingShen {
     private String wellType;
     private String WellSection;
     private String HoleDiameter;
-    private LocalDateTime StartTime;
-    private LocalDateTime EndTime;
+//    private LocalDateTime StartTime;
+//    private LocalDateTime EndTime;
+    private String StartTime;
+    private String EndTime;
     private String StartDepth;
     private String StartVerticalDepth;
     private String EndDepth;

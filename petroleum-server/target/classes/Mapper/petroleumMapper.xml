@@ -249,35 +249,37 @@
             #{item.wellName}, #{item.company}, #{item.primaryWellType}, #{item.wellType}, #{item.drillBitNumber}, #{item.drillBitType}, #{item.sizeIn}, #{item.manufacturer}, #{item.model}, #{item.serialNumber}, #{item.nozzleSize}, #{item.drillBitTFAn2}, #{item.entryDepth}, #{item.exitDepth}, #{item.entryTime}, #{item.exitTime}, #{item.advanceDistance}, #{item.pureDrillingTime}, #{item.rop}, #{item.maxDrillingPressure}, #{item.minDrillingPressure}, #{item.maxRotationSpeed}, #{item.minRotationSpeed}, #{item.iadcWearEvaluation}, #{item.encounteredFormation}, #{item.status}
         </foreach>
     </insert>
+
 <!--搜索-->
     <select id="searchjs" resultType="com.petroleumpojo.entity.JingShen">
         select * from jingshen where wellName like '%${wellName}%'
                                  and primaryWellType like '%${primaryWellType}%'
                                  and wellType like '%${wellType}%'
                                  and status = 1
-        order by StartTime desc
+        order by OnlyKey desc
     </select>
     <select id="searchjb" resultType="com.petroleumpojo.entity.JiBen">
         select * from jibenxinxi where wellName like '%${wellName}%'
                                  and primaryWellType like '%${primaryWellType}%'
                                  and wellType like '%${wellType}%'
                                  and status = 1
-        order by wellName desc
+        order by onlyKey desc
     </select>
     <select id="searchfz" resultType="com.petroleumpojo.entity.FuZa">
         select * from fuza where wellName like '%${wellName}%'
                                  and primaryWellType like '%${primaryWellType}%'
                                  and wellType like '%${wellType}%'
                                  and status = 1
-        order by StartTime desc
+        order by OnlyKey desc
     </select>
     <select id="searchzt" resultType="com.petroleumpojo.entity.ZuanTou">
         select * from zuantou where wellName like '%${wellName}%'
                              and primaryWellType like '%${primaryWellType}%'
                              and wellType like '%${wellType}%'
                              and status = 1
-        order by entryTime desc
+        order by OnlyKey desc
     </select>
+
 <!--软删除-->
     <update id="updateStatusJS">
         update jingshen set status = 0 where OnlyKey = #{OnlyKey}
@@ -465,7 +467,6 @@
         </set>
         where OnlyKey = #{OnlyKey}
     </update>
-
     <update id="updateJB">
         update jibenxinxi
         <set>
