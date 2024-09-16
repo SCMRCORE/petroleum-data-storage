@@ -172,11 +172,14 @@ export const getColumns = (handleSearch: () => void) => {
     wellName: {
       fixed: "left",
     },
-    company: {
-      fixed: "left",
+    // company: {
+    //   fixed: "left",
+    // },
+    location: {
+      width: 200,
     },
     操作: {
-      width: 200,
+      width: 80,
       fixed: "right",
       render: (_, row: MixedItem) => (
         <Popconfirm
