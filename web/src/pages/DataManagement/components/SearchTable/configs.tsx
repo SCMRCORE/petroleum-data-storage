@@ -109,7 +109,7 @@ export const CN_2_EN_TABLES = {
     型号: "model",
     序列号: "serialNumber",
     "喷嘴(1/32″)": "nozzleSize",
-    "钻头TFA(in²)": "drillBitTFAn2",
+    "钻头TFA(in^2)": "drillBitTFAn2",
     "入井深度(m)": "entryDepth",
     "出井深度(m)": "exitDepth",
     入井时间: "entryTime",
