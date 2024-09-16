@@ -5,13 +5,13 @@
 
 <!--excel-->
     <insert id="addJinShenByList" parameterType="java.util.List">
-        insert into jingshen (WellName, company, PrimaryWellType, WellType, WellSection, HoleDiameter, StartTime, EndTime, StartDepth, StartVerticalDepth, EndDepth, EndVerticalDepth, CasingDiameter, SteelGrade, CasingSetDepth, CasingLength, CementReturnHeight, UpperCasingDiameter, UpperCasingSetDepth, DrillingFluidSystem, DrillingFluidDensity, PlasticViscosity, YieldValue, FormationPressure, status)
+        insert into jingshen (WellName, company, PrimaryWellType, WellType, WellSection, HoleDiameter, StartTime, EndTime, StartDepth, StartVerticalDepth, EndDepth, EndVerticalDepth, CasingDiameter, SteelGrade, CasingSetDepth, CasingLength, CementReturnHeight, UpperCasingDiameter, UpperCasingSetDepth, DrillingFluidSystem, DrillingFluidDensity, PlasticViscosity, YieldValue, FormationPressure, status, num)
         values
         <foreach collection="jingshenss" item="item" separator="),(" open="(" close=")">
-            #{item.WellName},
+            #{item.wellName},
             #{item.company},
-            #{item.PrimaryWellType},
-            #{item.WellType},
+            #{item.primaryWellType},
+            #{item.wellType},
             #{item.WellSection},
             #{item.HoleDiameter},
             #{item.StartTime},
@@ -32,12 +32,13 @@
             #{item.PlasticViscosity},
             #{item.YieldValue},
             #{item.FormationPressure},
-            #{item.status}
+            #{item.status},
+            #{item.num}
         </foreach>
     </insert>
     <insert id="addJiBenByList" parameterType="com.petroleumpojo.entity.JiBen">
         insert into jibenxinxi
-        (wellName, company, oilFieldName, oilFieldCode, isCooperative, contractor, primaryWellType, secondaryWellType, tertiaryWellType, wellType, waterDepth1, designDepth, designVerticalDepth, designDate, structureName, uniqueWellId, chineseWellName, operator, hydrocarbonType, riskLevel, riskType, riskGrade, sulfurGrade, containsCO2, zeroDepth, initialKellyElevation, groundElevation, currentKellyElevation, casingHeadElevation, waterDepth2, mudLineElevation, artificialBottomDepth, drillingDays, positioningMethod, location, geodeticSystem, longitude, latitude, xcoordinate, ycoordinate, slotNumber, country, region, province, county, scrapedWell, officePhone, remark, status)
+        (wellName, company, oilFieldName, oilFieldCode, isCooperative, contractor, primaryWellType, secondaryWellType, tertiaryWellType, wellType, waterDepth1, designDepth, designVerticalDepth, designDate, structureName, uniqueWellId, chineseWellName, operator, hydrocarbonType, riskLevel, riskType, riskGrade, sulfurGrade, containsCO2, zeroDepth, initialKellyElevation, groundElevation, currentKellyElevation, casingHeadElevation, waterDepth2, mudLineElevation, artificialBottomDepth, drillingDays, positioningMethod, location, geodeticSystem, longitude, latitude, xcoordinate, ycoordinate, slotNumber, country, region, province, county, scrapedWell, officePhone, remark, status, num)
         values
         <foreach collection="jiBen" item="item" separator="),(" open="(" close=")">
             #{item.wellName},
@@ -88,12 +89,13 @@
             #{item.scrapedWell},
             #{item.officePhone},
             #{item.remark},
-            #{item.status}
+            #{item.status},
+            #{item.num}
         </foreach>
     </insert>
     <insert id="addFuZaByList" parameterType="com.petroleumpojo.entity.FuZa">
         insert into fuza
-        (wellName, company, primaryWellType, wellType, startTime, endTime, durationHours, firstLevelCode, secondLevelCode, thirdLevelCode, fourthLevelCode, complexityType, wellSection, startDepth, endDepth, operationDescription, status)
+        (wellName, company, primaryWellType, wellType, startTime, endTime, durationHours, firstLevelCode, secondLevelCode, thirdLevelCode, fourthLevelCode, complexityType, wellSection, startDepth, endDepth, operationDescription, status, num)
         values
         <foreach collection="fuza" item="item" separator="),(" open="(" close=")">
             #{item.wellName},
@@ -112,12 +114,13 @@
             #{item.startDepth},
             #{item.endDepth},
             #{item.operationDescription},
-            #{item.status}
+            #{item.status},
+            #{item.num}
         </foreach>
     </insert>
     <insert id="addZuanTouByList" parameterType="com.petroleumpojo.entity.ZuanTou">
         insert into zuantou
-        (wellName, company, primaryWellType, wellType, drillBitNumber, drillBitType, sizeIn, manufacturer, model, serialNumber, nozzleSize, drillBitTFAn2, entryDepth, exitDepth, entryTime, exitTime, advanceDistance, pureDrillingTime, rop, maxDrillingPressure, minDrillingPressure, maxRotationSpeed, minRotationSpeed, iadcWearEvaluation, encounteredFormation, status)
+        (wellName, company, primaryWellType, wellType, drillBitNumber, drillBitType, sizeIn, manufacturer, model, serialNumber, nozzleSize, drillBitTFAn2, entryDepth, exitDepth, entryTime, exitTime, advanceDistance, pureDrillingTime, rop, maxDrillingPressure, minDrillingPressure, maxRotationSpeed, minRotationSpeed, iadcWearEvaluation, encounteredFormation, status, num)
         values
         <foreach collection="zuantou" item="item" separator="),(" open="(" close=")">
             #{item.wellName},
@@ -145,12 +148,13 @@
             #{item.minRotationSpeed},
             #{item.iadcWearEvaluation},
             #{item.encounteredFormation},
-            #{item.status}
+            #{item.status},
+            #{item.num}
         </foreach>
     </insert>
 <!--单独新增-->
     <insert id="addJS" parameterType="com.petroleumpojo.entity.JingShen">
-        insert into jingshen (WellName, company, PrimaryWellType, WellType, WellSection, HoleDiameter, StartTime, EndTime, StartDepth, StartVerticalDepth, EndDepth, EndVerticalDepth, CasingDiameter, SteelGrade, CasingSetDepth, CasingLength, CementReturnHeight, UpperCasingDiameter, UpperCasingSetDepth, DrillingFluidSystem, DrillingFluidDensity, PlasticViscosity, YieldValue, FormationPressure, status)
+        insert into jingshen (WellName, company, PrimaryWellType, WellType, WellSection, HoleDiameter, StartTime, EndTime, StartDepth, StartVerticalDepth, EndDepth, EndVerticalDepth, CasingDiameter, SteelGrade, CasingSetDepth, CasingLength, CementReturnHeight, UpperCasingDiameter, UpperCasingSetDepth, DrillingFluidSystem, DrillingFluidDensity, PlasticViscosity, YieldValue, FormationPressure, status, num)
         values
         <foreach collection="jingShen" item="item" separator="),(" open="(" close=")">
             #{item.wellName},
@@ -177,11 +181,12 @@
             #{item.plasticViscosity},
             #{item.yieldValue},
             #{item.formationPressure},
-            #{item.status}
+            #{item.status},
+            #{item.num}
         </foreach>
     </insert>
     <insert id="addJB">
-        insert into jibenxinxi (wellName, company, oilFieldName, oilFieldCode, isCooperative, contractor, primaryWellType, secondaryWellType, tertiaryWellType, wellType, waterDepth1, designDepth, designVerticalDepth, designDate, structureName, uniqueWellId, chineseWellName, operator, hydrocarbonType, riskLevel, riskType, riskGrade, sulfurGrade, containsCO2, zeroDepth, initialKellyElevation, groundElevation, currentKellyElevation, casingHeadElevation, waterDepth2, mudLineElevation, artificialBottomDepth, drillingDays, positioningMethod, location, geodeticSystem, longitude, latitude, xcoordinate, ycoordinate, slotNumber, country, region, province, county, scrapedWell, officePhone, remark,  status)
+        insert into jibenxinxi (wellName, company, oilFieldName, oilFieldCode, isCooperative, contractor, primaryWellType, secondaryWellType, tertiaryWellType, wellType, waterDepth1, designDepth, designVerticalDepth, designDate, structureName, uniqueWellId, chineseWellName, operator, hydrocarbonType, riskLevel, riskType, riskGrade, sulfurGrade, containsCO2, zeroDepth, initialKellyElevation, groundElevation, currentKellyElevation, casingHeadElevation, waterDepth2, mudLineElevation, artificialBottomDepth, drillingDays, positioningMethod, location, geodeticSystem, longitude, latitude, xcoordinate, ycoordinate, slotNumber, country, region, province, county, scrapedWell, officePhone, remark,  status, num)
         values
         <foreach collection="jiBen" item="item" separator="),(" open="(" close=")">
                 #{item.wellName},
@@ -232,21 +237,22 @@
                 #{item.scrapedWell},
                 #{item.officePhone},
                 #{item.remark},
-                #{item.status}
+                #{item.status},
+                #{item.num}
         </foreach>
     </insert>
     <insert id="addFZ">
-        insert into fuza (wellName, company, primaryWellType, wellType, startTime, endTime, durationHours, firstLevelCode, secondLevelCode, thirdLevelCode, fourthLevelCode, complexityType, wellSection, startDepth, endDepth, operationDescription, status)
+        insert into fuza (wellName, company, primaryWellType, wellType, startTime, endTime, durationHours, firstLevelCode, secondLevelCode, thirdLevelCode, fourthLevelCode, complexityType, wellSection, startDepth, endDepth, operationDescription, status, num)
         values
         <foreach collection="fuza" item="item" separator="),(" open="(" close=")">
-            #{item.wellName}, #{item.company}, #{item.primaryWellType}, #{item.wellType}, #{item.startTime}, #{item.endTime}, #{item.durationHours}, #{item.firstLevelCode}, #{item.secondLevelCode}, #{item.thirdLevelCode}, #{item.fourthLevelCode}, #{item.complexityType}, #{item.wellSection}, #{item.startDepth}, #{item.endDepth}, #{item.operationDescription}, #{item.status}
+            #{item.wellName}, #{item.company}, #{item.primaryWellType}, #{item.wellType}, #{item.startTime}, #{item.endTime}, #{item.durationHours}, #{item.firstLevelCode}, #{item.secondLevelCode}, #{item.thirdLevelCode}, #{item.fourthLevelCode}, #{item.complexityType}, #{item.wellSection}, #{item.startDepth}, #{item.endDepth}, #{item.operationDescription}, #{item.status}, #{item.num}
         </foreach>
     </insert>
     <insert id="addZT">
-        insert into zuantou (wellName, company, primaryWellType, wellType, drillBitNumber, drillBitType, sizeIn, manufacturer, model, serialNumber, nozzleSize, drillBitTFAn2, entryDepth, exitDepth, entryTime, exitTime, advanceDistance, pureDrillingTime, rop, maxDrillingPressure, minDrillingPressure, maxRotationSpeed, minRotationSpeed, iadcWearEvaluation, encounteredFormation, status)
+        insert into zuantou (wellName, company, primaryWellType, wellType, drillBitNumber, drillBitType, sizeIn, manufacturer, model, serialNumber, nozzleSize, drillBitTFAn2, entryDepth, exitDepth, entryTime, exitTime, advanceDistance, pureDrillingTime, rop, maxDrillingPressure, minDrillingPressure, maxRotationSpeed, minRotationSpeed, iadcWearEvaluation, encounteredFormation, status, num)
         values
         <foreach collection="zuantou" item="item" separator="),(" open="(" close=")">
-            #{item.wellName}, #{item.company}, #{item.primaryWellType}, #{item.wellType}, #{item.drillBitNumber}, #{item.drillBitType}, #{item.sizeIn}, #{item.manufacturer}, #{item.model}, #{item.serialNumber}, #{item.nozzleSize}, #{item.drillBitTFAn2}, #{item.entryDepth}, #{item.exitDepth}, #{item.entryTime}, #{item.exitTime}, #{item.advanceDistance}, #{item.pureDrillingTime}, #{item.rop}, #{item.maxDrillingPressure}, #{item.minDrillingPressure}, #{item.maxRotationSpeed}, #{item.minRotationSpeed}, #{item.iadcWearEvaluation}, #{item.encounteredFormation}, #{item.status}
+            #{item.wellName}, #{item.company}, #{item.primaryWellType}, #{item.wellType}, #{item.drillBitNumber}, #{item.drillBitType}, #{item.sizeIn}, #{item.manufacturer}, #{item.model}, #{item.serialNumber}, #{item.nozzleSize}, #{item.drillBitTFAn2}, #{item.entryDepth}, #{item.exitDepth}, #{item.entryTime}, #{item.exitTime}, #{item.advanceDistance}, #{item.pureDrillingTime}, #{item.rop}, #{item.maxDrillingPressure}, #{item.minDrillingPressure}, #{item.maxRotationSpeed}, #{item.minRotationSpeed}, #{item.iadcWearEvaluation}, #{item.encounteredFormation}, #{item.status}, #{item.num}
         </foreach>
     </insert>
 

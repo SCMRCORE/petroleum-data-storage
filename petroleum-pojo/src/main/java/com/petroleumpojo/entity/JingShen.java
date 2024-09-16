@@ -43,4 +43,5 @@ public class JingShen {
     private String FormationPressure;
     private Integer status;
     private Integer OnlyKey;
+    private Integer num;
 }

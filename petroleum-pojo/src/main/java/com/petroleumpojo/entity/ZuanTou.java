@@ -41,4 +41,5 @@ public class ZuanTou {
     private String encounteredFormation; // 钻遇地层
     private Integer status; // 状态
     private Integer OnlyKey;
+    private Integer num;
 }

@@ -60,6 +60,7 @@ public class petroleumServicelmp implements petroleumService {
             for (JingShen jingShenOne : jingShen) {
                 jingShenOne.setCompany(company);
                 jingShenOne.setStatus(1);
+                jingShenOne.setNum(1);
             }
             petroleumMapper.addJinShenByList(jingShen);
         }
@@ -80,6 +81,7 @@ public class petroleumServicelmp implements petroleumService {
             for (JiBen jiBenOne : jiBen) {
                 jiBenOne.setCompany(company);
                 jiBenOne.setStatus(1);
+                jiBenOne.setNum(2);
             }
             petroleumMapper.addJiBenByList(jiBen);
         }
@@ -100,6 +102,7 @@ public class petroleumServicelmp implements petroleumService {
             for (FuZa fuzaOne : fuza) {
                 fuzaOne.setCompany(company);
                 fuzaOne.setStatus(1);
+                fuzaOne.setNum(3);
             }
             petroleumMapper.addFuZaByList(fuza);
         }
@@ -120,6 +123,7 @@ public class petroleumServicelmp implements petroleumService {
             for (ZuanTou zuanTouOne : zuantou) {
                 zuanTouOne.setCompany(company);
                 zuanTouOne.setStatus(1);
+                zuanTouOne.setNum(4);
             }
             petroleumMapper.addZuanTouByList(zuantou);
         }
@@ -134,6 +138,7 @@ public class petroleumServicelmp implements petroleumService {
             JingShen jingShen1 = new JingShen();
             BeanUtils.copyProperties(js1, jingShen1);
             jingShen1.setStatus(1);
+            jingShen1.setNum(1);
             jingShen.add(jingShen1);
         }
         petroleumMapper.addJS(jingShen);
@@ -146,6 +151,7 @@ public class petroleumServicelmp implements petroleumService {
             JiBen jiBen1 = new JiBen();
             BeanUtils.copyProperties(jb1, jiBen1);
             jiBen1.setStatus(1);
+            jiBen1.setNum(2);
             jiben.add(jiBen1);
         }
         petroleumMapper.addJB(jiben);
@@ -158,6 +164,7 @@ public class petroleumServicelmp implements petroleumService {
             FuZa fuza = new FuZa();
             BeanUtils.copyProperties(fz1, fuza);
             fuza.setStatus(1);
+            fuza.setNum(3);
             fuZa.add(fuza);
         }
         petroleumMapper.addFZ(fuZa);
@@ -170,6 +177,7 @@ public class petroleumServicelmp implements petroleumService {
             ZuanTou zuantou = new ZuanTou();
             BeanUtils.copyProperties(zt1, zuantou);
             zuantou.setStatus(1);
+            zuantou.setNum(4);
             zuanTou.add(zuantou);
         }
         petroleumMapper.addZT(zuanTou);

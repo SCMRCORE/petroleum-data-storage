@@ -62,4 +62,5 @@ public class JiBen {
     private String remark; // 备注
     private Integer status;
     private Integer OnlyKey;
+    private Integer num;
 }

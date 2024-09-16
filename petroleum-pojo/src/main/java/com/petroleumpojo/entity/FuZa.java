@@ -32,4 +32,5 @@ public class FuZa {
     private String operationDescription; // 作业描述
     private Integer status;
     private Integer OnlyKey;
+    private Integer num;
 }
