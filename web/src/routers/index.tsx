@@ -8,11 +8,11 @@ export const routeList = [
     path: "/",
     element: <DataManagement></DataManagement>,
   },
-  {
-    name: "数据趋势",
-    path: "/trend",
-    element: <DataTrend></DataTrend>,
-  },
+  // {
+  //   name: "数据趋势",
+  //   path: "/trend",
+  //   element: <DataTrend></DataTrend>,
+  // },
 ];
 
 const routerList = createHashRouter(routeList);
