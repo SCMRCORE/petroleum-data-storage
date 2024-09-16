@@ -37,7 +37,7 @@ public class petroleumController {
      */
     @PostMapping("/addjs") // 待实现
     public Result addjs(@RequestBody List<JingShenDTO> jsDto) {
-        log.info("执行addJS方法:{}");
+        log.info("执行addJS方法:{}", jsDto);
         petroleumService.addJS(jsDto);
         return Result.success();
     }
@@ -49,7 +49,7 @@ public class petroleumController {
      */
     @PostMapping("/addjb") // 待实现
     public Result addjb(@RequestBody List<JiBenDTO> jbDto) {
-        log.info("执行addJB方法:{}");
+        log.info("执行addJB方法:{}", jbDto);
         petroleumService.addJB(jbDto);
         return Result.success();
     }
@@ -62,7 +62,7 @@ public class petroleumController {
     @PostMapping("/addfz") // 待实现
     public Result addfz(@RequestBody List<FuZaDTO> fzDto) {
         log.info("执行addFZ方法:{}", fzDto);
-//        petroleumService.addFZ(fzDto);
+        petroleumService.addFZ(fzDto);
         return Result.success();
     }
 
@@ -73,7 +73,7 @@ public class petroleumController {
      */
     @PostMapping("/addzt") // 待实现
     public Result addzt(@RequestBody List<ZuanTouDTO> ztDto) {
-        log.info("执行addZT方法:{}");
+        log.info("执行addZT方法:{}", ztDto);
         petroleumService.addZT(ztDto);
         return Result.success();
     }
@@ -149,6 +149,7 @@ public class petroleumController {
          petroleumService.updateStatus(params.get("num"), params.get("OnlyKey"));
         return Result.success();
     }
+
 
     /**
      * 更新JS

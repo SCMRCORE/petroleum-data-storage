@@ -16,7 +16,7 @@ public class ZuanTouTool {
         reader.addHeaderAlias("型号", "model");
         reader.addHeaderAlias("序列号", "serialNumber");
         reader.addHeaderAlias("喷嘴(1/32″)", "nozzleSize");
-        reader.addHeaderAlias("钻头TFA(in2)", "drillBitTFAn2");
+        reader.addHeaderAlias("钻头TFA(in^2)", "drillBitTFAn2");
         reader.addHeaderAlias("入井深度(m)", "entryDepth");
         reader.addHeaderAlias("出井深度(m)", "exitDepth");
         reader.addHeaderAlias("入井时间", "entryTime");

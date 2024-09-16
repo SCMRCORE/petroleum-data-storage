@@ -14,6 +14,7 @@ public class JiBenTool {
         reader.addHeaderAlias("二级井别", "secondaryWellType");
         reader.addHeaderAlias("三级井别", "tertiaryWellType");
         reader.addHeaderAlias("井型", "wellType");
+        //TODO 重命名问题
         reader.addHeaderAlias("水深1", "waterDepth1");
         reader.addHeaderAlias("设计深度", "designDepth");
         reader.addHeaderAlias("设计垂深", "designVerticalDepth");

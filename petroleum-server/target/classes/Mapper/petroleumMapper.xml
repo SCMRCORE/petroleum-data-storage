@@ -288,110 +288,16 @@
 
 <!--软删除-->
     <update id="updateStatusJS">
-        update jingshen set status = 0 where OnlyKey = #{OnlyKey}
+        update jingshen set status = 0 where OnlyKey = #{OnlyKey} AND status = 1
     </update>
     <update id="updateStatusJB">
-        update jibenxinxi set status = 0
-        WHERE OnlyKey = #{OnlyKey} AND status = 1
-#             wellName = #{wellName} AND
-#             company = #{company} AND
-#             oilFieldName = #{oilFieldName} AND
-#             oilFieldCode = #{oilFieldCode} AND
-#             isCooperative = #{isCooperative} AND
-#             contractor = #{contractor} AND
-#             primaryWellType = #{primaryWellType} AND
-#             secondaryWellType = #{secondaryWellType} AND
-#             tertiaryWellType = #{tertiaryWellType} AND
-#             wellType = #{wellType} AND
-#             waterDepth1 = #{waterDepth1} AND
-#             designDepth = #{designDepth} AND
-#             designVerticalDepth = #{designVerticalDepth} AND
-#             designDate = #{designDate} AND
-#             structureName = #{structureName} AND
-#             uniqueWellId = #{uniqueWellId} AND
-#             chineseWellName = #{chineseWellName} AND
-#             operator = #{operator} AND
-#             hydrocarbonType = #{hydrocarbonType} AND
-#             riskLevel = #{riskLevel} AND
-#             riskType = #{riskType} AND
-#             riskGrade = #{riskGrade} AND
-#             sulfurGrade = #{sulfurGrade} AND
-#             containsCO2 = #{containsCO2} AND
-#             zeroDepth = #{zeroDepth} AND
-#             initialKellyElevation = #{initialKellyElevation} AND
-#             groundElevation = #{groundElevation} AND
-#             currentKellyElevation = #{currentKellyElevation} AND
-#             casingHeadElevation = #{casingHeadElevation} AND
-#             waterDepth2 = #{waterDepth2} AND
-#             mudLineElevation = #{mudLineElevation} AND
-#             artificialBottomDepth = #{artificialBottomDepth} AND
-#             drillingDays = #{drillingDays} AND
-#             positioningMethod = #{positioningMethod} AND
-#             location = #{location} AND
-#             geodeticSystem = #{geodeticSystem} AND
-#             longitude = #{longitude} AND
-#             latitude = #{latitude} AND
-#             xcoordinate = #{xcoordinate} AND
-#             ycoordinate = #{ycoordinate} AND
-#             slotNumber = #{slotNumber} AND
-#             country = #{country} AND
-#             region = #{region} AND
-#             province = #{province} AND
-#             county = #{county} AND
-#             scrapedWell = #{scrapedWell} AND
-#             officePhone = #{officePhone} AND
-#             remark = #{remark}
-#             status = 1
+        update jibenxinxi set status = 0 WHERE OnlyKey = #{OnlyKey} AND status = 1
     </update>
     <update id="updateStatusFZ">
-        update fuza set status = 0
-        where OnlyKey = #{OnlyKey} AND status = 1
-#             wellName = #{wellName} AND
-#             company = #{company} AND
-#             primaryWellType = #{primaryWellType} AND
-#             wellType = #{wellType} AND
-#             startTime = IFNULL(#{startTime}, NULL) AND
-#             endTime = IFNULL(#{endTime}, NULL) AND
-#             durationHours = #{durationHours} AND
-#             firstLevelCode = #{firstLevelCode} AND
-#             secondLevelCode = #{secondLevelCode} AND
-#             thirdLevelCode = #{thirdLevelCode} AND
-#             fourthLevelCode = #{fourthLevelCode} AND
-#             complexityType = #{complexityType} AND
-#             wellSection = #{wellSection} AND
-#             startDepth = #{startDepth} AND
-#             endDepth = #{endDepth} AND
-#             operationDescription = #{operationDescription}
-#             status = 1
+        update fuza set status = 0 where OnlyKey = #{OnlyKey} AND status = 1
     </update>
     <update id="updateStatusZT">
-        update zuantou set status = 0
-        where OnlyKey = #{OnlyKey} AND status = 1
-#             wellName = #{wellName} AND
-#             company = #{company} AND
-#             primaryWellType = #{primaryWellType} AND
-#             wellType = #{wellType} AND
-#             drillBitNumber = #{drillBitNumber} AND
-#             drillBitType = #{drillBitType} AND
-#             sizeIn = #{sizeIn} AND
-#             manufacturer = #{manufacturer} AND
-#             model = #{model} AND
-#             serialNumber = #{serialNumber} AND
-#             nozzleSize = #{nozzleSize} AND
-#             drillBitTFAn2 = #{drillBitTFAn2} AND
-#             entryDepth = #{entryDepth} AND
-#             exitDepth = #{exitDepth} AND
-#             entryTime = #{entryTime} AND
-#             exitTime = #{exitTime} AND
-#             advanceDistance = #{advanceDistance} AND
-#             pureDrillingTime = #{pureDrillingTime} AND
-#             rop = #{rop} AND
-#             maxDrillingPressure = #{maxDrillingPressure} AND
-#             minDrillingPressure = #{minDrillingPressure} AND
-#             maxRotationSpeed = #{maxRotationSpeed} AND
-#             minRotationSpeed = #{minRotationSpeed} AND
-#             iadcWearEvaluation = #{iadcWearEvaluation} AND
-#             encounteredFormation = #{encounteredFormation}
+        update zuantou set status = 0 where OnlyKey = #{OnlyKey} AND status = 1
     </update>
 
 <!--更新-->
