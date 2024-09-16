@@ -4,17 +4,17 @@ import {
 } from "../pages/DataManagement/components/SearchTable/configs.tsx";
 
 export enum DATA_SOURCE_TABLE {
-  FZ = 1,
-  JB,
-  JS,
-  ZT,
+    JS = 1,
+    JB,
+    FZ,
+    ZT,
 }
 
 export const DATA_SOURCE_TABLE_TITLE_MAP = {
-  FZ: "复杂情况表",
-  JB: "基本情况表",
-  JS: "井身结构表",
-  ZT: "钻头总览表",
+    JS: "井身结构表",
+    JB: "基本情况表",
+    FZ: "复杂情况表",
+    ZT: "钻头总览表",
 };
 
 export const checkDataSourceTable = (keys) => {
