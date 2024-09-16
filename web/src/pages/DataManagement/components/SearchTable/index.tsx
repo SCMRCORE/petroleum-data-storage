@@ -81,6 +81,7 @@ const SearchTable = () => {
           wb.SheetNames?.forEach((wsName) => {
             const ws = wb.Sheets[wsName];
             const fileRowList = XLSX.utils.sheet_to_json(ws);
+            console.log("原始上传的表", fileRowList);
             const enFileRowList = fileRowList.map((fileRow) => {
               const newRow = {};
               Object.keys(fileRow).forEach((key) => {
@@ -89,7 +90,7 @@ const SearchTable = () => {
               });
               return newRow;
             });
-            console.log("表", enFileRowList);
+            console.log("翻译后的表", enFileRowList);
             newUploadFileInfoList.push(enFileRowList);
             newUploadFileNameList.push(wsName);
           });

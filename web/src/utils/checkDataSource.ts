@@ -127,7 +127,7 @@ export const checkDataSourceTable = (keys) => {
 };
 
 export const formatCnToEn = (key: string) => {
-  const formattedKey = key?.replace(/[\r\n\u21B5]+/g, "").toLowerCase();
+  const formattedKey = key?.replace(/[\r\n\u21B5]+/g, "");
   const cn = EN_2_CN_MIXED[formattedKey] ?? formattedKey;
   const positiveEn = CN_2_EN_MIXED[cn];
   return positiveEn;

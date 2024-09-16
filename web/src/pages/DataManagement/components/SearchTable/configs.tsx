@@ -138,6 +138,9 @@ Object.keys(CN_2_EN_MIXED).forEach((cn) => {
   EN_2_CN_MIXED[en.toLowerCase()] = cn;
 });
 
+console.log("cn2en", CN_2_EN_MIXED);
+console.log("en2cn", EN_2_CN_MIXED);
+
 export const formConfigList = [
   [
     { label: "井基本类型", field: "primaryWellType", defaultValue: "" },
