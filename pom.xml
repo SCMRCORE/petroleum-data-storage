@@ -31,7 +31,6 @@
         <aspectj>1.9.4</aspectj>
         <jjwt>0.9.1</jjwt>
         <jaxb-api>2.3.1</jaxb-api>
-<!--        <poi>5.2.3</poi>-->
         <mysql.version>8.0.23</mysql.version>
     </properties>
 

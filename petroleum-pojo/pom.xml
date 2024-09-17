@@ -35,12 +35,8 @@
             <artifactId>lombok</artifactId>
             <version>${lombok}</version>
         </dependency>
-        <dependency>
-            <groupId>com.example</groupId>
-            <artifactId>petroleum-commom</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
+
+
 
 
         <dependency>

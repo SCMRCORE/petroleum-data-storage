@@ -10,7 +10,7 @@ spring:
 
 mybatis:
   #mapper????
-  mapper-locations: classpath*:/mapper/**/*.xml
+  mapper-locations: classpath*:/Mapper/**/*.xml
   type-aliases-package: com.petroleumpojo.entity
   configuration:
     #??????
