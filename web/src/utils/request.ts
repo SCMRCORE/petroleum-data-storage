@@ -2,7 +2,7 @@ import axios, { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import { isDevEnv } from "./env.js";
 
 const instance = axios.create({
-  baseURL: isDevEnv ? "http://localhost:2233/bff" : "http://154.44.25.122/bff",
+  baseURL: isDevEnv ? "http://localhost:2233/bff" : "http://154.44.25.122:2233/bff",
   headers: {
     "Content-Type": "application/json",
     "Is-BFF-Cute": `${isDevEnv}`,
