@@ -1,9 +1,9 @@
 petroleum:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    host: 154.44.25.122
+    host: your-database-host
     port: 3306
     database: petroleum-data-storage
-    username: root
-    password: zaqzse1234
+    username: your-database-username
+    password: your-database-password
 
