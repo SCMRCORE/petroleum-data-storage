@@ -1,34 +1,44 @@
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 import { isDevEnv } from "./env.js";
 
-const instance = axios.create({
-  baseURL: isDevEnv ? "http://localhost:2233/bff" : "http://154.44.25.122:2233/bff",
+enum PROXY_MODEL {
+  NONE = 0,
+  NGINX,
+  BFF,
+  VITE,
+}
+
+const serverIP = "154.44.25.122";
+const proxyModel = PROXY_MODEL.VITE as unknown;
+
+const config = {
+  baseURL: "/api",
   headers: {
     "Content-Type": "application/json",
-    "Is-BFF-Cute": `${isDevEnv}`,
   },
-});
+};
 
-// 请求拦截器
+if (proxyModel === PROXY_MODEL.BFF) {
+  Reflect.set(config, "baseURL", `${serverIP}:2233`);
+  Reflect.set(config.headers, "Is-BFF-Cute", `${isDevEnv}`);
+}
+
+const instance = axios.create(config);
+
 instance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    // 在这里可以添加请求前的逻辑，例如添加token等
     return config;
   },
   (error: Error) => {
-    // 处理请求错误
     return Promise.reject(error);
   }
 );
 
-// 响应拦截器
 instance.interceptors.response.use(
   (response: AxiosResponse) => {
-    // 对响应数据做点什么
     return response;
   },
   (error: Error) => {
-    // 处理响应错误
     return Promise.reject(error);
   }
 );
