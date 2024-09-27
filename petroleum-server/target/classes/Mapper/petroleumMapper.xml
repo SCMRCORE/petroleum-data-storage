@@ -12,26 +12,26 @@
             #{item.company},
             #{item.primaryWellType},
             #{item.wellType},
-            #{item.WellSection},
-            #{item.HoleDiameter},
-            #{item.StartTime},
-            #{item.EndTime},
-            #{item.StartDepth},
-            #{item.StartVerticalDepth},
-            #{item.EndDepth},
-            #{item.EndVerticalDepth},
-            #{item.CasingDiameter},
-            #{item.SteelGrade},
-            #{item.CasingSetDepth},
-            #{item.CasingLength},
-            #{item.CementReturnHeight},
-            #{item.UpperCasingDiameter},
-            #{item.UpperCasingSetDepth},
-            #{item.DrillingFluidSystem},
-            #{item.DrillingFluidDensity},
-            #{item.PlasticViscosity},
-            #{item.YieldValue},
-            #{item.FormationPressure},
+            #{item.wellSection},
+            #{item.holeDiameter},
+            #{item.startTime},
+            #{item.endTime},
+            #{item.startDepth},
+            #{item.startVerticalDepth},
+            #{item.endDepth},
+            #{item.endVerticalDepth},
+            #{item.casingDiameter},
+            #{item.steelGrade},
+            #{item.casingSetDepth},
+            #{item.casingLength},
+            #{item.cementReturnHeight},
+            #{item.upperCasingDiameter},
+            #{item.upperCasingSetDepth},
+            #{item.drillingFluidSystem},
+            #{item.drillingFluidDensity},
+            #{item.plasticViscosity},
+            #{item.yieldValue},
+            #{item.formationPressure},
             #{item.status},
             #{item.num}
         </foreach>
@@ -258,31 +258,379 @@
 
 <!--搜索-->
     <select id="searchjs" resultType="com.petroleumpojo.entity.JingShen">
-        select * from jingshen where wellName like '%${wellName}%'
-                                 and primaryWellType like '%${primaryWellType}%'
-                                 and wellType like '%${wellType}%'
-                                 and status = 1
+        select * from jingshen
+        <where>
+            <if test="wellName != null and wellName != ''" >
+                AND wellName like '%${wellName}%'
+            </if>
+            <if test="company != null and company != ''" >
+                AND company like '%${company}%'
+            </if>
+            <if test="primaryWellType != null and primaryWellType != ''" >
+                AND primaryWellType like '%${primaryWellType}%'
+            </if>
+            <if test="wellType != null and wellType != ''" >
+                AND wellType like '%${wellType}%'
+            </if>
+            <if test="wellSection != null and wellSection != ''" >
+                AND wellSection like '%${wellSection}%'
+            </if>
+            <if test="holeDiameter != null and holeDiameter != ''" >
+                AND holeDiameter  like '%${holeDiameter}%'
+            </if>
+            <if test="startTime != null and startTime != ''" >
+                AND startTime like '%${startTime}%'
+            </if>
+            <if test="endTime != null and endTime != ''" >
+                AND endTime like '%${endTime}%'
+            </if>
+            <if test="startDepth != null and startDepth != ''" >
+                AND startDepth like '%${startDepth}%'
+            </if>
+            <if test="startVerticalDepth != null and startVerticalDepth != ''" >
+                AND startVerticalDepth like '%${startVerticalDepth}%'
+            </if>
+            <if test="endDepth != null and endDepth != ''" >
+                AND endDepth like '%${endDepth}%'
+            </if>
+            <if test="endVerticalDepth != null and endVerticalDepth != ''">
+                AND endVerticalDepth like '%${endVerticalDepth}%'
+            </if>
+            <if test="casingDiameter != null and casingDiameter != ''" >
+                AND casingDiameter like '%${casingDiameter}%'
+            </if>
+            <if test="steelGrade != null and steelGrade != ''">
+                AND steelGrade like '%${steelGrade}%'
+            </if>
+            <if test="casingSetDepth != null and casingSetDepth != ''">
+                AND casingSetDepth like '%${casingSetDepth}%'
+            </if>
+            <if test="casingLength != null and casingLength != ''">
+                AND casingLength like '%${casingLength}%'
+            </if>
+            <if test="cementReturnHeight != null and cementReturnHeight != ''">
+                AND cementReturnHeight like '%${cementReturnHeight}%'
+            </if>
+            <if test="upperCasingDiameter != null and upperCasingDiameter != ''">
+                AND upperCasingDiameter like '%${upperCasingDiameter}%'
+            </if>
+            <if test="upperCasingSetDepth != null and upperCasingSetDepth != ''">
+                AND upperCasingSetDepth like '%${upperCasingSetDepth}%'
+            </if>
+            <if test="drillingFluidSystem != null and drillingFluidSystem != ''">
+                AND drillingFluidSystem like '%${drillingFluidSystem}%'
+            </if>
+            <if test="drillingFluidDensity != null and drillingFluidDensity != ''">
+                AND drillingFluidDensity like '%${drillingFluidDensity}%'
+            </if>
+            <if test="plasticViscosity != null and plasticViscosity != ''">
+                AND plasticViscosity like '%${plasticViscosity}%'
+            </if>
+            <if test="yieldValue != null and yieldValue != ''">
+                AND yieldValue like '%${yieldValue}%'
+            </if>
+            <if test="formationPressure != null and formationPressure != ''">
+                AND formationPressure like '%${formationPressure}%'
+            </if>
+            <if test="1+1==2">
+                AND status = 1
+            </if>
+        </where>
         order by OnlyKey desc
     </select>
     <select id="searchjb" resultType="com.petroleumpojo.entity.JiBen">
-        select * from jibenxinxi where wellName like '%${wellName}%'
-                                 and primaryWellType like '%${primaryWellType}%'
-                                 and wellType like '%${wellType}%'
-                                 and status = 1
+        select * from jibenxinxi
+        <where>
+            <if test="wellName != null and wellName != ''">
+                AND wellName LIKE '%${wellName}%'
+            </if>
+            <if test="company != null and company != ''">
+                AND company LIKE '%${company}%'
+            </if>
+            <if test="oilFieldName != null and oilFieldName != ''">
+                AND oilFieldName LIKE '%${oilFieldName}%'
+            </if>
+            <if test="oilFieldCode != null and oilFieldCode != ''">
+                AND oilFieldCode LIKE '%${oilFieldCode}%'
+            </if>
+            <if test="isCooperative != null and isCooperative != ''">
+                AND isCooperative LIKE '%${isCooperative}%'
+            </if>
+            <if test="contractor != null and contractor != ''">
+                AND contractor LIKE '%${contractor}%'
+            </if>
+            <if test="primaryWellType != null and primaryWellType != ''">
+                AND primaryWellType LIKE '%${primaryWellType}%'
+            </if>
+            <if test="secondaryWellType != null and secondaryWellType != ''">
+                AND secondaryWellType LIKE '%${secondaryWellType}%'
+            </if>
+            <if test="tertiaryWellType != null and tertiaryWellType != ''">
+                AND tertiaryWellType LIKE '%${tertiaryWellType}%'
+            </if>
+            <if test="wellType != null and wellType != ''">
+                AND wellType LIKE '%${wellType}%'
+            </if>
+            <if test="waterDepth1 != null and waterDepth1 != ''">
+                AND waterDepth1 LIKE '%${waterDepth1}%'
+            </if>
+            <if test="designDepth != null and designDepth != ''">
+                AND designDepth LIKE '%${designDepth}%'
+            </if>
+            <if test="designVerticalDepth != null and designVerticalDepth != ''">
+                AND designVerticalDepth LIKE '%${designVerticalDepth}%'
+            </if>
+            <if test="designDate != null and designDate != ''">
+                AND designDate LIKE '%${designDate}%'
+            </if>
+            <if test="structureName != null and structureName != ''">
+                AND structureName LIKE '%${structureName}%'
+            </if>
+            <if test="uniqueWellId != null and uniqueWellId != ''">
+                AND uniqueWellId LIKE '%${uniqueWellId}%'
+            </if>
+            <if test="chineseWellName != null and chineseWellName != ''">
+                AND chineseWellName LIKE '%${chineseWellName}%'
+            </if>
+            <if test="operator != null and operator != ''">
+                AND operator LIKE '%${operator}%'
+            </if>
+            <if test="hydrocarbonType != null and hydrocarbonType != ''">
+                AND hydrocarbonType LIKE '%${hydrocarbonType}%'
+            </if>
+            <if test="riskLevel != null and riskLevel != ''">
+                AND riskLevel LIKE '%${riskLevel}%'
+            </if>
+            <if test="riskType != null and riskType != ''">
+                AND riskType LIKE '%${riskType}%'
+            </if>
+            <if test="riskGrade != null and riskGrade != ''">
+                AND riskGrade LIKE '%${riskGrade}%'
+            </if>
+            <if test="sulfurGrade != null and sulfurGrade != ''">
+                AND sulfurGrade LIKE '%${sulfurGrade}%'
+            </if>
+            <if test="containsCO2 != null and containsCO2 != ''">
+                AND containsCO2 LIKE '%${containsCO2}%'
+            </if>
+            <if test="zeroDepth != null and zeroDepth != ''">
+                AND zeroDepth LIKE '%${zeroDepth}%'
+            </if>
+            <if test="initialKellyElevation != null and initialKellyElevation != ''">
+                AND initialKellyElevation LIKE '%${initialKellyElevation}%'
+            </if>
+            <if test="groundElevation != null and groundElevation != ''">
+                AND groundElevation LIKE '%${groundElevation}%'
+            </if>
+            <if test="currentKellyElevation != null and currentKellyElevation != ''">
+                AND currentKellyElevation LIKE '%${currentKellyElevation}%'
+            </if>
+            <if test="casingHeadElevation != null and casingHeadElevation != ''">
+                AND casingHeadElevation LIKE '%${casingHeadElevation}%'
+            </if>
+            <if test="waterDepth2 != null and waterDepth2 != ''">
+                AND waterDepth2 LIKE '%${waterDepth2}%'
+            </if>
+            <if test="mudLineElevation != null and mudLineElevation != ''">
+                AND mudLineElevation LIKE '%${mudLineElevation}%'
+            </if>
+            <if test="artificialBottomDepth != null and artificialBottomDepth != ''">
+                AND artificialBottomDepth LIKE '%${artificialBottomDepth}%'
+            </if>
+            <if test="drillingDays != null and drillingDays != ''">
+                AND drillingDays LIKE '%${drillingDays}%'
+            </if>
+            <if test="positioningMethod != null and positioningMethod != ''">
+                AND positioningMethod LIKE '%${positioningMethod}%'
+            </if>
+            <if test="location != null and location != ''">
+                AND location LIKE '%${location}%'
+            </if>
+            <if test="geodeticSystem != null and geodeticSystem != ''">
+                AND geodeticSystem LIKE '%${geodeticSystem}%'
+            </if>
+            <if test="longitude != null and longitude != ''">
+                AND longitude LIKE '%${longitude}%'
+            </if>
+            <if test="latitude != null and latitude != ''">
+                AND latitude LIKE '%${latitude}%'
+            </if>
+            <if test="xcoordinate != null and xcoordinate != ''">
+                AND xcoordinate LIKE '%${xcoordinate}%'
+            </if>
+            <if test="ycoordinate != null and ycoordinate != ''">
+                AND ycoordinate LIKE '%${ycoordinate}%'
+            </if>
+            <if test="slotNumber != null and slotNumber != ''">
+                AND slotNumber LIKE '%${slotNumber}%'
+            </if>
+            <if test="country != null and country != ''">
+                AND country LIKE '%${country}%'
+            </if>
+            <if test="region != null and region != ''">
+                AND region LIKE '%${region}%'
+            </if>
+            <if test="province != null and province != ''">
+                AND province LIKE '%${province}%'
+            </if>
+            <if test="county != null and county != ''">
+                AND county LIKE '%${county}%'
+            </if>
+            <if test="scrapedWell != null and scrapedWell != ''">
+                AND scrapedWell LIKE '%${scrapedWell}%'
+            </if>
+            <if test="officePhone != null and officePhone != ''">
+                AND officePhone LIKE '%${officePhone}%'
+            </if>
+            <if test="remark != null and remark != ''">
+                AND remark LIKE '%${remark}%'
+            </if>
+            <if test="1+1==2">
+                AND status = 1
+            </if>
+        </where>
+
         order by onlyKey desc
     </select>
     <select id="searchfz" resultType="com.petroleumpojo.entity.FuZa">
-        select * from fuza where wellName like '%${wellName}%'
-                                 and primaryWellType like '%${primaryWellType}%'
-                                 and wellType like '%${wellType}%'
-                                 and status = 1
+        select * from fuza
+        <where>
+            <if test="wellName != null and wellName != ''">
+                AND wellName LIKE '%${wellName}%'
+            </if>
+            <if test="company != null and company != ''">
+                AND company LIKE '%${company}%'
+            </if>
+            <if test="primaryWellType != null and primaryWellType != ''">
+                AND primaryWellType LIKE '%${primaryWellType}%'
+            </if>
+            <if test="wellType != null and wellType != ''">
+                AND wellType LIKE '%${wellType}%'
+            </if>
+            <if test="startTime != null and startTime != ''">
+                AND startTime LIKE '%${startTime}%'
+            </if>
+            <if test="endTime != null and endTime != ''">
+                AND endTime LIKE '%${endTime}%'
+            </if>
+            <if test="durationHours != null and durationHours != ''">
+                AND durationHours LIKE '%${durationHours}%'
+            </if>
+            <if test="firstLevelCode != null and firstLevelCode != ''">
+                AND firstLevelCode LIKE '%${firstLevelCode}%'
+            </if>
+            <if test="secondLevelCode != null and secondLevelCode != ''">
+                AND secondLevelCode LIKE '%${secondLevelCode}%'
+            </if>
+            <if test="thirdLevelCode != null and thirdLevelCode != ''">
+                AND thirdLevelCode LIKE '%${thirdLevelCode}%'
+            </if>
+            <if test="fourthLevelCode != null and fourthLevelCode != ''">
+                AND fourthLevelCode LIKE '%${fourthLevelCode}%'
+            </if>
+            <if test="complexityType != null and complexityType != ''">
+                AND complexityType LIKE '%${complexityType}%'
+            </if>
+            <if test="wellSection != null and wellSection != ''">
+                AND wellSection LIKE '%${wellSection}%'
+            </if>
+            <if test="startDepth != null and startDepth != ''">
+                AND startDepth LIKE '%${startDepth}%'
+            </if>
+            <if test="endDepth != null and endDepth != ''">
+                AND endDepth LIKE '%${endDepth}%'
+            </if>
+            <if test="operationDescription != null and operationDescription != ''">
+                AND operationDescription LIKE '%${operationDescription}%'
+            </if>
+            <if test="1+1==2">
+                AND status = 1
+            </if>
+        </where>
         order by OnlyKey desc
     </select>
     <select id="searchzt" resultType="com.petroleumpojo.entity.ZuanTou">
-        select * from zuantou where wellName like '%${wellName}%'
-                             and primaryWellType like '%${primaryWellType}%'
-                             and wellType like '%${wellType}%'
-                             and status = 1
+        select * from zuantou
+        <where>
+            <if test="wellName != null and wellName != ''">
+                AND wellName LIKE '%${wellName}%'
+            </if>
+            <if test="company != null and company != ''">
+                AND company LIKE '%${company}%'
+            </if>
+            <if test="primaryWellType != null and primaryWellType != ''">
+                AND primaryWellType LIKE '%${primaryWellType}%'
+            </if>
+            <if test="wellType != null and wellType != ''">
+                AND wellType LIKE '%${wellType}%'
+            </if>
+            <if test="drillBitNumber != null and drillBitNumber != ''">
+                AND drillBitNumber LIKE '%${drillBitNumber}%'
+            </if>
+            <if test="drillBitType != null and drillBitType != ''">
+                AND drillBitType LIKE '%${drillBitType}%'
+            </if>
+            <if test="sizeIn != null and sizeIn != ''">
+                AND sizeIn LIKE '%${sizeIn}%'
+            </if>
+            <if test="manufacturer != null and manufacturer != ''">
+                AND manufacturer LIKE '%${manufacturer}%'
+            </if>
+            <if test="model != null and model != ''">
+                AND model LIKE '%${model}%'
+            </if>
+            <if test="serialNumber != null and serialNumber != ''">
+                AND serialNumber LIKE '%${serialNumber}%'
+            </if>
+            <if test="nozzleSize != null and nozzleSize != ''">
+                AND nozzleSize LIKE '%${nozzleSize}%'
+            </if>
+            <if test="drillBitTFAn2 != null and drillBitTFAn2 != ''">
+                AND drillBitTFAn2 LIKE '%${drillBitTFAn2}%'
+            </if>
+            <if test="entryDepth != null and entryDepth != ''">
+                AND entryDepth LIKE '%${entryDepth}%'
+            </if>
+            <if test="exitDepth != null and exitDepth != ''">
+                AND exitDepth LIKE '%${exitDepth}%'
+            </if>
+            <if test="entryTime != null and entryTime != ''">
+                AND entryTime LIKE '%${entryTime}%'
+            </if>
+            <if test="exitTime != null and exitTime != ''">
+                AND exitTime LIKE '%${exitTime}%'
+            </if>
+            <if test="advanceDistance != null and advanceDistance != ''">
+                AND advanceDistance LIKE '%${advanceDistance}%'
+            </if>
+            <if test="pureDrillingTime != null and pureDrillingTime != ''">
+                AND pureDrillingTime LIKE '%${pureDrillingTime}%'
+            </if>
+            <if test="rop != null and rop != ''">
+                AND rop LIKE '%${rop}%'
+            </if>
+            <if test="maxDrillingPressure != null and maxDrillingPressure != ''">
+                AND maxDrillingPressure LIKE '%${maxDrillingPressure}%'
+            </if>
+            <if test="minDrillingPressure != null and minDrillingPressure != ''">
+                AND minDrillingPressure LIKE '%${minDrillingPressure}%'
+            </if>
+            <if test="maxRotationSpeed != null and maxRotationSpeed != ''">
+                AND maxRotationSpeed LIKE '%${maxRotationSpeed}%'
+            </if>
+            <if test="minRotationSpeed != null and minRotationSpeed != ''">
+                AND minRotationSpeed LIKE '%${minRotationSpeed}%'
+            </if>
+            <if test="iadcWearEvaluation != null and iadcWearEvaluation != ''">
+                AND iadcWearEvaluation LIKE '%${iadcWearEvaluation}%'
+            </if>
+            <if test="encounteredFormation != null and encounteredFormation != ''">
+                AND encounteredFormation LIKE '%${encounteredFormation}%'
+            </if>
+            <if test="1+1==2">
+                AND status = 1
+            </if>
+        </where>
         order by OnlyKey desc
     </select>
 

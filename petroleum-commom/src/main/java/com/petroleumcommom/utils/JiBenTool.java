@@ -6,6 +6,7 @@ public class JiBenTool {
 
     public static ExcelReader transition(ExcelReader reader){
         reader.addHeaderAlias("井名", "wellName");
+        reader.addHeaderAlias("分公司", "company");
         reader.addHeaderAlias("油田名", "oilFieldName");
         reader.addHeaderAlias("油田代码", "oilFieldCode");
         reader.addHeaderAlias("是否合作", "isCooperative");
@@ -15,7 +16,7 @@ public class JiBenTool {
         reader.addHeaderAlias("三级井别", "tertiaryWellType");
         reader.addHeaderAlias("井型", "wellType");
         //TODO 重命名问题
-        reader.addHeaderAlias("水深1", "waterDepth1");
+        reader.addHeaderAlias("水深", "waterDepth1");
         reader.addHeaderAlias("设计深度", "designDepth");
         reader.addHeaderAlias("设计垂深", "designVerticalDepth");
         reader.addHeaderAlias("设计时间", "designDate");
@@ -34,7 +35,7 @@ public class JiBenTool {
         reader.addHeaderAlias("地面海拔", "groundElevation");
         reader.addHeaderAlias("当前补心海拔", "currentKellyElevation");
         reader.addHeaderAlias("套管头海拔", "casingHeadElevation");
-        reader.addHeaderAlias("水深2", "waterDepth2");
+        reader.addHeaderAlias("油管法兰海拔", "waterDepth2");
         reader.addHeaderAlias("泥线海拔", "mudLineElevation");
         reader.addHeaderAlias("人工底部深度", "artificialBottomDepth");
         reader.addHeaderAlias("钻井天数", "drillingDays");

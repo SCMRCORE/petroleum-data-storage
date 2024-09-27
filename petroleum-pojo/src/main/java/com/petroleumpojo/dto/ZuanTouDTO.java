@@ -26,8 +26,6 @@ public class ZuanTouDTO {
     private String drillBitTFAn2; // 钻头（TFAn2）
     private String entryDepth; // 入井深度（m）
     private String exitDepth; // 出井深度（m）
-//    private LocalDateTime entryTime; // 入井时间
-//    private LocalDateTime exitTime; // 出井时间
     private String entryTime; // 入井时间
     private String exitTime; // 出井时间
     private String advanceDistance; // 进尺（m）

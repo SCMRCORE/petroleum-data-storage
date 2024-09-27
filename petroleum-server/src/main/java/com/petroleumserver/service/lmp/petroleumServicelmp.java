@@ -193,7 +193,7 @@ public class petroleumServicelmp implements petroleumService {
     public PageResult searchjs(JingShenSearchPageDTO jsSPDto) {
         log.info("servicelmp:搜索井口表");
         PageHelper.startPage(jsSPDto.getPageIndex(), jsSPDto.getPageSize());
-        Page<JingShen> page = petroleumMapper.searchjs(jsSPDto.getWellName(), jsSPDto.getPrimaryWellType(), jsSPDto.getWellType());
+        Page<JingShen> page = petroleumMapper.searchjs(jsSPDto);
         return new PageResult(page.getTotal(), page.getResult());
     }
 
@@ -206,7 +206,7 @@ public class petroleumServicelmp implements petroleumService {
     public PageResult searchjb(JiBenSearchPageDTO jbSPDto) {
         log.info("servicelmp:搜索基本信息表");
         PageHelper.startPage(jbSPDto.getPageIndex(), jbSPDto.getPageSize());
-        Page<JiBen> page = petroleumMapper.searchjb(jbSPDto.getWellName(), jbSPDto.getPrimaryWellType(), jbSPDto.getWellType());
+        Page<JiBen> page = petroleumMapper.searchjb(jbSPDto);
         return new PageResult(page.getTotal(), page.getResult());
     }
 
@@ -219,7 +219,7 @@ public class petroleumServicelmp implements petroleumService {
     public PageResult searchfz(FuZaSearchPageDTO fzSPDto) {
         log.info("servicelmp:搜索复杂情况表");
         PageHelper.startPage(fzSPDto.getPageIndex(), fzSPDto.getPageSize());
-        Page<FuZa> page = petroleumMapper.searchfz(fzSPDto.getWellName(), fzSPDto.getPrimaryWellType(), fzSPDto.getWellType());
+        Page<FuZa> page = petroleumMapper.searchfz(fzSPDto);
         return new PageResult(page.getTotal(), page.getResult());
     }
 
@@ -232,7 +232,7 @@ public class petroleumServicelmp implements petroleumService {
     public PageResult searchzt(ZuanTouSearchPageDTO ztSPDto) {
         log.info("servicelmp:搜索钻头表");
         PageHelper.startPage(ztSPDto.getPageIndex(), ztSPDto.getPageSize());
-        Page<ZuanTou> page = petroleumMapper.searchzt(ztSPDto.getWellName(), ztSPDto.getPrimaryWellType(), ztSPDto.getWellType());
+        Page<ZuanTou> page = petroleumMapper.searchzt(ztSPDto);
         return new PageResult(page.getTotal(), page.getResult());
     }
 

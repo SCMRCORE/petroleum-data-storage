@@ -6,6 +6,7 @@ public class JinShenTool {
 
     public static ExcelReader transition(ExcelReader reader){
         reader.addHeaderAlias("井名", "wellName");
+        reader.addHeaderAlias("分公司", "company");
         reader.addHeaderAlias("一级井别", "primaryWellType");
         reader.addHeaderAlias("井型", "wellType");
         reader.addHeaderAlias("井段", "WellSection");

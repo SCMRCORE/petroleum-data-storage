@@ -1,10 +1,7 @@
 package com.petroleumserver.mapper;
 
 import com.github.pagehelper.Page;
-import com.petroleumpojo.dto.FuZaDTO;
-import com.petroleumpojo.dto.JiBenDTO;
-import com.petroleumpojo.dto.JingShenDTO;
-import com.petroleumpojo.dto.ZuanTouDTO;
+import com.petroleumpojo.dto.*;
 import com.petroleumpojo.entity.FuZa;
 import com.petroleumpojo.entity.JiBen;
 import com.petroleumpojo.entity.JingShen;
@@ -24,12 +21,12 @@ public interface petroleumMapper {
 
     void addZuanTouByList(List<ZuanTou> zuantou);
 
-    Page<JiBen> searchjb(String wellName, String primaryWellType, String wellType);
-    Page<JingShen> searchjs(String wellName, String primaryWellType, String wellType);
+    Page<JiBen> searchjb(JiBenSearchPageDTO jiBenSearchPageDTO);
+    Page<JingShen> searchjs(JingShenSearchPageDTO jingShenSearchPageDTO);
 
-    Page<FuZa> searchfz(String wellName, String primaryWellType, String wellType);
+    Page<FuZa> searchfz(FuZaSearchPageDTO fuZaSearchPageDTO);
 
-    Page<ZuanTou> searchzt(String wellName, String primaryWellType, String wellType);
+    Page<ZuanTou> searchzt(ZuanTouSearchPageDTO zuanTouSearchPageDTO);
 
     void addJS(List<JingShen> jingShen);
 
