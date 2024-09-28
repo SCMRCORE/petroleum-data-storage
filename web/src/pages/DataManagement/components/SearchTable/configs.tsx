@@ -323,7 +323,7 @@ export const getColumns = (handleSearch: () => void) => {
       key: str,
       title: cnStr,
       dataIndex: str,
-      width: str.length * 12,
+      width: Math.max(str.length * 20, 50),
       ...(columnMapper[str] ?? {}),
     };
   };

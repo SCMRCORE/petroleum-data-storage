@@ -23,13 +23,13 @@ import {
 } from "../../../../utils/checkDataSource.ts";
 const TabPane = Tabs.TabPane;
 const pageSize = 20;
-const dispalyModeList = Object.keys(DATA_SOURCE_TABLE).filter(
+const displayModeList = Object.keys(DATA_SOURCE_TABLE).filter(
   (k) => typeof DATA_SOURCE_TABLE[k] === "number"
 );
 
 type DataSourceType = Record<
   string,
-  { list: Array<Partial<MixedItem>> | []; total: number }
+  { list: Array<Partial<MixedItem>>; total: number }
 >;
 
 const SearchTable = () => {
@@ -193,7 +193,7 @@ const SearchTable = () => {
         onChange={handleTabChange}
         activeTab={`${activeTab}`}
       >
-        {dispalyModeList.map((item, index) => {
+        {displayModeList.map((item, index) => {
           return (
             <TabPane
               key={`${index}`}
