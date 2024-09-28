@@ -95,8 +95,8 @@ public class petroleumController {
      * 
      * @return
      */
-    @GetMapping("/searchJS")
-    public Result<PageResult> searchJS(JingShenSearchPageDTO jsSPDto) {
+    @PostMapping("/searchJS")
+    public Result<PageResult> searchJS(@RequestBody JingShenSearchPageDTO jsSPDto) {
         log.info("执行searchJS方法:{}", jsSPDto);
         PageResult res = petroleumService.searchjs(jsSPDto);
         return Result.success(res);
@@ -107,8 +107,8 @@ public class petroleumController {
      * 
      * @return
      */
-    @GetMapping("/searchJB")
-    public Result<PageResult> searchJB(JiBenSearchPageDTO jbSPDto) {
+    @PostMapping("/searchJB")
+    public Result<PageResult> searchJB(@RequestBody JiBenSearchPageDTO jbSPDto) {
         log.info("执行searchJB方法:{}", jbSPDto);
         PageResult res = petroleumService.searchjb(jbSPDto);
         return Result.success(res);
@@ -119,8 +119,8 @@ public class petroleumController {
      * 
      * @return
      */
-    @GetMapping("/searchFZ")
-    public Result<PageResult> searchFZ(FuZaSearchPageDTO fzSPDto) {
+    @PostMapping("/searchFZ")
+    public Result<PageResult> searchFZ(@RequestBody FuZaSearchPageDTO fzSPDto) {
         log.info("执行searchFZ方法:{}", fzSPDto);
         PageResult res = petroleumService.searchfz(fzSPDto);
         return Result.success(res);
@@ -131,8 +131,8 @@ public class petroleumController {
      * 
      * @return
      */
-    @GetMapping("/searchZT")
-    public Result<PageResult> searchZT(ZuanTouSearchPageDTO ztSPDto) {
+    @PostMapping("/searchZT")
+    public Result<PageResult> searchZT(@RequestBody ZuanTouSearchPageDTO ztSPDto) {
         log.info("执行searchZT方法:{}", ztSPDto);
         PageResult res = petroleumService.searchzt(ztSPDto);
         return Result.success(res);

@@ -41,7 +41,7 @@ public class JiBen {
     private String groundElevation; // 地面海拔
     private String currentKellyElevation; // 当前补心海拔
     private String casingHeadElevation; // 套管头海拔
-    private String waterDepth2; // 水深_重复
+    private String waterDepth2; // 水深_重复（油管法兰海拔）
     private String mudLineElevation; // 泥线海拔
     private String artificialBottomDepth; // 人工底部深度
     private String drillingDays; // 钻井天数
