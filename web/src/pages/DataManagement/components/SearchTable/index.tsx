@@ -8,9 +8,10 @@ import {
   Modal,
   Tag,
   Message,
+  Tabs,
 } from "@arco-design/web-react";
 import { add, search } from "../../../../services/searchTable.ts";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getColumns, formConfigList } from "./configs.tsx";
 import { MixedItem } from "../../../../types/index.ts";
 import * as XLSX from "xlsx";
@@ -20,8 +21,17 @@ import {
   DATA_SOURCE_TABLE_TITLE_MAP,
   formatCnToEn,
 } from "../../../../utils/checkDataSource.ts";
-
+const TabPane = Tabs.TabPane;
 const pageSize = 20;
+const dispalyModeList = Object.keys(DATA_SOURCE_TABLE).filter(
+  (k) => typeof DATA_SOURCE_TABLE[k] === "number"
+);
+
+type DataSourceType = Record<
+  string,
+  { list: Array<Partial<MixedItem>> | []; total: number }
+>;
+
 const SearchTable = () => {
   /** 表单 ref */
   const [form] = Form.useForm();
@@ -32,26 +42,34 @@ const SearchTable = () => {
   /** 弹窗展示的每个文件的名称 */
   const [uploadFileNameList, setUploadFileNameList] = useState([]);
   /** 列表数据 */
-  const [dataSource, setDataSource] = useState<Array<Partial<MixedItem>>>([]);
+  const [dataSource, setDataSource] = useState<DataSourceType>();
   /** 分页 */
   const [pageIndex, setPageIndex] = useState<number>(1);
   /** 分页总数 */
-  const [total, setTotal] = useState(100);
+  // const [total, setTotal] = useState(100);
   /** 搜索参数 */
   const [searchParams, setSearchParams] = useState<
     Record<string, string | number>
   >({});
+  /** 展示模式 */
+  const [activeTab, setActiveTab] = useState<DATA_SOURCE_TABLE>(
+    DATA_SOURCE_TABLE.ALL
+  );
 
   /** 搜索 */
   const handleSearch = async () => {
     try {
-      const { list, total } = await search({
+      const res = await search({
         ...searchParams,
         pageIndex,
         pageSize,
       });
-      setDataSource([...list]);
-      setTotal(total);
+
+      console.log("请求的数据", res);
+      // const data = res[DATA_SOURCE_TABLE[activeTab]];
+      // const { list, total } = data;
+      // setTotal(total);
+      setDataSource(res);
     } catch (err) {
       console.log("数据获取异常:", err);
     }
@@ -124,15 +142,19 @@ const SearchTable = () => {
     setPageIndex(index);
   };
 
+  const handleTabChange = (v) => {
+    // console.log(v);
+    setActiveTab(v);
+  };
+
   useEffect(() => {
     handleSearch();
   }, [pageIndex]);
 
-  const columns = getColumns(handleSearch);
+  const columnsSet = useMemo(() => getColumns(handleSearch), []);
 
   return (
     <div>
-      {/* 弹窗 */}
       <Modal
         title="确认是否要上传文件"
         visible={isModalVisible}
@@ -166,81 +188,91 @@ const SearchTable = () => {
           })}
         </div>
       </Modal>
-
-      {/* 搜索项 */}
-      <Form.Provider
-        onFormValuesChange={(_name, values) => {
-          setSearchParams({ ...values });
-        }}
-        onFormSubmit={(_name, values, info) => {
-          console.log(values, info);
-          handleSearch();
-        }}
+      <Tabs
+        defaultActiveTab={`${activeTab}`}
+        onChange={handleTabChange}
+        activeTab={`${activeTab}`}
       >
-        <Form form={form} id="searchForm" layout="vertical">
-          <div className="flex w-[100%] items-center">
-            <div className="w-[78%] mr-[12px]">
-              {formConfigList.map((rowItemList, index) => {
-                return (
-                  <Grid.Row gutter={24} key={index}>
-                    {rowItemList.map((item) => {
+        {dispalyModeList.map((item, index) => {
+          return (
+            <TabPane
+              key={`${index}`}
+              title={`${DATA_SOURCE_TABLE_TITLE_MAP[item]}`}
+            >
+              {/* 搜索项 */}
+              <Form form={form} id="searchForm" layout="vertical">
+                <div className="flex w-[100%] items-center">
+                  <div className="w-[78%] mr-[12px]">
+                    {formConfigList.map((rowItemList, index) => {
                       return (
-                        <Grid.Col span={8} key={item.field}>
-                          <Form.Item
-                            label={item.label + `(${item.field})`}
-                            field={item.field}
-                            initialValue={item.defaultValue}
-                          >
-                            <Input />
-                          </Form.Item>
-                        </Grid.Col>
+                        <Grid.Row gutter={24} key={index}>
+                          {rowItemList.map((item) => {
+                            return (
+                              <Grid.Col span={8} key={item.field}>
+                                <Form.Item
+                                  label={item.label + `(${item.field})`}
+                                  field={item.field}
+                                  initialValue={item.defaultValue}
+                                >
+                                  <Input />
+                                </Form.Item>
+                              </Grid.Col>
+                            );
+                          })}
+                        </Grid.Row>
                       );
                     })}
-                  </Grid.Row>
-                );
-              })}
-            </div>
-            <div className="w-[12%] flex flex-col items-center gap-[12px] border-l-2">
-              <Button htmlType="submit" type="primary" className="w-[80%]">
-                搜索
-              </Button>
-              <Button
-                onClick={handleReset}
-                htmlType="submit"
-                type="secondary"
-                className="w-[80%]"
-              >
-                重置搜索
-              </Button>
-              <Button
-                onClick={openUploadFileModal}
-                type="secondary"
-                className="w-[80%]"
-              >
-                EXCEL导入
-              </Button>
-            </div>
-          </div>
-        </Form>
-      </Form.Provider>
+                  </div>
+                  <div className="w-[12%] flex flex-col items-center gap-[12px] border-l-2">
+                    <Button
+                      htmlType="submit"
+                      type="primary"
+                      className="w-[80%]"
+                    >
+                      搜索
+                    </Button>
+                    <Button
+                      onClick={handleReset}
+                      htmlType="submit"
+                      type="secondary"
+                      className="w-[80%]"
+                    >
+                      重置搜索
+                    </Button>
+                    <Button
+                      onClick={openUploadFileModal}
+                      type="secondary"
+                      className="w-[80%]"
+                    >
+                      EXCEL导入
+                    </Button>
+                  </div>
+                </div>
+              </Form>
 
-      {/* 表格主体部分 */}
-      <div className="pr-28 mt-4">
-        <Table
-          columns={[...columns]}
-          scroll={{ x: true, y: 500 }}
-          data={dataSource}
-          renderPagination={() => (
-            <div className="flex justify-end mt-2">
-              <Pagination
-                total={total}
-                onChange={handlePageChange}
-                pageSize={pageSize}
-              />
-            </div>
-          )}
-        />
-      </div>
+              {/* 表格主体部分 */}
+              <div className="pr-28 mt-4">
+                <Table
+                  columns={columnsSet[DATA_SOURCE_TABLE[activeTab]]}
+                  scroll={{ x: true, y: 500 }}
+                  data={dataSource?.[DATA_SOURCE_TABLE[activeTab]]?.list ?? []}
+                  renderPagination={() => (
+                    <div className="flex justify-end mt-2">
+                      <Pagination
+                        total={
+                          dataSource?.[DATA_SOURCE_TABLE[activeTab]]?.total ?? 0
+                        }
+                        onChange={handlePageChange}
+                        pageSize={pageSize}
+                      />
+                    </div>
+                  )}
+                />
+              </div>
+            </TabPane>
+          );
+        })}
+      </Tabs>
     </div>
   );
 };

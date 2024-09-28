@@ -1,8 +1,18 @@
 import { Button, Message, Popconfirm } from "@arco-design/web-react";
 import { MixedItem } from "../../../../types/index.ts";
-import { checkDataSourceTable } from "../../../../utils/checkDataSource.ts";
+import {
+  checkDataSourceTable,
+  DATA_SOURCE_TABLE,
+  groupTableHeaderKeys,
+} from "../../../../utils/checkDataSource.ts";
 import { DeleteParams } from "../../../../services/types.ts";
 import { deleteItem } from "../../../../services/searchTable.ts";
+
+export enum TableMode {
+  ALL = 0,
+  FZ,
+  JS,
+}
 
 export const CN_2_EN_TABLES = {
   FZ: {
@@ -204,7 +214,7 @@ export const getColumns = (handleSearch: () => void) => {
     },
   };
 
-  const columns = [
+  const allTableHeaders = [
     "onlyKey",
     "wellName",
     "company",
@@ -302,8 +312,12 @@ export const getColumns = (handleSearch: () => void) => {
     "county",
     "scrapedWell",
     "officePhone",
-    "操作",
-  ].map((str) => {
+  ];
+
+  const extraHeaders = ["操作"];
+  const groupedTableHeaders = groupTableHeaderKeys(CN_2_EN_TABLES);
+
+  const extraFormat = (str) => {
     const cnStr = EN_2_CN_MIXED[str?.toLowerCase()] ?? str;
     return {
       key: str,
@@ -312,7 +326,27 @@ export const getColumns = (handleSearch: () => void) => {
       width: str.length * 12,
       ...(columnMapper[str] ?? {}),
     };
+  };
+
+  // const headers =
+  //   +tableMode === +DATA_SOURCE_TABLE.ALL
+  //     ? allTableHeaders
+  //     : groupedTableHeaders[tableMode];
+
+  const headerSet = {
+    [DATA_SOURCE_TABLE[DATA_SOURCE_TABLE.ALL]]: [
+      ...allTableHeaders,
+      ...extraHeaders,
+    ].map(extraFormat),
+  };
+  groupedTableHeaders.forEach((headers, index) => {
+    const key = DATA_SOURCE_TABLE[index];
+    if (Array.isArray(headers)) {
+      headerSet[key] = [...headers, ...extraHeaders].map(extraFormat);
+    }
   });
 
-  return columns;
+  console.log("headerSet", headerSet);
+
+  return headerSet;
 };

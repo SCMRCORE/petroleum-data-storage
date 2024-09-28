@@ -1,6 +1,5 @@
 import { createHashRouter } from "react-router-dom";
 import DataManagement from "../pages/DataManagement/index.js";
-import DataTrend from "../pages/DataTrend/index.tsx";
 
 export const routeList = [
   {

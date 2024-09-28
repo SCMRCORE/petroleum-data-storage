@@ -20,6 +20,7 @@ export const search = async (params: SearchParams) => {
   const jbParams = { ...params };
 
   const promiseList = [
+    // 严格按照枚举顺序
     request.get("/petroleum/searchJS", jsParams),
     request.get("/petroleum/searchJB", jbParams),
     request.get("/petroleum/searchFZ", fzParams),
@@ -33,8 +34,19 @@ export const search = async (params: SearchParams) => {
     list.push(...(resItem?.data?.data?.records ?? []));
     total = Math.max(resItem?.data?.data?.total, total);
   });
-  // console.log("search res", dataList);
-  return { list, total };
+  // console.log("search res", resList);
+  const result = {
+    [DATA_SOURCE_TABLE[DATA_SOURCE_TABLE.ALL]]: { list, total },
+  };
+  resList?.forEach((item, index) => {
+    const key = DATA_SOURCE_TABLE[index + 1]; // 0 是全部
+    const data = item?.data?.data;
+    result[key] = {
+      list: data?.records,
+      total: data?.total ?? 0,
+    };
+  });
+  return result;
 };
 
 export const add = async (

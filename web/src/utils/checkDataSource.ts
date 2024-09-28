@@ -4,6 +4,7 @@ import {
 } from "../pages/DataManagement/components/SearchTable/configs.tsx";
 
 export enum DATA_SOURCE_TABLE {
+  ALL = 0,
   JS = 1,
   JB,
   FZ,
@@ -11,6 +12,7 @@ export enum DATA_SOURCE_TABLE {
 }
 
 export const DATA_SOURCE_TABLE_TITLE_MAP = {
+  ALL: "全部",
   JS: "井身结构表",
   JB: "基本情况表",
   FZ: "复杂情况表",
@@ -131,4 +133,18 @@ export const formatCnToEn = (key: string) => {
   const cn = EN_2_CN_MIXED[formattedKey] ?? formattedKey;
   const positiveEn = CN_2_EN_MIXED[cn];
   return positiveEn;
+};
+
+export const groupTableHeaderKeys = (tables) => {
+  const result = [];
+  for (const category in tables) {
+    const table = tables[category];
+    const englishKeys = {};
+    for (const chineseKey in table) {
+      const englishKey = table[chineseKey];
+      englishKeys[englishKey] = englishKey; // 保持键的存在，即使值相同
+    }
+    result[DATA_SOURCE_TABLE[category]] = Object.keys(englishKeys); // 只需键即可
+  }
+  return result;
 };
