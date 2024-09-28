@@ -251,10 +251,10 @@ const SearchTable = () => {
               </Form>
 
               {/* 表格主体部分 */}
-              <div className="pr-28 mt-4">
+              <div className="pr-28 mt-4 overflow-y-auto">
                 <Table
                   columns={columnsSet[DATA_SOURCE_TABLE[activeTab]]}
-                  scroll={{ x: true, y: 500 }}
+                  scroll={{ x: true, y: "60vh" }}
                   data={dataSource?.[DATA_SOURCE_TABLE[activeTab]]?.list ?? []}
                   renderPagination={() => (
                     <div className="flex justify-end mt-2">

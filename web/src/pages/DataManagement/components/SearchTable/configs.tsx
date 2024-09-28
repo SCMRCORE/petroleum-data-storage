@@ -43,7 +43,7 @@ export const CN_2_EN_TABLES = {
     二级井别: "secondaryWellType",
     三级井别: "tertiaryWellType",
     井型: "wellType",
-    水深1: "waterDepth1",
+    水深: "waterDepth1",
     设计深度: "designDepth",
     设计垂深: "designVerticalDepth",
     设计时间: "designDate",
@@ -62,7 +62,7 @@ export const CN_2_EN_TABLES = {
     地面海拔: "groundElevation",
     当前补心海拔: "currentKellyElevation",
     套管头海拔: "casingHeadElevation",
-    水深2: "waterDepth2",
+    油管法兰海拔: "waterDepth2",
     泥线海拔: "mudLineElevation",
     人工底部深度: "artificialBottomDepth",
     钻井天数: "drillingDays",
@@ -176,9 +176,9 @@ export const getColumns = (handleSearch: () => void) => {
   };
 
   const columnMapper = {
-    onlyKey: {
-      fixed: "left",
-    },
+    // onlyKey: {
+    //   fixed: "left",
+    // },
     wellName: {
       fixed: "left",
     },
@@ -187,6 +187,9 @@ export const getColumns = (handleSearch: () => void) => {
     // },
     location: {
       width: 200,
+    },
+    operationDescription: {
+      width: 600,
     },
     操作: {
       width: 80,
@@ -215,7 +218,7 @@ export const getColumns = (handleSearch: () => void) => {
   };
 
   const allTableHeaders = [
-    "onlyKey",
+    // "onlyKey",
     "wellName",
     "company",
     "primaryWellType",
@@ -323,7 +326,7 @@ export const getColumns = (handleSearch: () => void) => {
       key: str,
       title: cnStr,
       dataIndex: str,
-      width: Math.max(str.length * 20, 50),
+      width: Math.max(str.length * 16, 80),
       ...(columnMapper[str] ?? {}),
     };
   };
