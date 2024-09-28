@@ -17,7 +17,7 @@ export enum TableMode {
 export const CN_2_EN_TABLES = {
   FZ: {
     井名: "wellName",
-    公司: "company",
+    分公司: "company",
     一级井别: "primaryWellType",
     井型: "wellType",
     开始时间: "startTime",
@@ -109,7 +109,7 @@ export const CN_2_EN_TABLES = {
   },
   ZT: {
     井名: "wellName",
-    公司: "company",
+    分公司: "company",
     一级井别: "primaryWellType",
     井型: "wellType",
     钻头编号: "drillBitNumber",
@@ -119,7 +119,7 @@ export const CN_2_EN_TABLES = {
     型号: "model",
     序列号: "serialNumber",
     "喷嘴(1/32″)": "nozzleSize",
-    "钻头TFA(in^2)": "drillBitTFAn2",
+    "钻头TFA(in2)": "drillBitTFAn2",
     "入井深度(m)": "entryDepth",
     "出井深度(m)": "exitDepth",
     入井时间: "entryTime",
