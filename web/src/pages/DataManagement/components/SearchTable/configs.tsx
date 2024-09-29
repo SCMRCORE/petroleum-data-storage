@@ -14,7 +14,7 @@ export enum TableMode {
   JS,
 }
 
-export const CN_2_EN_TABLES = {
+const CN_2_EN_TABLES = {
   FZ: {
     井名: "wellName",
     分公司: "company",
@@ -138,25 +138,25 @@ export const CN_2_EN_TABLES = {
   },
 };
 
-export const DEFAULT_SEARCH_PARAMS = { FZ: {}, JB: {}, JS: {}, ZT: {} };
-export const EN_2_CN_TABLES = { FZ: {}, JB: {}, JS: {}, ZT: {} };
+const DEFAULT_SEARCH_PARAMS = { FZ: {}, JB: {}, JS: {}, ZT: {} };
+const EN_2_CN_TABLES = { FZ: {}, JB: {}, JS: {}, ZT: {} };
 Object.keys(CN_2_EN_TABLES).forEach((tableName) => {
-  const table = { ...CN_2_EN_TABLES[tableName] };
+  const table = CN_2_EN_TABLES[tableName];
   Object.keys(table).forEach((cnKey) => {
     const enKey = table[cnKey];
-    table[enKey] = cnKey;
+    EN_2_CN_TABLES[tableName][enKey] = cnKey;
     DEFAULT_SEARCH_PARAMS[tableName][enKey] = null;
   });
 });
 
 //  = reverseMapping(CN_2_EN_TABLES);
-export const CN_2_EN_MIXED = {
+const CN_2_EN_MIXED = {
   ...CN_2_EN_TABLES.FZ,
   ...CN_2_EN_TABLES.JB,
   ...CN_2_EN_TABLES.JS,
   ...CN_2_EN_TABLES.ZT,
 };
-export const EN_2_CN_MIXED = {};
+const EN_2_CN_MIXED = {};
 Object.keys(CN_2_EN_MIXED).forEach((cn) => {
   const en = (CN_2_EN_MIXED[cn] as string) ?? "";
   EN_2_CN_MIXED[en.toLowerCase()] = cn;
@@ -176,7 +176,10 @@ export const formConfigList = [
   [],
 ];
 
-export const getColumns = (handleSearch: () => void) => {
+const getColumns = (
+  handleSearch: () => void,
+  handleEdit: (v: Partial<MixedItem>) => void
+) => {
   const handleDeleteItem = async (params: DeleteParams) => {
     const res = await deleteItem(params);
     console.log("res", res);
@@ -208,26 +211,36 @@ export const getColumns = (handleSearch: () => void) => {
     操作: {
       width: 80,
       fixed: "right",
-      render: (_, row: MixedItem) => (
-        <Popconfirm
-          focusLock
-          title="确定要删除吗？"
-          okText="确定"
-          cancelText="取消"
-          onOk={() => {
-            const keys = Object.keys(row);
-            const num = checkDataSourceTable(keys);
-            console.log("删除", _, row, num);
-            if (row.onlyKey && num) {
-              handleDeleteItem({ OnlyKey: row.onlyKey, num });
-            }
-          }}
-        >
-          <Button type="primary" status="danger" size="mini">
-            删除
-          </Button>
-        </Popconfirm>
-      ),
+      render: (_, row: MixedItem) => {
+        return (
+          <div
+            key={"operatinons" + row.onlyKey}
+            className="flex flex-col items-center justify-center gap-2"
+          >
+            <Button size="mini" onClick={() => handleEdit(row)}>
+              修改
+            </Button>
+            <Popconfirm
+              focusLock
+              title="确定要删除吗？"
+              okText="确定"
+              cancelText="取消"
+              onOk={() => {
+                const keys = Object.keys(row);
+                const num = checkDataSourceTable(keys);
+                console.log("删除", _, row, num);
+                if (row.onlyKey && num) {
+                  handleDeleteItem({ OnlyKey: row.onlyKey, num });
+                }
+              }}
+            >
+              <Button type="primary" status="danger" size="mini">
+                删除
+              </Button>
+            </Popconfirm>
+          </div>
+        );
+      },
     },
   };
 
@@ -361,4 +374,13 @@ export const getColumns = (handleSearch: () => void) => {
   console.log("headerSet", headerSet);
 
   return headerSet;
+};
+
+export {
+  DEFAULT_SEARCH_PARAMS,
+  EN_2_CN_TABLES,
+  EN_2_CN_MIXED,
+  CN_2_EN_MIXED,
+  CN_2_EN_TABLES,
+  getColumns,
 };

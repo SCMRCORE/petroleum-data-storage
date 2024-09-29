@@ -1,3 +1,5 @@
+import { MixedItem } from "../types/index.ts";
+
 export type StatusResponse = {
   msg: string;
   success: boolean;
@@ -35,7 +37,7 @@ export type DeleteParams = {
 };
 
 export type ModifyParams = {
-  type: number;
-  id: number;
-  params: string; // 一段JSON字符串
+  rowData: Partial<MixedItem>;
+  onlyKey: number | string;
+  num: number | string;
 };

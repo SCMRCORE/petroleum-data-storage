@@ -7,6 +7,7 @@ import {
   AddParams,
   StatusResponse,
   DeleteParams,
+  ModifyParams,
 } from "./types.ts";
 import {
   checkDataSourceTable,
@@ -81,5 +82,35 @@ export const deleteItem = async (
   params: DeleteParams
 ): Promise<AxiosResponse<StatusResponse>> => {
   const res = await request.put("/petroleum/delete", params);
+  return res;
+};
+
+export const updateItem = async (params: ModifyParams) => {
+  const { num, rowData, onlyKey } = params;
+  const configMap = {
+    [DATA_SOURCE_TABLE.FZ]: {
+      path: "setFZ",
+      extraParams: DEFAULT_SEARCH_PARAMS.FZ,
+    },
+    [DATA_SOURCE_TABLE.JS]: {
+      path: "setJS",
+      extraParams: DEFAULT_SEARCH_PARAMS.JS,
+    },
+    [DATA_SOURCE_TABLE.JB]: {
+      path: "setJB",
+      extraParams: DEFAULT_SEARCH_PARAMS.JB,
+    },
+    [DATA_SOURCE_TABLE.ZT]: {
+      path: "setZT",
+      extraParams: DEFAULT_SEARCH_PARAMS.ZT,
+    },
+  };
+
+  const { path, extraParams } = configMap[num];
+
+  const res = await request.put(`/petroleum/${path}?OnlyKey=${onlyKey}`, {
+    ...extraParams,
+    ...rowData,
+  });
   return res;
 };

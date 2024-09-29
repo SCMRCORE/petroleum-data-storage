@@ -10,9 +10,14 @@ import {
   Message,
   Tabs,
 } from "@arco-design/web-react";
-import { add, search } from "../../../../services/searchTable.ts";
+import {
+  add,
+  deleteItem,
+  search,
+  updateItem,
+} from "../../../../services/searchTable.ts";
 import { useEffect, useMemo, useState } from "react";
-import { getColumns, formConfigList } from "./configs.tsx";
+import { getColumns, formConfigList, EN_2_CN_TABLES } from "./configs.tsx";
 import { MixedItem } from "../../../../types/index.ts";
 import * as XLSX from "xlsx";
 import {
@@ -33,8 +38,10 @@ type DataSourceType = Record<
 >;
 
 const SearchTable = () => {
-  /** 表单 ref */
+  /** 搜索表单 ref */
   const [form] = Form.useForm();
+  /** 编辑表单 ref */
+  const [editForm] = Form.useForm();
   /** 弹窗是否可见 */
   const [isModalVisible, setIsModalVisible] = useState(false);
   /** 弹窗展示的每个文件内容 */
@@ -45,12 +52,21 @@ const SearchTable = () => {
   const [dataSource, setDataSource] = useState<DataSourceType>();
   /** 分页 */
   const [pageIndex, setPageIndex] = useState<number>(1);
-  /** 分页总数 */
-  // const [total, setTotal] = useState(100);
+  /** 搜索加载态 */
+  const [isSearching, setIsSearching] = useState(false);
+  /** 删除加载态 */
+  const [isDeleting, setIsDeleting] = useState(false);
+  /** 是否打开编辑窗口 */
+  const [isEditing, setIsEditing] = useState(false);
+  /** 编辑窗口表单的数据 */
+  const [editingData, setEditingData] = useState<Partial<MixedItem>>();
   /** 搜索参数 */
-  const [searchParams, setSearchParams] = useState<
-    Record<string, string | number>
-  >({});
+  // const [searchParams, setSearchParams] = useState<
+  //   Record<string, string | number>
+  // >({});
+
+  /** 批量选择  */
+  const [selectedRowKeys, setSelectedRowKeys] = useState<Array<string>>([]);
   /** 展示模式 */
   const [activeTab, setActiveTab] = useState<DATA_SOURCE_TABLE>(
     DATA_SOURCE_TABLE.JS
@@ -59,6 +75,7 @@ const SearchTable = () => {
   /** 搜索 */
   const handleSearch = async () => {
     try {
+      setIsSearching(true);
       const formData = form.getFieldsValue();
       const res = await search({
         ...formData,
@@ -67,15 +84,20 @@ const SearchTable = () => {
       });
 
       console.log("请求的数据", res);
+      // 不知为何，finally 中取消 loading 的操作并没有生效
+      setSelectedRowKeys([]);
+      setIsSearching(false);
       setDataSource(res);
     } catch (err) {
       console.log("数据获取异常:", err);
+    } finally {
+      setIsSearching(false);
     }
   };
 
   /** 清空搜素参数 */
   const handleReset = () => {
-    setSearchParams({});
+    // setSearchParams({});
     form.resetFields();
   };
 
@@ -98,6 +120,7 @@ const SearchTable = () => {
             const ws = wb.Sheets[wsName];
             const fileRowList = XLSX.utils.sheet_to_json(ws);
             console.log("原始上传的表", fileRowList);
+
             const enFileRowList = fileRowList.map((fileRow) => {
               const newRow = {};
               Object.keys(fileRow).forEach((key) => {
@@ -107,6 +130,7 @@ const SearchTable = () => {
               return newRow;
             });
             console.log("翻译后的表", enFileRowList);
+
             newUploadFileInfoList.push(enFileRowList);
             newUploadFileNameList.push(wsName);
           });
@@ -136,6 +160,25 @@ const SearchTable = () => {
     }
   };
 
+  const batchDelete = async () => {
+    setIsDeleting(true);
+    const promiseList = selectedRowKeys.map((onlyKey) => {
+      return deleteItem({
+        OnlyKey: +onlyKey,
+        num: activeTab,
+      });
+    });
+
+    try {
+      await Promise.all(promiseList);
+      handleSearch();
+    } catch (err) {
+      console.error("删除失败：", err);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+
   const handlePageChange = (index) => {
     setPageIndex(index);
   };
@@ -145,11 +188,39 @@ const SearchTable = () => {
     setActiveTab(v);
   };
 
+  const handleEditFormClose = () => {
+    setIsEditing(false);
+    editForm.resetFields();
+    setEditingData({});
+  };
+  const handleEdit = (rowData) => {
+    setIsEditing(true);
+    setEditingData(rowData);
+    editForm.setFieldsValue(rowData);
+  };
+
+  const confirmEdit = async () => {
+    try {
+      const formValue = editForm.getFieldsValue();
+      console.log("formValue", formValue);
+      await updateItem({
+        num: activeTab,
+        onlyKey: editingData.onlyKey,
+        rowData: formValue,
+      });
+      handleSearch();
+    } catch (err) {
+      console.error("修改失败：", err);
+    } finally {
+      setIsEditing(false);
+    }
+  };
+
   useEffect(() => {
     handleSearch();
   }, [pageIndex]);
 
-  const columnsSet = useMemo(() => getColumns(handleSearch), []);
+  const columnsSet = useMemo(() => getColumns(handleSearch, handleEdit), []);
 
   return (
     <div>
@@ -186,6 +257,48 @@ const SearchTable = () => {
           })}
         </div>
       </Modal>
+
+      <Modal
+        visible={isEditing}
+        onCancel={handleEditFormClose}
+        footer={
+          <div className="flex gap-2">
+            <Button type="primary" onClick={confirmEdit}>
+              确认修改
+            </Button>
+            <Button onClick={handleEditFormClose}>取消</Button>
+          </div>
+        }
+        className="w-[800px]"
+      >
+        <Form
+          id="editForm"
+          layout="inline"
+          className="w-[700px] min-h-[300px]"
+          form={editForm}
+        >
+          {Object.keys(editingData ?? {})?.map((enKey) => {
+            const value = editingData[enKey];
+            const tableName = DATA_SOURCE_TABLE[activeTab];
+            const cnKey = EN_2_CN_TABLES[tableName][enKey];
+            // "status", "onlyKey", "num"
+            if (["status", "onlyKey", "num"].includes(enKey)) {
+              return null;
+            }
+
+            return (
+              <Form.Item
+                initialValue={value}
+                label={cnKey || enKey}
+                field={enKey}
+                key={enKey}
+              >
+                <Input />
+              </Form.Item>
+            );
+          })}
+        </Form>
+      </Modal>
       <Tabs
         defaultActiveTab={`${activeTab}`}
         onChange={handleTabChange}
@@ -200,7 +313,7 @@ const SearchTable = () => {
             >
               {/* 搜索项 */}
               <Form form={form} id="searchForm" layout="vertical">
-                <div className="flex w-[100%] items-center">
+                <div className="flex w-[100%] ">
                   <div className="w-[78%] mr-[12px]">
                     {formConfigList.map((rowItemList, index) => {
                       return (
@@ -228,6 +341,7 @@ const SearchTable = () => {
                       type="primary"
                       className="w-[80%]"
                       onClick={handleSearch}
+                      loading={isSearching}
                     >
                       搜索
                     </Button>
@@ -246,6 +360,17 @@ const SearchTable = () => {
                     >
                       EXCEL导入
                     </Button>
+                    {selectedRowKeys?.length > 0 && (
+                      <Button
+                        onClick={batchDelete}
+                        type="primary"
+                        className="w-[80%]"
+                        status="danger"
+                        loading={isDeleting}
+                      >
+                        批量删除
+                      </Button>
+                    )}
                   </div>
                 </div>
               </Form>
@@ -253,8 +378,9 @@ const SearchTable = () => {
               {/* 表格主体部分 */}
               <div className="pr-28 mt-4 overflow-y-auto">
                 <Table
+                  rowKey="onlyKey"
                   columns={columnsSet[DATA_SOURCE_TABLE[activeTab]]}
-                  scroll={{ x: true, y: "60vh" }}
+                  scroll={{ x: true, y: "58vh" }}
                   data={dataSource?.[DATA_SOURCE_TABLE[activeTab]]?.list ?? []}
                   renderPagination={() => (
                     <div className="flex justify-end mt-2">
@@ -267,6 +393,17 @@ const SearchTable = () => {
                       />
                     </div>
                   )}
+                  rowSelection={{
+                    type: "checkbox",
+                    onChange: (keys: Array<string>) => {
+                      // const onlyKeys = selectedRows.map((item) => item.onlyKey);
+                      console.log("onChange:", keys);
+                      setSelectedRowKeys(keys);
+                    },
+                    onSelect: (selected, record, selectedRows) => {
+                      console.log("onSelect:", selected, record, selectedRows);
+                    },
+                  }}
                 />
               </div>
             </TabPane>
