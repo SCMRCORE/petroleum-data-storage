@@ -12,12 +12,13 @@ import {
   checkDataSourceTable,
   DATA_SOURCE_TABLE,
 } from "../utils/checkDataSource.ts";
+import { DEFAULT_SEARCH_PARAMS } from "../pages/DataManagement/components/SearchTable/configs.tsx";
 
 export const search = async (params: SearchParams) => {
-  const jsParams = { ...params };
-  const fzParams = { ...params };
-  const ztParams = { ...params };
-  const jbParams = { ...params };
+  const jsParams = { ...DEFAULT_SEARCH_PARAMS.JS, ...params };
+  const fzParams = { ...DEFAULT_SEARCH_PARAMS.FZ, ...params };
+  const ztParams = { ...DEFAULT_SEARCH_PARAMS.ZT, ...params };
+  const jbParams = { ...DEFAULT_SEARCH_PARAMS.JB, ...params };
 
   const promiseList = [
     // 严格按照枚举顺序
