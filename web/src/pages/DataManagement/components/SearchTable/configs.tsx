@@ -35,6 +35,7 @@ export const CN_2_EN_TABLES = {
   },
   JB: {
     井名: "wellName",
+    分公司: "company",
     油田名: "oilFieldName",
     油田代码: "oilFieldCode",
     是否合作: "isCooperative",
@@ -84,6 +85,7 @@ export const CN_2_EN_TABLES = {
   },
   JS: {
     井名: "wellName",
+    分公司: "company",
     一级井别: "primaryWellType",
     井型: "wellType",
     井段: "wellSection",
