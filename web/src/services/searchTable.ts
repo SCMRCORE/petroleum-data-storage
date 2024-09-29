@@ -21,10 +21,10 @@ export const search = async (params: SearchParams) => {
 
   const promiseList = [
     // 严格按照枚举顺序
-    request.get("/petroleum/searchJS", jsParams),
-    request.get("/petroleum/searchJB", jbParams),
-    request.get("/petroleum/searchFZ", fzParams),
-    request.get("/petroleum/searchZT", ztParams),
+    request.post("/petroleum/searchJS", jsParams),
+    request.post("/petroleum/searchJB", jbParams),
+    request.post("/petroleum/searchFZ", fzParams),
+    request.post("/petroleum/searchZT", ztParams),
   ];
 
   const resList = await Promise.all(promiseList);

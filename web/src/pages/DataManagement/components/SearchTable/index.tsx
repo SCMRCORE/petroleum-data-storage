@@ -228,6 +228,7 @@ const SearchTable = () => {
                       htmlType="submit"
                       type="primary"
                       className="w-[80%]"
+                      onClick={handleSearch}
                     >
                       搜索
                     </Button>
