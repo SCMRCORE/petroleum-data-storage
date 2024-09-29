@@ -138,8 +138,8 @@ export const CN_2_EN_TABLES = {
 
 export const DEFAULT_SEARCH_PARAMS = { FZ: {}, JB: {}, JS: {}, ZT: {} };
 export const EN_2_CN_TABLES = { FZ: {}, JB: {}, JS: {}, ZT: {} };
-Object.keys(EN_2_CN_TABLES).forEach((tableName) => {
-  const table = CN_2_EN_TABLES[tableName];
+Object.keys(CN_2_EN_TABLES).forEach((tableName) => {
+  const table = { ...CN_2_EN_TABLES[tableName] };
   Object.keys(table).forEach((cnKey) => {
     const enKey = table[cnKey];
     table[enKey] = cnKey;
