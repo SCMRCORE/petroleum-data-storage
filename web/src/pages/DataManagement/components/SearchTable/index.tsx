@@ -53,22 +53,20 @@ const SearchTable = () => {
   >({});
   /** 展示模式 */
   const [activeTab, setActiveTab] = useState<DATA_SOURCE_TABLE>(
-    DATA_SOURCE_TABLE.ALL
+    DATA_SOURCE_TABLE.JS
   );
 
   /** 搜索 */
   const handleSearch = async () => {
     try {
+      const formData = form.getFieldsValue();
       const res = await search({
-        ...searchParams,
+        ...formData,
         pageIndex,
         pageSize,
       });
 
       console.log("请求的数据", res);
-      // const data = res[DATA_SOURCE_TABLE[activeTab]];
-      // const { list, total } = data;
-      // setTotal(total);
       setDataSource(res);
     } catch (err) {
       console.log("数据获取异常:", err);
@@ -194,6 +192,7 @@ const SearchTable = () => {
         activeTab={`${activeTab}`}
       >
         {displayModeList.map((item, index) => {
+          if (item === DATA_SOURCE_TABLE[DATA_SOURCE_TABLE.ALL]) return null;
           return (
             <TabPane
               key={`${index}`}
@@ -238,7 +237,7 @@ const SearchTable = () => {
                       type="secondary"
                       className="w-[80%]"
                     >
-                      重置搜索
+                      清空参数
                     </Button>
                     <Button
                       onClick={openUploadFileModal}

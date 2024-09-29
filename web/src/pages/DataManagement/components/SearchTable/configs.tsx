@@ -345,11 +345,6 @@ export const getColumns = (handleSearch: () => void) => {
     };
   };
 
-  // const headers =
-  //   +tableMode === +DATA_SOURCE_TABLE.ALL
-  //     ? allTableHeaders
-  //     : groupedTableHeaders[tableMode];
-
   const headerSet = {
     [DATA_SOURCE_TABLE[DATA_SOURCE_TABLE.ALL]]: [
       ...allTableHeaders,
