@@ -27,7 +27,7 @@ import {
   formatCnToEn,
 } from "../../../../utils/checkDataSource.ts";
 const TabPane = Tabs.TabPane;
-const pageSize = 20;
+const pageSize = 10;
 const displayModeList = Object.keys(DATA_SOURCE_TABLE).filter(
   (k) => typeof DATA_SOURCE_TABLE[k] === "number"
 );
