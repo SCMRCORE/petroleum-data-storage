@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import { renderAsync } from "docx-preview";
-import "./index.css";
 
 interface WordPreviewerProps {
   fileUrl: string;
@@ -22,7 +21,7 @@ const WordPreviewer: React.FC<WordPreviewerProps> = ({ fileUrl, onError }) => {
           // 渲染文档
           await renderAsync(blob, containerRef.current, containerRef.current, {
             className: "docx-viewer",
-            inWrapper: true,
+            // inWrapper: true,
           });
         }
       } catch (error) {
@@ -33,8 +32,15 @@ const WordPreviewer: React.FC<WordPreviewerProps> = ({ fileUrl, onError }) => {
 
     loadAndRenderDoc();
   }, [fileUrl, onError]);
-
-  return <div className="word-previewer-container" ref={containerRef} />;
+  return (
+    // <div style={{ width: "100%", height: "70vh" }}>
+    <iframe
+      style={{ width: "100%", height: "100%", border: "none" }}
+      src={`https://view.officeapps.live.com/op/view.aspx?src=` + fileUrl}
+    ></iframe>
+    // </div>
+  );
+  // return <div className="word-previewer-container" ref={containerRef} />;
 };
 
 export default WordPreviewer;
