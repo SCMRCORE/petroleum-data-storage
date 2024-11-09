@@ -255,8 +255,12 @@
             #{item.wellName}, #{item.company}, #{item.primaryWellType}, #{item.wellType}, #{item.drillBitNumber}, #{item.drillBitType}, #{item.sizeIn}, #{item.manufacturer}, #{item.model}, #{item.serialNumber}, #{item.nozzleSize}, #{item.drillBitTFAn2}, #{item.entryDepth}, #{item.exitDepth}, #{item.entryTime}, #{item.exitTime}, #{item.advanceDistance}, #{item.pureDrillingTime}, #{item.rop}, #{item.maxDrillingPressure}, #{item.minDrillingPressure}, #{item.maxRotationSpeed}, #{item.minRotationSpeed}, #{item.iadcWearEvaluation}, #{item.encounteredFormation}, #{item.status}, #{item.num}
         </foreach>
     </insert>
+    <insert id="addWG">
+        insert into wangong (wordurl) values (#{wordurl})
+    </insert>
 
-<!--搜索-->
+
+    <!--搜索-->
     <select id="searchjs" resultType="com.petroleumpojo.entity.JingShen">
         select * from jingshen
         <where>
@@ -652,77 +656,77 @@
     <update id="updateJS" parameterType="com.petroleumpojo.dto.JingShenDTO">
         update jingshen
         <set>
-            <if test="WellName != null">
-                WellName = #{WellName},
+            <if test="wellName != null">
+                wellName = #{wellName},
             </if>
             <if test="company != null">
                 company = #{company},
             </if>
-            <if test="PrimaryWellType != null">
-                PrimaryWellType = #{PrimaryWellType},
+            <if test="primaryWellType != null">
+                primaryWellType = #{primaryWellType},
             </if>
-            <if test="WellType != null">
-                WellType = #{WellType},
+            <if test="wellType != null">
+                wellType = #{wellType},
             </if>
-            <if test="WellSection != null">
-                WellSection = #{WellSection},
+            <if test="wellSection != null">
+                wellSection = #{wellSection},
             </if>
-            <if test="HoleDiameter != null">
-                HoleDiameter = #{HoleDiameter},
+            <if test="holeDiameter != null">
+                holeDiameter = #{holeDiameter},
             </if>
-            <if test="StartTime != null">
-                StartTime = #{StartTime},
+            <if test="startTime != null">
+                startTime = #{startTime},
             </if>
-            <if test="EndTime != null">
-                EndTime = #{EndTime},
+            <if test="endTime != null">
+                endTime = #{endTime},
             </if>
-            <if test="StartDepth != null">
-                StartDepth = #{StartDepth},
+            <if test="startDepth != null">
+                startDepth = #{startDepth},
             </if>
-            <if test="StartVerticalDepth != null">
-                StartVerticalDepth = #{StartVerticalDepth},
+            <if test="startVerticalDepth != null">
+                startVerticalDepth = #{startVerticalDepth},
             </if>
-            <if test="EndDepth != null">
-                EndDepth = #{EndDepth},
+            <if test="endDepth != null">
+                endDepth = #{endDepth},
             </if>
-            <if test="EndVerticalDepth != null">
-                EndVerticalDepth = #{EndVerticalDepth},
+            <if test="endVerticalDepth != null">
+                endVerticalDepth = #{endVerticalDepth},
             </if>
-            <if test="CasingDiameter != null">
-                CasingDiameter = #{CasingDiameter},
+            <if test="casingDiameter != null">
+                casingDiameter = #{casingDiameter},
             </if>
-            <if test="SteelGrade != null">
-                SteelGrade = #{SteelGrade},
+            <if test="steelGrade != null">
+                steelGrade = #{steelGrade},
             </if>
-            <if test="CasingSetDepth != null">
-                CasingSetDepth = #{CasingSetDepth},
+            <if test="casingSetDepth != null">
+                casingSetDepth = #{casingSetDepth},
             </if>
-            <if test="CasingLength != null">
-                CasingLength = #{CasingLength},
+            <if test="casingLength != null">
+                casingLength = #{casingLength},
             </if>
-            <if test="CementReturnHeight != null">
-                CementReturnHeight = #{CementReturnHeight},
+            <if test="cementReturnHeight != null">
+                cementReturnHeight = #{cementReturnHeight},
             </if>
-            <if test="UpperCasingDiameter != null">
-                UpperCasingDiameter = #{UpperCasingDiameter},
+            <if test="upperCasingDiameter != null">
+                upperCasingDiameter = #{upperCasingDiameter},
             </if>
-            <if test="UpperCasingSetDepth != null">
-                UpperCasingSetDepth = #{UpperCasingSetDepth},
+            <if test="upperCasingSetDepth != null">
+                upperCasingSetDepth = #{upperCasingSetDepth},
             </if>
-            <if test="DrillingFluidSystem != null">
-                DrillingFluidSystem = #{DrillingFluidSystem},
+            <if test="drillingFluidSystem != null">
+                drillingFluidSystem = #{drillingFluidSystem},
             </if>
-            <if test="DrillingFluidDensity != null">
-                DrillingFluidDensity = #{DrillingFluidDensity},
+            <if test="drillingFluidDensity != null">
+                drillingFluidDensity = #{drillingFluidDensity},
             </if>
-            <if test="PlasticViscosity != null">
-                PlasticViscosity = #{PlasticViscosity},
+            <if test="plasticViscosity != null">
+                plasticViscosity = #{plasticViscosity},
             </if>
-            <if test="YieldValue != null">
-                YieldValue = #{YieldValue},
+            <if test="yieldValue != null">
+                yieldValue = #{yieldValue},
             </if>
-            <if test="FormationPressure != null">
-                FormationPressure = #{FormationPressure}
+            <if test="formationPressure != null">
+                formationPressure = #{formationPressure}
             </if>
         </set>
         where OnlyKey = #{OnlyKey}
@@ -834,5 +838,6 @@
         </set>
         where OnlyKey = #{OnlyKey}
     </update>
+
 
 </mapper>

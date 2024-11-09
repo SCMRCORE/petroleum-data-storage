@@ -52,4 +52,6 @@ public interface petroleumMapper {
     void updateFZ(FuZaDTO fzDto);
 
     void updateZT(ZuanTouDTO ztDto);
+
+    boolean addWG(String url);
 }

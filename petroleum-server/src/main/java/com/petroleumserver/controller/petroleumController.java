@@ -3,10 +3,8 @@ package com.petroleumserver.controller;
 import com.petroleumcommom.result.PageResult;
 import com.petroleumcommom.result.Result;
 import com.petroleumpojo.dto.*;
-import com.petroleumpojo.entity.JiBen;
-import com.petroleumpojo.entity.ZuanTou;
 import com.petroleumserver.service.petroleumService;
-import io.swagger.models.auth.In;
+import com.petroleumserver.utils.AliOSSUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +22,9 @@ public class petroleumController {
     @Resource
     private petroleumService petroleumService;
 
+    @Resource
+    private AliOSSUtils aliOSSUtils;
+
     @GetMapping
     public Result<String> test() {
         System.out.println("业务测试连接成功");
@@ -37,7 +38,7 @@ public class petroleumController {
      */
     @PostMapping("/addjs") // 待实现
     public Result addjs(@RequestBody List<JingShenDTO> jsDto) {
-        log.info("执行addJS方法:{}", jsDto);
+        log.info("执行addJS方法,传入数量:{}", jsDto.size());
         petroleumService.addJS(jsDto);
         return Result.success();
     }
@@ -49,7 +50,7 @@ public class petroleumController {
      */
     @PostMapping("/addjb") // 待实现
     public Result addjb(@RequestBody List<JiBenDTO> jbDto) {
-        log.info("执行addJB方法:{}", jbDto);
+        log.info("执行addJB方法,传入数量:{}", jbDto.size());
         petroleumService.addJB(jbDto);
         return Result.success();
     }
@@ -61,7 +62,7 @@ public class petroleumController {
      */
     @PostMapping("/addfz") // 待实现
     public Result addfz(@RequestBody List<FuZaDTO> fzDto) {
-        log.info("执行addFZ方法:{}", fzDto);
+        log.info("执行addFZ方法,传入数量:{}", fzDto.size());
         petroleumService.addFZ(fzDto);
         return Result.success();
     }
@@ -73,20 +74,8 @@ public class petroleumController {
      */
     @PostMapping("/addzt") // 待实现
     public Result addzt(@RequestBody List<ZuanTouDTO> ztDto) {
-        log.info("执行addZT方法:{}", ztDto);
+        log.info("执行addZT方法,传入数量:{}", ztDto.size());
         petroleumService.addZT(ztDto);
-        return Result.success();
-    }
-
-    /**
-     * 批量新增
-     * 
-     * @return
-     */
-    @PostMapping("/upload") // 表格需要处理成特定格式，我写在文档里了
-    public Result addByExcel(MultipartFile file, String company, Integer num) throws IOException {
-        log.info("执行upload方法");
-        petroleumService.addByList(file, company, num);
         return Result.success();
     }
 
@@ -139,11 +128,25 @@ public class petroleumController {
     }
 
     /**
+     * 搜索WanGong
+     *
+     * @return
+     */
+    @PostMapping("/searchWG")   //TODO 待实现搜索完工接口
+    public Result<PageResult> searchWG(@RequestBody ZuanTouSearchPageDTO ztSPDto) {
+//        log.info("执行searchZT方法:{}", ztSPDto);
+//        PageResult res = petroleumService.searchzt(ztSPDto);
+//        return Result.success(res);
+        return Result.success();
+    }
+
+
+    /**
      * 软删除
      * @param params
      * @return
      */
-    @PutMapping("/delete")
+    @PutMapping("/delete")//TODO 待实现删除
     public Result delete(@RequestBody Map<String, Integer> params) {
          log.info("执行delete方法删除:{}", params);
          petroleumService.updateStatus(params.get("num"), params.get("OnlyKey"));
@@ -160,32 +163,73 @@ public class petroleumController {
      */
     @PutMapping("/setJS")
     public Result set(Integer OnlyKey, @RequestBody JingShenDTO jsDto) {
-        log.info("执行setJS方法更新:{}", OnlyKey);
+        log.info("执行setJS方法更新:{}， 传入参数:{}", OnlyKey, jsDto);
         petroleumService.updateJS(OnlyKey, jsDto);
         return Result.success();
     }
 
+    /**
+     * 更新JB
+     * @param OnlyKey
+     * @param jbDto
+     * @return
+     */
     @PutMapping("/setJB")
     public Result set(Integer OnlyKey, @RequestBody JiBenDTO jbDto) {
-        log.info("执行setJB方法更新:{}", OnlyKey);
+        log.info("执行setJB方法更新:{}，传入参数:{}", OnlyKey, jbDto);
         petroleumService.updateJB(OnlyKey, jbDto);
         return Result.success();
     }
 
+    /**
+     * 更新FZ
+     * @param OnlyKey
+     * @param fzDto
+     * @return
+     */
     @PutMapping("/setFZ")
     public Result set(Integer OnlyKey, @RequestBody FuZaDTO fzDto) {
-        log.info("执行setFZ方法更新:{}", OnlyKey);
+        log.info("执行setFZ方法更新:{}，传入参数:{}", OnlyKey, fzDto);
         petroleumService.updateFZ(OnlyKey, fzDto);
         return Result.success();
     }
 
+    /**
+     * 更新ZT
+     * @param OnlyKey
+     * @param ztDto
+     * @return
+     */
     @PutMapping("/setZT")
     public Result set(Integer OnlyKey, @RequestBody ZuanTouDTO ztDto) {
-        log.info("执行setZT方法更新:{}", OnlyKey);
+        log.info("执行setZT方法更新:{}，传入参数:{}", OnlyKey, ztDto);
         petroleumService.updateZT(OnlyKey, ztDto);
         return Result.success();
     }
 
+
+    /**
+     * 上传完工报告表(word)
+     * @param word
+     * @return
+     */
+    @PostMapping("/uploadWG")
+    public Result addWG(MultipartFile word) throws IOException {
+        Long size = word.getSize();
+        log.info("上传完工报告word:{}, 内存大小:{}", word, size);
+        //如果小于20MB
+        if(size < 20 * 1024 * 1024){
+            String url = aliOSSUtils.upload(word);
+            if(petroleumService.addWG(url)){
+                return Result.success(url);
+            }else {
+                return Result.error("上传失败");
+            }
+        }
+        else{
+            return Result.error("文件大小超过20MB");
+        }
+    }
 }
 
 // /**
@@ -235,3 +279,15 @@ public class petroleumController {
 // petroleumService.updateStatusZT(ztDto);
 // return Result.success();
 // }
+
+//    /**
+//     * 批量新增
+//     *
+//     * @return
+//     */
+//    @PostMapping("/upload") // 表格需要处理成特定格式，我写在文档里了
+//    public Result addByExcel(MultipartFile file, String company, Integer num) throws IOException {
+//        log.info("执行upload方法");
+//        petroleumService.addByList(file, company, num);
+//        return Result.success();
+//    }
