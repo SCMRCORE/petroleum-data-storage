@@ -1,5 +1,17 @@
 import { createHashRouter } from "react-router-dom";
 import DataManagement from "../pages/DataManagement/index.js";
+import DevTest from "../pages/DevTest/index.tsx";
+
+const isDebug = true;
+const extraConfig = isDebug
+  ? [
+      {
+        name: "开发测试",
+        path: "/dev-test",
+        element: <DevTest></DevTest>,
+      },
+    ]
+  : [];
 
 export const routeList = [
   {
@@ -12,6 +24,7 @@ export const routeList = [
   //   path: "/trend",
   //   element: <DataTrend></DataTrend>,
   // },
+  ...extraConfig,
 ];
 
 const routerList = createHashRouter(routeList);

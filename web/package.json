@@ -14,8 +14,10 @@
     "@trickle/use-web-worker": "^0.0.1",
     "axios": "^1.7.6",
     "dayjs": "^1.11.13",
+    "docx-preview": "^0.3.3",
     "react": "19.0.0-rc-e56f4ae3-20240830",
     "react-dom": "19.0.0-rc-e56f4ae3-20240830",
+    "react-file-viewer": "^1.2.1",
     "react-router-dom": "^6.26.1",
     "xlsx": "^0.18.5",
     "zustand": "^4.5.5"

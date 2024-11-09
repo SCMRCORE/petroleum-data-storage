@@ -13,12 +13,13 @@ export enum DATA_SOURCE_TABLE {
 
 export const DATA_SOURCE_TABLE_TITLE_MAP = {
   ALL: "全部",
-  JS: "井身结构表",
-  JB: "基本情况表",
-  FZ: "复杂情况表",
-  ZT: "钻头总览表",
+  JS: "井身结构",
+  JB: "基本情况",
+  FZ: "复杂情况",
+  ZT: "钻头总览",
 };
 
+/** 根据是否包含某些特定字段来判别是哪张表的神奇函数 */
 export const checkDataSourceTable = (keys) => {
   if (
     keys.some((key) =>
