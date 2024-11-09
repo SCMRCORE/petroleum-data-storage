@@ -129,7 +129,6 @@ public class petroleumServicelmp implements petroleumService {
         }
     }
 
-
     @Override
     public void addJS(List<JingShenDTO> jsDto) {
         log.info("servicelmp:json数据新增井口表");
@@ -194,6 +193,7 @@ public class petroleumServicelmp implements petroleumService {
         log.info("servicelmp:搜索井口表");
         PageHelper.startPage(jsSPDto.getPageIndex(), jsSPDto.getPageSize());
         Page<JingShen> page = petroleumMapper.searchjs(jsSPDto);
+        log.info("搜索数量:{}", page.getTotal());
         return new PageResult(page.getTotal(), page.getResult());
     }
 
@@ -207,6 +207,7 @@ public class petroleumServicelmp implements petroleumService {
         log.info("servicelmp:搜索基本信息表");
         PageHelper.startPage(jbSPDto.getPageIndex(), jbSPDto.getPageSize());
         Page<JiBen> page = petroleumMapper.searchjb(jbSPDto);
+        log.info("搜索数量:{}", page.getTotal());
         return new PageResult(page.getTotal(), page.getResult());
     }
 
@@ -220,6 +221,7 @@ public class petroleumServicelmp implements petroleumService {
         log.info("servicelmp:搜索复杂情况表");
         PageHelper.startPage(fzSPDto.getPageIndex(), fzSPDto.getPageSize());
         Page<FuZa> page = petroleumMapper.searchfz(fzSPDto);
+        log.info("搜索数量:{}", page.getTotal());
         return new PageResult(page.getTotal(), page.getResult());
     }
 
@@ -233,6 +235,7 @@ public class petroleumServicelmp implements petroleumService {
         log.info("servicelmp:搜索钻头表");
         PageHelper.startPage(ztSPDto.getPageIndex(), ztSPDto.getPageSize());
         Page<ZuanTou> page = petroleumMapper.searchzt(ztSPDto);
+        log.info("搜索数量:{}", page.getTotal());
         return new PageResult(page.getTotal(), page.getResult());
     }
 
@@ -262,8 +265,6 @@ public class petroleumServicelmp implements petroleumService {
         }
     }
 
-
-
     @Override
     public void updateJS(Integer OnlyKey, JingShenDTO jsDto) {
         log.info("servicelmp:更新井口表:{}", OnlyKey);
@@ -290,6 +291,12 @@ public class petroleumServicelmp implements petroleumService {
         log.info("servicelmp:更新钻头表:{}", onlyKey);
         ztDto.setOnlyKey(onlyKey);
         petroleumMapper.updateZT(ztDto);
+    }
+
+    @Override
+    public boolean addWG(String url) {
+        log.info("servicelmp:添加完工报告url:{}", url);
+        return petroleumMapper.addWG(url);
     }
 }
 

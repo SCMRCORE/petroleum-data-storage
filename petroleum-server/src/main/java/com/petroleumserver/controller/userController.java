@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/users")
 @Slf4j
 public class userController {
-
+    //还不确定用不用
     @GetMapping
     public Result<String> test(){
         System.out.println("用户测试连接成功");
