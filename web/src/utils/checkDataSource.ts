@@ -14,7 +14,7 @@ export enum DATA_SOURCE_TABLE {
 export const DATA_SOURCE_TABLE_TITLE_MAP = {
   ALL: "全部",
   JS: "井身结构",
-  JB: "基本情况",
+  JB: "基本信息",
   FZ: "复杂情况",
   ZT: "钻头总览",
 };
