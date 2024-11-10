@@ -27,7 +27,7 @@ public class MinioUtils {
      * 上传word文件
      * @param file
      */
-    public  String upload(MultipartFile file) throws IOException {
+    public String upload(MultipartFile file) throws IOException {
         String bucketName = minioProperties.getBucketName();
         try {
             // 检查桶是否存在（如果不存在可以选择创建）
@@ -55,6 +55,4 @@ public class MinioUtils {
             throw new RuntimeException("文件上传失败: " + e.getMessage());
         }
     }
-
-
 }
