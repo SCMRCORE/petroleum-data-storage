@@ -2,6 +2,7 @@ com/petroleumcommom/utils/JwtUtil.class
 com/petroleumcommom/constant/Const.class
 com/petroleumcommom/utils/JiBenTool.class
 com/petroleumcommom/utils/HttpClientUtil.class
+com/petroleumcommom/properties/MinioProperties.class
 com/petroleumcommom/utils/JinShenTool.class
 com/petroleumcommom/context/BaseContext.class
 com/petroleumcommom/utils/ZuanTouTool.class

@@ -8,7 +8,7 @@ enum PROXY_MODEL {
   VITE,
 }
 
-const serverIP = "154.44.25.122";
+const serverIP = "47.108.223.152";
 const proxyModel = PROXY_MODEL.VITE as unknown;
 
 const config = {

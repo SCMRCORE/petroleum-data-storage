@@ -1,0 +1,19 @@
+petroleum:
+  redis:
+    host: 47.108.223.152
+    database: 0
+    password: 123
+    port: 6379
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    host: 47.108.223.152
+    port: 3306
+    database: petroleum-data-storage
+    username: root
+    password: 123
+minio:
+  access-key: CY4Ax1UI841RMJcBNzi5
+  secret-key: 2UHNTOjBvLx15Hfh8hqOu6CeRrmOMqAwcj88Zumo
+  bucket-name: earserbucket
+  endpoint: http://localhost:9000
+

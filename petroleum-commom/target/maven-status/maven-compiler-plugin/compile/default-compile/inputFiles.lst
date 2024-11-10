@@ -7,5 +7,6 @@
 /home/erasernoob/petroleum-data-storage/petroleum-commom/src/main/java/com/petroleumcommom/context/BaseContext.java
 /home/erasernoob/petroleum-data-storage/petroleum-commom/src/main/java/com/petroleumcommom/utils/JwtUtil.java
 /home/erasernoob/petroleum-data-storage/petroleum-commom/src/main/java/com/petroleumcommom/utils/HttpClientUtil.java
+/home/erasernoob/petroleum-data-storage/petroleum-commom/src/main/java/com/petroleumcommom/properties/MinioProperties.java
 /home/erasernoob/petroleum-data-storage/petroleum-commom/src/main/java/com/petroleumcommom/constant/JwtClaimsConstant.java
 /home/erasernoob/petroleum-data-storage/petroleum-commom/src/main/java/com/petroleumcommom/result/PageResult.java

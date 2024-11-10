@@ -1,8 +1,12 @@
+/home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/dto/DataLakeSearchPageDTO.java
 /home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/entity/JingShen.java
 /home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/dto/ZuanTouSearchPageDTO.java
+/home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/dto/GetDataLakeDTO.java
 /home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/dto/FuZaDTO.java
+/home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/RequestParams.java
 /home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/dto/WanGongDTO.java
 /home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/entity/JiBen.java
+/home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/dto/DataLakeDTO.java
 /home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/dto/JiBenSearchPageDTO.java
 /home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/dto/WanGongSearchPageDTO.java
 /home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/dto/JiBenDTO.java
@@ -12,4 +16,6 @@
 /home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/dto/ZuanTouDTO.java
 /home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/entity/FuZa.java
 /home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/dto/JingShenSearchPageDTO.java
+/home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/vo/DataLakeVO.java
 /home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/entity/ZuanTou.java
+/home/erasernoob/petroleum-data-storage/petroleum-pojo/src/main/java/com/petroleumpojo/entity/DataLake.java

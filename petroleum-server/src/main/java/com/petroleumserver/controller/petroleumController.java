@@ -214,7 +214,7 @@ public class petroleumController {
      * @return
      */
     @PostMapping("/uploadWG")
-    public Result addWG(MultipartFile word) throws IOException {
+    public Result addWG(@RequestBody  MultipartFile word) throws IOException {
         Long size = word.getSize();
         log.info("上传完工报告word:{}, 内存大小:{}", word, size);
         //如果小于20MB
@@ -230,6 +230,7 @@ public class petroleumController {
             return Result.error("文件大小超过20MB");
         }
     }
+
 }
 
 // /**

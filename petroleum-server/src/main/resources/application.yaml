@@ -1,6 +1,10 @@
 spring:
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
   profiles:
-    active: local
+    active: dev
   datasource:
     druid:
       driver-class-name: ${petroleum.datasource.driver-class-name}

@@ -29,7 +29,7 @@ public class dataLakeController {
      * 测试连接数据湖
      */
     @PostMapping("/connect")
-    public Result<Object> connectTest() throws IOException {
+    public Result<Object> connectTest() throws IOException, InterruptedException {
         String appCode = dataLakeService.connect();
         log.info("接收到appcode: {}", appCode);
         return Result.success();
