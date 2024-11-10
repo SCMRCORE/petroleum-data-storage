@@ -16,7 +16,7 @@ const extraConfig = isDebug
 
 export const routeList = [
   {
-    name: "数据管理",
+    name: "本地数据",
     path: "/",
     element: <DataManagement></DataManagement>,
   },

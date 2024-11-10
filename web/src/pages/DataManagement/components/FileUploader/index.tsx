@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import {
-  Upload,
-  Modal,
-  Button,
-  Input,
-  Alert,
-  Grid,
-} from "@arco-design/web-react";
+import { Upload, Modal, Button, Input, Alert } from "@arco-design/web-react";
 import { IconUpload, IconEye, IconDelete } from "@arco-design/web-react/icon";
-
-const { Row, Col } = Grid;
+import { uploadWordFile } from "../../../../services/searchTable.ts";
 
 interface FileUploaderProps {
   onUploadSuccess?: (fileInfo: Record<string, unknown>) => void;
@@ -20,6 +12,7 @@ interface UploadedFile {
   name: string;
   size: number;
   url: string;
+  status?: "success" | "error" | "loading"; // Added loading status
 }
 
 const FileUploader: React.FC<FileUploaderProps> = ({}) => {
@@ -76,8 +69,9 @@ const FileUploader: React.FC<FileUploaderProps> = ({}) => {
   };
 
   const handlePreviewFile = (file) => {
-    const fileURL = URL.createObjectURL(file.originFile);
-    window.open(`https://view.officeapps.live.com/op/view.aspx?src=${fileURL}`);
+    if (file.url) {
+      window.open(file.url); // Use the OSS URL for preview
+    }
   };
 
   const beforeUpload = (file: File, filesList: File[]) => {
@@ -88,15 +82,25 @@ const FileUploader: React.FC<FileUploaderProps> = ({}) => {
     return true;
   };
 
-  const handleSuccess = (response: any, file: any) => {
-    showAlert(`文件 ${file.name} 上传成功`, "success");
-  };
-
-  const handleError = (error: any, file: any) => {
-    showAlert(
-      `文件 ${file.name} 上传失败: ${error.message || "未知错误"}`,
-      "error"
-    );
+  const handleUpload = async () => {
+    console.log("文件列表", uploadedFileList);
+    for (const file of uploadedFileList) {
+      file.status = "loading"; // Set status to loading
+      setUploadedFileList([...uploadedFileList]); // Update the state to trigger re-render
+      const response = await uploadWordFile(file); // Call the upload function
+      if (response.data.code === 1) {
+        file.status = "success"; // Mark as success
+        file.url = response.data.url; // Get the OSS URL
+        showAlert(`文件 ${file.name} 上传成功`, "success");
+      } else {
+        file.status = "error"; // Mark as error
+        showAlert(
+          `文件 ${file.name} 上传失败: ${response.data.message}`,
+          "error"
+        );
+      }
+    }
+    setUploadedFileList([...uploadedFileList]); // Update the state to trigger re-render
   };
 
   return (
@@ -123,7 +127,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({}) => {
         onClick={() => setModalVisible(true)}
         icon={<IconUpload />}
       >
-        上传文档
+        添加文档
       </Button>
 
       <Modal
@@ -131,9 +135,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({}) => {
         visible={modalVisible}
         onCancel={() => setModalVisible(false)}
         footer={
-          <Button type="primary" onClick={() => setModalVisible(false)}>
-            关闭
-          </Button>
+          null
         }
         style={{ width: 600 }}
       >
@@ -153,37 +155,50 @@ const FileUploader: React.FC<FileUploaderProps> = ({}) => {
             fileList={uploadedFileList}
             onChange={(fileList) => setUploadedFileList(fileList)}
             beforeUpload={beforeUpload}
-            onSuccess={handleSuccess}
-            onError={handleError}
             renderUploadList={(filesList, props) => {
-              return filesList.map((file) => {
-                return (
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      marginBottom: "10px",
-                      padding: "10px",
-                      border: "1px solid #e0e0e0",
-                      borderRadius: "5px",
-                    }}
-                  >
-                    <span style={{ flexGrow: 1 }}>{file.name}</span>
-                    <Button
-                      type="text"
-                      icon={<IconEye />}
-                      onClick={() => handlePreviewFile(file)}
-                      style={{ marginRight: "10px" }}
-                    />
-                    <Button
-                      type="text"
-                      icon={<IconDelete />}
-                      onClick={() => handleRemoveFile(file, props)}
-                      style={{ marginRight: "10px" }}
-                    />
-                  </div>
-                );
-              });
+              return (
+                <div style={{ maxHeight: "200px", overflow: "auto" }}>
+                  {filesList.map((file) => {
+                    return (
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          marginBottom: "10px",
+                          padding: "10px",
+                          border: "1px solid #e0e0e0",
+                          borderRadius: "5px",
+                        }}
+                      >
+                        <span style={{ flexGrow: 1 }}>{file.name}</span>
+                        {file.status === "loading" && (
+                          <span style={{ color: "orange" }}>上传中...</span>
+                        )}
+                        {file.status === "success" && (
+                          <span style={{ color: "green" }}>上传成功</span>
+                        )}
+                        {file.status === "error" && (
+                          <span style={{ color: "red" }}>上传失败</span>
+                        )}
+                        {file.status === "success" && (
+                          <Button
+                            type="text"
+                            icon={<IconEye />}
+                            onClick={() => handlePreviewFile(file)}
+                            style={{ marginRight: "10px" }}
+                          />
+                        )}
+                        <Button
+                          type="text"
+                          icon={<IconDelete />}
+                          onClick={() => handleRemoveFile(file, props)}
+                          style={{ marginRight: "10px" }}
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              );
             }}
             onDrop={(e) => {
               const uploadFile = e.dataTransfer.files[0];
@@ -196,6 +211,15 @@ const FileUploader: React.FC<FileUploaderProps> = ({}) => {
             }}
             tip="支持 doc 和 docx 两种文件上传"
           />
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              type="primary"
+              style={{ width: "80%", marginTop: 16 }}
+              onClick={handleUpload}
+            >
+              确认上传
+            </Button>
+          </div>
         </div>
       </Modal>
     </>

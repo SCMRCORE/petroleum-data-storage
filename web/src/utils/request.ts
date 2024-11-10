@@ -53,11 +53,12 @@ const request = {
     });
   },
 
-  post: (url: string, data = {}) => {
+  post: (url: string, data: any = {}, params: any = {}) => {
     return instance({
       method: "POST",
       url,
       data,
+      params,
     });
   },
 
