@@ -4,7 +4,6 @@ import com.petroleumcommom.result.PageResult;
 import com.petroleumcommom.result.Result;
 import com.petroleumpojo.dto.*;
 import com.petroleumserver.service.petroleumService;
-import com.petroleumserver.utils.AliOSSUtils;
 import com.petroleumserver.utils.MinioUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +22,6 @@ public class petroleumController {
     @Resource
     private petroleumService petroleumService;
 
-    @Resource
-    private AliOSSUtils aliOSSUtils;
 
     @Resource
     private MinioUtils minioUtils;
@@ -133,7 +130,6 @@ public class petroleumController {
 
     /**
      * 搜索WanGong
-     *
      * @return
      */
     @PostMapping("/searchWG")   //TODO 待实现搜索完工接口

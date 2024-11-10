@@ -1,4 +1,9 @@
 petroleum:
+  redis:
+    host: your-server-host
+    database: your-redis-database
+    password: your-redis-password
+    port: your-redis-port
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     host: your-database-host
@@ -10,5 +15,5 @@ minio:
   access-key: yU5bJmvaJ8WweyCK1eI6
   secret-key: pYKeZhxkuMvUlA7o2LUnEmVzWHQrmqc6WKXE77BU
   bucket-name: eraserbucket
-  endpoint:
+  endpoint:  https://play.minio.org.cn
 

@@ -8,5 +8,4 @@ import lombok.extern.slf4j.Slf4j;
 public class DataLakeSearchPageDTO {
     private Integer pageIndex;
     private Integer pageSize;
-    private DataLakeDTO jsonObj;
 }

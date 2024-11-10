@@ -6,4 +6,9 @@ petroleum:
     database: petroleum-data-storage
     username: your-database-username
     password: your-database-password
+minio:
+  access-key: yU5bJmvaJ8WweyCK1eI6
+  secret-key: pYKeZhxkuMvUlA7o2LUnEmVzWHQrmqc6WKXE77BU
+  bucket-name: eraserbucket
+  endpoint:  https://play.minio.org.cn
 

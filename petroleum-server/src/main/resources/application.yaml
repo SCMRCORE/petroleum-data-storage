@@ -7,6 +7,12 @@ spring:
       url: jdbc:mysql://${petroleum.datasource.host}:${petroleum.datasource.port}/${petroleum.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: ${petroleum.datasource.username}
       password: ${petroleum.datasource.password}
+  redis:
+    host: ${petroleum.redis.host}
+    database: ${petroleum.redis.database}
+    password: ${petroleum.redis.password}
+    port: ${petroleum.redis.port}
+
 minio:
   endpoint: ${minio.endpoint}
   access-key: ${minio.access-key}

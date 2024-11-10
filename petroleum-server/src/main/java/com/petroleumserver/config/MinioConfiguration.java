@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.annotation.Resource;
 
 @Configuration
-public class MinioConfig {
+public class MinioConfiguration {
     @Resource
     private MinioProperties minioProperties;
 

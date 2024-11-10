@@ -5,10 +5,17 @@ import com.petroleumcommom.result.PageResult;
 import com.petroleumpojo.dto.DataLakeSearchPageDTO;
 
 import java.io.IOException;
+import java.util.Map;
+import java.util.Objects;
 
 public interface dataLakeService {
 
-    String connect() throws IOException;
+    String connect() throws IOException, InterruptedException;
 
-    PageResult query(DataLakeSearchPageDTO dto);
+    /**
+     * 直接拿到json格式数据返回前端
+     * @param json
+     * @return
+     */
+    String query(String json) throws IOException, InterruptedException;
 }

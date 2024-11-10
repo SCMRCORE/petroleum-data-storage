@@ -7,14 +7,17 @@ import com.petroleumpojo.dto.DataLakeSearchPageDTO;
 import com.petroleumpojo.entity.DataLake;
 import com.petroleumpojo.vo.DataLakeVO;
 import com.petroleumserver.service.dataLakeService;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.Map;
+import java.util.Objects;
 
 @RestController
-@RequestMapping("/dataLake")
+@RequestMapping("/data")
 @Slf4j
 public class dataLakeController {
 
@@ -22,11 +25,11 @@ public class dataLakeController {
     dataLakeService dataLakeService;
 
     /**
+     * TODO: 当场线下测试数据湖连接
      * 测试连接数据湖
-     * @return
      */
     @PostMapping("/connect")
-    public Result connectTest() throws IOException {
+    public Result<Object> connectTest() throws IOException {
         String appCode = dataLakeService.connect();
         log.info("接收到appcode: {}", appCode);
         return Result.success();
@@ -34,13 +37,12 @@ public class dataLakeController {
 
     /**
      * 对数据进行查询,之后直接返回到前端查询内容
-     * @return
-     * @throws IOException
+     * 使用map接收前端的原始json格式
      */
-    @PostMapping("/query")
-    public Result<PageResult> query(@RequestBody DataLakeSearchPageDTO dto) throws IOException {
-        PageResult query = dataLakeService.query(dto);
-        return Result.success(query);
+    @PostMapping("/searchData")
+    @ApiOperation("获得数据湖数据")
+    public String  query(@RequestBody String json) throws IOException, InterruptedException {
+        log.info("数据湖请求体：{}", json);
+        return dataLakeService.query(json);
     }
-
 }
