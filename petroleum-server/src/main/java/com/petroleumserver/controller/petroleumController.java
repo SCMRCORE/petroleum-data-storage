@@ -5,6 +5,7 @@ import com.petroleumcommom.result.Result;
 import com.petroleumpojo.dto.*;
 import com.petroleumserver.service.petroleumService;
 import com.petroleumserver.utils.AliOSSUtils;
+import com.petroleumserver.utils.MinioUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,6 +25,9 @@ public class petroleumController {
 
     @Resource
     private AliOSSUtils aliOSSUtils;
+
+    @Resource
+    private MinioUtils minioUtils;
 
     @GetMapping
     public Result<String> test() {
@@ -219,7 +223,7 @@ public class petroleumController {
         log.info("上传完工报告word:{}, 内存大小:{}", word, size);
         //如果小于20MB
         if(size < 20 * 1024 * 1024){
-            String url = aliOSSUtils.upload(word);
+            String url = minioUtils.upload(word);
             if(petroleumService.addWG(url)){
                 return Result.success(url);
             }else {

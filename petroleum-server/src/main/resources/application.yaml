@@ -7,6 +7,11 @@ spring:
       url: jdbc:mysql://${petroleum.datasource.host}:${petroleum.datasource.port}/${petroleum.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: ${petroleum.datasource.username}
       password: ${petroleum.datasource.password}
+minio:
+  endpoint: ${minio.endpoint}
+  access-key: ${minio.access-key}
+  secret-key: ${minio.secret-key}
+  bucket-name: ${minio.bucket-name}
 
 mybatis:
   #mapper????
@@ -40,7 +45,6 @@ knife4j:
     description: "????????"
     email: 3551147139@qq.com
     concat: ??
-    url: https://www.itcast.cn
     version: v1.0.0
     group:
       default:
