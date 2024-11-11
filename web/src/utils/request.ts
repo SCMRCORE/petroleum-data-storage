@@ -8,7 +8,8 @@ enum PROXY_MODEL {
   VITE,
 }
 
-const serverIP = "47.108.223.152";
+// TODO: 需要修改这里
+const serverIP = "154.44.25.122";
 const proxyModel = PROXY_MODEL.VITE as unknown;
 
 const config = {
@@ -52,11 +53,12 @@ const request = {
     });
   },
 
-  post: (url: string, data = {}) => {
+  post: (url: string, data: any = {}, params: any = {}) => {
     return instance({
       method: "POST",
       url,
       data,
+      params,
     });
   },
 

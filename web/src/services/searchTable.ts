@@ -114,3 +114,16 @@ export const updateItem = async (params: ModifyParams) => {
   });
   return res;
 };
+
+/** 只支持单个上传，若要上传list，就多次调用 */
+export const uploadWordFile = async (file: File) => {
+  const formData = new FormData();
+  formData.append("word", file);
+
+  const res = await request.post("/petroleum/uploadWG", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return res;
+};

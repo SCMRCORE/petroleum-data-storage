@@ -1,6 +1,7 @@
 import { createHashRouter } from "react-router-dom";
 import DataManagement from "../pages/DataManagement/index.js";
 import DevTest from "../pages/DevTest/index.tsx";
+import DataLake from "../pages/DataLake/index.tsx";
 
 const isDebug = true;
 const extraConfig = isDebug
@@ -15,15 +16,15 @@ const extraConfig = isDebug
 
 export const routeList = [
   {
-    name: "数据管理",
+    name: "本地数据",
     path: "/",
     element: <DataManagement></DataManagement>,
   },
-  // {
-  //   name: "数据趋势",
-  //   path: "/trend",
-  //   element: <DataTrend></DataTrend>,
-  // },
+  {
+    name: "数据湖数据",
+    path: "/data-lake",
+    element: <DataLake></DataLake>,
+  },
   ...extraConfig,
 ];
 

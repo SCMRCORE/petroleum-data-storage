@@ -1,7 +1,5 @@
 import SearchTable from "./components/SearchTable/index.js";
-const DataManagement = () => {
-  // const { count, inc } = useStore();
-
+const DataLake = () => {
   return (
     <div>
       <SearchTable></SearchTable>
@@ -9,6 +7,4 @@ const DataManagement = () => {
   );
 };
 
-export default DataManagement;
-
-// monorepo
+export default DataLake;
