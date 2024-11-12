@@ -5,16 +5,16 @@ import {
 
 export enum DATA_SOURCE_TABLE {
   ALL = 0,
-  JS = 1,
-  JB,
+  JB = 1,
+  JS,
   FZ,
   ZT,
 }
 
 export const DATA_SOURCE_TABLE_TITLE_MAP = {
   ALL: "全部",
-  JS: "井身结构",
   JB: "基本信息",
+  JS: "井身结构",
   FZ: "复杂情况",
   ZT: "钻头总览",
 };
