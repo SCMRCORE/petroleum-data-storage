@@ -205,7 +205,7 @@ const getColumns = () =>
       (key) => CN_2_EN_TABLES.CASE1[key]
     );
 
-    // const extraHeaders = ["操作"];
+    const extraHeaders = [];
     const groupedTableHeaders = groupTableHeaderKeys(CN_2_EN_TABLES);
 
     const extraFormat = (str) => {
@@ -223,7 +223,7 @@ const getColumns = () =>
     const headerSet = {
       [DATA_SOURCE_TABLE[DATA_SOURCE_TABLE.ALL]]: [
         ...allTableHeaders,
-        // ...extraHeaders,
+        ...extraHeaders,
       ].map(extraFormat),
     };
     groupedTableHeaders.forEach((headers, index) => {

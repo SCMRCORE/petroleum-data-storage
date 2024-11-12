@@ -85,22 +85,27 @@ const FileUploader: React.FC<FileUploaderProps> = ({}) => {
   const handleUpload = async () => {
     console.log("文件列表", uploadedFileList);
     for (const file of uploadedFileList) {
-      file.status = "loading"; // Set status to loading
-      setUploadedFileList([...uploadedFileList]); // Update the state to trigger re-render
-      const response = await uploadWordFile(file); // Call the upload function
-      if (response.data.code === 1) {
-        file.status = "success"; // Mark as success
-        file.url = response.data.url; // Get the OSS URL
-        showAlert(`文件 ${file.name} 上传成功`, "success");
-      } else {
-        file.status = "error"; // Mark as error
-        showAlert(
-          `文件 ${file.name} 上传失败: ${response.data.message}`,
-          "error"
-        );
+      try {
+        setUploadedFileList([...uploadedFileList]); // 重新渲染状态
+        const response = await uploadWordFile(file); // Call the upload function
+        if (response?.data?.code === 1) {
+          file.status = "success"; // Mark as success
+          file.url = response.data.url; // Get the OSS URL
+          showAlert(`文件 ${file.name} 上传成功`, "success");
+        } else {
+          file.status = "error"; // Mark as error
+          showAlert(
+            `文件 ${file.name} 上传失败: ${response.data.message}`,
+            "error"
+          );
+        }
+        file.status = "loading";
+      } catch (error) {
+        file.status = "error";
+        showAlert(`文件 ${file.name} 上传失败: ${error}`, "error");
       }
     }
-    setUploadedFileList([...uploadedFileList]); // Update the state to trigger re-render
+    setUploadedFileList([...uploadedFileList]);
   };
 
   return (
@@ -125,18 +130,17 @@ const FileUploader: React.FC<FileUploaderProps> = ({}) => {
       <Button
         type="primary"
         onClick={() => setModalVisible(true)}
-        icon={<IconUpload />}
+        // icon={<IconUpload />}
+        className="w-[80%]"
       >
-        添加文档
+        上传文件
       </Button>
 
       <Modal
         title="上传文档"
         visible={modalVisible}
         onCancel={() => setModalVisible(false)}
-        footer={
-          null
-        }
+        footer={null}
         style={{ width: 600 }}
       >
         <div style={{ marginBottom: 20 }}>
@@ -178,7 +182,9 @@ const FileUploader: React.FC<FileUploaderProps> = ({}) => {
                           <span style={{ color: "green" }}>上传成功</span>
                         )}
                         {file.status === "error" && (
-                          <span style={{ color: "red" }}>上传失败</span>
+                          <span style={{ color: "red" }}>
+                            上传失败，请删除重试上传
+                          </span>
                         )}
                         {file.status === "success" && (
                           <Button

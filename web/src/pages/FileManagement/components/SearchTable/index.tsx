@@ -12,8 +12,8 @@ import {
 } from "@arco-design/web-react";
 import {
   add,
-  dataLakeSearch,
   deleteItem,
+  fileSearch,
   search,
   updateItem,
 } from "../../../../services/searchTable.ts";
@@ -32,6 +32,8 @@ import {
   DATA_SOURCE_TABLE_TITLE_MAP,
   formatCnToEn,
 } from "../../../../utils/checkDataSource.ts";
+import FileUploader from "../../../DataManagement/components/FileUploader/index.tsx";
+import WordPreviewer from "../../../DataManagement/components/WordPreviewer/index.tsx";
 // const TabPane = Tabs.TabPane;
 const pageSize = 10;
 // const displayModeList = [TableMode.CASE1];
@@ -54,9 +56,12 @@ const SearchTable = () => {
   const [uploadFileNameList, setUploadFileNameList] = useState([]);
   /** 列表数据 */
   const [dataSource, setDataSource] = useState<{
-    list: Array<any>;
     total: number;
-  }>({ list: [], total: 0 });
+    list: Array<any>;
+  }>({
+    total: 0,
+    list: [],
+  });
   /** 分页 */
   const [pageIndex, setPageIndex] = useState<number>(1);
   /** 搜索加载态 */
@@ -67,6 +72,7 @@ const SearchTable = () => {
   const [isEditing, setIsEditing] = useState(false);
   /** 编辑窗口表单的数据 */
   const [editingData, setEditingData] = useState<Partial<MixedItem>>();
+  const [activeFileUrl, setActiveFileUrl] = useState<string>("");
   /** 搜索参数 */
   // const [searchParams, setSearchParams] = useState<
   //   Record<string, string | number>
@@ -82,7 +88,7 @@ const SearchTable = () => {
     try {
       setIsSearching(true);
       const formData = form.getFieldsValue();
-      const res = await dataLakeSearch({
+      const res = await fileSearch({
         ...formData,
         pageIndex,
         pageSize,
@@ -105,65 +111,6 @@ const SearchTable = () => {
     // setSearchParams({});
     form.resetFields();
   };
-
-  /** 读取Excel，打开弹窗 */
-  // const openUploadFileModal = () => {
-  //   const input = document.createElement("input");
-  //   input.type = "file";
-  //   input.accept = ".xls,.xlsx";
-  //   input.onchange = (e) => {
-  //     const target = e.target as unknown as { files: Array<File> };
-  //     const file = target?.files?.[0];
-  //     if (file) {
-  //       const reader = new FileReader();
-  //       reader.onload = (e) => {
-  //         const bstr = e.target.result;
-  //         const wb = XLSX.read(bstr, { type: "binary" });
-  //         const newUploadFileInfoList = [];
-  //         const newUploadFileNameList = [];
-  //         wb.SheetNames?.forEach((wsName) => {
-  //           const ws = wb.Sheets[wsName];
-  //           const fileRowList = XLSX.utils.sheet_to_json(ws);
-  //           console.log("原始上传的表", fileRowList);
-
-  //           const enFileRowList = fileRowList.map((fileRow) => {
-  //             const newRow = {};
-  //             Object.keys(fileRow).forEach((key) => {
-  //               const positiveEn = formatCnToEn(key);
-  //               newRow[positiveEn] = fileRow[key];
-  //             });
-  //             return newRow;
-  //           });
-  //           console.log("翻译后的表", enFileRowList);
-
-  //           newUploadFileInfoList.push(enFileRowList);
-  //           newUploadFileNameList.push(wsName);
-  //         });
-  //         setIsModalVisible(true);
-  //         setUploadFileInfoList([...newUploadFileInfoList]);
-  //         setUploadFileNameList([...newUploadFileNameList]);
-  //       };
-  //       reader.readAsBinaryString(file);
-  //       input.remove();
-  //     }
-  //   };
-  //   input.click(); // 触发文件选择框
-  // };
-
-  // const confirmUpload = async () => {
-  //   console.log("rowList", uploadFileInfoList);
-  //   try {
-  //     const res = await add(uploadFileInfoList);
-  //     setIsModalVisible(false);
-  //     handleSearch();
-  //     console.log("rowList res", res);
-  //   } catch (err) {
-  //     Message.error(`上传失败: ${err}`);
-  //   } finally {
-  //     setUploadFileInfoList([]);
-  //     setUploadFileNameList([]);
-  //   }
-  // };
 
   const batchDelete = async () => {
     setIsDeleting(true);
@@ -188,137 +135,32 @@ const SearchTable = () => {
     setPageIndex(index);
   };
 
-  // const handleTabChange = (v) => {
-  //   // console.log(v);
-  //   setActiveTab(v);
-  // };
-
-  // const handleEditFormClose = () => {
-  //   setIsEditing(false);
-  //   editForm.resetFields();
-  //   setEditingData({});
-  // };
-  // const handleEdit = (rowData) => {
-  //   setIsEditing(true);
-  //   setEditingData(rowData);
-  //   editForm.setFieldsValue(rowData);
-  // };
-
-  // const confirmEdit = async () => {
-  //   try {
-  //     const formValue = editForm.getFieldsValue();
-  //     console.log("formValue", formValue);
-  //     await updateItem({
-  //       num: activeTab,
-  //       onlyKey: editingData.onlyKey,
-  //       rowData: formValue,
-  //     });
-  //     handleSearch();
-  //   } catch (err) {
-  //     console.error("修改失败：", err);
-  //   } finally {
-  //     setIsEditing(false);
-  //   }
-  // };
+  const handleView = (fileUrl) => {
+    setActiveFileUrl(fileUrl);
+    setIsModalVisible(true);
+  };
 
   useEffect(() => {
     handleSearch();
   }, [pageIndex]);
 
   const columnsSet = useMemo(
-    () => getColumns(),
+    () => getColumns(handleSearch, handleView),
     // handleSearch, handleEdit
     []
   );
 
   return (
     <div>
-      {/* <Modal
-        title="确认是否要上传文件"
-        visible={isModalVisible}
-        onOk={confirmUpload}
-        onCancel={() => setIsModalVisible(false)}
-        autoFocus={false}
-        focusLock={true}
+      <Modal
+        className="h-screen w-screen"
+        visible={!!activeFileUrl}
+        onCancel={() => setActiveFileUrl("")}
       >
-        <div className="overflow-y-auto max-h-[400px]">
-          {uploadFileInfoList?.map((fileRowList, index) => {
-            // TODO: 仔细一想，其实这里不能取 sample 来代表所有表的类型，每个 listItem 都需要单独判断。。。不过先这么用吧。。。
-            const sampleFileRow = fileRowList[0];
-            const keys = Object.keys(sampleFileRow);
-            const dataSourceTable = checkDataSourceTable(keys);
-            const titleKey = DATA_SOURCE_TABLE[dataSourceTable];
-            const tableTitle = DATA_SOURCE_TABLE_TITLE_MAP[titleKey];
-            const len = fileRowList?.length ?? 0;
-
-            return (
-              <div key={index} className="flex justify-between gap-2 mt-2">
-                <div className="text-clip flex-1">
-                  文件名称：{uploadFileNameList[index]}
-                </div>
-                <div>
-                  <Tag color={tableTitle ? "arcoblue" : "red"}>
-                    {tableTitle || "【表头字段不匹配】"}({len}条数据)
-                  </Tag>
-                </div>
-              </div>
-            );
-          })}
+        <div className="h-[85vh] w-full">
+          <WordPreviewer fileUrl={activeFileUrl}></WordPreviewer>
         </div>
-      </Modal> */}
-
-      {/* <Modal
-        visible={isEditing}
-        onCancel={handleEditFormClose}
-        footer={
-          <div className="flex gap-2">
-            <Button type="primary" onClick={confirmEdit}>
-              确认修改
-            </Button>
-            <Button onClick={handleEditFormClose}>取消</Button>
-          </div>
-        }
-        className="w-[800px]"
-      >
-        <Form
-          id="editForm"
-          layout="inline"
-          className="w-[700px] min-h-[300px]"
-          form={editForm}
-        >
-          {Object.keys(editingData ?? {})?.map((enKey) => {
-            const value = editingData[enKey];
-            const tableName = DATA_SOURCE_TABLE[activeTab];
-            const cnKey = EN_2_CN_TABLES[tableName][enKey];
-            // "status", "onlyKey", "num"
-            if (["status", "onlyKey", "num"].includes(enKey)) {
-              return null;
-            }
-
-            return (
-              <Form.Item
-                initialValue={value}
-                label={cnKey || enKey}
-                field={enKey}
-                key={enKey}
-              >
-                <Input />
-              </Form.Item>
-            );
-          })}
-        </Form>
-      </Modal> */}
-      {/* <Tabs
-        defaultActiveTab={`${activeTab}`}
-        onChange={handleTabChange}
-        activeTab={`${activeTab}`}
-      >
-        {displayModeList.map((item, index) => {
-          return (
-            <TabPane
-              key={`${index}`}
-              title={`${DATA_SOURCE_TABLE_TITLE_MAP[item]}`}
-            > */}
+      </Modal>
       {/* 搜索项 */}
       <Form form={form} id="searchForm" layout="vertical">
         <div className="flex w-[100%] ">
@@ -361,14 +203,7 @@ const SearchTable = () => {
             >
               清空参数
             </Button>
-            {/* <Button
-              onClick={openUploadFileModal}
-              type="secondary"
-              className="w-[80%]"
-              className="w-[80%]"
-            >
-              EXCEL导入
-            </Button> */}
+            <FileUploader onUploadSuccess={() => {}} onUploadError={() => {}} />
             {selectedRowKeys?.length > 0 && (
               <Button
                 onClick={batchDelete}
@@ -413,10 +248,6 @@ const SearchTable = () => {
           }}
         />
       </div>
-      {/* </TabPane>
-          );
-        })}
-      </Tabs> */}
     </div>
   );
 };

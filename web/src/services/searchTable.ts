@@ -23,8 +23,8 @@ export const search = async (params: SearchParams) => {
 
   const promiseList = [
     // 严格按照枚举顺序
-    request.post("/petroleum/searchJS", jsParams),
     request.post("/petroleum/searchJB", jbParams),
+    request.post("/petroleum/searchJS", jsParams),
     request.post("/petroleum/searchFZ", fzParams),
     request.post("/petroleum/searchZT", ztParams),
   ];
@@ -131,4 +131,40 @@ export const uploadWordFile = async (file) => {
   });
 
   return res;
+};
+
+/** 查询数据湖数据 */
+export const dataLakeSearch = async (props) => {
+  // const { pageIndex, pageSize, ...rest } = props;
+  // const params = {
+  //   pageIndex,
+  //   pageSize,
+  //   jsonObj: rest,
+  // };
+  // const res = await request.post("/data/searchData", params);
+  const mockRes = {
+    total: 100,
+    list: [{ SPM4: "这是MOCK的，记得替换为真实接口" }],
+  };
+  return mockRes;
+};
+
+/** 查询文件 */
+export const fileSearch = async (params) => {
+  // const res = await request.post("/data/searchFile", params);
+  // return res;
+
+  // TODO: 这是mock的异步请求，记得替换为真实请求
+  const mockRes = {
+    total: 100,
+    list: [
+      {
+        wellName: "这是mock的文件",
+        filePath:
+          "http://web-core.oss-cn-beijing.aliyuncs.com/396c2df4-e35e-47aa-a68c-cd8e994acb28.doc",
+        gmtCreate: "123",
+      },
+    ],
+  };
+  return mockRes;
 };
