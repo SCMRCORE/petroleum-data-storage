@@ -1,6 +1,6 @@
 // 文档： https://k01kbsmr7e.feishu.cn/docx/Ko7vdlx4ToqGtax4gHUcwcnRnZc
 
-import { AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import request from "../utils/request.ts";
 import {
   SearchParams,
@@ -116,14 +116,19 @@ export const updateItem = async (params: ModifyParams) => {
 };
 
 /** 只支持单个上传，若要上传list，就多次调用 */
-export const uploadWordFile = async (file: File) => {
+export const uploadWordFile = async (file) => {
   const formData = new FormData();
-  formData.append("word", file);
+  console.log("file11", file);
+  formData.append("word", file.originFile);
 
-  const res = await request.post("/petroleum/uploadWG", formData, {
+  const res = await axios({
+    method: "post",
+    url: "http://47.108.223.152:8080/petroleum/uploadWG",
     headers: {
       "Content-Type": "multipart/form-data",
     },
+    data: formData,
   });
+
   return res;
 };
