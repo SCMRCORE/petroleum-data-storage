@@ -2,7 +2,7 @@ petroleum:
   redis:
     host: 47.108.223.152
     database: 0
-    password: 123
+    password: ""
     port: 6379
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,8 +12,8 @@ petroleum:
     username: root
     password: 123
 minio:
-  access-key: CY4Ax1UI841RMJcBNzi5
-  secret-key: 2UHNTOjBvLx15Hfh8hqOu6CeRrmOMqAwcj88Zumo
-  bucket-name: earserbucket
-  endpoint: http://localhost:9000
+  access-key: PCpXHFvf0i0zM83yy8Vc
+  secret-key: 50OaRml8JxDjchHwsuCYtm7NzL5ZuLGRD0MbsrgY
+  bucket-name: eraserbucket
+  endpoint: http://47.108.223.152:9000
 

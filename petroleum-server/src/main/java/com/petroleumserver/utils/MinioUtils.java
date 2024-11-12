@@ -47,9 +47,7 @@ public class MinioUtils {
                 );
             }
             // 返回文件访问url
-            return minioProperties.getEndpoint().split("//")[0] + "//" + bucketName + "." +
-                    minioProperties.getEndpoint().split("//")[1] + "/" +
-                    objectName;
+            return minioProperties.getEndpoint() + "/" + minioProperties.getBucketName() + '/' +  objectName;
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("文件上传失败: " + e.getMessage());

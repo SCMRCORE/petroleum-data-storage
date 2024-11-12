@@ -1,0 +1,52 @@
+aliyun:
+    oss:
+        access-key-id: LTAI5tQwKPvL59H7ypHDbkr8
+        access-key-secret: 4V6R4K89px6Np3n576sewVtaioCyRk
+        bucket-name: web-core
+        endpoint: https://oss-cn-beijing.aliyuncs.com
+knife4j:
+    enable: true
+    openapi:
+        concat: ??
+        description: ????????
+        email: 3551147139@qq.com
+        group:
+            default:
+                api-rule: package
+                api-rule-resources: '[com.petroleumserver.controller]'
+                group-name: default
+        title: ????????
+        url: https://www.itcast.cn
+        version: v1.0.0
+logging:
+    level:
+        com:
+            lec:
+                controller: info
+                mapper: debug
+                service: info
+mybatis:
+    configuration:
+        map-underscore-to-camel-case: true
+    mapper-locations: classpath*:/Mapper/**/*.xml
+    type-aliases-package: com.petroleumpojo.entity
+petroleum:
+    jwt:
+        user-secret-key: petroleum
+        user-token-name: token
+        user-ttl: 72000000
+server:
+    port: 8080
+spring:
+    datasource:
+        druid:
+            driver-class-name: ${petroleum.datasource.driver-class-name}
+            password: ${petroleum.datasource.password}
+            url: jdbc:mysql://${petroleum.datasource.host}:${petroleum.datasource.port}/${petroleum.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+            username: ${petroleum.datasource.username}
+    profiles:
+        active: local
+    servlet:
+        multipart:
+            max-file-size: 30MB
+            max-request-size: 30MB
