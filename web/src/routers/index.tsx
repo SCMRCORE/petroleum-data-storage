@@ -3,6 +3,13 @@ import DataManagement from "../pages/DataManagement/index.js";
 import DevTest from "../pages/DevTest/index.tsx";
 import DataLake from "../pages/DataLake/index.tsx";
 import FileManagement from "../pages/FileManagement/index.tsx";
+import DataLake2 from "../pages/DataLake2/index.js";
+import DataLake7 from "../pages/DataLake7/index.js";
+import React from "react";
+import DataLake6 from "../pages/DataLake6/index.js";
+import DataLake5 from "../pages/DataLake5/index.js";
+import DataLake4 from "../pages/DataLake4/index.js";
+import DataLake3 from "../pages/DataLake3/index.js";
 
 const isDebug = true;
 const extraConfig = isDebug
@@ -22,9 +29,39 @@ export const routeList = [
     element: <DataManagement />,
   },
   {
-    name: "数据湖数据",
-    path: "/data-lake",
+    name: "钻井时间数据",
+    path: "/data-lake-1",
     element: <DataLake />,
+  },
+  {
+    name: "钻井深度数据",
+    path: "/data-lake-2",
+    element: <DataLake2 />,
+  },
+  {
+    name: "测绘定向井数据",
+    path: "/data-lake-3",
+    element: <DataLake3 />,
+  },
+  {
+    name: "",
+    path: "/data-lake-4",
+    element: <DataLake4 />,
+  },
+  {
+    name: "钻井时间数据表",
+    path: "/data-lake-5",
+    element: <DataLake5 />,
+  },
+  {
+    name: "钻井时间数据表",
+    path: "/data-lake-6",
+    element: <DataLake6 />,
+  },
+  {
+    name: "钻井时间数据表",
+    path: "/data-lake-7",
+    element: <DataLake7 />,
   },
   {
     name: "文件管理",

@@ -3,16 +3,12 @@ package com.petroleumserver.controller;
 import com.petroleumcommom.result.PageResult;
 import com.petroleumcommom.result.Result;
 import com.petroleumpojo.dto.*;
-import com.petroleumpojo.vo.WanGongVO;
-import com.petroleumserver.service.petroleumService;
+import com.petroleumserver.service.PetroleumService;
 import com.petroleumserver.utils.MinioUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -22,11 +18,7 @@ import java.util.Map;
 public class petroleumController {
 
     @Resource
-    private petroleumService petroleumService;
-
-
-    @Resource
-    private MinioUtils minioUtils;
+    private PetroleumService petroleumService;
 
     @GetMapping
     public Result<String> test() {
@@ -137,7 +129,7 @@ public class petroleumController {
     @PostMapping("/searchWG")   //TODO 待实现搜索完工接口
     public Result<PageResult> searchWG(@RequestBody ZuanTouSearchPageDTO ztSPDto) {
 //        log.info("执行searchZT方法:{}", ztSPDto);
-//        PageResult res = petroleumService.searchzt(ztSPDto);
+//        PageResult res = PetroleumService.searchzt(ztSPDto);
 //        return Result.success(res);
         return Result.success();
     }
@@ -210,37 +202,6 @@ public class petroleumController {
     }
 
 
-    /**
-     * 上传完工报告表(word)
-     * @param word
-     * @return
-     */
-    @PostMapping("/uploadWG")
-    public Result addWG(@RequestParam("word") MultipartFile word, @RequestParam("wellName") String wellName)
-            throws IOException {
-        log.info("完工报告word: {}, 关联井名 {}", word, wellName);
-        Long size = word.getSize();
-        log.info("上传完工报告word:{}, 内存大小:{}", word, size);
-        //如果小于20MB
-        if(size < 20 * 1024 * 1024){
-            WanGongDTO wanGongDTO = minioUtils.upload(word);
-            wanGongDTO.setWellName(wellName);
-            if(petroleumService.addWG(wanGongDTO)){
-                WanGongVO vo = new WanGongVO();
-                BeanUtils.copyProperties(vo, wanGongDTO);
-                return Result.success(vo);
-            }else {
-                return Result.error("上传失败");
-            }
-        }
-        else{
-            return Result.error("文件大小超过20MB");
-        }
-    }
-
-    /**
-     * 查看完工报告表
-     */
 
 }
 
@@ -252,7 +213,7 @@ public class petroleumController {
 // @PutMapping("/deleteJS")
 // public Result deleteJS(@RequestBody JingShenDTO jsDto){
 //// System.out.println(jsDto);
-// petroleumService.updateStatusJS(jsDto);
+// PetroleumService.updateStatusJS(jsDto);
 // return Result.success();
 // }
 //
@@ -264,7 +225,7 @@ public class petroleumController {
 // @PutMapping("/deleteJB")
 // public Result deleteJB(@RequestBody JiBenDTO jbDto){
 //// System.out.println(jbDto);
-// petroleumService.updateStatusJB(jbDto);
+// PetroleumService.updateStatusJB(jbDto);
 // return Result.success();
 // }
 //
@@ -276,7 +237,7 @@ public class petroleumController {
 // @PutMapping("/deleteFZ")
 // public Result deleteFZ(@RequestBody FuZaDTO fzDto){
 //// System.out.println(fzDto);
-// petroleumService.updateStatusFZ(fzDto);
+// PetroleumService.updateStatusFZ(fzDto);
 // return Result.success();
 // }
 //
@@ -288,7 +249,7 @@ public class petroleumController {
 // @PutMapping("/deleteZT")
 // public Result deleteZT(@RequestBody ZuanTouDTO ztDto){
 //// System.out.println(ztDto);
-// petroleumService.updateStatusZT(ztDto);
+// PetroleumService.updateStatusZT(ztDto);
 // return Result.success();
 // }
 
@@ -300,6 +261,6 @@ public class petroleumController {
 //    @PostMapping("/upload") // 表格需要处理成特定格式，我写在文档里了
 //    public Result addByExcel(MultipartFile file, String company, Integer num) throws IOException {
 //        log.info("执行upload方法");
-//        petroleumService.addByList(file, company, num);
+//        PetroleumService.addByList(file, company, num);
 //        return Result.success();
 //    }

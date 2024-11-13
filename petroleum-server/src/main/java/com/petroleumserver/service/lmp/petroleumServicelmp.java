@@ -10,12 +10,9 @@ import com.petroleumcommom.utils.JiBenTool;
 import com.petroleumcommom.utils.JinShenTool;
 import com.petroleumcommom.utils.ZuanTouTool;
 import com.petroleumpojo.dto.*;
-import com.petroleumpojo.entity.FuZa;
-import com.petroleumpojo.entity.JiBen;
-import com.petroleumpojo.entity.JingShen;
-import com.petroleumpojo.entity.ZuanTou;
+import com.petroleumpojo.entity.*;
 import com.petroleumserver.mapper.petroleumMapper;
-import com.petroleumserver.service.petroleumService;
+import com.petroleumserver.service.PetroleumService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -29,7 +26,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class petroleumServicelmp implements petroleumService {
+public class petroleumServicelmp implements PetroleumService {
 
     @Resource
     private petroleumMapper petroleumMapper;
@@ -239,6 +236,15 @@ public class petroleumServicelmp implements petroleumService {
         return new PageResult(page.getTotal(), page.getResult());
     }
 
+    @Override
+    public PageResult searchFile(WanGongSearchPageDTO dto) {
+        log.info("servicelmp:搜索完工wordfile");
+        PageHelper.startPage(dto.getPageIndex(), dto.getPageSize());
+        Page<WanGong> page = petroleumMapper.searchFile(dto);
+        log.info("搜索数量:{}", page.getTotal());
+        return new PageResult(page.getTotal(), page.getResult());
+    }
+
 
     /**
      * 软删除
@@ -262,6 +268,10 @@ public class petroleumServicelmp implements petroleumService {
         if(num==4){
             log.info("servicelmp:软删除钻头表:{}", onlyKey);
             petroleumMapper.updateStatusZT(onlyKey);
+        }
+        if (num==5) {
+            log.info("servicelmp:软删除完工报告:{}", onlyKey);
+            petroleumMapper.updateStatusWG(onlyKey);
         }
     }
 

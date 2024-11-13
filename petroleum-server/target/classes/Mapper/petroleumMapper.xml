@@ -637,8 +637,16 @@
         </where>
         order by OnlyKey desc
     </select>
+    <select id="searchFile" resultType="com.petroleumpojo.entity.WanGong">
+        select * from wangong
+        <where>
+            <if test="wellName != null and wellName != ''">
+                AND well_name LIKE '%${wellName}%'
+            </if>
+        </where>
+    </select>
 
-<!--软删除-->
+    <!--软删除-->
     <update id="updateStatusJS">
         update jingshen set status = 0 where OnlyKey = #{OnlyKey} AND status = 1
     </update>

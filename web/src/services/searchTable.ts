@@ -1,19 +1,10 @@
 // 文档： https://k01kbsmr7e.feishu.cn/docx/Ko7vdlx4ToqGtax4gHUcwcnRnZc
 
-import axios, { AxiosResponse } from "axios";
+import axios, {AxiosResponse} from "axios";
 import request from "../utils/request.ts";
-import {
-  SearchParams,
-  AddParams,
-  StatusResponse,
-  DeleteParams,
-  ModifyParams,
-} from "./types.ts";
-import {
-  checkDataSourceTable,
-  DATA_SOURCE_TABLE,
-} from "../utils/checkDataSource.ts";
-import { DEFAULT_SEARCH_PARAMS } from "../pages/DataManagement/components/SearchTable/configs.tsx";
+import {AddParams, DeleteParams, ModifyParams, SearchParams, StatusResponse,} from "./types.ts";
+import {checkDataSourceTable, DATA_SOURCE_TABLE,} from "../utils/checkDataSource.ts";
+import {DEFAULT_SEARCH_PARAMS} from "../pages/DataManagement/components/SearchTable/configs.tsx";
 
 export const search = async (params: SearchParams) => {
   const jsParams = { ...DEFAULT_SEARCH_PARAMS.JS, ...params };
@@ -116,20 +107,22 @@ export const updateItem = async (params: ModifyParams) => {
 };
 
 /** 只支持单个上传，若要上传list，就多次调用 */
-export const uploadWordFile = async (file) => {
+export const uploadWordFile = async (file, wellName) => {
+
   const formData = new FormData();
   console.log("file11", file);
   formData.append("word", file.originFile);
-
+  // 加入井名参数
+  formData.append("wellName", wellName)
   const res = await axios({
     method: "post",
-    url: "http://47.108.223.152:8080/petroleum/uploadWG",
+    // TODO 这里的请求写死，部署时记得改
+    url: "http://localhost:8080/file/uploadWG",
     headers: {
       "Content-Type": "multipart/form-data",
     },
     data: formData,
   });
-
   return res;
 };
 
@@ -151,20 +144,20 @@ export const dataLakeSearch = async (props) => {
 
 /** 查询文件 */
 export const fileSearch = async (params) => {
-  // const res = await request.post("/data/searchFile", params);
-  // return res;
+  return await request.post("/file/search", params);
+}
 
   // TODO: 这是mock的异步请求，记得替换为真实请求
-  const mockRes = {
-    total: 100,
-    list: [
-      {
-        wellName: "这是mock的文件",
-        filePath:
-          "http://web-core.oss-cn-beijing.aliyuncs.com/396c2df4-e35e-47aa-a68c-cd8e994acb28.doc",
-        gmtCreate: "123",
-      },
-    ],
-  };
-  return mockRes;
-};
+//   const mockRes = {
+//     total: 100,
+//     list: [
+//       {
+//         wellName: "这是mock的文件",
+//         fileName:
+//           "http://web-core.oss-cn-beijing.aliyuncs.com/396c2df4-e35e-47aa-a68c-cd8e994acb28.doc",
+//         uploadTime: "123",
+//       },
+//     ],
+//   };
+//   return mockRes;
+// };

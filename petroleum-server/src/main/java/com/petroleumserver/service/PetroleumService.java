@@ -7,11 +7,12 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 
-public interface petroleumService {
+public interface PetroleumService {
     PageResult searchjs(JingShenSearchPageDTO jsSPDto);
     PageResult searchjb(JiBenSearchPageDTO jbSPDto);
     PageResult searchfz(FuZaSearchPageDTO fzSPDto);
     PageResult searchzt(ZuanTouSearchPageDTO ztSPDto);
+    PageResult searchFile(WanGongSearchPageDTO dto);
 
 
     void addByList(MultipartFile file, String company, Integer num) throws IOException;
@@ -38,4 +39,5 @@ public interface petroleumService {
     void updateZT(Integer onlyKey, ZuanTouDTO ztDto);
 
     boolean addWG(WanGongDTO dto);
+
 }

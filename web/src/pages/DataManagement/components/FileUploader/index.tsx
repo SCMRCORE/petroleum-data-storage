@@ -87,7 +87,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({}) => {
     for (const file of uploadedFileList) {
       try {
         setUploadedFileList([...uploadedFileList]); // 重新渲染状态
-        const response = await uploadWordFile(file); // Call the upload function
+        const response = await uploadWordFile(file, wellName); // Call the upload function
         if (response?.data?.code === 1) {
           file.status = "success"; // Mark as success
           file.url = response.data.url; // Get the OSS URL

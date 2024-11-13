@@ -15,4 +15,5 @@ public class WanGongDTO {
     private String url;
     private String fileName;
     private String uploadTime;
+    private Integer status;
 }

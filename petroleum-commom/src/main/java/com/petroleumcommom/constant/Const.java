@@ -29,8 +29,8 @@ public final class Const {
     public final static String FORUM_TOPIC_COMMENT_COUNTER = "topic:comment:";
     public final static String FORUM_TOPIC_PREVIEW_CACHE = "topic:preview:";
 
-    public final static String DATALAKE_GET_APPCODE_URL = "http://10.77.78.223/apigateway/appauth/getappid?appName=DApi&appId=880CADF172A\n" +
-            "C4ABD8864440804EE216F&timeStamp=17301925";
+    public final static String DATALAKE_GET_APPCODE_URL = "http://10.77.78.223/apigateway/appauth/getappid";
+
     public final static String DATALAKE_GET_DATA_URL = "https://10.77.78.223/apigateway/K0501020901001/sjjcxfw_5015";
     public final static String REDIS_KEY_APPCODE = "appcode";
 }

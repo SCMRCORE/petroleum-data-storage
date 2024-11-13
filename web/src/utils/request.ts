@@ -9,7 +9,7 @@ enum PROXY_MODEL {
 }
 
 // TODO: 需要修改这里
-const serverIP = "47.108.223.152";
+const serverIP = "localhost";
 const proxyModel = PROXY_MODEL.VITE as unknown;
 
 const config = {

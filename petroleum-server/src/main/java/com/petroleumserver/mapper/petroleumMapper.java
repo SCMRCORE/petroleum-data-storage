@@ -2,10 +2,7 @@ package com.petroleumserver.mapper;
 
 import com.github.pagehelper.Page;
 import com.petroleumpojo.dto.*;
-import com.petroleumpojo.entity.FuZa;
-import com.petroleumpojo.entity.JiBen;
-import com.petroleumpojo.entity.JingShen;
-import com.petroleumpojo.entity.ZuanTou;
+import com.petroleumpojo.entity.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -23,6 +20,8 @@ public interface petroleumMapper {
 
     Page<JiBen> searchjb(JiBenSearchPageDTO jiBenSearchPageDTO);
     Page<JingShen> searchjs(JingShenSearchPageDTO jingShenSearchPageDTO);
+
+    Page<WanGong> searchFile(WanGongSearchPageDTO dto);
 
     Page<FuZa> searchfz(FuZaSearchPageDTO fuZaSearchPageDTO);
 
@@ -44,6 +43,8 @@ public interface petroleumMapper {
 
     void updateStatusZT(Integer OnlyKey);
 
+    void updateStatusWG(Integer onlyKey);
+
 
     void updateJS(JingShenDTO jsDto);
 
@@ -54,4 +55,5 @@ public interface petroleumMapper {
     void updateZT(ZuanTouDTO ztDto);
 
     boolean addWG(WanGongDTO dto);
+
 }

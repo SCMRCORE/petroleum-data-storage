@@ -15,8 +15,8 @@ export enum TableMode {
 const CN_2_EN_TABLES = {
   CASE1: {
     井名: "wellName",
-    文件: "filePath",
-    上传时间: "gmtCreate",
+    文件: "fileName",
+    上传时间: "uploadTime",
   },
 };
 
@@ -48,6 +48,7 @@ console.log("en2cn", EN_2_CN_MIXED);
 // 每个二级数组代表一排，比如第0个二级数组代表第1排，第1个代表第2排...
 export const formConfigList = [
   [
+      // 这个文件名的搜索，就只需要使用井名搜索
     // { label: "井基本类型", field: "primaryWellType", defaultValue: "" },
     { label: "井名", field: "wellName", defaultValue: "" },
     // { label: "井类型", field: "wellType", defaultValue: "" },
@@ -65,15 +66,15 @@ const getColumns = (
     //
     const handleDeleteItem = async (params: DeleteParams) => {
       // TODO: 还要写一个删除接口, 删除之后用handleSearch刷新
-      // const res = await deleteItem(params);
-      // console.log("res", res);
-      // if (res?.data?.code === 1) {
-      //   Message.info("删除成功");
-      //   console.log("删除成功");
-      //   handleSearch();
-      // } else {
-      //   Message.info("删除失败");
-      // }
+      const res = await deleteItem(params);
+      console.log("res", res);
+      if (res?.data?.code === 1) {
+        Message.info("删除成功");
+        console.log("删除成功");
+        handleSearch();
+      } else {
+        Message.info("删除失败");
+      }
     };
 
     const columnMapper = {

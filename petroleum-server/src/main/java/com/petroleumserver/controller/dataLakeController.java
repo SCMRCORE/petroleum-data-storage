@@ -1,20 +1,13 @@
 package com.petroleumserver.controller;
 
-import com.petroleumcommom.result.PageResult;
 import com.petroleumcommom.result.Result;
-import com.petroleumpojo.dto.DataLakeDTO;
-import com.petroleumpojo.dto.DataLakeSearchPageDTO;
-import com.petroleumpojo.entity.DataLake;
-import com.petroleumpojo.vo.DataLakeVO;
-import com.petroleumserver.service.dataLakeService;
+import com.petroleumserver.service.DataLakeService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.Map;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/data")
@@ -22,7 +15,7 @@ import java.util.Objects;
 public class dataLakeController {
 
     @Resource
-    dataLakeService dataLakeService;
+    DataLakeService dataLakeService;
 
     /**
      * TODO: 当场线下测试数据湖连接
@@ -30,6 +23,7 @@ public class dataLakeController {
      */
     @PostMapping("/connect")
     public Result<Object> connectTest() throws IOException, InterruptedException {
+        log.info("开始测测试连接数据湖");
         String appCode = dataLakeService.connect();
         log.info("接收到appcode: {}", appCode);
         return Result.success();
