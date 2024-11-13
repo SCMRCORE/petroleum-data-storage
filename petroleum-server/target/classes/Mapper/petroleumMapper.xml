@@ -256,7 +256,7 @@
         </foreach>
     </insert>
     <insert id="addWG">
-        insert into wangong (wordurl) values (#{wordurl})
+        insert into wangong (url, file_name, well_name, upload_time) values (#{url}, #{fileName}, #{wellName}, #{uploadTime})
     </insert>
 
 

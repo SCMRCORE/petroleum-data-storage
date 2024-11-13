@@ -1,8 +1,10 @@
 package com.petroleumserver.utils;
 
+import cn.hutool.core.date.DateTime;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.petroleumcommom.properties.MinioProperties;
+import com.petroleumpojo.dto.WanGongDTO;
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.UUID;
@@ -27,7 +30,7 @@ public class MinioUtils {
      * 上传word文件
      * @param file
      */
-    public String upload(MultipartFile file) throws IOException {
+    public WanGongDTO upload(MultipartFile file) throws IOException {
         String bucketName = minioProperties.getBucketName();
         try {
             // 检查桶是否存在（如果不存在可以选择创建）
@@ -47,7 +50,15 @@ public class MinioUtils {
                 );
             }
             // 返回文件访问url
-            return minioProperties.getEndpoint() + "/" + minioProperties.getBucketName() + '/' +  objectName;
+            String url =  minioProperties.getEndpoint() + "/" + minioProperties.getBucketName() + '/' +  objectName;
+            String fileName = file.getOriginalFilename();
+            String uploadTIme = DateTime.now().toString("yyyyMMddHHmmss");
+            return WanGongDTO.builder()
+                    .fileName(fileName)
+                    .url(url)
+                    .uploadTime(uploadTIme)
+                    .build();
+
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("文件上传失败: " + e.getMessage());

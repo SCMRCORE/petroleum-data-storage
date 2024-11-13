@@ -11,4 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class WanGongDTO {
     private Integer OnlyKey;
+    private String WellName;
+    private String url;
+    private String fileName;
+    private String uploadTime;
 }

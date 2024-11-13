@@ -294,13 +294,12 @@ public class petroleumServicelmp implements petroleumService {
     }
 
     @Override
-    public boolean addWG(String url) {
-        log.info("servicelmp:添加完工报告url:{}", url);
-        return petroleumMapper.addWG(url);
+    public boolean addWG(WanGongDTO dto) {
+        log.info("上传数据库完工报告对象： {}", dto);
+        return petroleumMapper.addWG(dto);
     }
 }
 
-//    /**
 //     * 软删除js
 //     * @param jsDto
 //     */

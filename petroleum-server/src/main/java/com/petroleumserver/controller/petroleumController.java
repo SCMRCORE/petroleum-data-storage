@@ -3,9 +3,11 @@ package com.petroleumserver.controller;
 import com.petroleumcommom.result.PageResult;
 import com.petroleumcommom.result.Result;
 import com.petroleumpojo.dto.*;
+import com.petroleumpojo.vo.WanGongVO;
 import com.petroleumserver.service.petroleumService;
 import com.petroleumserver.utils.MinioUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -221,9 +223,12 @@ public class petroleumController {
         log.info("上传完工报告word:{}, 内存大小:{}", word, size);
         //如果小于20MB
         if(size < 20 * 1024 * 1024){
-            String url = minioUtils.upload(word);
-            if(petroleumService.addWG(url)){
-                return Result.success(url);
+            WanGongDTO wanGongDTO = minioUtils.upload(word);
+            wanGongDTO.setWellName(wellName);
+            if(petroleumService.addWG(wanGongDTO)){
+                WanGongVO vo = new WanGongVO();
+                BeanUtils.copyProperties(vo, wanGongDTO);
+                return Result.success(vo);
             }else {
                 return Result.error("上传失败");
             }
@@ -232,6 +237,10 @@ public class petroleumController {
             return Result.error("文件大小超过20MB");
         }
     }
+
+    /**
+     * 查看完工报告表
+     */
 
 }
 

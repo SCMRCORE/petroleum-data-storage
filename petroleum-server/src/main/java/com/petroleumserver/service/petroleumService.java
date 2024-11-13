@@ -37,5 +37,5 @@ public interface petroleumService {
 
     void updateZT(Integer onlyKey, ZuanTouDTO ztDto);
 
-    boolean addWG(String url);
+    boolean addWG(WanGongDTO dto);
 }
