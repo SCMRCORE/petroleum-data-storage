@@ -214,8 +214,9 @@ public class petroleumController {
      * @return
      */
     @PostMapping("/uploadWG")
-    public Result addWG(MultipartFile word) throws IOException {
-        log.info("完工报告word: {}", word);
+    public Result addWG(@RequestParam("word") MultipartFile word, @RequestParam("wellName") String wellName)
+            throws IOException {
+        log.info("完工报告word: {}, 关联井名 {}", word, wellName);
         Long size = word.getSize();
         log.info("上传完工报告word:{}, 内存大小:{}", word, size);
         //如果小于20MB
