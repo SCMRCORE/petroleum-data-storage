@@ -36,6 +36,11 @@ const CN_2_EN_TABLES = {
     "作业者": "Operator",
     "自营/合作": "Is_Cooperation",
     // TODO: 加入4.8 剩余字段
+    "开钻时间": "Spud_Time",
+    "完钻时间": "finish_Drill_Time",
+    "钻井完成时间": "complete_Drill_Time",
+    "主要目的地层": "Main_Form_action",
+    "井控事件次数": "Well_Control"
 
   },
 };
