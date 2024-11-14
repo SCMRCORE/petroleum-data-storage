@@ -8,7 +8,7 @@ const DevTest = () => {
       <div style={{ width: "100%", height: "600px" }}>
         <WordPreviewer
           fileUrl={
-            "http://web-core.oss-cn-beijing.aliyuncs.com/396c2df4-e35e-47aa-a68c-cd8e994acb28.doc"
+            "https://web-core.oss-cn-beijing.aliyuncs.com/396c2df4-e35e-47aa-a68c-cd8e994acb28.doc"
           }
         />
       </div>

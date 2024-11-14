@@ -15,8 +15,7 @@ export enum TableMode {
 const CN_2_EN_TABLES = {
   // 测斜数据表
   CASE1: {
-    // TODO 更改京表示
-    "井名（井标识）": "Well_ID",
+    "井名": "Well_Name_Drill",
     "测深": "Survey_MD",
     "垂深": "TVD",
     "井斜": "Incl",
@@ -62,9 +61,7 @@ console.log("en2cn", EN_2_CN_MIXED);
 // 每个二级数组代表一排，比如第0个二级数组代表第1排，第1个代表第2排...
 export const formConfigList = [
   [
-    // { label: "井基本类型", field: "primaryWellType", defaultValue: "" },
-    { label: "井名", field: "wellName", defaultValue: "" },
-    // { label: "井类型", field: "wellType", defaultValue: "" },
+    { label: "井名", field: "Well_Name_Drill", defaultValue: "" },
   ],
   [],
 ];

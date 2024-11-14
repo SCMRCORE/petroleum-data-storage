@@ -15,7 +15,7 @@ export enum TableMode {
 const CN_2_EN_TABLES = {
   // 钻井深度表
   CASE1: {
-    "井名（油井标识）": "WID",
+    "井名": "Well_Name_Drill",
     "测量井深": "DMEA",
     "垂直井深": "DVER",
     "钻井液总池体积": "TVA",
@@ -64,11 +64,8 @@ console.log("en2cn", EN_2_CN_MIXED);
 // 每个二级数组代表一排，比如第0个二级数组代表第1排，第1个代表第2排...
 export const formConfigList = [
   [
-    // { label: "井基本类型", field: "primaryWellType", defaultValue: "" },
-    { label: "井名", field: "wellName", defaultValue: "" },
-      // 使用字段名
+    { label: "井名", field: "Well_Name_Drill", defaultValue: "" },
     { label: "测量井深度", field: "DMEA", defaultValue: "" },
-    // { label: "井类型", field: "wellType", defaultValue: "" },
   ],
   [],
 ];

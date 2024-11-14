@@ -15,7 +15,7 @@ export enum TableMode {
 const CN_2_EN_TABLES = {
   // 钻井液性能表
   CASE1: {
-    "井名（井标识）": "Well_ID",
+    "井名": "Well_Name_Drill",
     "井深": "Depth",
     "3转读数": "value_3rpm",
     "6转读数": "Vis6rpm",
@@ -69,9 +69,7 @@ console.log("en2cn", EN_2_CN_MIXED);
 // 每个二级数组代表一排，比如第0个二级数组代表第1排，第1个代表第2排...
 export const formConfigList = [
   [
-    // { label: "井基本类型", field: "primaryWellType", defaultValue: "" },
-    { label: "井名", field: "wellName", defaultValue: "" },
-    // { label: "井类型", field: "wellType", defaultValue: "" },
+    { label: "井名", field: "Well_Name_Drill", defaultValue: "" },
   ],
   [],
 ];

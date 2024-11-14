@@ -83,6 +83,8 @@ const SearchTable = () => {
       setIsSearching(true);
       const formData = form.getFieldsValue();
       const res = await dataLakeSearch({
+        // 传入接口index
+        index: 6,
         ...formData,
         pageIndex,
         pageSize,

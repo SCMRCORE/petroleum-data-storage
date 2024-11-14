@@ -130,21 +130,31 @@ export const uploadWordFile = async (file, wellName) => {
 export const dataLakeSearch = async (props) => {
   const {index,  pageIndex, pageSize, ...rest } = props;
   const params = {
+    index,
     pageIndex,
     pageSize,
     jsonObj: rest,
   };
   const res = await request.post("/data/searchData?index=" + index, params);
-  const mockRes = {
-    total: 100,
-    list: [{ SPM4: "这是MOCK的，记得替换为真实接口" }],
-  };
-  return mockRes;
+  return {
+      total: res.data.data.total,
+      list: res.data.data.data
+  }
+  //
+  // const mockRes = {
+  //   total: 100,
+  //   list: [{ SPM4: "这是MOCK的，记得替换为真实接口" }],
+  // };
+  // return mockRes;
 };
 
 /** 查询文件 */
 export const fileSearch = async (params) => {
-  return await request.post("/file/search", params);
+  const res =  await request.post("/file/search", params);
+  return {
+    total: res.data.data.total,
+    list: res.data.data.records
+  }
 }
 
   // TODO: 这是mock的异步请求，记得替换为真实请求

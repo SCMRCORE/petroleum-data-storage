@@ -61,7 +61,7 @@ console.log("en2cn", EN_2_CN_MIXED);
 export const formConfigList = [
   [
     // { label: "井基本类型", field: "primaryWellType", defaultValue: "" },
-    { label: "井名", field: "wellName", defaultValue: "" },
+    { label: "井名", field: "Well_Name_Drill", defaultValue: "" },
     // { label: "井类型", field: "wellType", defaultValue: "" },
   ],
   [],
