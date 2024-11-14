@@ -1,39 +1,34 @@
-import {Menu} from "@arco-design/web-react";
-import routerList, {routeList} from "../../routers/index.js";
-import {useState} from "react";
+import { Menu, Tag } from "@arco-design/web-react";
+import { routeList } from "../../routers/index.js";
+import { useState } from "react";
 const MenuItem = Menu.Item;
 
 const DataLakes = () => {
-    const [index, setIndex] = useState(0)
-    const myNavigate = (id) => {
-        // location.hash = routerList[1].path + item.path;
-        setIndex(id)
-    };
+  const [index, setIndex] = useState(0);
+  const myNavigate = (id) => {
+    setIndex(id);
+  };
 
-    return (
-        <div>
-            <Menu className="flex h-full shrink-0 bg-gray-200">
-                {routeList[1].childrenList.map((item, id) => (
-                    <div >
-                        <MenuItem
-                            key={item.path}
-                            className="flex items-center"
-                            onClick={() => {
-                                myNavigate(id);
-                            }}
-                        >
-                            {item.name}
-                        </MenuItem>
-                        {
-                            index === id ? <div>
-                                {item.element}
-                            </div> : null
-                        }
-                    </div>
-                ))}
-            </Menu>
-        </div>
-    );
+  return (
+    <div>
+      <div className="flex gap-1 cursor-pointer ">
+        {routeList[1].childrenList.map((item, id) => (
+          <Tag
+            style={id === index ? { background: "skyblue" } : null}
+            key={item.path}
+            size="large"
+            // className="w-[200px]"
+            onClick={() => {
+              myNavigate(id);
+            }}
+          >
+            {item.name}
+          </Tag>
+        ))}
+      </div>
+      <div className="mt-4">{routeList[1].childrenList[index].element}</div>
+    </div>
+  );
 };
 
-export default DataLakes
+export default DataLakes;
