@@ -128,13 +128,13 @@ export const uploadWordFile = async (file, wellName) => {
 
 /** 查询数据湖数据 */
 export const dataLakeSearch = async (props) => {
-  // const { pageIndex, pageSize, ...rest } = props;
-  // const params = {
-  //   pageIndex,
-  //   pageSize,
-  //   jsonObj: rest,
-  // };
-  // const res = await request.post("/data/searchData", params);
+  const {index,  pageIndex, pageSize, ...rest } = props;
+  const params = {
+    pageIndex,
+    pageSize,
+    jsonObj: rest,
+  };
+  const res = await request.post("/data/searchData?index=" + index, params);
   const mockRes = {
     total: 100,
     list: [{ SPM4: "这是MOCK的，记得替换为真实接口" }],

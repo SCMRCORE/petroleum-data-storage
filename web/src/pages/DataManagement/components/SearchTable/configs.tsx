@@ -366,9 +366,9 @@ const getColumns = (
   };
   groupedTableHeaders.forEach((headers, index) => {
     const key = DATA_SOURCE_TABLE[index];
-    if (Array.isArray(headers)) {
-      headerSet[key] = [...headers, ...extraHeaders].map(extraFormat);
-    }
+      headerSet[key] = [...headers, ...extraHeaders].map(extraFormat);    if (Array.isArray(headers)) {
+
+      }
   });
 
   console.log("headerSet", headerSet);

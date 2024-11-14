@@ -83,6 +83,7 @@ const SearchTable = () => {
       setIsSearching(true);
       const formData = form.getFieldsValue();
       const res = await dataLakeSearch({
+        index: 1,
         ...formData,
         pageIndex,
         pageSize,

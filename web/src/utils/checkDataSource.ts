@@ -9,6 +9,7 @@ export enum DATA_SOURCE_TABLE {
   JS,
   FZ,
   ZT,
+  TABLE1,
 }
 
 export const DATA_SOURCE_TABLE_TITLE_MAP = {
@@ -17,6 +18,7 @@ export const DATA_SOURCE_TABLE_TITLE_MAP = {
   JS: "井身结构",
   FZ: "复杂情况",
   ZT: "钻头总览",
+  TABLE1: "基本信息",
 };
 
 /** 根据是否包含某些特定字段来判别是哪张表的神奇函数 */
