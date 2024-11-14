@@ -58,8 +58,8 @@ export const formConfigList = [
 
 /** 用于单独配置有些特别的字段的样式、交互 */
 const getColumns = (
-  handleSearch: () => void,
-  handleView: (fileUrl: string) => void
+  handleSearch: () => void
+  // handleDonw: (fileUrl: string) => void
 ) =>
   // handleEdit: (v: Partial<MixedItem>) => void
   {
@@ -75,6 +75,10 @@ const getColumns = (
       } else {
         Message.info("删除失败");
       }
+    };
+
+    const handleDownload = (url) => {
+      window.open(url);
     };
 
     const columnMapper = {
@@ -99,9 +103,9 @@ const getColumns = (
               <Button
                 size="mini"
                 type="primary"
-                onClick={() => handleView(row.filePath)}
+                onClick={() => handleDownload(row.filePath)}
               >
-                查看
+                下载
               </Button>
               <Popconfirm
                 focusLock
