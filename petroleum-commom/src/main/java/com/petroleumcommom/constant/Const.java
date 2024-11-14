@@ -29,7 +29,6 @@ public final class Const {
     public final static String FORUM_TOPIC_COMMENT_COUNTER = "topic:comment:";
     public final static String FORUM_TOPIC_PREVIEW_CACHE = "topic:preview:";
 
-
     // 获取appCode值
     public final static String DATALAKE_GET_APPCODE_URL = "http://datalake.cnooc/apigateway/appauth/getappid";
     // 基本信息表
@@ -49,11 +48,27 @@ public final class Const {
     public final static String REDIS_KEY_APPCODE = "appcode";
 
     // 各个表对应的apiToken
-    public final static String DATALAKE_APITOKEN_1 = ""
-    public final static String DATALAKE_APITOKEN_2 = ""
-    public final static String DATALAKE_APITOKEN_3 = ""
-    public final static String DATALAKE_APITOKEN_4 = ""
-    public final static String DATALAKE_APITOKEN_5 = ""
-    public final static String DATALAKE_APITOKEN_6 = ""
-    public final static String DATALAKE_APITOKEN_7 = ""
+    public final static String DATALAKE_APITOKEN_1 = "";
+    public final static String DATALAKE_APITOKEN_2 = "";
+    public final static String DATALAKE_APITOKEN_3 = "";
+    public final static String DATALAKE_APITOKEN_4 = "";
+    public final static String DATALAKE_APITOKEN_5 = "";
+    public final static String DATALAKE_APITOKEN_6 = "";
+    public final static String DATALAKE_APITOKEN_7 = "";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
