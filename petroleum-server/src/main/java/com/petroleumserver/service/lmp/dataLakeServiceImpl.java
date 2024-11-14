@@ -23,7 +23,6 @@ public class dataLakeServiceImpl implements DataLakeService {
 
     @Resource
     private RedisTemplate<String, String> redisTemplate;
-
     public String getAppCode(HashMap<String, String> params) throws InterruptedException {
         // TODO 这里是因为公司网络的代理问题，无法连接到服务器的数据库和redis
         // 1. 如果当前存有appcode直接取出
@@ -31,6 +30,7 @@ public class dataLakeServiceImpl implements DataLakeService {
 //           return (String) redisTemplate.opsForValue().get(Const.REDIS_KEY_APPCODE);
 //        }
         // 2.没有则重新获取并且刷新缓存，设置redis过期时间为一个半小时（留一点余地）
+        //appcode为
         String appCode = "";
         while (appCode.isEmpty()) {
             try {
