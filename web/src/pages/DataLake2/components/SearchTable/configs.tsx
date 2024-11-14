@@ -15,6 +15,7 @@ export enum TableMode {
 const CN_2_EN_TABLES = {
   // 测斜数据表
   CASE1: {
+    // TODO 更改京表示
     "井名（井标识）": "Well_ID",
     "测深": "Survey_MD",
     "垂深": "TVD",

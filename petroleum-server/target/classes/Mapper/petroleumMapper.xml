@@ -659,6 +659,9 @@
     <update id="updateStatusZT">
         update zuantou set status = 0 where OnlyKey = #{OnlyKey} AND status = 1
     </update>
+    <update id="updateStatusWG">
+        update wangong set status = 0 where OnlyKey = #{OnlyKey} AND status = 1
+    </update>
 
 <!--更新-->
     <update id="updateJS" parameterType="com.petroleumpojo.dto.JingShenDTO">

@@ -24,19 +24,22 @@ const CN_2_EN_TABLES = {
     "风险井类别": "risk_class",
     "设计井深": "Depth_Design",
     "设计垂深": "Tvd_Design",
+    "开钻时间": "Spud_Time",
+    "完钻时间": "finish_Drill_Time",
+    "钻井完成时间": "complete_Drill_Time",
     "区域构造位置": "Location",
     "地面海拔": "ground_elv",
     "水深": "water_depth",
     "初始补心海拔": "Orig_Elv_KB",
     "当前补心海拔": "Recent_Elv_KB",
     "槽口号": "Slot",
+    "主要目的地层": "Main_Form_action",
+    "井控事件次数": "Well_Control",
     "钻完井专业井名": "Well_Name_Drill",
     "所属分公司": "branch_id",
     "承包商": "Contrator",
     "作业者": "Operator",
     "自营/合作": "Is_Cooperation",
-    // TODO: 加入4.8 剩余字段
-
   },
 };
 

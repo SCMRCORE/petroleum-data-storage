@@ -11,5 +11,5 @@ public interface DataLakeService {
      * @param json
      * @return
      */
-    String query(String json) throws IOException, InterruptedException;
+    String query(String json, Integer index) throws IOException, InterruptedException;
 }

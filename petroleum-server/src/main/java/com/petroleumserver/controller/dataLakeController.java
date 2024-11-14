@@ -35,8 +35,8 @@ public class dataLakeController {
      */
     @PostMapping("/searchData")
     @ApiOperation("获得数据湖数据")
-    public String  query(@RequestBody String json) throws IOException, InterruptedException {
-        log.info("数据湖请求体：{}", json);
-        return dataLakeService.query(json);
+    public String  query(@RequestBody String json, @RequestParam Integer index ) throws IOException, InterruptedException {
+        log.info("数据湖，请求表：{}, 数据湖请求体：{}", index, json);
+        return dataLakeService.query(json, index);
     }
 }

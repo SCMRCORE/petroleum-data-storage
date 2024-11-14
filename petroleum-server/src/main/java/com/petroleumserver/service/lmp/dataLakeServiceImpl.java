@@ -22,6 +22,9 @@ import java.util.HashMap;
 public class dataLakeServiceImpl implements DataLakeService {
 
     @Resource
+    private HashMap<Integer, String> dataLakeMap;
+
+    @Resource
     private RedisTemplate<String, String> redisTemplate;
 
     public String getAppCode(HashMap<String, String> params) throws InterruptedException {
@@ -75,28 +78,31 @@ public class dataLakeServiceImpl implements DataLakeService {
         return appCode;
     }
 
+
     @Override
-    public String query(String json) throws IOException, InterruptedException {
+    public String query(String json, Integer index) throws IOException, InterruptedException {
+        // index 判断是哪一张表
         // 直接使用原始的json向服务器发送请求
-        return fetchData(json);
+        return fetchData(index, json);
     }
 
     /**
      * 直接获得token等头信息，将请求得到的数据封装后返回
      */
-    public String fetchData(String frontEndJson) throws IOException, InterruptedException {
-        // TODO: apiToken 和 token都等待获取
+    public String fetchData(Integer index, String frontEndJson) throws IOException, InterruptedException {
         String token = getToken();
-        String appCode = connect();
+//        String appCode = connect();
         String apiToken = "";
         // 创建HttpClient
         CloseableHttpClient httpClient = HttpClients.createDefault();
         // 创建Post请求
-        HttpPost postRequest = new HttpPost(Const.DATALAKE_GET_APPCODE_URL);
-
+        log.info("当前表的url {}", dataLakeMap.get(index));
+        HttpPost postRequest = new HttpPost(dataLakeMap.get(index));
+        log.info("创建请求数据湖数据请求成功..... {}", postRequest.toString());
         // 设置请求头
         postRequest.setHeader("token", token);
-        postRequest.setHeader("appCode", appCode);
+        // TODO appcode暂时为空
+        postRequest.setHeader("appCode", "");
         postRequest.setHeader("apiToken", apiToken);
         postRequest.setHeader("Content-Type", "application/json");
 
