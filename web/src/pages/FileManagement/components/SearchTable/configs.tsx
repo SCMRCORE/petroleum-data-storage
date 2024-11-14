@@ -15,7 +15,7 @@ export enum TableMode {
 const CN_2_EN_TABLES = {
   CASE1: {
     井名: "wellName",
-    文件: "fileName",
+    文件: "path",
     上传时间: "uploadTime",
   },
 };
@@ -48,7 +48,7 @@ console.log("en2cn", EN_2_CN_MIXED);
 // 每个二级数组代表一排，比如第0个二级数组代表第1排，第1个代表第2排...
 export const formConfigList = [
   [
-      // 这个文件名的搜索，就只需要使用井名搜索
+    // 这个文件名的搜索，就只需要使用井名搜索
     // { label: "井基本类型", field: "primaryWellType", defaultValue: "" },
     { label: "井名", field: "wellName", defaultValue: "" },
     // { label: "井类型", field: "wellType", defaultValue: "" },

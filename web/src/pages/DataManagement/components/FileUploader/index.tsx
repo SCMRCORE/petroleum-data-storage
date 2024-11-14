@@ -183,7 +183,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({}) => {
                         )}
                         {file.status === "error" && (
                           <span style={{ color: "red" }}>
-                            上传失败，请删除重试上传
+                            上传失败,请删除重试上传
                           </span>
                         )}
                         {file.status === "success" && (
