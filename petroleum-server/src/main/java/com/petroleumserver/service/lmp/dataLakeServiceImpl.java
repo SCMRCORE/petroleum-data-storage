@@ -1,24 +1,25 @@
 package com.petroleumserver.service.lmp;
 
-import cn.hutool.json.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petroleumcommom.constant.Const;
 import com.petroleumcommom.utils.*;
 import com.petroleumserver.service.DataLakeService;
 import lombok.extern.slf4j.Slf4j;
-import net.sf.jsqlparser.statement.select.KSQLWindow;
+import org.apache.http.HttpHeaders;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.codehaus.jettison.json.JSONObject;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -53,7 +54,7 @@ public class dataLakeServiceImpl implements DataLakeService {
                     log.info("重新获取appcode...");
                     continue;
                 }
-                appCode = object.getStr("data");
+//                appCode = object.getStr("data");
                 log.info("获取appCode成功！ {}", appCode);
                 redisTemplate.opsForValue().set(Const.REDIS_KEY_APPCODE, appCode, 90, TimeUnit.MINUTES);
 //                return appCode;
@@ -88,16 +89,16 @@ public class dataLakeServiceImpl implements DataLakeService {
 
 
     @Override
-    public String query(String json, Integer index) throws IOException, InterruptedException {
+    public ResponseEntity<String> query(String json, Integer index) throws IOException, InterruptedException {
         // index 判断是哪一张表
         // 优化：使用redis对相同的请求 进行缓存
 //        String res = getDataFromRedis(json, index);
         String res = null;
-        if(res != null) { // 判断redis中是否存在数据
-            return res;
-        } else {
+//        if(res != null) { // 判断redis中是否存在数据
+//            return res;
+//        } else {
             return fetchData(index, json);
-        }
+//        }
     }
 
 
@@ -110,7 +111,7 @@ public class dataLakeServiceImpl implements DataLakeService {
     /**
      * 直接获得token等头信息，将请求得到的数据封装后返回
      */
-    public String fetchData(Integer index, String frontEndJson) throws IOException, InterruptedException {
+    public ResponseEntity<String> fetchData(Integer index, String frontEndJson) throws IOException, InterruptedException {
         ObjectMapper mapper = new ObjectMapper();
         String redisKey = index + "_" + frontEndJson; // 封装redis键
         String token = getToken();
@@ -135,12 +136,29 @@ public class dataLakeServiceImpl implements DataLakeService {
 //        postRequest.setHeader("Host", "datalake.cnooc");
         // 执行请求
         try (CloseableHttpResponse response = httpClient.execute(postRequest)) {
-            log.info("响应状态码: {}" , response.getStatusLine().getStatusCode());
-            log.info("响应内容: {}",   response.getEntity().getContent());
+            InputStream inputStream = response.getEntity().getContent();
+            // 此时 inputStream 可能是 LazyDecompressingInputStream 类型
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            StringWriter writer = new StringWriter();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                writer.write(line);  // 将每一行数据写入 StringWriter
+            }
+            String responseData = writer.toString();  // 获取全部响应数据
+
+//            log.info("jsonResponse: {}", jsonResponse);
+             return ResponseEntity.status(HttpStatus.OK)
+                     .header(HttpHeaders.CONTENT_TYPE, "application/json")
+                     .body(responseData);  // 格式化输出 JSON
+//            HttpServletResponse response1 =
+
+//            log.info("响应状态码: {}" , response.getStatusLine().getStatusCode());
+//            log.info("响应内容: {}",   response.getEntity().getContent());
+
             // 得到相应内容的字符串, 直接返回给前端
             // 同时将得到的响应内容字符串缓存下来
-            setDataInRedis(redisKey, response.getEntity().getContent().toString());
-            return response.getEntity().getContent().toString();
+//            setDataInRedis(redisKey, response.getEntity().getContent().toString());
+
         } catch (Exception e) {
             log.info("获取数据失败");
         }

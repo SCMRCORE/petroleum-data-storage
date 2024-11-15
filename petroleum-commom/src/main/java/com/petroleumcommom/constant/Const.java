@@ -34,27 +34,27 @@ public final class Const {
     // 基本信息表
     public final static String DATALAKE_GET_TABLE_1 = "https://datalake.cnooc/apigateway/rgodt/DW_BJ_DWDzdysjjcxfw_4286";
     // 测斜
-    public final static String DATALAKE_GET_TABLE_2 = "https://datalake.cnooc/apigateway/ypjnk/DW_BJ_DWDzdysjjcxfw_4462";
+    public final static String DATALAKE_GET_TABLE_4 = "https://datalake.cnooc/apigateway/ypjnk/DW_BJ_DWDzdysjjcxfw_4462";
     // 钻头
     public final static String DATALAKE_GET_TABLE_3 = "https://datalake.cnooc/apigateway/djexp/DW_BJ_DWDzdysjjcxfw_9565";
     // 钻遇地层
-    public final static String DATALAKE_GET_TABLE_4 = "https://datalake.cnooc/apigateway/dgxhl/DW_BJ_DWDzdysjjcxfw_6967";
+    public final static String DATALAKE_GET_TABLE_6 = "https://datalake.cnooc/apigateway/dgxhl/DW_BJ_DWDzdysjjcxfw_6967";
     // 钻井液性能
-    public final static String DATALAKE_GET_TABLE_5 = "https://datalake.cnooc/apigateway/gzdgu/DW_BJ_DWDzdysjjcxfw_4153";
+    public final static String DATALAKE_GET_TABLE_5 = "https://datalake.cnooc/apigateway/dntfk/DW_BJ_DWDzdysjjcxfw_1835";
     // 钻井时间
-    public final static String DATALAKE_GET_TABLE_6 = "https://datalake.cnooc/apigateway/nnxpp/DW_BJ_DWDzdysjjcxfw_1395";
+    public final static String DATALAKE_GET_TABLE_2 = "https://datalake.cnooc/apigateway/nnxpp/DW_BJ_DWDzdysjjcxfw_1395";
     // 钻井深度
-    public final static String DATALAKE_GET_TABLE_7 = "https://datalake.cnooc/apigateway/dntfk/DW_BJ_DWDzdysjjcxfw_1835";
+    public final static String DATALAKE_GET_TABLE_7 = "https://datalake.cnooc/apigateway/gzdgu/DW_BJ_DWDzdysjjcxfw_4153";
     public final static String REDIS_KEY_APPCODE = "appcode";
 
     // 各个表对应的apiToken
     public final static String DATALAKE_APITOKEN_1 = "JVGZIQZLKBEUEGMF";
-    public final static String DATALAKE_APITOKEN_2 = "OMRWGAWNUQBCJNUV";
+    public final static String DATALAKE_APITOKEN_6 = "RAWOAEQJVXONMEVU";
     public final static String DATALAKE_APITOKEN_3 = "GCMNBSCGOMWEEMMB";
-    public final static String DATALAKE_APITOKEN_4 = "RAWOAEQJVXONMEVU";
-    public final static String DATALAKE_APITOKEN_5 = "JOMSCIMZAKHRJDEI";
-    public final static String DATALAKE_APITOKEN_6 = "QBNKDIVDHALWFMCF";
-    public final static String DATALAKE_APITOKEN_7 = "FXPIKHLPQPWTEAVM";
+    public final static String DATALAKE_APITOKEN_4 = "OMRWGAWNUQBCJNUV";
+    public final static String DATALAKE_APITOKEN_5 = "FXPIKHLPQPWTEAVM";
+    public final static String DATALAKE_APITOKEN_2 = "QBNKDIVDHALWFMCF";
+    public final static String DATALAKE_APITOKEN_7 = "JOMSCIMZAKHRJDEI";
 
 
 

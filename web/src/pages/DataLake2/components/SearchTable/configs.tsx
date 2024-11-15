@@ -15,20 +15,20 @@ export enum TableMode {
 const CN_2_EN_TABLES = {
   // 测斜数据表
   CASE1: {
-    "井名": "Well_Name_Drill",
+    "井名": "well_name_drill",
     "测深": "measure_point_md",
     "垂深": "measure_point_tvd",
     "井斜": "inclination",
-    "方位": "Azimuth",
-    "方位变化率": "Turn_Rate",
+    "方位": "azimuth",
+    "方位变化率": "turn_rate",
     "全角变化率": "dogleg",
-    "造斜率": "Build_Rate",
+    "造斜率": "build_rate",
     "水平投影位移": "closure_horizon",
     "南北位移": "displacement_ns",
     "东西位移": "displacement_ew",
-    "闭合方位": "Closure_Azimuth",
-    "闭合距": "Departure",
-    "测斜公司": "Survey_Company",
+    "闭合方位": "closure_azimuth",
+    "闭合距": "departure",
+    "测斜公司": "survey_company",
     "所属分公司": "branch_id"
   },
 };

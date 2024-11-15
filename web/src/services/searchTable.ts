@@ -136,9 +136,10 @@ export const dataLakeSearch = async (props) => {
     jsonObj: rest,
   };
   const res = await request.post("/data/searchData?index=" + index, params);
+  console.log("得到的回应", res)
   return {
-      total: res.data.data.total,
-      list: res.data.data.data
+      total: res.data.total,
+      list: res.data.data
   }
   //
   // const mockRes = {

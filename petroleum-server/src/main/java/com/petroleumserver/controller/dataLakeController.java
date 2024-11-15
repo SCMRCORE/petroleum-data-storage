@@ -7,6 +7,8 @@ import com.petroleumcommom.result.Result;
 import com.petroleumserver.service.DataLakeService;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.codehaus.jettison.json.JSONObject;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -43,7 +45,7 @@ public class dataLakeController {
      */
     @PostMapping("/searchData")
     @ApiOperation("获得数据湖数据")
-    public String  query(@RequestBody String json, @RequestParam Integer index) throws IOException, InterruptedException {
+    public ResponseEntity<String> query(@RequestBody String json, @RequestParam Integer index) throws IOException, InterruptedException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode jsonNode = mapper.readTree(json);
         // 去掉index键
@@ -52,6 +54,7 @@ public class dataLakeController {
         }
         json = mapper.writeValueAsString(jsonNode);
         log.info("数据湖，请求表：{}, 数据湖请求体：{}", index, json);
+        log.info("数据湖得到请求体: {}",  dataLakeService.query(json, index));
         return dataLakeService.query(json, index);
     }
 }
