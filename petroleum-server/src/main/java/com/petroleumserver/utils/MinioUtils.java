@@ -52,7 +52,7 @@ public class MinioUtils {
             // 返回文件访问url
             String url =  minioProperties.getEndpoint() + "/" + minioProperties.getBucketName() + '/' +  objectName;
             String fileName = file.getOriginalFilename();
-            String uploadTIme = DateTime.now().toString("yyyy:MM:dd:HH:mm:ss");
+            String uploadTIme = DateTime.now().toString("yyyy年MM月dd日-HH:mm:ss");
             return WanGongDTO.builder()
                     .fileName(fileName)
                     .url(url)
@@ -60,7 +60,6 @@ public class MinioUtils {
                     .build();
 
         } catch (Exception e) {
-            e.printStackTrace();
             throw new RuntimeException("文件上传失败: " + e.getMessage());
         }
     }

@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
+import java.util.Objects;
 
 /**
  * 实现自己定义一个diy的configuration，返回自己定义的bean
@@ -35,8 +36,8 @@ public class DiyConfiguration {
      * @return
      */
     @Bean
-    public HashMap<Integer, String> getApiTokenMap() {
-        HashMap<Integer, String> apiTokenMap = new HashMap<>();
+    public HashMap<Integer, Object> getApiTokenMap() {
+        HashMap<Integer, Object> apiTokenMap = new HashMap<>();
         apiTokenMap.put(1, Const.DATALAKE_APITOKEN_1);
         apiTokenMap.put(2, Const.DATALAKE_APITOKEN_2);
         apiTokenMap.put(3, Const.DATALAKE_APITOKEN_3);

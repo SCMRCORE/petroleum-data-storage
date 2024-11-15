@@ -11,4 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class WanGong {
     private String url;//word的url
+    private String WellName;
+    private String fileName;
+    private String uploadTime;
 }

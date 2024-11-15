@@ -1,6 +1,7 @@
 package com.petroleumserver.service.lmp;
 
 import cn.hutool.json.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petroleumcommom.constant.Const;
 import com.petroleumcommom.utils.*;
 import com.petroleumserver.service.DataLakeService;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 @Service
@@ -27,7 +29,7 @@ public class dataLakeServiceImpl implements DataLakeService {
     private HashMap<Integer, String> dataLakeMap;
 
     @Resource
-    private HashMap<Integer, String> apiTokenMap;
+    private HashMap<Integer, Object> apiTokenMap;
 
     @Resource
     private RedisTemplate<String, String> redisTemplate;
@@ -89,7 +91,8 @@ public class dataLakeServiceImpl implements DataLakeService {
     public String query(String json, Integer index) throws IOException, InterruptedException {
         // index 判断是哪一张表
         // 优化：使用redis对相同的请求 进行缓存
-        String res = getDataFromRedis(json, index);
+//        String res = getDataFromRedis(json, index);
+        String res = null;
         if(res != null) { // 判断redis中是否存在数据
             return res;
         } else {
@@ -108,6 +111,7 @@ public class dataLakeServiceImpl implements DataLakeService {
      * 直接获得token等头信息，将请求得到的数据封装后返回
      */
     public String fetchData(Integer index, String frontEndJson) throws IOException, InterruptedException {
+        ObjectMapper mapper = new ObjectMapper();
         String redisKey = index + "_" + frontEndJson; // 封装redis键
         String token = getToken();
 //        String appCode = connect();
@@ -116,17 +120,19 @@ public class dataLakeServiceImpl implements DataLakeService {
         // 创建Post请求
         log.info("当前表的url {}", dataLakeMap.get(index));
         HttpPost postRequest = new HttpPost(dataLakeMap.get(index));
-        log.info("创建请求数据湖数据请求成功..... {}", postRequest.toString());
+        log.info("创建请求数据湖数据请求..... {}", postRequest.toString());
         // 设置请求头
-        postRequest.setHeader("token", token);
         // TODO 开发环境：appCode暂时设置为空
-        postRequest.setHeader("appCode", "");
-        postRequest.setHeader("apiToken", apiTokenMap.get(index));
-        postRequest.setHeader("Content-Type", "application/json");
         // 使用原始json
         StringEntity entity = new StringEntity(frontEndJson);
         postRequest.setEntity(entity);
-
+        postRequest.setHeader("token", token);
+        postRequest.setHeader("appCode", "152b5e38657e0b8cd73964bc315f74b6");
+        postRequest.setHeader("apiToken", (String) apiTokenMap.get(index));
+        log.info(apiTokenMap.get(index).toString());
+        postRequest.setHeader("Content-Type", "application/json");
+        postRequest.setHeader("Accept", "*/*");
+//        postRequest.setHeader("Host", "datalake.cnooc");
         // 执行请求
         try (CloseableHttpResponse response = httpClient.execute(postRequest)) {
             log.info("响应状态码: {}" , response.getStatusLine().getStatusCode());

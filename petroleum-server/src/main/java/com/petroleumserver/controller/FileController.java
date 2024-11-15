@@ -17,7 +17,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("file")
+@RequestMapping("/file")
 @Slf4j
 public class FileController {
 

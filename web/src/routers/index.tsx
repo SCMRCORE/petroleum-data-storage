@@ -69,6 +69,11 @@ export const routeList = [
         path: "/data-lake-7",
         element: <DataLake7 />
       },
+      {
+        name: "测试新加表",
+        path: "/data-lake-7",
+        element: <DataLake7 />
+      },
     ],
 
   },

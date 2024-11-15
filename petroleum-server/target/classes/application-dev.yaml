@@ -1,12 +1,12 @@
 petroleum:
   redis:
-    host: 47.108.223.152
+    host: localhost
     database: 0
     password: ""
     port: 6379
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    host: 47.108.223.152
+    host: localhost
     port: 3306
     database: petroleum-data-storage
     username: root

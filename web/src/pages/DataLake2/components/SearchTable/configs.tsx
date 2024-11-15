@@ -84,9 +84,13 @@ const getColumns = () =>
     // };
 
     const columnMapper = {
-      wellName: {
+      Well_Name_Drill: {
         fixed: "left",
+        // TODO 修改样式
+        width: 120
       },
+
+
       // location: {
       //   width: 200,
       // },
