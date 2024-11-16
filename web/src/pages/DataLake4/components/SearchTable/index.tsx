@@ -371,17 +371,17 @@ const SearchTable = () => {
             >
               EXCEL导入
             </Button> */}
-            {selectedRowKeys?.length > 0 && (
-              <Button
-                onClick={batchDelete}
-                type="primary"
-                className="w-[80%]"
-                status="danger"
-                loading={isDeleting}
-              >
-                批量删除
-              </Button>
-            )}
+            {/*{selectedRowKeys?.length > 0 && (*/}
+            {/*  <Button*/}
+            {/*    onClick={batchDelete}*/}
+            {/*    type="primary"*/}
+            {/*    className="w-[80%]"*/}
+            {/*    status="danger"*/}
+            {/*    loading={isDeleting}*/}
+            {/*  >*/}
+            {/*    批量删除*/}
+            {/*  </Button>*/}
+            {/*)}*/}
           </div>
         </div>
       </Form>
