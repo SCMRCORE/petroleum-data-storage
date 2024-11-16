@@ -402,17 +402,18 @@ const SearchTable = () => {
               />
             </div>
           )}
-          rowSelection={{
-            type: "checkbox",
-            onChange: (keys: Array<string>) => {
-              // const onlyKeys = selectedRows.map((item) => item.onlyKey);
-              console.log("onChange:", keys);
-              setSelectedRowKeys(keys);
-            },
-            onSelect: (selected, record, selectedRows) => {
-              console.log("onSelect:", selected, record, selectedRows);
-            },
-          }}
+          // rowSelection={{
+          //   type: "checkbox",
+          //   onChange: (keys: Array<string>) => {
+          //     // const onlyKeys = selectedRows.map((item) => item.onlyKey);
+          //     // const wellName = selectedRowKeys.map((item) => item.)
+          //     console.log("onChange:", keys);
+          //     setSelectedRowKeys(keys);
+          //   },
+          //   onSelect: (selected, record, selectedRows) => {
+          //     console.log("onSelect:", selected, record, selectedRows);
+          //   },
+          // }}
         />
       </div>
       {/* </TabPane>

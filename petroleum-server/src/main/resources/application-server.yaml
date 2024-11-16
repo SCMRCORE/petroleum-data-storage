@@ -1,0 +1,20 @@
+petroleum:
+  redis:
+    host: localhost
+    database: 0
+    password: ""
+    port: 6379
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#    TODO 更改数据库主机名字
+    host: 47.108.223.152
+    port: 3306
+    database: petroleum-data-storage
+    username: root
+    password: 123
+minio:
+  access-key: PCpXHFvf0i0zM83yy8Vc
+  secret-key: 50OaRml8JxDjchHwsuCYtm7NzL5ZuLGRD0MbsrgY
+  bucket-name: eraserbucket
+  endpoint: http://47.108.223.152:9000
+

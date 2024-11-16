@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "react-scripts start --host 0.0.0.0",  // 监听所有端口
     "rm_deps": "rm -rf node_modules **/*/node_modules",
     "dev": "pnpm -C ./web dev",
     "dev:bff": "pnpm -C ./bff dev",

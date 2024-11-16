@@ -1,241 +1,241 @@
 import {
-  Form,
-  Grid,
-  Input,
-  Button,
-  Table,
-  Pagination,
-  Modal,
-  Tag,
-  Message,
-  // Tabs,
+    Form,
+    Grid,
+    Input,
+    Button,
+    Table,
+    Pagination,
+    Modal,
+    Tag,
+    Message,
+    // Tabs,
 } from "@arco-design/web-react";
 import {
-  add,
-  dataLakeSearch,
-  deleteItem,
-  search,
-  updateItem,
+    add,
+    dataLakeSearch,
+    deleteItem,
+    search,
+    updateItem,
 } from "../../../../services/searchTable.ts";
 import { useEffect, useMemo, useState } from "react";
 import {
-  getColumns,
-  formConfigList,
-  EN_2_CN_TABLES,
-  TableMode,
+    getColumns,
+    formConfigList,
+    EN_2_CN_TABLES,
+    TableMode,
 } from "./configs.tsx";
 import { MixedItem } from "../../../../types/index.ts";
 import * as XLSX from "xlsx";
 import {
-  checkDataSourceTable,
-  DATA_SOURCE_TABLE,
-  DATA_SOURCE_TABLE_TITLE_MAP,
-  formatCnToEn,
+    checkDataSourceTable,
+    DATA_SOURCE_TABLE,
+    DATA_SOURCE_TABLE_TITLE_MAP,
+    formatCnToEn,
 } from "../../../../utils/checkDataSource.ts";
 // const TabPane = Tabs.TabPane;
 const pageSize = 10;
 // const displayModeList = [TableMode.CASE1];
 
 type DataSourceType = Record<
-  string,
-  { list: Array<Partial<MixedItem>>; total: number }
+    string,
+    { list: Array<Partial<MixedItem>>; total: number }
 >;
 
 const SearchTable = () => {
-  /** 搜索表单 ref */
-  const [form] = Form.useForm();
-  /** 编辑表单 ref */
-  const [editForm] = Form.useForm();
-  /** 弹窗是否可见 */
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  /** 弹窗展示的每个文件内容 */
-  const [uploadFileInfoList, setUploadFileInfoList] = useState([]);
-  /** 弹窗展示的每个文件的名称 */
-  const [uploadFileNameList, setUploadFileNameList] = useState([]);
-  /** 列表数据 */
-  const [dataSource, setDataSource] = useState<{
-    list: Array<any>;
-    total: number;
-  }>({ list: [], total: 0 });
-  /** 分页 */
-  const [pageIndex, setPageIndex] = useState<number>(1);
-  /** 搜索加载态 */
-  const [isSearching, setIsSearching] = useState(false);
-  /** 删除加载态 */
-  const [isDeleting, setIsDeleting] = useState(false);
-  /** 是否打开编辑窗口 */
-  const [isEditing, setIsEditing] = useState(false);
-  /** 编辑窗口表单的数据 */
-  const [editingData, setEditingData] = useState<Partial<MixedItem>>();
-  /** 搜索参数 */
-  // const [searchParams, setSearchParams] = useState<
-  //   Record<string, string | number>
-  // >({});
+    /** 搜索表单 ref */
+    const [form] = Form.useForm();
+    /** 编辑表单 ref */
+    const [editForm] = Form.useForm();
+    /** 弹窗是否可见 */
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    /** 弹窗展示的每个文件内容 */
+    const [uploadFileInfoList, setUploadFileInfoList] = useState([]);
+    /** 弹窗展示的每个文件的名称 */
+    const [uploadFileNameList, setUploadFileNameList] = useState([]);
+    /** 列表数据 */
+    const [dataSource, setDataSource] = useState<{
+        list: Array<any>;
+        total: number;
+    }>({ list: [], total: 0 });
+    /** 分页 */
+    const [pageIndex, setPageIndex] = useState<number>(1);
+    /** 搜索加载态 */
+    const [isSearching, setIsSearching] = useState(false);
+    /** 删除加载态 */
+    const [isDeleting, setIsDeleting] = useState(false);
+    /** 是否打开编辑窗口 */
+    const [isEditing, setIsEditing] = useState(false);
+    /** 编辑窗口表单的数据 */
+    const [editingData, setEditingData] = useState<Partial<MixedItem>>();
+    /** 搜索参数 */
+    // const [searchParams, setSearchParams] = useState<
+    //   Record<string, string | number>
+    // >({});
 
-  /** 批量选择  */
-  const [selectedRowKeys, setSelectedRowKeys] = useState<Array<string>>([]);
-  /** 展示模式 */
-  const [activeTab, setActiveTab] = useState<TableMode>(TableMode.CASE1);
+    /** 批量选择  */
+    const [selectedRowKeys, setSelectedRowKeys] = useState<Array<string>>([]);
+    /** 展示模式 */
+    const [activeTab, setActiveTab] = useState<TableMode>(TableMode.CASE1);
 
-  /** 搜索 */
-  const handleSearch = async () => {
-    try {
-      setIsSearching(true);
-      const formData = form.getFieldsValue();
-      const res = await dataLakeSearch({
-        // 传入接口index
-        index: 1,
-        ...formData,
-        pageIndex,
-        pageSize,
-      });
+    /** 搜索 */
+    const handleSearch = async () => {
+        try {
+            setIsSearching(true);
+            const formData = form.getFieldsValue();
+            const res = await dataLakeSearch({
+                // 传入接口index
+                index: 1,
+                ...formData,
+                pageIndex,
+                pageSize,
+            });
 
-      console.log("请求的数据", res);
-      // 不知为何，finally 中取消 loading 的操作并没有生效
-      setSelectedRowKeys([]);
-      setIsSearching(false);
-      setDataSource(res);
-    } catch (err) {
-      console.log("数据获取异常:", err);
-    } finally {
-      setIsSearching(false);
-    }
-  };
+            console.log("请求的数据", res);
+            // 不知为何，finally 中取消 loading 的操作并没有生效
+            setSelectedRowKeys([]);
+            setIsSearching(false);
+            setDataSource(res);
+        } catch (err) {
+            console.log("数据获取异常:", err);
+        } finally {
+            setIsSearching(false);
+        }
+    };
 
-  /** 清空搜素参数 */
-  const handleReset = () => {
-    // setSearchParams({});
-    form.resetFields();
-  };
+    /** 清空搜素参数 */
+    const handleReset = () => {
+        // setSearchParams({});
+        form.resetFields();
+    };
 
-  /** 读取Excel，打开弹窗 */
-  // const openUploadFileModal = () => {
-  //   const input = document.createElement("input");
-  //   input.type = "file";
-  //   input.accept = ".xls,.xlsx";
-  //   input.onchange = (e) => {
-  //     const target = e.target as unknown as { files: Array<File> };
-  //     const file = target?.files?.[0];
-  //     if (file) {
-  //       const reader = new FileReader();
-  //       reader.onload = (e) => {
-  //         const bstr = e.target.result;
-  //         const wb = XLSX.read(bstr, { type: "binary" });
-  //         const newUploadFileInfoList = [];
-  //         const newUploadFileNameList = [];
-  //         wb.SheetNames?.forEach((wsName) => {
-  //           const ws = wb.Sheets[wsName];
-  //           const fileRowList = XLSX.utils.sheet_to_json(ws);
-  //           console.log("原始上传的表", fileRowList);
+    /** 读取Excel，打开弹窗 */
+    // const openUploadFileModal = () => {
+    //   const input = document.createElement("input");
+    //   input.type = "file";
+    //   input.accept = ".xls,.xlsx";
+    //   input.onchange = (e) => {
+    //     const target = e.target as unknown as { files: Array<File> };
+    //     const file = target?.files?.[0];
+    //     if (file) {
+    //       const reader = new FileReader();
+    //       reader.onload = (e) => {
+    //         const bstr = e.target.result;
+    //         const wb = XLSX.read(bstr, { type: "binary" });
+    //         const newUploadFileInfoList = [];
+    //         const newUploadFileNameList = [];
+    //         wb.SheetNames?.forEach((wsName) => {
+    //           const ws = wb.Sheets[wsName];
+    //           const fileRowList = XLSX.utils.sheet_to_json(ws);
+    //           console.log("原始上传的表", fileRowList);
 
-  //           const enFileRowList = fileRowList.map((fileRow) => {
-  //             const newRow = {};
-  //             Object.keys(fileRow).forEach((key) => {
-  //               const positiveEn = formatCnToEn(key);
-  //               newRow[positiveEn] = fileRow[key];
-  //             });
-  //             return newRow;
-  //           });
-  //           console.log("翻译后的表", enFileRowList);
+    //           const enFileRowList = fileRowList.map((fileRow) => {
+    //             const newRow = {};
+    //             Object.keys(fileRow).forEach((key) => {
+    //               const positiveEn = formatCnToEn(key);
+    //               newRow[positiveEn] = fileRow[key];
+    //             });
+    //             return newRow;
+    //           });
+    //           console.log("翻译后的表", enFileRowList);
 
-  //           newUploadFileInfoList.push(enFileRowList);
-  //           newUploadFileNameList.push(wsName);
-  //         });
-  //         setIsModalVisible(true);
-  //         setUploadFileInfoList([...newUploadFileInfoList]);
-  //         setUploadFileNameList([...newUploadFileNameList]);
-  //       };
-  //       reader.readAsBinaryString(file);
-  //       input.remove();
-  //     }
-  //   };
-  //   input.click(); // 触发文件选择框
-  // };
+    //           newUploadFileInfoList.push(enFileRowList);
+    //           newUploadFileNameList.push(wsName);
+    //         });
+    //         setIsModalVisible(true);
+    //         setUploadFileInfoList([...newUploadFileInfoList]);
+    //         setUploadFileNameList([...newUploadFileNameList]);
+    //       };
+    //       reader.readAsBinaryString(file);
+    //       input.remove();
+    //     }
+    //   };
+    //   input.click(); // 触发文件选择框
+    // };
 
-  // const confirmUpload = async () => {
-  //   console.log("rowList", uploadFileInfoList);
-  //   try {
-  //     const res = await add(uploadFileInfoList);
-  //     setIsModalVisible(false);
-  //     handleSearch();
-  //     console.log("rowList res", res);
-  //   } catch (err) {
-  //     Message.error(`上传失败: ${err}`);
-  //   } finally {
-  //     setUploadFileInfoList([]);
-  //     setUploadFileNameList([]);
-  //   }
-  // };
+    // const confirmUpload = async () => {
+    //   console.log("rowList", uploadFileInfoList);
+    //   try {
+    //     const res = await add(uploadFileInfoList);
+    //     setIsModalVisible(false);
+    //     handleSearch();
+    //     console.log("rowList res", res);
+    //   } catch (err) {
+    //     Message.error(`上传失败: ${err}`);
+    //   } finally {
+    //     setUploadFileInfoList([]);
+    //     setUploadFileNameList([]);
+    //   }
+    // };
 
-  const batchDelete = async () => {
-    setIsDeleting(true);
-    const promiseList = selectedRowKeys.map((onlyKey) => {
-      return deleteItem({
-        OnlyKey: +onlyKey,
-        num: activeTab,
-      });
-    });
+    const batchDelete = async () => {
+        setIsDeleting(true);
+        const promiseList = selectedRowKeys.map((onlyKey) => {
+            return deleteItem({
+                OnlyKey: +onlyKey,
+                num: activeTab,
+            });
+        });
 
-    try {
-      await Promise.all(promiseList);
-      handleSearch();
-    } catch (err) {
-      console.error("删除失败：", err);
-    } finally {
-      setIsDeleting(false);
-    }
-  };
+        try {
+            await Promise.all(promiseList);
+            handleSearch();
+        } catch (err) {
+            console.error("删除失败：", err);
+        } finally {
+            setIsDeleting(false);
+        }
+    };
 
-  const handlePageChange = (index) => {
-    setPageIndex(index);
-  };
+    const handlePageChange = (index) => {
+        setPageIndex(index);
+    };
 
-  // const handleTabChange = (v) => {
-  //   // console.log(v);
-  //   setActiveTab(v);
-  // };
+    // const handleTabChange = (v) => {
+    //   // console.log(v);
+    //   setActiveTab(v);
+    // };
 
-  // const handleEditFormClose = () => {
-  //   setIsEditing(false);
-  //   editForm.resetFields();
-  //   setEditingData({});
-  // };
-  // const handleEdit = (rowData) => {
-  //   setIsEditing(true);
-  //   setEditingData(rowData);
-  //   editForm.setFieldsValue(rowData);
-  // };
+    // const handleEditFormClose = () => {
+    //   setIsEditing(false);
+    //   editForm.resetFields();
+    //   setEditingData({});
+    // };
+    // const handleEdit = (rowData) => {
+    //   setIsEditing(true);
+    //   setEditingData(rowData);
+    //   editForm.setFieldsValue(rowData);
+    // };
 
-  // const confirmEdit = async () => {
-  //   try {
-  //     const formValue = editForm.getFieldsValue();
-  //     console.log("formValue", formValue);
-  //     await updateItem({
-  //       num: activeTab,
-  //       onlyKey: editingData.onlyKey,
-  //       rowData: formValue,
-  //     });
-  //     handleSearch();
-  //   } catch (err) {
-  //     console.error("修改失败：", err);
-  //   } finally {
-  //     setIsEditing(false);
-  //   }
-  // };
+    // const confirmEdit = async () => {
+    //   try {
+    //     const formValue = editForm.getFieldsValue();
+    //     console.log("formValue", formValue);
+    //     await updateItem({
+    //       num: activeTab,
+    //       onlyKey: editingData.onlyKey,
+    //       rowData: formValue,
+    //     });
+    //     handleSearch();
+    //   } catch (err) {
+    //     console.error("修改失败：", err);
+    //   } finally {
+    //     setIsEditing(false);
+    //   }
+    // };
 
-  useEffect(() => {
-    handleSearch();
-  }, [pageIndex]);
+    useEffect(() => {
+        handleSearch();
+    }, [pageIndex]);
 
-  const columnsSet = useMemo(
-    () => getColumns(),
-    // handleSearch, handleEdit
-    []
-  );
+    const columnsSet = useMemo(
+        () => getColumns(),
+        // handleSearch, handleEdit
+        []
+    );
 
-  return (
-    <div>
-      {/* <Modal
+    return (
+        <div>
+            {/* <Modal
         title="确认是否要上传文件"
         visible={isModalVisible}
         onOk={confirmUpload}
@@ -269,7 +269,7 @@ const SearchTable = () => {
         </div>
       </Modal> */}
 
-      {/* <Modal
+            {/* <Modal
         visible={isEditing}
         onCancel={handleEditFormClose}
         footer={
@@ -310,7 +310,7 @@ const SearchTable = () => {
           })}
         </Form>
       </Modal> */}
-      {/* <Tabs
+            {/* <Tabs
         defaultActiveTab={`${activeTab}`}
         onChange={handleTabChange}
         activeTab={`${activeTab}`}
@@ -321,106 +321,106 @@ const SearchTable = () => {
               key={`${index}`}
               title={`${DATA_SOURCE_TABLE_TITLE_MAP[item]}`}
             > */}
-      {/* 搜索项 */}
-      <Form form={form} id="searchForm" layout="vertical">
-        <div className="flex w-[100%] ">
-          <div className="w-[78%] mr-[12px]">
-            {formConfigList.map((rowItemList, index) => {
-              return (
-                <Grid.Row gutter={24} key={index}>
-                  {rowItemList.map((item) => {
-                    return (
-                      <Grid.Col span={8} key={item.field}>
-                        <Form.Item
-                          label={item.label + `(${item.field})`}
-                          field={item.field}
-                          initialValue={item.defaultValue}
+            {/* 搜索项 */}
+            <Form form={form} id="searchForm" layout="vertical">
+                <div className="flex w-[100%] ">
+                    <div className="w-[78%] mr-[12px]">
+                        {formConfigList.map((rowItemList, index) => {
+                            return (
+                                <Grid.Row gutter={24} key={index}>
+                                    {rowItemList.map((item) => {
+                                        return (
+                                            <Grid.Col span={8} key={item.field}>
+                                                <Form.Item
+                                                    label={item.label + `(${item.field})`}
+                                                    field={item.field}
+                                                    initialValue={item.defaultValue}
+                                                >
+                                                    <Input />
+                                                </Form.Item>
+                                            </Grid.Col>
+                                        );
+                                    })}
+                                </Grid.Row>
+                            );
+                        })}
+                    </div>
+                    <div className="w-[12%] flex flex-col items-center gap-[12px] border-l-2">
+                        <Button
+                            htmlType="submit"
+                            type="primary"
+                            className="w-[80%]"
+                            onClick={handleSearch}
+                            loading={isSearching}
                         >
-                          <Input />
-                        </Form.Item>
-                      </Grid.Col>
-                    );
-                  })}
-                </Grid.Row>
-              );
-            })}
-          </div>
-          <div className="w-[12%] flex flex-col items-center gap-[12px] border-l-2">
-            <Button
-              htmlType="submit"
-              type="primary"
-              className="w-[80%]"
-              onClick={handleSearch}
-              loading={isSearching}
-            >
-              搜索
-            </Button>
-            <Button
-              onClick={handleReset}
-              htmlType="submit"
-              type="secondary"
-              className="w-[80%]"
-            >
-              清空参数
-            </Button>
-            {/* <Button
-              onClick={openUploadFileModal}
-              type="secondary"
-              className="w-[80%]"
-              className="w-[80%]"
-            >
-              EXCEL导入
-            </Button> */}
-            {/*{selectedRowKeys?.length > 0 && (*/}
-            {/*  <Button*/}
-            {/*    onClick={batchDelete}*/}
-            {/*    type="primary"*/}
-            {/*    className="w-[80%]"*/}
-            {/*    status="danger"*/}
-            {/*    loading={isDeleting}*/}
-            {/*  >*/}
-            {/*    批量删除*/}
-            {/*  </Button>*/}
-            {/*)}*/}
-          </div>
-        </div>
-      </Form>
+                            搜索
+                        </Button>
+                        <Button
+                            onClick={handleReset}
+                            htmlType="submit"
+                            type="secondary"
+                            className="w-[80%]"
+                        >
+                            清空参数
+                        </Button>
+                        {/*<Button*/}
+                        {/*    onClick={openUploadFileModal}*/}
+                        {/*    type="secondary"*/}
+                        {/*    className="w-[80%]"*/}
+                        {/*    className="w-[80%]"*/}
+                        {/*>*/}
+                        {/*    EXCEL导入*/}
+                        {/*</Button>*/}
+                        {selectedRowKeys?.length > 0 && (
+                            <Button
+                                onClick={batchDelete}
+                                type="primary"
+                                className="w-[80%]"
+                                status="danger"
+                                loading={isDeleting}
+                            >
+                                批量删除
+                            </Button>
+                        )}
+                    </div>
+                </div>
+            </Form>
 
-      {/* 表格主体部分 */}
-      <div className="pr-28 mt-4 overflow-y-auto">
-        <Table
-          rowKey="onlyKey"
-          columns={columnsSet[DATA_SOURCE_TABLE[activeTab]]}
-          scroll={{ x: true, y: "58vh" }}
-          data={dataSource?.list ?? []}
-          renderPagination={() => (
-            <div className="flex justify-end mt-2">
-              <Pagination
-                total={dataSource?.total ?? 0}
-                onChange={handlePageChange}
-                pageSize={pageSize}
-              />
+            {/* 表格主体部分 */}
+            <div className="pr-28 mt-4 overflow-y-auto">
+                <Table
+                    rowKey="onlyKey"
+                    columns={columnsSet[DATA_SOURCE_TABLE[activeTab]]}
+                    scroll={{ x: true, y: "58vh" }}
+                    data={dataSource?.list ?? []}
+                    renderPagination={() => (
+                        <div className="flex justify-end mt-2">
+                            <Pagination
+                                total={dataSource?.total ?? 0}
+                                onChange={handlePageChange}
+                                pageSize={pageSize}
+                            />
+                        </div>
+                    )}
+                // rowSelection={{
+                //   type: "checkbox",
+                //   onChange: (keys: Array<string>) => {
+                //     // const onlyKeys = selectedRows.map((item) => item.onlyKey);
+                //     console.log("onChange:", keys);
+                //     setSelectedRowKeys(keys);
+                //   },
+                //   onSelect: (selected, record, selectedRows) => {
+                //     console.log("onSelect:", selected, record, selectedRows);
+                //   },
+                // }}
+                />
             </div>
-          )}
-          rowSelection={{
-            type: "checkbox",
-            onChange: (keys: Array<string>) => {
-              // const onlyKeys = selectedRows.map((item) => item.onlyKey);
-              console.log("onChange:", keys);
-              setSelectedRowKeys(keys);
-            },
-            onSelect: (selected, record, selectedRows) => {
-              console.log("onSelect:", selected, record, selectedRows);
-            },
-          }}
-        />
-      </div>
-      {/* </TabPane>
+            {/* </TabPane>
           );
         })}
       </Tabs> */}
-    </div>
-  );
+        </div>
+    );
 };
 
 export default SearchTable;
