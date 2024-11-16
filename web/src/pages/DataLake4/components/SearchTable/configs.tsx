@@ -15,20 +15,20 @@ export enum TableMode {
 const CN_2_EN_TABLES = {
   // 钻遇地层表
   CASE1: {
-    "钻遇地层标识": "formation_id",
-    "层位名称": "layername",
-    "坍塌压力": "collapsepressure",
-    "孔隙压力": "porepressure",
-    "地层温度": "temperature",
-    "岩性": "lithology",
-    "最终顶深": "finaltopdepth",
-    "钻遇底深": "drillingbtmdepth",
-    "H2S浓度": "h2sconc",
-    "沥青浓度": "bitumenweight",
+    钻遇地层标识: "formation_id",
+    层位名称: "layername",
+    坍塌压力: "collapsepressure",
+    孔隙压力: "porepressure",
+    地层温度: "temperature",
+    岩性: "lithology",
+    最终顶深: "finaltopdepth",
+    钻遇底深: "drillingbtmdepth",
+    H2S浓度: "h2sconc",
+    沥青浓度: "bitumenweight",
     "渗透率（H90）": "kh90",
-    "垂直渗透率": "kv",
-    "最大渗透率": "kmax",
-    "所属分公司": "branch_id"
+    垂直渗透率: "kv",
+    最大渗透率: "kmax",
+    所属分公司: "branch_id",
   },
 };
 
@@ -85,9 +85,9 @@ const getColumns = () =>
     // };
 
     const columnMapper = {
-      wellName: {
-        fixed: "left",
-      },
+      // wellName: {
+      //   fixed: "left",
+      // },
       // location: {
       //   width: 200,
       // },

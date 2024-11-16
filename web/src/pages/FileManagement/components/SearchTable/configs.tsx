@@ -82,9 +82,9 @@ const getColumns = (
     };
 
     const columnMapper = {
-      wellName: {
-        fixed: "left",
-      },
+      //  wellName: {
+      //       fixed: "left",
+      //     },
       // location: {
       //   width: 200,
       // },

@@ -15,21 +15,21 @@ export enum TableMode {
 const CN_2_EN_TABLES = {
   // 钻头数据表
   CASE1: {
-    "井名": "well_name_drill",
-    "钻头类型": "bit_type",
-    "钻头型号": "model",
-    "钻头标识": "drill_bit_id",
-    "钻头编号": "bit_no",
-    "钻头尺寸": "bit_size",
-    "钻头长度": "bit_length",
-    "接头扣型": "connection_thread",
-    "保径长度": "bit_gauge_length",
-    "IADC代码": "iadccode",
-    "待钻井眼尺寸": "sz_odpass",
-    "入井前已转时间": "drilled_before_time",
-    "入井前进尺": "drilled_before_footage",
-    "钻头厂家": "factory",
-    "所属分公司": "branch_id"
+    井名: "well_name_drill",
+    钻头类型: "bit_type",
+    钻头型号: "model",
+    钻头标识: "drill_bit_id",
+    钻头编号: "bit_no",
+    钻头尺寸: "bit_size",
+    钻头长度: "bit_length",
+    接头扣型: "connection_thread",
+    保径长度: "bit_gauge_length",
+    IADC代码: "iadccode",
+    待钻井眼尺寸: "sz_odpass",
+    入井前已转时间: "drilled_before_time",
+    入井前进尺: "drilled_before_footage",
+    钻头厂家: "factory",
+    所属分公司: "branch_id",
   },
 };
 
@@ -60,9 +60,7 @@ console.log("en2cn", EN_2_CN_MIXED);
 // TODO: 这里是搜索配置项，用于动态生成表单
 // 每个二级数组代表一排，比如第0个二级数组代表第1排，第1个代表第2排...
 export const formConfigList = [
-  [
-    { label: "井名", field: "Well_Name_Drill", defaultValue: "" },
-  ],
+  [{ label: "井名", field: "Well_Name_Drill", defaultValue: "" }],
   [],
 ];
 
@@ -84,9 +82,9 @@ const getColumns = () =>
     // };
 
     const columnMapper = {
-      wellName: {
-        fixed: "left",
-      },
+      // wellName: {
+      //   fixed: "left",
+      // },
       // location: {
       //   width: 200,
       // },

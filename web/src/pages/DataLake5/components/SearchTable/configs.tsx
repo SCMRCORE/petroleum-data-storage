@@ -15,8 +15,8 @@ export enum TableMode {
 const CN_2_EN_TABLES = {
   // 钻井液性能表
   CASE1: {
-    "井名": "well_name_drill",
-    "井深": "sample_depth",
+    井名: "well_name_drill",
+    井深: "sample_depth",
     "3转读数": "value_3rpm",
     "6转读数": "value_6rpm",
     "30转读数": "value_30rpm",
@@ -26,18 +26,18 @@ const CN_2_EN_TABLES = {
     "300转读数": "value_300rpm",
     "600转读数": "value_600rpm",
     "10分钟静切力": "gel30min",
-    "k值": "consistency_coefficient",
-    "屈服值": "yield_value",
-    "塑性粘度": "plastic_viscosity",
-    "漏斗粘度": "funnel_visc",
-    "PH值": "fluid_ph",
-    "API失水": "apiloss",
-    "地面损耗量": "mud_lost_surface",
-    "循环泥浆体积有效计算": "mud_vol_active",
-    "储备池泥浆量": "mud_vol_surf_active",
-    "重晶石": "barite",
+    k值: "consistency_coefficient",
+    屈服值: "yield_value",
+    塑性粘度: "plastic_viscosity",
+    漏斗粘度: "funnel_visc",
+    PH值: "fluid_ph",
+    API失水: "apiloss",
+    地面损耗量: "mud_lost_surface",
+    循环泥浆体积有效计算: "mud_vol_active",
+    储备池泥浆量: "mud_vol_surf_active",
+    重晶石: "barite",
     "聚膜钻井液用可降解成膜剂（CLMH-?）含量": "clmhi_percent",
-    "所属分公司": "branch_id"
+    所属分公司: "branch_id",
   },
 };
 
@@ -93,9 +93,9 @@ const getColumns = () =>
     // };
 
     const columnMapper = {
-      wellName: {
-        fixed: "left",
-      },
+      // wellName: {
+      //   fixed: "left",
+      // },
       // location: {
       //   width: 200,
       // },

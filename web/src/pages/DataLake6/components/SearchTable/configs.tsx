@@ -15,32 +15,32 @@ export enum TableMode {
 const CN_2_EN_TABLES = {
   // 钻井时间表
   CASE1: {
-    "井名": "well_name_drill",
-    "时间索引": "date_time_index",
-    "测量井深": "dmea",
-    "垂直井深": "dver",
-    "钻井液总池体积": "tva",
-    "入口钻井液温度": "mtia",
-    "出口钻井液温度": "mtoa",
-    "入口密度": "mdia",
-    "出口密度": "mdoa",
-    "入口流量": "mfia",
-    "返出流量": "mfoa",
-    "钻压": "woba",
+    井名: "well_name_drill",
+    时间索引: "date_time_index",
+    测量井深: "dmea",
+    垂直井深: "dver",
+    钻井液总池体积: "tva",
+    入口钻井液温度: "mtia",
+    出口钻井液温度: "mtoa",
+    入口密度: "mdia",
+    出口密度: "mdoa",
+    入口流量: "mfia",
+    返出流量: "mfoa",
+    钻压: "woba",
     "钻压（最大值）": "wobx",
-    "悬重": "hkla",
+    悬重: "hkla",
     "悬重（最大值）": "hklx",
-    "扭矩": "tqa",
+    扭矩: "tqa",
     "扭矩（最大值）": "tqx",
-    "机械钻速": "ropa",
-    "转速": "rpma",
-    "泵压": "sppa",
-    "大钩速度": "spr5",
-    "钻头垂深": "dbtm",
-    "气全量": "gasa",
-    "累计钻头进尺": "spr3",
-    "所属分公司": "branch_id"
-  }
+    机械钻速: "ropa",
+    转速: "rpma",
+    泵压: "sppa",
+    大钩速度: "spr5",
+    钻头垂深: "dbtm",
+    气全量: "gasa",
+    累计钻头进尺: "spr3",
+    所属分公司: "branch_id",
+  },
 };
 
 const DEFAULT_SEARCH_PARAMS = { CASE1: {} };
@@ -96,9 +96,9 @@ const getColumns = () =>
     // };
 
     const columnMapper = {
-      wellName: {
-        fixed: "left",
-      },
+      // wellName: {
+      //   fixed: "left",
+      // },
       // location: {
       //   width: 200,
       // },
