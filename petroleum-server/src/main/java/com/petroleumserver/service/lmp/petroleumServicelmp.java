@@ -308,6 +308,12 @@ public class petroleumServicelmp implements PetroleumService {
         log.info("上传数据库完工报告对象： {}", dto);
         return petroleumMapper.addWG(dto);
     }
+
+    @Override
+    public void deleteFile(WanGongDTO dto) {
+       log.info("删除完工报告");
+       petroleumMapper.deleteFile(dto);
+    }
 }
 
 //     * 软删除js

@@ -56,4 +56,5 @@ public interface petroleumMapper {
 
     boolean addWG(WanGongDTO dto);
 
+    void deleteFile(WanGongDTO dto);
 }

@@ -40,4 +40,5 @@ public interface PetroleumService {
 
     boolean addWG(WanGongDTO dto);
 
+    void deleteFile(WanGongDTO dto);
 }

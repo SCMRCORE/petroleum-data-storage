@@ -204,7 +204,7 @@ const SearchTable = () => {
               清空参数
             </Button>
             <FileUploader onUploadSuccess={() => {}} onUploadError={() => {}} />
-            {selectedRowKeys?.length > 0 && (
+            {/* {selectedRowKeys?.length > 0 && (
               <Button
                 onClick={batchDelete}
                 type="primary"
@@ -214,7 +214,7 @@ const SearchTable = () => {
               >
                 批量删除
               </Button>
-            )}
+            )} */}
           </div>
         </div>
       </Form>

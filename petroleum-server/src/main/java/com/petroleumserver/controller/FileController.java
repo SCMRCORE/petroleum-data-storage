@@ -68,6 +68,13 @@ public class FileController {
     /**
      * 删除完工报告
      */
+    @PostMapping("/delete")
+    public Result deleteFile(@RequestBody WanGongDTO dto) {
+        // 根据url来删除
+        log.info("开始删除完工报告, {}", dto);
+        petroleumService.deleteFile(dto);
+        return Result.success();
+    }
 
 
 

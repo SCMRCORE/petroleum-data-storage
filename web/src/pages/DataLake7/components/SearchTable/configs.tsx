@@ -15,24 +15,24 @@ export enum TableMode {
 const CN_2_EN_TABLES = {
   // 钻井深度表
   CASE1: {
-    "井名": "well_name_drill",
-    "测量井深": "dmea",
-    "垂直井深": "dver",
-    "钻井液总池体积": "tva",
-    "当量循环密度": "ecd",
-    "入口密度": "mdia",
-    "出口密度": "mdoa",
-    "入口流量": "mfia",
-    "返出流量": "mfoa",
-    "钻压": "woba",
-    "悬重": "hkla",
-    "扭矩": "tqa",
-    "机械钻速": "ropa",
-    "转速": "rpma",
-    "泵压": "sppa",
-    "dc指数": "data15",
-    "累计钻头进尺": "spr3",
-    "累计纯钻进时间": "spr1"
+    井名: "well_name_drill",
+    测量井深: "dmea",
+    垂直井深: "dver",
+    钻井液总池体积: "tva",
+    当量循环密度: "ecd",
+    入口密度: "mdia",
+    出口密度: "mdoa",
+    入口流量: "mfia",
+    返出流量: "mfoa",
+    钻压: "woba",
+    悬重: "hkla",
+    扭矩: "tqa",
+    机械钻速: "ropa",
+    转速: "rpma",
+    泵压: "sppa",
+    dc指数: "data15",
+    累计钻头进尺: "spr3",
+    累计纯钻进时间: "spr1",
   },
 };
 
@@ -88,9 +88,9 @@ const getColumns = () =>
     // };
 
     const columnMapper = {
-      wellName: {
-        fixed: "left",
-      },
+      // wellName: {
+      //   fixed: "left",
+      // },
       // location: {
       //   width: 200,
       // },

@@ -68,6 +68,12 @@ export const add = async (
     throw "表头字段不匹配 或 数据为空";
   }
 };
+export const deleteItemFile = async (
+    params: DeleteParams
+): Promise<AxiosResponse<StatusResponse>> => {
+  const res = await request.post("/file/delete", params);
+  return res;
+};
 
 export const deleteItem = async (
   params: DeleteParams

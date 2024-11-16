@@ -258,6 +258,9 @@
     <insert id="addWG">
         insert into wangong (url, file_name, well_name, upload_time) values (#{url}, #{fileName}, #{wellName}, #{uploadTime})
     </insert>
+    <delete id="deleteFile">
+        delete from wangong where url = #{url}
+    </delete>
 
 
     <!--搜索-->

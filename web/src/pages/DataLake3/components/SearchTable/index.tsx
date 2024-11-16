@@ -371,17 +371,17 @@ const SearchTable = () => {
             >
               EXCEL导入
             </Button> */}
-            {/*{selectedRowKeys?.length > 0 && (*/}
-            {/*  <Button*/}
-            {/*    onClick={batchDelete}*/}
-            {/*    type="primary"*/}
-            {/*    className="w-[80%]"*/}
-            {/*    status="danger"*/}
-            {/*    loading={isDeleting}*/}
-            {/*  >*/}
-            {/*    批量删除*/}
-            {/*  </Button>*/}
-            {/*)}*/}
+            {/* {selectedRowKeys?.length > 0 && (
+              <Button
+                onClick={batchDelete}
+                type="primary"
+                className="w-[80%]"
+                status="danger"
+                loading={isDeleting}
+              >
+                批量删除
+              </Button>
+            )} */}
           </div>
         </div>
       </Form>
@@ -403,15 +403,15 @@ const SearchTable = () => {
             </div>
           )}
           // rowSelection={{
-          //   type: "checkbox",
-          //   onChange: (keys: Array<string>) => {
-          //     // const onlyKeys = selectedRows.map((item) => item.onlyKey);
-          //     console.log("onChange:", keys);
-          //     setSelectedRowKeys(keys);
-          //   },
-          //   onSelect: (selected, record, selectedRows) => {
-          //     console.log("onSelect:", selected, record, selectedRows);
-          //   },
+            // type: "checkbox",
+            // onChange: (keys: Array<string>) => {
+               // const onlyKeys = selectedRows.map((item) => item.onlyKey);
+              // console.log("onChange:", keys);
+              // setSelectedRowKeys(keys);
+            // },
+            // onSelect: (selected, record, selectedRows) => {
+              // console.log("onSelect:", selected, record, selectedRows);
+            // },
           // }}
         />
       </div>

@@ -9,7 +9,7 @@ export enum DATA_SOURCE_TABLE {
   JS,
   FZ,
   ZT,
-  TABLE1,
+  WG,
 }
 
 export const DATA_SOURCE_TABLE_TITLE_MAP = {
@@ -18,7 +18,7 @@ export const DATA_SOURCE_TABLE_TITLE_MAP = {
   JS: "井身结构",
   FZ: "复杂情况",
   ZT: "钻头总览",
-  TABLE1: "基本信息",
+  WG: "完工报告",
 };
 
 /** 根据是否包含某些特定字段来判别是哪张表的神奇函数 */
@@ -37,6 +37,14 @@ export const checkDataSourceTable = (keys) => {
     )
   )
     return DATA_SOURCE_TABLE.FZ;
+  if (
+      keys.some((key) => {
+          [
+              "url"
+          ].includes(key)
+      })
+  )
+      return DATA_SOURCE_TABLE.WG
   if (
     keys.some((key) =>
       [

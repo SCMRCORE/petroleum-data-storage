@@ -5,7 +5,7 @@ import {
   groupTableHeaderKeys,
 } from "../../../../utils/checkDataSource.ts";
 import { DeleteParams } from "../../../../services/types.ts";
-import { deleteItem } from "../../../../services/searchTable.ts";
+import {deleteItem, deleteItemFile} from "../../../../services/searchTable.ts";
 
 export enum TableMode {
   CASE1 = 0,
@@ -15,8 +15,9 @@ export enum TableMode {
 const CN_2_EN_TABLES = {
   CASE1: {
     井名: "wellName",
-    文件: "path",
+    文件名: "fileName",
     上传时间: "uploadTime",
+    下载地址: "url"
   },
 };
 
@@ -64,9 +65,10 @@ const getColumns = (
   // handleEdit: (v: Partial<MixedItem>) => void
   {
     //
-    const handleDeleteItem = async (params: DeleteParams) => {
+    const handleDeleteItem = async (params: { num: number; url: any }) => {
       // TODO: 还要写一个删除接口, 删除之后用handleSearch刷新
-      const res = await deleteItem(params);
+      console.log("文件删除参数！", params);
+      const res = await deleteItemFile(params);
       console.log("res", res);
       if (res?.data?.code === 1) {
         Message.info("删除成功");
@@ -78,13 +80,14 @@ const getColumns = (
     };
 
     const handleDownload = (url) => {
+      console.log(url)
       window.open(url);
     };
 
     const columnMapper = {
-      wellName: {
-        fixed: "left",
-      },
+      //  wellName: {
+      //       fixed: "left",
+      //     },
       // location: {
       //   width: 200,
       // },
@@ -103,7 +106,7 @@ const getColumns = (
               <Button
                 size="mini"
                 type="primary"
-                onClick={() => handleDownload(row.filePath)}
+                onClick={() => handleDownload(row.url)}
               >
                 下载
               </Button>
@@ -115,10 +118,11 @@ const getColumns = (
                 onOk={() => {
                   const keys = Object.keys(row);
                   const num = checkDataSourceTable(keys);
-                  console.log("删除", _, row, num);
-                  if (row.onlyKey && num) {
-                    handleDeleteItem({ OnlyKey: row.onlyKey, num });
-                  }
+                  const url =
+                  console.log("删除", _, row);
+                  // if (row.onlyKey && num) {
+                    handleDeleteItem({ url: row.url, num: 0});
+                  // }
                 }}
               >
                 <Button type="primary" status="danger" size="mini">

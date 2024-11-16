@@ -77,7 +77,7 @@ export const routeList = [
     path: "/file-management",
     element: <FileManagement />,
   },
-  ...extraConfig,
+ //  ...extraConfig,
 ];
 
 const routerList = createHashRouter(routeList);
