@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Upload, Modal, Button, Input, Alert } from "@arco-design/web-react";
 import { IconUpload, IconEye, IconDelete } from "@arco-design/web-react/icon";
-import { uploadWordFile } from "../../../../services/searchTable.ts";
+import {getColumns} from "../../../FileManagement/components/SearchTable/configs.js";
+import {fileSearch, uploadWordFile} from "../../../../services/searchTable.ts";
+import {isFileServingAllowed} from "vite";
 
 interface FileUploaderProps {
   onUploadSuccess?: (fileInfo: Record<string, unknown>) => void;
@@ -92,6 +94,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({}) => {
           file.status = "success"; // Mark as success
           file.url = response.data.url; // Get the OSS URL
           showAlert(`文件 ${file.name} 上传成功`, "success");
+          window.location.reload()
         } else {
           file.status = "error"; // Mark as error
           showAlert(

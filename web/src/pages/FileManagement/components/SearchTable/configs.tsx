@@ -79,6 +79,10 @@ const getColumns = (
       }
     };
 
+    // const handleUpdate = () => {
+    //   handleSearch()
+    // }
+
     const handleDownload = (url) => {
       console.log(url)
       window.open(url);
