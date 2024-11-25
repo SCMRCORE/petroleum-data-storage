@@ -6,7 +6,7 @@
     "module": "NodeNext",
     "skipLibCheck": true,
 
-    /* Bundler mode */
+
     "moduleResolution": "NodeNext",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
@@ -14,7 +14,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
 
-    /* Linting */
+
     "strict": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

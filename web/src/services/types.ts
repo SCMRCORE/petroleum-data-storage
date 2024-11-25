@@ -19,7 +19,7 @@ export type SearchParams = {
   pageIndex: number;
   pageSize: number;
   [key: string]: string | number | undefined;
-  // params?: string; // 一段JSON字符串
+  
 };
 
 export type SearchResult<T> = PaginatedResult<T>;

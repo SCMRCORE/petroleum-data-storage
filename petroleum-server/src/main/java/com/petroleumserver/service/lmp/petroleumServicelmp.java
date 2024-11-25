@@ -31,16 +31,10 @@ public class petroleumServicelmp implements PetroleumService {
     @Resource
     private petroleumMapper petroleumMapper;
 
-    /**
-     * 批量添加
-     * @param file
-     * @param company
-     * @param num
-     * @throws IOException
-     */
+     
     @Override
     public void addByList(MultipartFile file, String company, Integer num) throws IOException {
-        //井口表
+        
         if(num == 1) {
             log.info("servicelmp:新增井口表");
             InputStream inputStream = file.getInputStream();
@@ -61,7 +55,7 @@ public class petroleumServicelmp implements PetroleumService {
             }
             petroleumMapper.addJinShenByList(jingShen);
         }
-        //基本信息表
+        
         if(num == 2) {
             log.info("servicelmp:新增基本信息表");
             InputStream inputStream = file.getInputStream();
@@ -82,7 +76,7 @@ public class petroleumServicelmp implements PetroleumService {
             }
             petroleumMapper.addJiBenByList(jiBen);
         }
-        //复杂情况表
+        
         if(num == 3) {
             log.info("servicelmp:新增复杂情况表");
             InputStream inputStream = file.getInputStream();
@@ -103,7 +97,7 @@ public class petroleumServicelmp implements PetroleumService {
             }
             petroleumMapper.addFuZaByList(fuza);
         }
-        //钻头表
+        
         if(num == 4) {
             log.info("servicelmp:新增钻头表");
             InputStream inputStream = file.getInputStream();
@@ -180,11 +174,7 @@ public class petroleumServicelmp implements PetroleumService {
     }
 
 
-    /**
-     * 搜索js
-     * @param jsSPDto
-     * @return
-     */
+     
     @Override
     public PageResult searchjs(JingShenSearchPageDTO jsSPDto) {
         log.info("servicelmp:搜索井口表");
@@ -194,11 +184,7 @@ public class petroleumServicelmp implements PetroleumService {
         return new PageResult(page.getTotal(), page.getResult());
     }
 
-    /**
-     * 搜索jb
-     * @param jbSPDto
-     * @return
-     */
+     
     @Override
     public PageResult searchjb(JiBenSearchPageDTO jbSPDto) {
         log.info("servicelmp:搜索基本信息表");
@@ -208,11 +194,7 @@ public class petroleumServicelmp implements PetroleumService {
         return new PageResult(page.getTotal(), page.getResult());
     }
 
-    /**
-     * 搜索fz
-     * @param fzSPDto
-     * @return
-     */
+     
     @Override
     public PageResult searchfz(FuZaSearchPageDTO fzSPDto) {
         log.info("servicelmp:搜索复杂情况表");
@@ -222,11 +204,7 @@ public class petroleumServicelmp implements PetroleumService {
         return new PageResult(page.getTotal(), page.getResult());
     }
 
-    /**
-     * 搜索zt
-     * @param ztSPDto
-     * @return
-     */
+     
     @Override
     public PageResult searchzt(ZuanTouSearchPageDTO ztSPDto) {
         log.info("servicelmp:搜索钻头表");
@@ -246,11 +224,7 @@ public class petroleumServicelmp implements PetroleumService {
     }
 
 
-    /**
-     * 软删除
-     * @param num
-     * @param onlyKey
-     */
+     
     @Override
     public void updateStatus(Integer num, Integer onlyKey) {
         if(num==1){
@@ -315,26 +289,4 @@ public class petroleumServicelmp implements PetroleumService {
        petroleumMapper.deleteFile(dto);
     }
 }
-
-//     * 软删除js
-//     * @param jsDto
-//     */
-//    @Override
-//    public void updateStatusJS(JingShenDTO jsDto) {
-//        petroleumMapper.updateStatusJS(jsDto);
-//    }
-//
-//    @Override
-//    public void updateStatusJB(JiBenDTO jbDto) {
-//        petroleumMapper.updateStatusJB(jbDto);
-//    }
-//
-//    @Override
-//    public void updateStatusFZ(FuZaDTO fzDto) {
-//        petroleumMapper.updateStatusFZ(fzDto);
-//    }
-//
-//    @Override
-//    public void updateStatusZT(ZuanTouDTO ztDto) {
-//        petroleumMapper.updateStatusZT(ztDto);
-//    }
+                      

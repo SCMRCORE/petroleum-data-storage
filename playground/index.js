@@ -184,7 +184,7 @@ const JB = {
 
 const getKeys = (obj) => {
   const keys = Object.keys(obj);
-  // console.log('key set', keys);
+
   return keys;
 };
 
@@ -215,5 +215,4 @@ const getSpecialKeys = (index) => {
 getSpecialKeys(0);
 getSpecialKeys(1);
 getSpecialKeys(2);
-// getSpecialKeys(3);
 

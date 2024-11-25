@@ -25,11 +25,7 @@ public interface PetroleumService {
     void addJB(List<JiBenDTO> jbDto);
     void addFZ(List<FuZaDTO> fzDto);
     void addZT(List<ZuanTouDTO> ztDto);
-
-//    void updateStatusJS(JingShenDTO jsDto);
-//    void updateStatusJB(JiBenDTO jbDto);
-//    void updateStatusFZ(FuZaDTO fzDto);
-//    void updateStatusZT(ZuanTouDTO ztDto);
+    
 
 
     void updateJS(Integer onlyKey, JingShenDTO jsDto);

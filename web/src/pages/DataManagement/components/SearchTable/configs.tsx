@@ -148,8 +148,7 @@ Object.keys(CN_2_EN_TABLES).forEach((tableName) => {
     DEFAULT_SEARCH_PARAMS[tableName][enKey] = null;
   });
 });
-
-//  = reverseMapping(CN_2_EN_TABLES);
+ 
 const CN_2_EN_MIXED = {
   ...CN_2_EN_TABLES.FZ,
   ...CN_2_EN_TABLES.JB,
@@ -167,11 +166,11 @@ console.log("en2cn", EN_2_CN_MIXED);
 
 export const formConfigList = [
   [
-    { label: "井基本类型", field: "primaryWellType", defaultValue: "" },
     { label: "井名", field: "wellName", defaultValue: "" },
-    { label: "井类型", field: "wellType", defaultValue: "" },
-    // { label: "油田类型", field: "oilFieldName", defaultValue: "" },
-    // { label: "合同方", field: "contractor", defaultValue: "" },
+    { label: "井基本类型", field: "primaryWellType", defaultValue: "" },
+    
+    
+    
   ],
   [],
 ];
@@ -193,15 +192,15 @@ const getColumns = (
   };
 
   const columnMapper = {
-    // onlyKey: {
-    //   fixed: "left",
-    // },
+    
+    
+    
     wellName: {
       fixed: "left",
     },
-    // company: {
-    //   fixed: "left",
-    // },
+    
+    
+    
     location: {
       width: 200,
     },
@@ -245,7 +244,7 @@ const getColumns = (
   };
 
   const allTableHeaders = [
-    // "onlyKey",
+    
     "wellName",
     "company",
     "primaryWellType",

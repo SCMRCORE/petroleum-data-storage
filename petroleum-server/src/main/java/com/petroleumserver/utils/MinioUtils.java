@@ -26,30 +26,27 @@ public class MinioUtils {
     private MinioClient minioClient;
     @Resource
     private MinioProperties minioProperties;
-    /**
-     * 上传word文件
-     * @param file
-     */
+     
     public WanGongDTO upload(MultipartFile file) throws IOException {
         String bucketName = minioProperties.getBucketName();
         try {
-            // 检查桶是否存在（如果不存在可以选择创建）
+            
             if (!minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build())) {
                 minioClient.makeBucket(MakeBucketArgs.builder().bucket(bucketName).build());
             }
-            // 文件上传
+            
             String objectName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
             try (InputStream inputStream = file.getInputStream()) {
                 minioClient.putObject(
                         PutObjectArgs.builder()
                                 .bucket(bucketName)
                                 .object(objectName)
-                                .stream(inputStream, file.getSize(), -1) // -1表示未知的内容大小限制
-                                .contentType(file.getContentType()) // 设置文件类型
+                                .stream(inputStream, file.getSize(), -1) 
+                                .contentType(file.getContentType()) 
                                 .build()
                 );
             }
-            // 返回文件访问url
+            
             String url =  minioProperties.getEndpoint() + "/" + minioProperties.getBucketName() + '/' +  objectName;
             String fileName = file.getOriginalFilename();
             String uploadTIme = DateTime.now().toString("yyyy年MM月dd日-HH:mm:ss");

@@ -38,41 +38,41 @@ type DataSourceType = Record<
 >;
 
 const SearchTable = () => {
-  /** 搜索表单 ref */
+   
   const [form] = Form.useForm();
-  /** 编辑表单 ref */
+   
   const [editForm] = Form.useForm();
-  /** 弹窗是否可见 */
+   
   const [isModalVisible, setIsModalVisible] = useState(false);
-  /** 弹窗展示的每个文件内容 */
+   
   const [uploadFileInfoList, setUploadFileInfoList] = useState([]);
-  /** 弹窗展示的每个文件的名称 */
+   
   const [uploadFileNameList, setUploadFileNameList] = useState([]);
-  /** 列表数据 */
+   
   const [dataSource, setDataSource] = useState<DataSourceType>();
-  /** 分页 */
+   
   const [pageIndex, setPageIndex] = useState<number>(1);
-  /** 搜索加载态 */
+   
   const [isSearching, setIsSearching] = useState(false);
-  /** 删除加载态 */
+   
   const [isDeleting, setIsDeleting] = useState(false);
-  /** 是否打开编辑窗口 */
+   
   const [isEditing, setIsEditing] = useState(false);
-  /** 编辑窗口表单的数据 */
+   
   const [editingData, setEditingData] = useState<Partial<MixedItem>>();
-  /** 搜索参数 */
-  // const [searchParams, setSearchParams] = useState<
-  //   Record<string, string | number>
-  // >({});
+   
+  
+  
+  
 
-  /** 批量选择  */
+   
   const [selectedRowKeys, setSelectedRowKeys] = useState<Array<string>>([]);
-  /** 展示模式 */
+   
   const [activeTab, setActiveTab] = useState<DATA_SOURCE_TABLE>(
     DATA_SOURCE_TABLE.JS
   );
 
-  /** 搜索 */
+   
   const handleSearch = async () => {
     try {
       setIsSearching(true);
@@ -84,7 +84,7 @@ const SearchTable = () => {
       });
 
       console.log("请求的数据", res);
-      // 不知为何，finally 中取消 loading 的操作并没有生效
+      
       setSelectedRowKeys([]);
       setIsSearching(false);
       setDataSource(res);
@@ -95,13 +95,13 @@ const SearchTable = () => {
     }
   };
 
-  /** 清空搜素参数 */
+   
   const handleReset = () => {
-    // setSearchParams({});
+    
     form.resetFields();
   };
 
-  /** 读取Excel，打开弹窗 */
+   
   const openUploadFileModal = () => {
     const input = document.createElement("input");
     input.type = "file";
@@ -142,7 +142,7 @@ const SearchTable = () => {
         input.remove();
       }
     };
-    input.click(); // 触发文件选择框
+    input.click(); 
   };
 
   const confirmUpload = async () => {
@@ -184,7 +184,7 @@ const SearchTable = () => {
   };
 
   const handleTabChange = (v) => {
-    // console.log(v);
+    
     setActiveTab(v);
   };
 
@@ -234,7 +234,7 @@ const SearchTable = () => {
       >
         <div className="overflow-y-auto max-h-[400px]">
           {uploadFileInfoList?.map((fileRowList, index) => {
-            // TODO: 仔细一想，其实这里不能取 sample 来代表所有表的类型，每个 listItem 都需要单独判断。。。不过先这么用吧。。。
+            
             const sampleFileRow = fileRowList[0];
             const keys = Object.keys(sampleFileRow);
             const dataSourceTable = checkDataSourceTable(keys);
@@ -281,7 +281,7 @@ const SearchTable = () => {
             const value = editingData[enKey];
             const tableName = DATA_SOURCE_TABLE[activeTab];
             const cnKey = EN_2_CN_TABLES[tableName][enKey];
-            // "status", "onlyKey", "num"
+            
             if (["status", "onlyKey", "num"].includes(enKey)) {
               return null;
             }
@@ -311,7 +311,7 @@ const SearchTable = () => {
               key={`${index}`}
               title={`${DATA_SOURCE_TABLE_TITLE_MAP[item]}`}
             >
-              {/* 搜索项 */}
+              { }
               <Form form={form} id="searchForm" layout="vertical">
                 <div className="flex w-[100%] ">
                   <div className="w-[78%] mr-[12px]">
@@ -375,7 +375,7 @@ const SearchTable = () => {
                 </div>
               </Form>
 
-              {/* 表格主体部分 */}
+              { }
               <div className="pr-28 mt-4 overflow-y-auto">
                 <Table
                   rowKey="onlyKey"
@@ -396,7 +396,7 @@ const SearchTable = () => {
                   rowSelection={{
                     type: "checkbox",
                     onChange: (keys: Array<string>) => {
-                      // const onlyKeys = selectedRows.map((item) => item.onlyKey);
+                      
                       console.log("onChange:", keys);
                       setSelectedRowKeys(keys);
                     },

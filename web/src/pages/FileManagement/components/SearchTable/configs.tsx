@@ -10,8 +10,7 @@ import {deleteItem, deleteItemFile} from "../../../../services/searchTable.ts";
 export enum TableMode {
   CASE1 = 0,
 }
-
-// TODO: 记得改下字段
+ 
 const CN_2_EN_TABLES = {
   CASE1: {
     井名: "wellName",
@@ -31,8 +30,7 @@ Object.keys(CN_2_EN_TABLES).forEach((tableName) => {
     DEFAULT_SEARCH_PARAMS[tableName][enKey] = null;
   });
 });
-
-//  = reverseMapping(CN_2_EN_TABLES);
+ 
 const CN_2_EN_MIXED = {
   ...CN_2_EN_TABLES.CASE1,
 };
@@ -44,29 +42,27 @@ Object.keys(CN_2_EN_MIXED).forEach((cn) => {
 
 console.log("cn2en", CN_2_EN_MIXED);
 console.log("en2cn", EN_2_CN_MIXED);
-
-// TODO: 这里是搜索配置项，用于动态生成表单
-// 每个二级数组代表一排，比如第0个二级数组代表第1排，第1个代表第2排...
+  
 export const formConfigList = [
   [
-    // 这个文件名的搜索，就只需要使用井名搜索
-    // { label: "井基本类型", field: "primaryWellType", defaultValue: "" },
+    
+    
     { label: "井名", field: "wellName", defaultValue: "" },
-    // { label: "井类型", field: "wellType", defaultValue: "" },
+    
   ],
   [],
 ];
 
-/** 用于单独配置有些特别的字段的样式、交互 */
+ 
 const getColumns = (
   handleSearch: () => void
-  // handleDonw: (fileUrl: string) => void
+  
 ) =>
-  // handleEdit: (v: Partial<MixedItem>) => void
+  
   {
-    //
+    
     const handleDeleteItem = async (params: { num: number; url: any }) => {
-      // TODO: 还要写一个删除接口, 删除之后用handleSearch刷新
+      
       console.log("文件删除参数！", params);
       const res = await deleteItemFile(params);
       console.log("res", res);
@@ -79,9 +75,9 @@ const getColumns = (
       }
     };
 
-    // const handleUpdate = () => {
-    //   handleSearch()
-    // }
+    
+    
+    
 
     const handleDownload = (url) => {
       console.log(url)
@@ -89,15 +85,15 @@ const getColumns = (
     };
 
     const columnMapper = {
-      //  wellName: {
-      //       fixed: "left",
-      //     },
-      // location: {
-      //   width: 200,
-      // },
-      // operationDescription: {
-      //   width: 600,
-      // },
+      
+      
+      
+      
+      
+      
+      
+      
+      
       操作: {
         width: 80,
         fixed: "right",
@@ -124,9 +120,9 @@ const getColumns = (
                   const num = checkDataSourceTable(keys);
                   const url =
                   console.log("删除", _, row);
-                  // if (row.onlyKey && num) {
+                  
                     handleDeleteItem({ url: row.url, num: 0});
-                  // }
+                  
                 }}
               >
                 <Button type="primary" status="danger" size="mini">

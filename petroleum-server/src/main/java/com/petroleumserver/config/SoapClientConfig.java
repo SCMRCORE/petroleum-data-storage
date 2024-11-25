@@ -12,10 +12,7 @@ import org.springframework.ws.client.core.WebServiceTemplate;
 public class SoapClientConfig {
 
 
-    /**
-     * 返回将xml与java对象进行序列化的marshaller
-     * @return
-     */
+     
     @Bean
     Jaxb2Marshaller marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();

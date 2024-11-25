@@ -29,10 +29,11 @@ netty:
   port: ${netty.port}
   username: ${netty.username}
   password: ${netty.password}
+  MAX_RETRY: ${netty.MAX_RETRY}
 
 mybatis:
   #mapper????
-  mapper-locations: classpath*:/Mapper/**/*.xml
+  mapper-locations: classpath*:/Mapper *.xml
   type-aliases-package: com.petroleumpojo.entity
   configuration:
     #??????

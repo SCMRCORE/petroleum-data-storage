@@ -16,7 +16,7 @@ public class LoginConsoleCommand implements ConsoleCommand {
         System.out.print("请输入密码: ");
         loginRequestPacket.setPassword(scanner.nextLine());
 
-        // 发送登录数据包
+        
         channel.writeAndFlush(loginRequestPacket);
     }
 

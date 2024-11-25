@@ -11,6 +11,7 @@ import DataLake5 from "../pages/DataLake5/index.js";
 import DataLake4 from "../pages/DataLake4/index.js";
 import DataLake3 from "../pages/DataLake3/index.js";
 import DataLakes from "../pages/DataLakes/index.js";
+import ChartsTest from "../pages/ChartsTest/index.tsx";
 
 const isDebug = true;
 const extraConfig = isDebug
@@ -73,11 +74,17 @@ export const routeList = [
 
   },
   {
-    name: "文件管理",
+    name: "完工报告",
     path: "/file-management",
     element: <FileManagement />,
   },
- //  ...extraConfig,
+  
+  
+  
+  
+  
+  
+ 
 ];
 
 const routerList = createHashRouter(routeList);

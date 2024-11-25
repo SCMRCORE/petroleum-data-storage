@@ -1,6 +1,6 @@
 import SearchTable from "./components/SearchTable/index.js";
 const DataManagement = () => {
-  // const { count, inc } = useStore();
+  
 
   return (
     <div>
@@ -10,5 +10,4 @@ const DataManagement = () => {
 };
 
 export default DataManagement;
-
-// monorepo
+ 

@@ -13,7 +13,7 @@ export const search = async (params: SearchParams) => {
   const jbParams = { ...DEFAULT_SEARCH_PARAMS.JB, ...params };
 
   const promiseList = [
-    // 严格按照枚举顺序
+    
     request.post("/petroleum/searchJB", jbParams),
     request.post("/petroleum/searchJS", jsParams),
     request.post("/petroleum/searchFZ", fzParams),
@@ -27,12 +27,12 @@ export const search = async (params: SearchParams) => {
     list.push(...(resItem?.data?.data?.records ?? []));
     total = Math.max(resItem?.data?.data?.total, total);
   });
-  // console.log("search res", resList);
+  
   const result = {
     [DATA_SOURCE_TABLE[DATA_SOURCE_TABLE.ALL]]: { list, total },
   };
   resList?.forEach((item, index) => {
-    const key = DATA_SOURCE_TABLE[index + 1]; // 0 是全部
+    const key = DATA_SOURCE_TABLE[index + 1]; 
     const data = item?.data?.data;
     result[key] = {
       list: data?.records,
@@ -112,18 +112,18 @@ export const updateItem = async (params: ModifyParams) => {
   return res;
 };
 
-/** 只支持单个上传，若要上传list，就多次调用 */
+ 
 export const uploadWordFile = async (file, wellName) => {
 
   const formData = new FormData();
   console.log("file11", file);
   formData.append("word", file.originFile);
-  // 加入井名参数
+  
   formData.append("wellName", wellName)
   const res = await axios({
     method: "post",
-    // TODO 这里的请求写死，部署时记得改
-    url: "http://localhost:8080/file/uploadWG",
+    
+    url: "http://47.108.223.152:8080/file/uploadWG",
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -132,7 +132,7 @@ export const uploadWordFile = async (file, wellName) => {
   return res;
 };
 
-/** 查询数据湖数据 */
+ 
 export const dataLakeSearch = async (props) => {
   const {index,  pageIndex, pageSize, ...rest } = props;
   const params = {
@@ -147,15 +147,15 @@ export const dataLakeSearch = async (props) => {
       total: res.data.total,
       list: res.data.data
   }
-  //
-  // const mockRes = {
-  //   total: 100,
-  //   list: [{ SPM4: "这是MOCK的，记得替换为真实接口" }],
-  // };
-  // return mockRes;
+  
+  
+  
+  
+  
+  
 };
 
-/** 查询文件 */
+ 
 export const fileSearch = async (params) => {
   const res =  await request.post("/file/search", params);
   return {
@@ -164,17 +164,4 @@ export const fileSearch = async (params) => {
   }
 }
 
-  // TODO: 这是mock的异步请求，记得替换为真实请求
-//   const mockRes = {
-//     total: 100,
-//     list: [
-//       {
-//         wellName: "这是mock的文件",
-//         fileName:
-//           "http://web-core.oss-cn-beijing.aliyuncs.com/396c2df4-e35e-47aa-a68c-cd8e994acb28.doc",
-//         uploadTime: "123",
-//       },
-//     ],
-//   };
-//   return mockRes;
-// };
+               

@@ -34,7 +34,7 @@ public class RealTimeController {
                 " </tns:WMLS_GetFromStore>\\n </soap:Body>\\n</soap:Envelope>\"\n" +
                 "}";
 
-        // 解析出 xmlStr 内容
+        
         String xmlStr = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                 "<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tns=\"http://www.witsml.org/message/120\">\n" +
                 " <soap:Body>\n" +
@@ -48,24 +48,24 @@ public class RealTimeController {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             HttpPost httpPost = new HttpPost("http://10.77.78.233/apigateway/witsml/tj");
 
-            // 设置请求头
+            
             httpPost.setHeader("Authorization", "Basic d3JkYnRqX1NjdGlhbmppbmE6MTE=");
             httpPost.setHeader("appCode", "152b5e38657e0b8cd73964bc315f74b6");
             httpPost.setHeader("apiToken", "ALHMNMBLQHHQGMVF");
             httpPost.setHeader("Content-Type", "application/xml");
 
-            // 设置请求体
+            
             StringEntity stringEntity = new StringEntity(xmlStr);
             httpPost.setEntity(stringEntity);
 
-            // 执行 HTTP 请求
+            
             try (CloseableHttpResponse response = httpClient.execute(httpPost)) {
-                // 获取响应状态码
+                
                 int statusCode = response.getStatusLine().getStatusCode();
                 System.out.println("Response Status: " + statusCode);
 
-                // 处理响应体
-                if (statusCode == 200) {  // 如果响应状态为 200，表示请求成功
+                
+                if (statusCode == 200) {  
                     String responseBody = EntityUtils.toString(response.getEntity());
                     System.out.println("Response Body: " + responseBody);
                 } else {

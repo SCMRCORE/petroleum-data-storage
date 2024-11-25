@@ -7,11 +7,9 @@ import { isTrue } from "./utils/str";
 const port = 2233;
 const app = new Koa();
 const router = new Router();
-
-// 使用中间件解析请求体
+ 
 app.use(bodyParser());
-
-// 设置CORS
+ 
 app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
   ctx.set("Access-Control-Allow-Origin", "*");
   ctx.set(
@@ -25,12 +23,12 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
 
 const service = async (
   ctx: Koa.ParameterizedContext
-  // next: () => Promise<any>
+  
 ) => {
   const { path } = ctx.params;
   const isBffCute = isTrue(ctx.request.headers["is-bff-cute"]);
   const url = isBffCute ? `http://localhost:8080/${path}` : "";
-  // console.log("url?\n", url, ctx.request);
+  
   try {
     const response = await axios({
       method: ctx.request.method,
@@ -39,11 +37,11 @@ const service = async (
       data: ctx.request.body,
       params: ctx.request.query,
     });
-    // console.log("response", url, response);
+    
     ctx.status = response.status;
     ctx.body = response.data;
   } catch (error) {
-    // const { url, method, data, params } = error;
+    
     console.log(`==== response error ====\n`);
     console.log(error);
     console.log(`~~~~ response error ~~~~`);

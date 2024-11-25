@@ -18,7 +18,7 @@ public class ConsoleCommandManager implements ConsoleCommand {
 
     @Override
     public void exec(Scanner scanner, Channel channel) {
-        //  获取第一个指令
+        
         String command = scanner.next();
 
         if (!SessionUtil.hasLogin(channel)) {

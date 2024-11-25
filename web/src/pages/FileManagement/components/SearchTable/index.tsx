@@ -8,7 +8,7 @@ import {
   Modal,
   Tag,
   Message,
-  // Tabs,
+  
 } from "@arco-design/web-react";
 import {
   add,
@@ -33,10 +33,8 @@ import {
   formatCnToEn,
 } from "../../../../utils/checkDataSource.ts";
 import FileUploader from "../../../DataManagement/components/FileUploader/index.tsx";
-import WordPreviewer from "../../../DataManagement/components/WordPreviewer/index.tsx";
-// const TabPane = Tabs.TabPane;
-const pageSize = 10;
-// const displayModeList = [TableMode.CASE1];
+import WordPreviewer from "../../../DataManagement/components/WordPreviewer/index.tsx"; 
+const pageSize = 10; 
 
 type DataSourceType = Record<
   string,
@@ -44,17 +42,17 @@ type DataSourceType = Record<
 >;
 
 const SearchTable = () => {
-  /** 搜索表单 ref */
+   
   const [form] = Form.useForm();
-  /** 编辑表单 ref */
+   
   const [editForm] = Form.useForm();
-  /** 弹窗是否可见 */
+   
   const [isModalVisible, setIsModalVisible] = useState(false);
-  /** 弹窗展示的每个文件内容 */
+   
   const [uploadFileInfoList, setUploadFileInfoList] = useState([]);
-  /** 弹窗展示的每个文件的名称 */
+   
   const [uploadFileNameList, setUploadFileNameList] = useState([]);
-  /** 列表数据 */
+   
   const [dataSource, setDataSource] = useState<{
     total: number;
     list: Array<any>;
@@ -62,28 +60,28 @@ const SearchTable = () => {
     total: 0,
     list: [],
   });
-  /** 分页 */
+   
   const [pageIndex, setPageIndex] = useState<number>(1);
-  /** 搜索加载态 */
+   
   const [isSearching, setIsSearching] = useState(false);
-  /** 删除加载态 */
+   
   const [isDeleting, setIsDeleting] = useState(false);
-  /** 是否打开编辑窗口 */
+   
   const [isEditing, setIsEditing] = useState(false);
-  /** 编辑窗口表单的数据 */
+   
   const [editingData, setEditingData] = useState<Partial<MixedItem>>();
   const [activeFileUrl, setActiveFileUrl] = useState<string>("");
-  /** 搜索参数 */
-  // const [searchParams, setSearchParams] = useState<
-  //   Record<string, string | number>
-  // >({});
+   
+  
+  
+  
 
-  /** 批量选择  */
+   
   const [selectedRowKeys, setSelectedRowKeys] = useState<Array<string>>([]);
-  /** 展示模式 */
+   
   const [activeTab, setActiveTab] = useState<TableMode>(TableMode.CASE1);
 
-  /** 搜索 */
+   
   const handleSearch = async () => {
     try {
       setIsSearching(true);
@@ -95,7 +93,7 @@ const SearchTable = () => {
       });
 
       console.log("请求的数据", res);
-      // 不知为何，finally 中取消 loading 的操作并没有生效
+      
       setSelectedRowKeys([]);
       setIsSearching(false);
       setDataSource(res);
@@ -106,9 +104,9 @@ const SearchTable = () => {
     }
   };
 
-  /** 清空搜素参数 */
+   
   const handleReset = () => {
-    // setSearchParams({});
+    
     form.resetFields();
   };
 
@@ -146,7 +144,7 @@ const SearchTable = () => {
 
   const columnsSet = useMemo(
     () => getColumns(handleSearch, handleView),
-    // handleSearch, handleEdit
+    
     []
   );
 
@@ -161,7 +159,7 @@ const SearchTable = () => {
           <WordPreviewer fileUrl={activeFileUrl}></WordPreviewer>
         </div>
       </Modal>
-      {/* 搜索项 */}
+      { }
       <Form form={form} id="searchForm" layout="vertical">
         <div className="flex w-[100%] ">
           <div className="w-[78%] mr-[12px]">
@@ -204,22 +202,12 @@ const SearchTable = () => {
               清空参数
             </Button>
             <FileUploader onUploadSuccess={() => {}} onUploadError={() => {}} />
-            {/* {selectedRowKeys?.length > 0 && (
-              <Button
-                onClick={batchDelete}
-                type="primary"
-                className="w-[80%]"
-                status="danger"
-                loading={isDeleting}
-              >
-                批量删除
-              </Button>
-            )} */}
+            { }
           </div>
         </div>
       </Form>
 
-      {/* 表格主体部分 */}
+      { }
       <div className="pr-28 mt-4 overflow-y-auto">
         <Table
           rowKey="onlyKey"
@@ -238,7 +226,7 @@ const SearchTable = () => {
           rowSelection={{
             type: "checkbox",
             onChange: (keys: Array<string>) => {
-              // const onlyKeys = selectedRows.map((item) => item.onlyKey);
+              
               console.log("onChange:", keys);
               setSelectedRowKeys(keys);
             },

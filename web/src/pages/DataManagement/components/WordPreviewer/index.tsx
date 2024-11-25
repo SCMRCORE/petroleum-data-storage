@@ -1,9 +1,5 @@
 // import React, { useEffect, useRef } from "react";
-
-// interface WordPreviewerProps {
-//   fileUrl: string;
-//   onError?: (error: Error) => void;
-// }
+    
 
 const WordPreviewer = ({ fileUrl }) => {
   return (

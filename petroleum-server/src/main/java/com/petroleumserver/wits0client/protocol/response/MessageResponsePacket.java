@@ -8,6 +8,8 @@ import static com.petroleumserver.wits0client.protocol.command.Command.MESSAGE_R
 
 @Data
 public class MessageResponsePacket extends Packet {
+    
+
  
     private String message;
  

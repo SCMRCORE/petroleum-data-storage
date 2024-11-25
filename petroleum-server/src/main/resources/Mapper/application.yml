@@ -28,7 +28,7 @@ logging:
 mybatis:
     configuration:
         map-underscore-to-camel-case: true
-    mapper-locations: classpath*:/Mapper/**/*.xml
+    mapper-locations: classpath*:/Mapper *.xml
     type-aliases-package: com.petroleumpojo.entity
 petroleum:
     jwt:

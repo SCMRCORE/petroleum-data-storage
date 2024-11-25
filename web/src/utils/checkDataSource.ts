@@ -9,7 +9,7 @@ export enum DATA_SOURCE_TABLE {
   JS,
   FZ,
   ZT,
-  WG,
+  
 }
 
 export const DATA_SOURCE_TABLE_TITLE_MAP = {
@@ -18,10 +18,10 @@ export const DATA_SOURCE_TABLE_TITLE_MAP = {
   JS: "井身结构",
   FZ: "复杂情况",
   ZT: "钻头总览",
-  WG: "完工报告",
+  
 };
 
-/** 根据是否包含某些特定字段来判别是哪张表的神奇函数 */
+ 
 export const checkDataSourceTable = (keys) => {
   if (
     keys.some((key) =>
@@ -44,7 +44,7 @@ export const checkDataSourceTable = (keys) => {
           ].includes(key)
       })
   )
-      return DATA_SOURCE_TABLE.WG
+      
   if (
     keys.some((key) =>
       [
@@ -153,9 +153,9 @@ export const groupTableHeaderKeys = (tables) => {
     const englishKeys = {};
     for (const chineseKey in table) {
       const englishKey = table[chineseKey];
-      englishKeys[englishKey] = englishKey; // 保持键的存在，即使值相同
+      englishKeys[englishKey] = englishKey; 
     }
-    result[DATA_SOURCE_TABLE[category]] = Object.keys(englishKeys); // 只需键即可
+    result[DATA_SOURCE_TABLE[category]] = Object.keys(englishKeys); 
   }
   return result;
 };

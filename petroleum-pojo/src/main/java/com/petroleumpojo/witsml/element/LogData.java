@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class LogData {
 
-    // 包含日志的具体数据（例如：深度、时间等）
+    
     @XmlElement(name = "data")
     private String data;
 

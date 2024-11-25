@@ -17,7 +17,7 @@ const DataLakes = () => {
             style={id === index ? { background: "skyblue" } : null}
             key={item.path}
             size="large"
-            // className="w-[200px]"
+            
             onClick={() => {
               myNavigate(id);
             }}

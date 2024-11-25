@@ -35,13 +35,12 @@ public class dataLakeServiceImpl implements DataLakeService {
     @Resource
     private RedisTemplate<String, String> redisTemplate;
     public String getAppCode(HashMap<String, String> params) throws InterruptedException {
-        // TODO 这里是因为公司网络的代理问题，无法连接到服务器的数据库和redis
-//         1. 如果当前存有appcode直接取出
+         
         if(Boolean.TRUE.equals(redisTemplate.hasKey(Const.REDIS_KEY_APPCODE))) {
            return (String) redisTemplate.opsForValue().get(Const.REDIS_KEY_APPCODE);
         }
-        // 2.没有则重新获取并且刷新缓存，设置redis过期时间为一个半小时（留一点余地）
-        //appcode为
+        
+        
         String appCode = "";
         while (appCode.isEmpty()) {
             try {
@@ -53,18 +52,16 @@ public class dataLakeServiceImpl implements DataLakeService {
                     Thread.sleep(1000);
                     log.info("重新获取appcode...");
                     continue;
-                }
-//                appCode = object.getStr("data");
+                } 
                 log.info("获取appCode成功！ {}", appCode);
-                redisTemplate.opsForValue().set(Const.REDIS_KEY_APPCODE, appCode, 90, TimeUnit.MINUTES);
-//                return appCode;
-                // TODO 开发环境硬编码 这里的apiToken是根据datalake大版本更新的时候才会随之改变
+                redisTemplate.opsForValue().set(Const.REDIS_KEY_APPCODE, appCode, 90, TimeUnit.MINUTES); 
+                
                 return "152b5e38657e0b8cd73964bc315f74b6";
             } catch (Exception e) {
                 log.info("获取appcode请求失败");
-                // 睡眠1s重新获k
+                
                 Thread.sleep(1000);
-                // 更新时间戳的值
+                
                 params.put("timeStamp",(System.currentTimeMillis()+"").substring(0, 8));
                 log.info("再次重新获取");
             }
@@ -90,41 +87,33 @@ public class dataLakeServiceImpl implements DataLakeService {
 
     @Override
     public ResponseEntity<String> query(String json, Integer index) throws IOException, InterruptedException {
-        // index 判断是哪一张表
-        // 优化：使用redis对相同的请求 进行缓存
-//        String res = getDataFromRedis(json, index);
-        String res = null;
-//        if(res != null) { // 判断redis中是否存在数据
-//            return res;
-//        } else {
-            return fetchData(index, json);
-//        }
+        
+         
+        String res = null;   
+            return fetchData(index, json); 
     }
 
 
     private String getDataFromRedis(String json, Integer index) {
-        String redisKey = index + "_" + json; // 封装redis键
-        // 如果存在，那么就返回缓存的值，如果不存在就会直接返回null
+        String redisKey = index + "_" + json; 
+        
         return redisTemplate.opsForValue().get(redisKey);
     }
 
-    /**
-     * 直接获得token等头信息，将请求得到的数据封装后返回
-     */
+     
     public ResponseEntity<String> fetchData(Integer index, String frontEndJson) throws IOException, InterruptedException {
         ObjectMapper mapper = new ObjectMapper();
-        String redisKey = index + "_" + frontEndJson; // 封装redis键
-        String token = getToken();
-//        String appCode = connect();
-        // 创建HttpClient
+        String redisKey = index + "_" + frontEndJson; 
+        String token = getToken(); 
+        
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        // 创建Post请求
+        
         log.info("当前表的url {}", dataLakeMap.get(index));
         HttpPost postRequest = new HttpPost(dataLakeMap.get(index));
         log.info("创建请求数据湖数据请求..... {}", postRequest.toString());
-        // 设置请求头
-        // TODO 开发环境：appCode暂时设置为空
-        // 使用原始json
+        
+        
+        
         StringEntity entity = new StringEntity(frontEndJson);
         postRequest.setEntity(entity);
         postRequest.setHeader("token", token);
@@ -132,46 +121,10 @@ public class dataLakeServiceImpl implements DataLakeService {
         postRequest.setHeader("apiToken", (String) apiTokenMap.get(index));
         log.info(apiTokenMap.get(index).toString());
         postRequest.setHeader("Content-Type", "application/json");
-        postRequest.setHeader("Accept", "*/*");
-//        postRequest.setHeader("Host", "datalake.cnooc");
-        // 执行请求
-        try (CloseableHttpResponse response = httpClient.execute(postRequest)) {
-            InputStream inputStream = response.getEntity().getContent();
-            // 此时 inputStream 可能是 LazyDecompressingInputStream 类型
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            StringWriter writer = new StringWriter();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                writer.write(line);  // 将每一行数据写入 StringWriter
-            }
-            String responseData = writer.toString();  // 获取全部响应数据
-
-//            log.info("jsonResponse: {}", jsonResponse);
-             return ResponseEntity.status(HttpStatus.OK)
-                     .header(HttpHeaders.CONTENT_TYPE, "application/json")
-                     .body(responseData);  // 格式化输出 JSON
-//            HttpServletResponse response1 =
-
-//            log.info("响应状态码: {}" , response.getStatusLine().getStatusCode());
-//            log.info("响应内容: {}",   response.getEntity().getContent());
-
-            // 得到相应内容的字符串, 直接返回给前端
-            // 同时将得到的响应内容字符串缓存下来
-//            setDataInRedis(redisKey, response.getEntity().getContent().toString());
-
-        } catch (Exception e) {
-            log.info("获取数据失败");
-        }
-        return null;
-    }
-
-    /**
-     * 将从数据湖发送过来的数据进行缓存
-     * @param redisKey
-     */
+        postRequest.setHeader("Accept", "* 
     private void setDataInRedis(String redisKey, String responseResult) {
-        // 设置保存结果数据
-        // 设置过期时间为5分钟
+        
+        
         redisTemplate.opsForValue().set(redisKey, responseResult, 5, TimeUnit.MINUTES);
         log.info("redis中缓存结果成功.. 键：{}, 值：{}",redisKey, responseResult);
     }

@@ -27,18 +27,14 @@ public class FileController {
     @Resource
     private PetroleumService petroleumService ;
 
-    /**
-     * 上传完工报告表(word)
-     * @param word
-     * @return
-     */
+     
     @PostMapping("/uploadWG")
     public Result addWG(@RequestParam("word") MultipartFile word, @RequestParam("wellName") String wellName)
             throws IOException {
         log.info("完工报告word: {}, 关联井名 {}", word, wellName);
         Long size = word.getSize();
         log.info("上传完工报告word:{}, 内存大小:{}", word, size);
-        //如果小于20MB
+        
         if(size < 20 * 1024 * 1024){
             WanGongDTO wanGongDTO = minioUtils.upload(word);
             wanGongDTO.setWellName(wellName);
@@ -55,9 +51,7 @@ public class FileController {
         }
     }
 
-    /**
-     * 搜索完工报告
-     */
+     
     @PostMapping("/search")
     public Result<PageResult> searchFile(@RequestBody WanGongSearchPageDTO dto) {
         log.info("开始执行搜索完工报告，{}", dto);
@@ -65,12 +59,10 @@ public class FileController {
         return Result.success(pageResult);
     }
 
-    /**
-     * 删除完工报告
-     */
+     
     @PostMapping("/delete")
     public Result deleteFile(@RequestBody WanGongDTO dto) {
-        // 根据url来删除
+        
         log.info("开始删除完工报告, {}", dto);
         petroleumService.deleteFile(dto);
         return Result.success();

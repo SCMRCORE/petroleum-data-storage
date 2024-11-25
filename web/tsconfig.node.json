@@ -5,14 +5,14 @@
     "module": "NodeNext",
     "skipLibCheck": true,
 
-    /* Bundler mode */
+
     "moduleResolution": "NodeNext",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
 
-    /* Linting */
+
     "strict": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,

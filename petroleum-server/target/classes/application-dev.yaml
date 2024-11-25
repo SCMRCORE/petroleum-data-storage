@@ -1,12 +1,12 @@
 petroleum:
   redis:
-    host: localhost
+    host: 47.108.223.152
     database: 0
     password: ""
     port: 6379
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    host: localhost
+    host: 47.108.223.152
     port: 3306
     database: petroleum-data-storage
     username: root
@@ -16,4 +16,12 @@ minio:
   secret-key: 50OaRml8JxDjchHwsuCYtm7NzL5ZuLGRD0MbsrgY
   bucket-name: eraserbucket
   endpoint: http://47.108.223.152:9000
+netty:
+  username: ex_cfbgc
+  password: 4SdR0Qkicja8
+  host: 10.77.76.74
+  port: 8025
+  MAX_RETRY: 5
+
+
 

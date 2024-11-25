@@ -15,6 +15,9 @@ public class MessageResponseHandler extends SimpleChannelInboundHandler<MessageR
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, MessageResponsePacket messageResponsePacket) {
+        
+        
+
         System.out.println("server message -> " + messageResponsePacket.getMessage());
     }
 }

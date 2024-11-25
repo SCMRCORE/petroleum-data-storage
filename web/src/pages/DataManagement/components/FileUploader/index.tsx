@@ -14,7 +14,7 @@ interface UploadedFile {
   name: string;
   size: number;
   url: string;
-  status?: "success" | "error" | "loading"; // Added loading status
+  status?: "success" | "error" | "loading"; 
 }
 
 const FileUploader: React.FC<FileUploaderProps> = ({}) => {
@@ -34,7 +34,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({}) => {
     setAlertContent(content);
     setAlertType(type);
     setAlertVisible(true);
-    setTimeout(() => setAlertVisible(false), 3000); // Auto-hide after 3 seconds
+    setTimeout(() => setAlertVisible(false), 3000); 
   };
 
   const isAcceptFile = (file, accept) => {
@@ -72,7 +72,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({}) => {
 
   const handlePreviewFile = (file) => {
     if (file.url) {
-      window.open(file.url); // Use the OSS URL for preview
+      window.open(file.url); 
     }
   };
 
@@ -88,15 +88,15 @@ const FileUploader: React.FC<FileUploaderProps> = ({}) => {
     console.log("文件列表", uploadedFileList);
     for (const file of uploadedFileList) {
       try {
-        setUploadedFileList([...uploadedFileList]); // 重新渲染状态
-        const response = await uploadWordFile(file, wellName); // Call the upload function
+        setUploadedFileList([...uploadedFileList]); 
+        const response = await uploadWordFile(file, wellName); 
         if (response?.data?.code === 1) {
-          file.status = "success"; // Mark as success
-          file.url = response.data.url; // Get the OSS URL
+          file.status = "success"; 
+          file.url = response.data.url; 
           showAlert(`文件 ${file.name} 上传成功`, "success");
           window.location.reload()
         } else {
-          file.status = "error"; // Mark as error
+          file.status = "error"; 
           showAlert(
             `文件 ${file.name} 上传失败: ${response.data.message}`,
             "error"
@@ -133,7 +133,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({}) => {
       <Button
         type="primary"
         onClick={() => setModalVisible(true)}
-        // icon={<IconUpload />}
+        
         className="w-[80%]"
       >
         上传文件
