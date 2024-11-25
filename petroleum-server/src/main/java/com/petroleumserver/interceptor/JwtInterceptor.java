@@ -2,7 +2,7 @@ package com.petroleumserver.interceptor;
 
 import com.petroleumcommom.constant.JwtClaimsConstant;
 import com.petroleumcommom.context.BaseContext;
-import com.petroleumserver.properties.JwtProperties;
+import com.petroleumcommom.properties.JwtProperties;
 import com.petroleumcommom.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 @Component
 @Slf4j
 public class JwtInterceptor implements HandlerInterceptor {
+
     @Resource
     private JwtProperties jwtProperties;
 

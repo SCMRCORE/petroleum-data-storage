@@ -21,6 +21,7 @@ netty:
   password: 4SdR0Qkicja8
   host: 10.77.76.74
   port: 8025
+  MAX_RETRY: 5
 
 
 

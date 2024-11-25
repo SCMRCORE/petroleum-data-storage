@@ -29,6 +29,7 @@ netty:
   port: ${netty.port}
   username: ${netty.username}
   password: ${netty.password}
+  MAX_RETRY: ${netty.MAX_RETRY}
 
 mybatis:
   #mapper????

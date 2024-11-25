@@ -4,7 +4,7 @@ spring:
       max-file-size: 20MB
       max-request-size: 20MB
   profiles:
-    active: server
+    active: dev
   datasource:
     druid:
       driver-class-name: ${petroleum.datasource.driver-class-name}
@@ -22,6 +22,14 @@ minio:
   access-key: ${minio.access-key}
   secret-key: ${minio.secret-key}
   bucket-name: ${minio.bucket-name}
+
+# diy 配置netty客户端
+netty:
+  host: ${netty.host}
+  port: ${netty.port}
+  username: ${netty.username}
+  password: ${netty.password}
+  MAX_RETRY: ${netty.MAX_RETRY}
 
 mybatis:
   #mapper????
