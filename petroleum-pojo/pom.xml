@@ -39,6 +39,8 @@
 
 
 
+
+
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>easyexcel</artifactId>
@@ -59,6 +61,23 @@
         </dependency>
 
     </dependencies>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.index</include> <!-- 确保 jaxb.index 被处理 -->
+                </includes>
+            </resource>
+        </resources>
+    </build>
+
 
 
 </project>

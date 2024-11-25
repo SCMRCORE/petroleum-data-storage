@@ -66,10 +66,10 @@ public class Log {
     // 空值表示（如果某些值无效或缺失时使用）
     @XmlElement(name = "nullValue")
     private String nullValue;
-
-    // 描述日志曲线的元数据（如单位、值的类型等）
-    @XmlElement(name = "logCurveInfo")
-    private LogCurveInfo logCurveInfo;
+//
+//    // 描述日志曲线的元数据（如单位、值的类型等）
+//    @XmlElement(name = "logCurveInfo")
+//    private LogCurveInfo logCurveInfo;
 
     // 包含日志数据的具体内容
     @XmlElement(name = "logData")

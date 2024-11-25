@@ -18,3 +18,4 @@ minio:
   bucket-name: eraserbucket
   endpoint: http://47.108.223.152:9000
 
+

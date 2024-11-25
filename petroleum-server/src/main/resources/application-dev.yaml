@@ -16,4 +16,11 @@ minio:
   secret-key: 50OaRml8JxDjchHwsuCYtm7NzL5ZuLGRD0MbsrgY
   bucket-name: eraserbucket
   endpoint: http://47.108.223.152:9000
+netty:
+  username: ex_cfbgc
+  password: 4SdR0Qkicja8
+  host: 10.77.76.74
+  port: 8025
+
+
 

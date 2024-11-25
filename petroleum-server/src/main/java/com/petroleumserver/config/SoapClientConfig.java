@@ -19,7 +19,10 @@ public class SoapClientConfig {
     @Bean
     Jaxb2Marshaller marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
-        marshaller.setContextPath("com.petroleumpojo.witsml");
+        marshaller.setContextPaths(
+                "com.petroleumpojo.witsml.element",
+                "com.petroleumpojo.witsml"
+        );
         return marshaller;
     }
 
