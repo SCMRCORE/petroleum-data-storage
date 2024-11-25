@@ -1,7 +1,5 @@
 package com.petroleumserver.config;
 
-import org.springframework.context.annotation.Bean;
-
 /**
  * 实时数据接口配置
  * netty 客户端配置

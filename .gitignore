@@ -23,4 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 
+# target and class file
+petroleum-commom/target/*
+petroleum-server/target/*
+petroleum-pojo/target/*
+
 application-local.yaml
