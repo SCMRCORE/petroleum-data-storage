@@ -1,6 +1,0 @@
-packages:
-  - 'web/**'
-  - 'bff/**'
-  - 'petroleum-server/**'
-  - 'petroleum-pojo/**'
-  - 'petroleum-common/**'
